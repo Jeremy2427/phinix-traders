@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,113 +7,110 @@
 
 <style>
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#0b0b0b;
-color:white;
+    margin:0;
+    font-family:Arial;
+    background:#f2f2f2;
 }
 
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 20px;
-background:#111;
+.topbar{
+    background:#0d2d89;
+    padding:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .logo{
-font-size:28px;
-font-weight:bold;
-color:#FFD700;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
 }
 
-nav a{
-color:white;
-text-decoration:none;
-margin-left:15px;
+.buttons button{
+    background:#4c6fff;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    margin-left:5px;
+    border-radius:5px;
 }
 
-.hero{
-text-align:center;
-padding:80px 20px;
+.menu{
+    background:#173caa;
+    overflow-x:auto;
+    white-space:nowrap;
+    padding:10px;
 }
 
-.hero h1{
-font-size:42px;
-color:#FFD700;
-}
-
-.hero p{
-font-size:18px;
-color:#ddd;
-}
-
-button{
-background:#FFD700;
-color:black;
-border:none;
-padding:15px 30px;
-font-size:18px;
-border-radius:8px;
-cursor:pointer;
-margin:10px;
-}
-
-.features{
-display:grid;
-grid-template-columns:1fr;
-gap:20px;
-padding:30px;
+.menu a{
+    color:white;
+    text-decoration:none;
+    margin-right:20px;
+    font-size:16px;
 }
 
 .card{
-background:#1a1a1a;
-padding:20px;
-border-radius:10px;
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+.title{
+    background:#173caa;
+    color:white;
+    padding:10px;
+    border-radius:8px;
+    font-size:20px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="logo">PHINIX TRADERS</div>
+<div class="topbar">
+    <div class="logo">PHINIX TRADERS</div>
 
-<nav>
-<a href="#">Home</a>
-<a href="#">Markets</a>
-<a href="#">Login</a>
-<a href="#">Register</a>
-</nav>
-</header>
+    <div class="buttons">
+        <button>Deposit</button>
+        <button>Log in</button>
+        <button>Sign up</button>
+    </div>
+</div>
 
-<section class="hero">
-<h1>Trade Smarter With Phinix Traders</h1>
-
-<p>Forex • Synthetic Indices • Crypto • Commodities</p>
-
-<button>Start Trading</button>
-<button>Open Account</button>
-</section>
-
-<section class="features">
-
-<div class="card">
-<h2>Fast Trading</h2>
-<p>Trade anytime from anywhere.</p>
+<div class="menu">
+    <a href="#">Copy Trading</a>
+    <a href="#">DTrader</a>
+    <a href="#">TradingView</a>
+    <a href="#">Bulk Trader</a>
+    <a href="#">Bot Editor</a>
+    <a href="#">Analysis Tool</a>
+    <a href="#">Risk Calculator</a>
+    <a href="#">Free Bots</a>
 </div>
 
 <div class="card">
-<h2>Secure Platform</h2>
-<p>Your account is protected with advanced security.</p>
-</div>
+    <div class="title">Quick Strategy</div>
 
-<div class="card">
-<h2>24/7 Support</h2>
-<p>Our team is always ready to help.</p>
-</div>
+    <br>
 
-</section>
+    <h3>1. Trade Parameters</h3>
+
+    <p>Market: Derived</p>
+    <p>Index: Volatility 100</p>
+    <p>Trade Type: Over/Under</p>
+    <p>Contract Type: Both</p>
+    <p>Candle Interval: 1 Minute</p>
+
+    <button style="
+    background:gold;
+    border:none;
+    padding:12px;
+    border-radius:8px;">
+    Start Trading
+    </button>
+</div>
 
 </body>
 </html>
