@@ -1,131 +1,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>DTrader - Phinix Traders</title>
+<title>Phinix DTrader</title>
+
 <style>
 body{
-font-family:Arial;
-background:#f5f5f5;
-margin:0;
-zoom:0.9;
+    font-family:Arial;
+    background:#f5f5f5;
+    margin:0;
+    padding:0;
 }
+
 .header{
-background:#1e2a8a;
-color:white;
-padding:6px;
-font-size:16px;
-font-weight:bold;
-text-align:center;
+    background:#1e2a8a;
+    color:white;
+    text-align:center;
+    padding:10px;
+    font-size:20px;
+    font-weight:bold;
 }
 
 .card{
-background:white;
-margin:4px;
-padding:8px;
-border-radius:12px;
-box-shadow:0 2px 10px rgba(0,0,0,0.2);
-}
-
-.circles{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:8px;
-margin-top:8px;
-}
-
-.circle{
-width:45px;
-height:45px;
-border:4px solid lightgray;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-margin:auto;
-font-size:16px;
-}
-
-.active{
-background:#1e2a78;
-color:white;
-}
-
-.button{
-padding:8px;
-border:none;
-border-radius:10px;
-font-size:14px;
-color:white;
-width:45%;
-}
-
-.over{
-background:#20b2aa;
-}
-
-.under{
-background:#e53935;
-}
-
-.card{
+    background:white;
     margin:5px;
     padding:10px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.2);
+}
+
+h3{
+    margin:8px 0;
+    font-size:16px;
 }
 
 .circles{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
     gap:8px;
+    margin-top:10px;
 }
 
 .circle{
     width:45px;
     height:45px;
-    font-size:18px;
+    border:3px solid lightgray;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    font-size:16px;
 }
 
-.header{
-    padding:10px;
-    font-size:22px;
-}
-
-.button{
-    padding:8px;
-    font-size:14px;
-}
-
-h2,h3{
-    margin:5px 0;
-    font-size:14px;
-  }
-
-h3{
-margin:8px 0;
-font-size:18px;
+.active{
+    background:#1e2a8a;
+    color:white;
 }
 
 select,input{
-padding:6px;
-font-size:13px;
-margin-bottom:6px;
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    box-sizing:border-box;
 }
 
-p{
-margin:4px 0;
-font-size:14px;
+.button{
+    width:48%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    color:white;
+    font-weight:bold;
 }
 
+.over{
+    background:#20b2aa;
+}
+
+.under{
+    background:#e53935;
+}
+
+.start{
+    width:100%;
+    padding:12px;
+    background:gold;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="header">
-PHINIX DTRADER
-</div>
+<div class="header">PHINIX DTRADER</div>
 
 <div class="card">
 
-<h2>Digit Analysis</h2>
+<h3>Digit Analysis</h3>
 
 <div class="circles">
 <div class="circle">0</div>
@@ -139,68 +114,32 @@ PHINIX DTRADER
 <div class="circle">8</div>
 <div class="circle">9</div>
 </div>
+
 <h3>Market</h3>
-
-<select style="width:90%;padding:12px;border-radius:10px;font-size:18px;">
-<option>Volatility 10 (1s)</option>
-<option>Volatility 25</option>
-<option>Volatility 50</option>
-<option>Volatility 75</option>
-<option selected>Volatility 100</option>
+<select>
+<option>Volatility 100</option>
 </select>
-
-<br><br>
 
 <h3>Duration</h3>
-
-<select style="width:90%;padding:12px;border-radius:10px;font-size:18px;">
-<option selected>1 Tick</option>
-<option>2 Ticks</option>
-<option>3 Ticks</option>
-<option>5 Ticks</option>
-<option>10 Ticks</option>
+<select>
+<option>1 Tick</option>
 </select>
 
-<br><br>
 <h3>Trade Type</h3>
-
 <p>✔ Over / Under</p>
 <p>✔ Matches / Differs</p>
 <p>✔ Even / Odd</p>
 
-<br>
+<div style="display:flex;justify-content:space-between;">
+<button class="button over">OVER</button>
+<button class="button under">UNDER</button>
+</div>
 
-<button class="button over">
-OVER
-</button>
-
-<button class="button under">
-UNDER
-</button>
 <h3>Stake</h3>
+<input type="text" placeholder="Enter stake">
 
-<input type="number"
-placeholder="Enter stake"
-style="
-width:90%;
-padding:12px;
-border-radius:10px;
-border:1px solid lightgray;
-font-size:18px;
-">
+<button class="start">Start Trading</button>
 
-<br><br>
-
-<button style="
-background:gold;
-padding:15px;
-border:none;
-border-radius:10px;
-font-size:18px;
-width:100%;
-">
-Start Trading
-</button>
 </div>
 
 </body>
