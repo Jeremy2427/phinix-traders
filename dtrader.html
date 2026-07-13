@@ -1,128 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Phinix DTrader</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
 }
 
 body{
-    background:#f5f5f5;
+background:#f2f2f2;
 }
 
 .header{
-    background:#0b4ecf;
-    color:white;
-    padding:12px;
-    text-align:center;
-    font-size:20px;
-    font-weight:bold;
+background:#184ec9;
+color:white;
+text-align:center;
+padding:12px;
+font-size:22px;
+font-weight:bold;
 }
 
 .card{
-    background:white;
-    margin:10px;
-    padding:12px;
-    border-radius:12px;
+background:white;
+margin:8px;
+padding:12px;
+border-radius:15px;
 }
 
 .circles{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:15px;
-    margin-top:20px;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:10px;
+margin-bottom:15px;
 }
 
 .circle{
-    width:65px;
-    height:65px;
-    border-radius:50%;
-    border:5px solid #d9d9d9;
-    background:white;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    margin:auto;
-    font-size:22px;
+width:55px;
+height:55px;
+border-radius:50%;
+border:4px solid #ddd;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+margin:auto;
+background:white;
+font-size:16px;
 }
 
 .circle small{
-    font-size:11px;
-    margin-top:2px;
+font-size:10px;
 }
 
 .active{
-    background:#1e2a8a;
-    color:white;
+background:#232c93;
+color:white;
 }
 
-.select-digit{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:8px;
-    margin-top:25px;
+label{
+font-weight:bold;
+font-size:14px;
+display:block;
+margin-top:10px;
+margin-bottom:5px;
 }
 
-.box{
-    background:#f2f2f2;
-    padding:15px;
-    text-align:center;
-    border-radius:8px;
-    font-size:20px;
+select,input{
+width:100%;
+padding:10px;
+border-radius:10px;
+border:1px solid #ccc;
+font-size:15px;
 }
 
-.box.active{
-    background:#d9dce5;
-    color:black;
-    font-weight:bold;
+.tick-box{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px;
+margin-top:10px;
 }
 
-.input{
-    background:white;
-    border-radius:10px;
-    padding:15px;
-    margin-top:20px;
-    display:flex;
-    justify-content:space-between;
-    font-size:20px;
+.tick-btn{
+width:40px;
+height:40px;
+border:none;
+border-radius:10px;
+font-size:22px;
+background:#184ec9;
+color:white;
 }
 
-.trade-buttons{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
+.tick-value{
+font-size:20px;
+font-weight:bold;
 }
 
-.trade{
-    flex:1;
-    color:white;
-    border-radius:10px;
-    padding:18px;
-    text-align:center;
+.buttons{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+.btn{
+flex:1;
+padding:14px;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+color:white;
 }
 
 .over{
-    background:#2ab7b3;
+background:#2cb8b5;
 }
 
 .under{
-    background:#ef3c3c;
+background:#ef3c3c;
 }
 
-.trade h2{
-    font-size:28px;
-}
-
-.trade p{
-    margin-top:10px;
-    font-size:18px;
+.start{
+width:100%;
+margin-top:12px;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#ffd700;
+font-size:18px;
+font-weight:bold;
 }
 </style>
 </head>
@@ -137,59 +148,65 @@ PHINIX DTRADER
 
 <div class="circles">
 
-<div class="circle">0<small>11.3%</small></div>
-<div class="circle">1<small>10.3%</small></div>
-<div class="circle">2<small>10.1%</small></div>
-<div class="circle">3<small>10.5%</small></div>
-<div class="circle">4<small>9.9%</small></div>
+<div class="circle">0<small>11%</small></div>
+<div class="circle">1<small>10%</small></div>
+<div class="circle">2<small>10%</small></div>
+<div class="circle">3<small>10%</small></div>
+<div class="circle">4<small>10%</small></div>
 
-<div class="circle">5<small>9.8%</small></div>
-<div class="circle">6<small>7.1%</small></div>
-
-<div class="circle active">
-7
-<small>10.3%</small>
-</div>
-
-<div class="circle">8<small>10.2%</small></div>
-<div class="circle">9<small>10.5%</small></div>
+<div class="circle">5<small>9%</small></div>
+<div class="circle">6<small>8%</small></div>
+<div class="circle active">7<small>10%</small></div>
+<div class="circle">8<small>10%</small></div>
+<div class="circle">9<small>10%</small></div>
 
 </div>
 
-<div class="select-digit">
+<label>Market</label>
 
-<div class="box">0</div>
-<div class="box">1</div>
-<div class="box">2</div>
-<div class="box">3</div>
-<div class="box">4</div>
+<select>
+<option>Volatility 10</option>
+<option>Volatility 25</option>
+<option>Volatility 50</option>
+<option>Volatility 75</option>
+<option>Volatility 100</option>
+</select>
 
-<div class="box">5</div>
-<div class="box">6</div>
-<div class="box active">7</div>
-<div class="box">8</div>
-<div class="box">9</div>
+<label>Trade Type</label>
+
+<select>
+<option>Over / Under</option>
+<option>Even / Odd</option>
+<option>Matches / Differs</option>
+</select>
+
+<label>Stake</label>
+
+<input type="number" placeholder="Enter stake">
+
+<label>Ticks</label>
+
+<div class="tick-box">
+<button class="tick-btn">-</button>
+<div class="tick-value">1</div>
+<button class="tick-btn">+</button>
+</div>
+
+<div class="buttons">
+
+<button class="btn over">
+OVER
+</button>
+
+<button class="btn under">
+UNDER
+</button>
 
 </div>
 
-<div class="input">
-<span>1 Tick</span>
-<span>2.00 USD</span>
-</div>
-
-<div class="trade-buttons">
-
-<div class="trade over">
-<h2>Over</h2>
-<p>Payout<br>8.26 USD</p>
-</div>
-
-<div class="trade under">
-<h2>Under</h2>
-<p>Payout<br>2.70 USD</p>
-</div>
-
-</div>
+<button class="start">
+START TRADING
+</button>
 
 </div>
 
