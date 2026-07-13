@@ -45,4 +45,249 @@ body{
     justify-content:center;
     align-items:center;
     margin:auto;
-    font-size:12
+    font-size:12px;
+}
+
+.active{
+    background:#222f8f;
+    color:white;
+}
+
+.number{
+    font-size:18px;
+}
+
+.digits{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin-bottom:25px;
+}
+
+.digit{
+    background:#f1f1f1;
+    border-radius:12px;
+    padding:18px;
+    text-align:center;
+    font-size:20px;
+}
+
+.selected{
+    background:#dfe2ec;
+}
+
+.settings{
+    background:#f7f7f7;
+    padding:15px;
+    border-radius:15px;
+    display:none;
+    margin-bottom:20px;
+}
+
+select,input{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border-radius:12px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+.toggle{
+    background:#1f4fd1;
+    color:white;
+    padding:12px;
+    border-radius:12px;
+    text-align:center;
+    margin-bottom:20px;
+    cursor:pointer;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+}
+
+.trade{
+    flex:1;
+    border:none;
+    border-radius:18px;
+    padding:25px;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.over{
+    background:#2ec4c3;
+}
+
+.under{
+    background:#ff4040;
+}
+
+.start{
+    width:100%;
+    background:#ffd800;
+    border:none;
+    padding:18px;
+    margin-top:15px;
+    border-radius:15px;
+    font-size:20px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+PHINIX TRADERS
+</div>
+
+<div class="card">
+
+<div class="circles">
+
+<div class="circle">
+<div class="number">0</div>
+11%
+</div>
+
+<div class="circle">
+<div class="number">1</div>
+10%
+</div>
+
+<div class="circle">
+<div class="number">2</div>
+10%
+</div>
+
+<div class="circle">
+<div class="number">3</div>
+10%
+</div>
+
+<div class="circle">
+<div class="number">4</div>
+10%
+</div>
+
+<div class="circle">
+<div class="number">5</div>
+9%
+</div>
+
+<div class="circle">
+<div class="number">6</div>
+8%
+</div>
+
+<div class="circle active">
+<div class="number">7</div>
+10%
+</div>
+
+<div class="circle">
+<div class="number">8</div>
+10%
+</div>
+
+<div class="circle">
+<div class="number">9</div>
+10%
+</div>
+
+</div>
+
+<div class="digits">
+
+<div class="digit">0</div>
+<div class="digit">1</div>
+<div class="digit">2</div>
+<div class="digit">3</div>
+<div class="digit">4</div>
+
+<div class="digit">5</div>
+<div class="digit">6</div>
+<div class="digit selected">7</div>
+<div class="digit">8</div>
+<div class="digit">9</div>
+
+</div>
+
+<div class="toggle" onclick="showSettings()">
+⚙ Trade Settings ▼
+</div>
+
+<div class="settings" id="settings">
+
+<select>
+<option>Volatility 10</option>
+<option>Volatility 25</option>
+<option>Volatility 50</option>
+<option>Volatility 75</option>
+<option>Volatility 100</option>
+</select>
+
+<select>
+<option>Over / Under</option>
+<option>Even / Odd</option>
+<option>Matches / Differs</option>
+</select>
+
+<input placeholder="Enter Stake">
+
+</div>
+
+<div class="row">
+<div>1 Tick</div>
+<div>2.00 USD</div>
+</div>
+
+<div class="buttons">
+
+<button class="trade over">
+Over
+<br><br>
+Payout<br>
+8.26 USD
+</button>
+
+<button class="trade under">
+Under
+<br><br>
+Payout<br>
+2.70 USD
+</button>
+
+</div>
+
+<button class="start">
+START TRADING
+</button>
+
+</div>
+
+<script>
+function showSettings(){
+    let x=document.getElementById("settings");
+
+    if(x.style.display==="block"){
+        x.style.display="none";
+    }else{
+        x.style.display="block";
+    }
+}
+</script>
+
+</body>
+</html>
