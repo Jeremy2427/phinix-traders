@@ -5,181 +5,253 @@
 <title>Phinix Traders</title>
 
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
 body{
-    margin:0;
-    background:#050505;
-    color:white;
-    font-family:Arial;
+background:#05060d;
+color:white;
 }
 
 .header{
-    background:black;
-    padding:12px;
-    text-align:center;
-    font-size:28px;
-    font-weight:bold;
+padding:20px;
+text-align:center;
+font-size:32px;
+font-weight:bold;
+background:black;
+color:#b76cff;
+box-shadow:0 0 20px #7b2cff;
 }
 
-.tabs{
-    display:flex;
-    overflow:auto;
-    background:#000;
+.container{
+padding:15px;
 }
 
-.tab{
-    padding:15px;
-    white-space:nowrap;
-    font-weight:bold;
+.balance-box{
+background:#101321;
+border:1px solid #7b2cff;
+border-radius:20px;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+box-shadow:0 0 15px rgba(123,44,255,.4);
 }
 
-.active-tab{
-    background:#00d9ff;
-    color:black;
+.deposit{
+background:linear-gradient(90deg,#7b2cff,#c46cff);
+padding:12px 20px;
+border:none;
+border-radius:15px;
+color:white;
+font-size:18px;
 }
 
 .card{
-    background:#111;
-    margin:10px;
-    padding:15px;
-    border-radius:15px;
+background:#0c0f18;
+border-radius:25px;
+padding:20px;
+box-shadow:0 0 20px rgba(123,44,255,.2);
 }
 
-.market{
-    font-size:28px;
-    font-weight:bold;
+.title{
+font-size:26px;
+font-weight:bold;
+margin-bottom:20px;
 }
 
 .circles{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:15px;
-    margin-top:20px;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:15px;
+margin-bottom:25px;
 }
 
 .circle{
-    width:65px;
-    height:65px;
-    border-radius:50%;
-    border:5px solid #333;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    margin:auto;
+width:65px;
+height:65px;
+border-radius:50%;
+border:4px solid #2a2d3a;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+margin:auto;
+font-size:15px;
 }
 
 .active{
-    border-color:#5b5bff;
-    box-shadow:0 0 20px #5b5bff;
-}
-
-.digits{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:10px;
-    margin-top:20px;
-}
-
-.digit{
-    background:#111;
-    padding:15px;
-    border-radius:8px;
-    text-align:center;
+border:4px solid #9b4dff;
+background:radial-gradient(circle,#9b4dff,#5120b3);
+box-shadow:0 0 20px #9b4dff;
 }
 
 .trade-box{
-    background:#111;
-    padding:15px;
-    border-radius:12px;
-    margin-top:20px;
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:10px;
+margin-bottom:20px;
+}
+
+.trade-type{
+background:#101321;
+border:1px solid #36384b;
+padding:15px;
+border-radius:15px;
+text-align:center;
+}
+
+.input{
+width:100%;
+padding:18px;
+background:#101321;
+border:1px solid #333;
+border-radius:15px;
+color:white;
+margin-top:20px;
+margin-bottom:20px;
+font-size:18px;
 }
 
 .buttons{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
+display:flex;
+gap:15px;
 }
 
 .over{
-    flex:1;
-    background:#14c8c8;
-    padding:20px;
-    border-radius:10px;
-    text-align:center;
+flex:1;
+background:linear-gradient(#10c987,#07855d);
+padding:22px;
+border-radius:20px;
+text-align:center;
+font-size:32px;
+font-weight:bold;
 }
 
 .under{
-    flex:1;
-    background:#e6374a;
-    padding:20px;
-    border-radius:10px;
-    text-align:center;
+flex:1;
+background:linear-gradient(#ff3d4d,#b70018);
+padding:22px;
+border-radius:20px;
+text-align:center;
+font-size:32px;
+font-weight:bold;
+}
+
+.start{
+width:100%;
+margin-top:20px;
+padding:22px;
+background:linear-gradient(90deg,#7b2cff,#d56cff);
+border:none;
+border-radius:20px;
+font-size:28px;
+font-weight:bold;
+color:white;
+}
+
+.results{
+margin-top:25px;
+display:flex;
+gap:10px;
+overflow:auto;
+}
+
+.result{
+width:50px;
+height:50px;
+border-radius:50%;
+background:#191d2c;
+display:flex;
+justify-content:center;
+align-items:center;
+border:2px solid #7b2cff;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">PHINIX TRADERS</div>
+<div class="header">
+PHINIX TRADERS
+</div>
 
-<div class="tabs">
-    <div class="tab">Bots</div>
-    <div class="tab">Analysis</div>
-    <div class="tab active-tab">D-Trader</div>
-    <div class="tab">Smart Analysis</div>
+<div class="container">
+
+<div class="balance-box">
+<div>
+<div style="font-size:14px;color:#aaa;">DEMO BALANCE</div>
+<div style="font-size:35px;">$10,000</div>
+</div>
+
+<button class="deposit">
+Wallet ▼
+</button>
 </div>
 
 <div class="card">
-    <div class="market">
-        Volatility 75 (1s) Index
-    </div>
 
-    <div class="circles">
-        <div class="circle">0<br>10%</div>
-        <div class="circle">1<br>9%</div>
-        <div class="circle">2<br>9%</div>
-        <div class="circle">3<br>10%</div>
-        <div class="circle">4<br>11%</div>
-        <div class="circle">5<br>9%</div>
-        <div class="circle">6<br>10%</div>
-        <div class="circle active">7<br>10%</div>
-        <div class="circle">8<br>11%</div>
-        <div class="circle">9<br>10%</div>
-    </div>
+<div class="title">
+DIGIT ANALYSIS
+</div>
 
-    <div class="trade-box">
-        Over / Under<br>
-        Matches / Differs<br>
-        Even / Odd
-    </div>
+<div class="circles">
 
-    <div class="digits">
-        <div class="digit">0</div>
-        <div class="digit">1</div>
-        <div class="digit">2</div>
-        <div class="digit">3</div>
-        <div class="digit">4</div>
-        <div class="digit">5</div>
-        <div class="digit">6</div>
-        <div class="digit">7</div>
-        <div class="digit">8</div>
-        <div class="digit">9</div>
-    </div>
+<div class="circle">0<br>9%</div>
+<div class="circle">1<br>10%</div>
+<div class="circle">2<br>11%</div>
+<div class="circle">3<br>9%</div>
+<div class="circle">4<br>10%</div>
 
-    <div style="margin-top:20px;">
-        Tick: 1<br><br>
-        Stake: 34.00 USD
-    </div>
+<div class="circle">5<br>9%</div>
+<div class="circle">6<br>10%</div>
+<div class="circle active">7<br>12%</div>
+<div class="circle">8<br>11%</div>
+<div class="circle">9<br>9%</div>
 
-    <div class="buttons">
-        <div class="over">
-            OVER<br>Payout
-        </div>
+</div>
 
-        <div class="under">
-            UNDER<br>Payout
-        </div>
-    </div>
+<div class="trade-box">
+<div class="trade-type">Over / Under</div>
+<div class="trade-type">Matches</div>
+<div class="trade-type">Even / Odd</div>
+</div>
+
+<input class="input" placeholder="Enter stake amount">
+
+<div class="buttons">
+
+<div class="over">
+OVER
+</div>
+
+<div class="under">
+UNDER
+</div>
+
+</div>
+
+<button class="start">
+START TRADING
+</button>
+
+<div class="results">
+
+<div class="result">7</div>
+<div class="result">2</div>
+<div class="result">9</div>
+<div class="result">7</div>
+<div class="result">1</div>
+<div class="result">6</div>
+
+</div>
+
+</div>
 
 </div>
 
