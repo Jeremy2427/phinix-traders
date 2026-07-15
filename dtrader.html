@@ -6,171 +6,201 @@
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
 }
 
 body{
-background:#05060d;
-color:white;
+    background:#05050b;
+    color:white;
 }
+
+/* Header */
 
 .header{
-padding:20px;
-text-align:center;
-font-size:32px;
-font-weight:bold;
-background:black;
-color:#b76cff;
-box-shadow:0 0 20px #7b2cff;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.container{
-padding:15px;
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#c86cff;
 }
 
-.balance-box{
-background:#101321;
-border:1px solid #7b2cff;
-border-radius:20px;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
-box-shadow:0 0 15px rgba(123,44,255,.4);
+/* Wallet */
+
+.wallet{
+    margin:15px;
+    background:#0b0b16;
+    border:1px solid #6f2dff;
+    border-radius:20px;
+    padding:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 0 20px rgba(123,45,255,.4);
 }
 
-.deposit{
-background:linear-gradient(90deg,#7b2cff,#c46cff);
-padding:12px 20px;
-border:none;
-border-radius:15px;
-color:white;
-font-size:18px;
+.balance{
+    font-size:30px;
+    font-weight:bold;
 }
 
-.card{
-background:#0c0f18;
-border-radius:25px;
-padding:20px;
-box-shadow:0 0 20px rgba(123,44,255,.2);
+.wallet-btn{
+    background:linear-gradient(90deg,#7b2dff,#d46fff);
+    padding:14px 22px;
+    border-radius:15px;
 }
 
-.title{
-font-size:26px;
-font-weight:bold;
-margin-bottom:20px;
+/* Tabs */
+
+.tabs{
+    display:flex;
+    gap:10px;
+    padding:15px;
 }
 
-.circles{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:15px;
-margin-bottom:25px;
-}
-
-.circle{
-width:65px;
-height:65px;
-border-radius:50%;
-border:4px solid #2a2d3a;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-margin:auto;
-font-size:15px;
+.tab{
+    flex:1;
+    background:#0b0b16;
+    border:1px solid #2f2f55;
+    padding:15px;
+    text-align:center;
+    border-radius:15px;
 }
 
 .active{
-border:4px solid #9b4dff;
-background:radial-gradient(circle,#9b4dff,#5120b3);
-box-shadow:0 0 20px #9b4dff;
+    box-shadow:0 0 20px #7b2dff;
+    color:#d76fff;
 }
 
-.trade-box{
-display:grid;
-grid-template-columns:1fr 1fr 1fr;
-gap:10px;
-margin-bottom:20px;
+/* Market Card */
+
+.market{
+    margin:15px;
+    background:#0b0b16;
+    border-radius:20px;
+    padding:20px;
+    border:1px solid #1d1d35;
 }
 
-.trade-type{
-background:#101321;
-border:1px solid #36384b;
-padding:15px;
-border-radius:15px;
-text-align:center;
+.market-title{
+    font-size:30px;
+    margin-bottom:5px;
 }
 
-.input{
-width:100%;
-padding:18px;
-background:#101321;
-border:1px solid #333;
-border-radius:15px;
-color:white;
-margin-top:20px;
-margin-bottom:20px;
-font-size:18px;
+/* Circles */
+
+.circles{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+    margin:20px 15px;
 }
 
-.buttons{
-display:flex;
-gap:15px;
+.circle{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    border:4px solid #2a2a3f;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    background:#080811;
+}
+
+.selected{
+    border:4px solid #b34dff;
+    box-shadow:0 0 25px #a84dff;
+}
+
+/* Dropdowns */
+
+.box{
+    margin:15px;
+    background:#0b0b16;
+    border:1px solid #262645;
+    border-radius:15px;
+    padding:18px;
+    font-size:22px;
+}
+
+/* Digits */
+
+.digits{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin:15px;
+}
+
+.digit{
+    background:#0b0b16;
+    border:1px solid #23233b;
+    border-radius:15px;
+    text-align:center;
+    padding:20px;
+    font-size:30px;
+}
+
+.digit7{
+    border:2px solid #b14dff;
+    box-shadow:0 0 20px #b14dff;
+}
+
+/* Over Under */
+
+.trade{
+    display:flex;
+    gap:10px;
+    margin:15px;
 }
 
 .over{
-flex:1;
-background:linear-gradient(#10c987,#07855d);
-padding:22px;
-border-radius:20px;
-text-align:center;
-font-size:32px;
-font-weight:bold;
+    flex:1;
+    background:linear-gradient(#00c78f,#007f5a);
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
 }
 
 .under{
-flex:1;
-background:linear-gradient(#ff3d4d,#b70018);
-padding:22px;
-border-radius:20px;
-text-align:center;
-font-size:32px;
-font-weight:bold;
+    flex:1;
+    background:linear-gradient(#ff3055,#a60020);
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
 }
 
-.start{
-width:100%;
-margin-top:20px;
-padding:22px;
-background:linear-gradient(90deg,#7b2cff,#d56cff);
-border:none;
-border-radius:20px;
-font-size:28px;
-font-weight:bold;
-color:white;
+/* Stats */
+
+.stats{
+    display:flex;
+    justify-content:space-around;
+    margin:15px;
+    background:#0b0b16;
+    padding:20px;
+    border-radius:20px;
 }
 
-.results{
-margin-top:25px;
-display:flex;
-gap:10px;
-overflow:auto;
-}
+/* Bottom Nav */
 
-.result{
-width:50px;
-height:50px;
-border-radius:50%;
-background:#191d2c;
-display:flex;
-justify-content:center;
-align-items:center;
-border:2px solid #7b2cff;
+.bottom{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:black;
+    display:flex;
+    justify-content:space-around;
+    padding:15px;
+    border-top:1px solid #222;
 }
 </style>
 </head>
@@ -178,81 +208,120 @@ border:2px solid #7b2cff;
 <body>
 
 <div class="header">
-PHINIX TRADERS
+☰
+<div class="logo">PHINIX TRADERS</div>
+🔔
 </div>
 
-<div class="container">
-
-<div class="balance-box">
+<div class="wallet">
 <div>
-<div style="font-size:14px;color:#aaa;">DEMO BALANCE</div>
-<div style="font-size:35px;">$10,000</div>
+<div>Demo Balance</div>
+<div class="balance">$10,000</div>
 </div>
 
-<button class="deposit">
+<div class="wallet-btn">
 Wallet ▼
-</button>
+</div>
 </div>
 
-<div class="card">
+<div class="tabs">
+<div class="tab">Bot Builder</div>
+<div class="tab active">Manual Trader</div>
+</div>
 
-<div class="title">
-DIGIT ANALYSIS
+<div class="market">
+<div class="market-title">
+Volatility 100 (1s) Index ▼
+</div>
+
+<div style="color:#00ff99;">
+6,719.71 ▲ 0.42%
+</div>
 </div>
 
 <div class="circles">
 
-<div class="circle">0<br>9%</div>
+<div class="circle">0<br>11%</div>
 <div class="circle">1<br>10%</div>
-<div class="circle">2<br>11%</div>
-<div class="circle">3<br>9%</div>
-<div class="circle">4<br>10%</div>
+<div class="circle">2<br>9%</div>
+<div class="circle">3<br>10%</div>
+<div class="circle">4<br>11%</div>
 
 <div class="circle">5<br>9%</div>
 <div class="circle">6<br>10%</div>
-<div class="circle active">7<br>12%</div>
+
+<div class="circle selected">
+7<br>10%
+</div>
+
 <div class="circle">8<br>11%</div>
-<div class="circle">9<br>9%</div>
+<div class="circle">9<br>10%</div>
 
 </div>
 
-<div class="trade-box">
-<div class="trade-type">Over / Under</div>
-<div class="trade-type">Matches</div>
-<div class="trade-type">Even / Odd</div>
+<div class="box">
+Over / Under ▼
 </div>
 
-<input class="input" placeholder="Enter stake amount">
+<div class="digits">
 
-<div class="buttons">
+<div class="digit">0</div>
+<div class="digit">1</div>
+<div class="digit">2</div>
+<div class="digit">3</div>
+<div class="digit">4</div>
+
+<div class="digit">5</div>
+<div class="digit">6</div>
+<div class="digit digit7">7</div>
+<div class="digit">8</div>
+<div class="digit">9</div>
+
+</div>
+
+<div class="trade">
 
 <div class="over">
-OVER
+<h1>OVER</h1>
+Payout<br>
+145 USD
 </div>
 
 <div class="under">
-UNDER
+<h1>UNDER</h1>
+Payout<br>
+230 USD
 </div>
 
 </div>
 
-<button class="start">
-START TRADING
-</button>
+<div class="stats">
 
-<div class="results">
+<div>
+Last Digit<br>
+<b>7</b>
+</div>
 
-<div class="result">7</div>
-<div class="result">2</div>
-<div class="result">9</div>
-<div class="result">7</div>
-<div class="result">1</div>
-<div class="result">6</div>
+<div>
+Trend<br>
+<b style="color:#00ff99;">Bullish</b>
+</div>
 
+<div>
+Win Rate<br>
+<b style="color:#00ff99;">78%</b>
 </div>
 
 </div>
 
+<div style="height:90px"></div>
+
+<div class="bottom">
+🏠 Home
+📊 Trade
+🕒 History
+💳 Wallet
+👤 Profile
 </div>
 
 </body>
