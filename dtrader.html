@@ -6,323 +6,37 @@
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
 }
 
 body{
-    background:#05050b;
-    color:white;
+background:#05050b;
+color:white;
+padding-bottom:90px;
 }
 
-/* Header */
-
 .header{
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
 }
 
 .logo{
-    font-size:28px;
-    font-weight:bold;
-    color:#c86cff;
+font-size:18px;
+font-weight:bold;
+color:#d77bff;
 }
-
-/* Wallet */
 
 .wallet{
-    margin:15px;
-    background:#0b0b16;
-    border:1px solid #6f2dff;
-    border-radius:20px;
-    padding:18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 0 20px rgba(123,45,255,.4);
-}
-
-.balance{
-    font-size:30px;
-    font-weight:bold;
-}
-
-.wallet-btn{
-    background:linear-gradient(90deg,#7b2dff,#d46fff);
-    padding:14px 22px;
-    border-radius:15px;
-}
-
-/* Tabs */
-
-.tabs{
-    display:flex;
-    gap:10px;
-    padding:15px;
-}
-
-.tab{
-    flex:1;
-    background:#0b0b16;
-    border:1px solid #2f2f55;
-    padding:15px;
-    text-align:center;
-    border-radius:15px;
-}
-
-.active{
-    box-shadow:0 0 20px #7b2dff;
-    color:#d76fff;
-}
-
-/* Market Card */
-
-.market{
-    margin:15px;
-    background:#0b0b16;
-    border-radius:20px;
-    padding:20px;
-    border:1px solid #1d1d35;
-}
-
-.market-title{
-    font-size:30px;
-    margin-bottom:5px;
-}
-
-/* Circles */
-
-.circles{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:15px;
-    margin:20px 15px;
-}
-
-.circle{
-    width:65px;
-    height:65px;
-    border-radius:50%;
-    border:4px solid #2a2a3f;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    margin:auto;
-    background:#080811;
-}
-
-.selected{
-    border:4px solid #b34dff;
-    box-shadow:0 0 25px #a84dff;
-}
-
-/* Dropdowns */
-
-.box{
-    margin:15px;
-    background:#0b0b16;
-    border:1px solid #262645;
-    border-radius:15px;
-    padding:18px;
-    font-size:22px;
-}
-
-/* Digits */
-
-.digits{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:10px;
-    margin:15px;
-}
-
-.digit{
-    background:#0b0b16;
-    border:1px solid #23233b;
-    border-radius:15px;
-    text-align:center;
-    padding:20px;
-    font-size:30px;
-}
-
-.digit7{
-    border:2px solid #b14dff;
-    box-shadow:0 0 20px #b14dff;
-}
-
-/* Over Under */
-
-.trade{
-    display:flex;
-    gap:10px;
-    margin:15px;
-}
-
-.over{
-    flex:1;
-    background:linear-gradient(#00c78f,#007f5a);
-    padding:25px;
-    border-radius:20px;
-    text-align:center;
-}
-
-.under{
-    flex:1;
-    background:linear-gradient(#ff3055,#a60020);
-    padding:25px;
-    border-radius:20px;
-    text-align:center;
-}
-
-/* Stats */
-
-.stats{
-    display:flex;
-    justify-content:space-around;
-    margin:15px;
-    background:#0b0b16;
-    padding:20px;
-    border-radius:20px;
-}
-
-/* Bottom Nav */
-
-.bottom{
-    position:fixed;
-    bottom:0;
-    width:100%;
-    background:black;
-    display:flex;
-    justify-content:space-around;
-    padding:15px;
-    border-top:1px solid #222;
-}
-</style>
-</head>
-
-<body>
-
-<div class="header">
-☰
-<div class="logo">PHINIX TRADERS</div>
-🔔
-</div>
-
-<div class="wallet">
-<div>
-<div>Demo Balance</div>
-<div class="balance">$10,000</div>
-</div>
-
-<div class="wallet-btn">
-Wallet ▼
-</div>
-</div>
-
-<div class="tabs">
-<div class="tab">Bot Builder</div>
-<div class="tab active">Manual Trader</div>
-</div>
-
-<div class="market">
-<div class="market-title">
-Volatility 100 (1s) Index ▼
-</div>
-
-<div style="color:#00ff99;">
-6,719.71 ▲ 0.42%
-</div>
-</div>
-
-<div class="circles">
-
-<div class="circle">0<br>11%</div>
-<div class="circle">1<br>10%</div>
-<div class="circle">2<br>9%</div>
-<div class="circle">3<br>10%</div>
-<div class="circle">4<br>11%</div>
-
-<div class="circle">5<br>9%</div>
-<div class="circle">6<br>10%</div>
-
-<div class="circle selected">
-7<br>10%
-</div>
-
-<div class="circle">8<br>11%</div>
-<div class="circle">9<br>10%</div>
-
-</div>
-
-<div class="box">
-Over / Under ▼
-</div>
-
-<div class="digits">
-
-<div class="digit">0</div>
-<div class="digit">1</div>
-<div class="digit">2</div>
-<div class="digit">3</div>
-<div class="digit">4</div>
-
-<div class="digit">5</div>
-<div class="digit">6</div>
-<div class="digit digit7">7</div>
-<div class="digit">8</div>
-<div class="digit">9</div>
-
-</div>
-
-<div class="trade">
-
-<div class="over">
-<h1>OVER</h1>
-Payout<br>
-145 USD
-</div>
-
-<div class="under">
-<h1>UNDER</h1>
-Payout<br>
-230 USD
-</div>
-
-</div>
-
-<div class="stats">
-
-<div>
-Last Digit<br>
-<b>7</b>
-</div>
-
-<div>
-Trend<br>
-<b style="color:#00ff99;">Bullish</b>
-</div>
-
-<div>
-Win Rate<br>
-<b style="color:#00ff99;">78%</b>
-</div>
-
-</div>
-
-<div style="height:90px"></div>
-
-<div class="bottom">
-🏠 Home
-📊 Trade
-🕒 History
-💳 Wallet
-👤 Profile
-</div>
-
-</body>
-</html>
+margin:15px;
+padding:18px;
+border-radius:22px;
+background:#090913;
+border:1px solid #6b29ff;
+display:flex;
+justify-content:space-between;
+align-items
