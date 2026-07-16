@@ -21,7 +21,7 @@ body{
     width:100%;
     max-width:430px;
     margin:auto;
-    padding:15px;
+    padding:12px;
 }
 
 .header{
@@ -33,123 +33,118 @@ body{
 
 .logo{
     color:#b266ff;
-    font-size:20px;
+    font-size:18px;
     font-weight:bold;
 }
 
 .wallet-box{
-    margin-top:20px;
+    margin-top:15px;
     background:#090913;
     border:1px solid #6b29ff;
-    border-radius:25px;
-    padding:20px;
+    border-radius:20px;
+    padding:12px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-shadow:0 0 20px rgba(130,50,255,.4);
+    box-shadow:0 0 20px rgba(130,50,255,.3);
 }
 
 .balance h1{
-    font-size:55px;
+    font-size:40px;
 }
 
 .wallet-btn{
     background:linear-gradient(90deg,#7b2cff,#d06fff);
-    padding:18px 22px;
-    border-radius:20px;
-    font-size:18px;
+    padding:12px 18px;
+    border-radius:16px;
 }
 
 .tabs{
     display:flex;
-    gap:12px;
-    margin-top:20px;
+    gap:10px;
+    margin-top:15px;
 }
 
 .tab{
     flex:1;
     background:#090913;
-    padding:25px;
-    border-radius:20px;
+    padding:16px;
+    border-radius:18px;
     text-align:center;
     border:1px solid #222;
 }
 
 .active{
     border:1px solid #b266ff;
-    box-shadow:0 0 25px rgba(180,80,255,.5);
     color:#d17cff;
 }
 
 .market{
-    margin-top:20px;
+    margin-top:15px;
     background:#090913;
-    padding:25px;
-    border-radius:25px;
-}
-
-.market h2{
-    font-size:26px;
+    padding:15px;
+    border-radius:20px;
 }
 
 .price{
     color:#00ff99;
-    margin-top:15px;
-    font-size:18px;
+    margin-top:10px;
 }
 
 .digits{
     display:grid;
     grid-template-columns:repeat(5,1fr);
-    gap:15px;
-    margin-top:25px;
+    gap:10px;
+    margin-top:15px;
+}
+
+.circle-box{
+    text-align:center;
 }
 
 .circle{
-    width:60px;
-    height:60px;
+    width:50px;
+    height:50px;
     border-radius:50%;
-    border:4px solid #333;
+    border:3px solid #333;
     display:flex;
     justify-content:center;
     align-items:center;
     margin:auto;
-    font-size:20px;
 }
 
 .selected{
     border-color:#c94fff;
-    box-shadow:0 0 20px #c94fff;
+    box-shadow:0 0 15px #c94fff;
 }
 
 .option{
     background:#090913;
-    padding:22px;
-    border-radius:20px;
-    margin-top:20px;
-    font-size:18px;
+    padding:14px;
+    border-radius:16px;
+    margin-top:12px;
 }
 
 .buttons{
     display:flex;
-    gap:15px;
-    margin-top:20px;
+    gap:10px;
+    margin-top:15px;
 }
 
 .over{
     flex:1;
     background:#00695c;
-    padding:20px;
+    padding:16px;
     text-align:center;
-    border-radius:20px;
+    border-radius:16px;
 }
 
 .under{
     flex:1;
     background:#8b0035;
-    padding:20px;
+    padding:16px;
     text-align:center;
-    border-radius:20px;
+    border-radius:16px;
 }
 </style>
 </head>
@@ -181,21 +176,54 @@ Wallet ▼
 </div>
 
 <div class="market">
-<h2>Volatility 100 (1s) Index ▼</h2>
-<div class="price">6,719.71 ▲ 0.42%</div>
+<h3>Volatility 100 (1s) Index ▼</h3>
+<div class="price">
+6,719.71 ▲ 0.42%
+</div>
 </div>
 
 <div class="digits">
+
+<div class="circle-box">
 <div class="circle">0</div>
+</div>
+
+<div class="circle-box">
 <div class="circle">1</div>
+</div>
+
+<div class="circle-box">
 <div class="circle">2</div>
+</div>
+
+<div class="circle-box">
 <div class="circle">3</div>
+</div>
+
+<div class="circle-box">
 <div class="circle">4</div>
+</div>
+
+<div class="circle-box">
 <div class="circle">5</div>
+</div>
+
+<div class="circle-box">
 <div class="circle">6</div>
+</div>
+
+<div class="circle-box">
 <div class="circle selected">7</div>
+</div>
+
+<div class="circle-box">
 <div class="circle">8</div>
+</div>
+
+<div class="circle-box">
 <div class="circle">9</div>
+</div>
+
 </div>
 
 <div class="option">
@@ -211,8 +239,13 @@ Over / Under ▼
 </div>
 
 <div class="buttons">
-<div class="over">OVER</div>
-<div class="under">UNDER</div>
+<div class="over">
+OVER
+</div>
+
+<div class="under">
+UNDER
+</div>
 </div>
 
 </div>
