@@ -21,19 +21,19 @@ body{
     width:100%;
     max-width:430px;
     margin:auto;
-    padding:12px;
+    padding:15px;
 }
 
 .header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-top:15px;
+    margin-top:10px;
 }
 
 .logo{
     color:#b266ff;
-    font-size:18px;
+    font-size:20px;
     font-weight:bold;
 }
 
@@ -41,110 +41,115 @@ body{
     margin-top:20px;
     background:#090913;
     border:1px solid #6b29ff;
-    border-radius:22px;
-    padding:12px;
+    border-radius:25px;
+    padding:20px;
     display:flex;
     justify-content:space-between;
     align-items:center;
     box-shadow:0 0 20px rgba(130,50,255,.4);
 }
 
+.balance h1{
+    font-size:55px;
+}
+
 .wallet-btn{
-    background:linear-gradient(90deg,#7b2cff,#d06cff);
-    padding:15px 22px;
-    border-radius:18px;
-}
-.wallet-btn{
-    position:relative;
-    cursor:pointer;
+    background:linear-gradient(90deg,#7b2cff,#d06fff);
+    padding:18px 22px;
+    border-radius:20px;
+    font-size:18px;
 }
 
-.wallet-menu{
-    display:none;
-    position:absolute;
-    top:60px;
-    right:0;
-    background:#111;
-    border:1px solid #6b29ff;
-    border-radius:12px;
-    padding:10px;
-    min-width:140px;
-    z-index:1000;
-}
-
-.wallet-menu div{
-    padding:10px;
-}
-
-.wallet-btn:hover .wallet-menu{
-    display:block;
-}
 .tabs{
     display:flex;
     gap:12px;
-    margin-top:15px;
+    margin-top:20px;
 }
 
 .tab{
     flex:1;
     background:#090913;
-    border:1px solid #222;
-    border-radius:18px;
-    padding:18px;
+    padding:25px;
+    border-radius:20px;
     text-align:center;
+    border:1px solid #222;
 }
 
 .active{
-    box-shadow:0 0 25px rgba(180,50,255,.6);
-    color:#d06cff;
+    border:1px solid #b266ff;
+    box-shadow:0 0 25px rgba(180,80,255,.5);
+    color:#d17cff;
 }
 
 .market{
-    margin-top:15px;
+    margin-top:20px;
     background:#090913;
-    border-radius:22px;
-    padding:14px;
+    padding:25px;
+    border-radius:25px;
+}
+
+.market h2{
+    font-size:26px;
+}
+
+.price{
+    color:#00ff99;
+    margin-top:15px;
+    font-size:18px;
 }
 
 .digits{
     display:grid;
     grid-template-columns:repeat(5,1fr);
     gap:15px;
-    margin-top:15px;
+    margin-top:25px;
 }
 
 .circle{
-    width:55px;
-    height:55px;
+    width:60px;
+    height:60px;
     border-radius:50%;
     border:4px solid #333;
     display:flex;
     justify-content:center;
     align-items:center;
     margin:auto;
+    font-size:20px;
 }
 
 .selected{
-    border-color:#c04fff;
-    box-shadow:0 0 20px #c04fff;
+    border-color:#c94fff;
+    box-shadow:0 0 20px #c94fff;
 }
 
-.box{
-    margin-top:25px;
+.option{
     background:#090913;
-    border-radius:18px;
-    padding:12px;
+    padding:22px;
+    border-radius:20px;
+    margin-top:20px;
+    font-size:18px;
 }
 
-.bottom{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    background:black;
-    padding:12px;
+.buttons{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.over{
+    flex:1;
+    background:#00695c;
+    padding:20px;
     text-align:center;
-    font-size:14px;
+    border-radius:20px;
+}
+
+.under{
+    flex:1;
+    background:#8b0035;
+    padding:20px;
+    text-align:center;
+    border-radius:20px;
 }
 </style>
 </head>
@@ -160,17 +165,14 @@ body{
 </div>
 
 <div class="wallet-box">
-<div>
+<div class="balance">
 Demo Balance
 <h1>$10,000</h1>
 </div>
 
 <div class="wallet-btn">
-    Wallet ▼
-    <div class="wallet-menu">
-        <div>💵 Deposit</div>
-        <div>💸 Withdraw</div>
-    </div>
+Wallet ▼
+</div>
 </div>
 
 <div class="tabs">
@@ -180,76 +182,39 @@ Demo Balance
 
 <div class="market">
 <h2>Volatility 100 (1s) Index ▼</h2>
-
-<br>
-
-<div style="color:#00ff99;">
-6,719.71 ▲ 0.42%
-</div>
+<div class="price">6,719.71 ▲ 0.42%</div>
 </div>
 
 <div class="digits">
-
 <div class="circle">0</div>
 <div class="circle">1</div>
 <div class="circle">2</div>
 <div class="circle">3</div>
 <div class="circle">4</div>
-
 <div class="circle">5</div>
 <div class="circle">6</div>
 <div class="circle selected">7</div>
 <div class="circle">8</div>
 <div class="circle">9</div>
-
 </div>
 
-<div class="box">
+<div class="option">
 Over / Under ▼
 </div>
 
-<div class="box">
+<div class="option">
 ⏱ 1 Tick
 </div>
 
-<div class="box">
+<div class="option">
 💵 Stake: 125 USD
 </div>
 
-<div style="
-display:flex;
-gap:12px;
-margin-top:20px;
-">
-
-<div style="
-flex:1;
-background:#003c33;
-padding:20px;
-border-radius:18px;
-text-align:center;">
-OVER
+<div class="buttons">
+<div class="over">OVER</div>
+<div class="under">UNDER</div>
 </div>
 
-<div style="
-flex:1;
-background:#420018;
-padding:20px;
-border-radius:18px;
-text-align:center;">
-UNDER
-</div>
-
-</div>
-
-<div class="box">
-Recent Trades → View All
-</div>
-
-</div>
-
-<div class="bottom">
-🏠 Home 📊 Trade 🕒 History 💳 Wallet 👤 Profile
 </div>
 
 </body>
