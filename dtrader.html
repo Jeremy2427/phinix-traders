@@ -190,10 +190,28 @@ Wallet ▼
 <div class="digits">
 
 <div class="circle-box">
-    <div class="circle">0</div>
-    <small>10%</small>
+    <div class="circle">
+        <span class="digit">0</span>
+        <span class="percent">10%</span>
+    </div>
 </div>
+.circle{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
 
+.digit{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.percent{
+    font-size:10px;
+    color:#00ff99;
+    margin-top:2px;
+}
 <div class="circle-box">
     <div class="circle">1</div>
     <small>10%</small>
