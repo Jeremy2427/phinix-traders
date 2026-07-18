@@ -300,4 +300,19 @@ Wallet ▼
     <button class="over">OVER</button>
     <button class="under">UNDER</button>
 </div>
+<script>
+const overBtn = document.querySelector(".over");
+const underBtn = document.querySelector(".under");
 
+overBtn.addEventListener("click", () => {
+    overBtn.classList.add("selected");
+    underBtn.classList.remove("selected");
+    alert("OVER selected");
+});
+
+underBtn.addEventListener("click", () => {
+    underBtn.classList.add("selected");
+    overBtn.classList.remove("selected");
+    alert("UNDER selected");
+});
+</script>
