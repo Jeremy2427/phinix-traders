@@ -299,8 +299,11 @@ Demo Balance
 
 <div class="buttons">
     <button class="over">OVER</button>
-    <button class="under">UNDER</button>.                                                                                                                                       
+    <button class="under">UNDER</button>
+</div>
+
 <script>
+
 const overBtn = document.querySelector(".over");
 const underBtn = document.querySelector(".under");
 
@@ -316,78 +319,72 @@ underBtn.addEventListener("click", () => {
     alert("UNDER selected");
 });
 
+
 function changeWallet() {
     let choice = prompt(
         "1 = Deposit\n2 = Withdraw\n3 = Transfer"
     );
 
-    const wallet =
-        document.querySelector(".wallet-btn");
+    const wallet = document.querySelector(".wallet-btn");
 
-    if (choice == "1") {
+    if(choice == "1"){
         wallet.innerHTML = "Deposit ▼";
     }
 
-    if (choice == "2") {
+    if(choice == "2"){
         wallet.innerHTML = "Withdraw ▼";
     }
 
-    if (choice == "3") {
+    if(choice == "3"){
         wallet.innerHTML = "Transfer ▼";
     }
 }
+
 
 function changeVolatility() {
     let choice = prompt(
         "1 = Volatility 10\n2 = Volatility 25\n3 = Volatility 50\n4 = Volatility 75\n5 = Volatility 100"
     );
 
-    const box =
-        document.querySelectorAll(".trade-box")[0];
+    const market =
+document.querySelectorAll(".trade-box")[0];
 
-    if (choice == "1") {
-        box.innerHTML = "Volatility 10 (1s) Index ▼";
-    }
+    if(choice=="1")
+        market.innerHTML = "Volatility 10 (1s) Index ▼";
 
-    if (choice == "2") {
-        box.innerHTML = "Volatility 25 (1s) Index ▼";
-    }
+    if(choice=="2")
+        market.innerHTML = "Volatility 25 (1s) Index ▼";
 
-    if (choice == "3") {
-        box.innerHTML = "Volatility 50 (1s) Index ▼";
-    }
+    if(choice=="3")
+        market.innerHTML = "Volatility 50 (1s) Index ▼";
 
-    if (choice == "4") {
-        box.innerHTML = "Volatility 75 (1s) Index ▼";
-    }
+    if(choice=="4")
+        market.innerHTML = "Volatility 75 (1s) Index ▼";
 
-    if (choice == "5") {
-        box.innerHTML = "Volatility 100 (1s) Index ▼";
-    }
+    if(choice=="5")
+        market.innerHTML = "Volatility 100 (1s) Index ▼";
 }
+
 
 function changeContract() {
     let choice = prompt(
         "1 = Even/Odd\n2 = Matches/Differs\n3 = Rise/Fall\n4 = Over/Under"
     );
 
-    const box =
+    const contract =
         document.querySelectorAll(".trade-box")[1];
 
-    if (choice == "1") {
-        box.innerHTML = "Even / Odd ▼";
-    }
+    if(choice=="1")
+        contract.innerHTML = "Even / Odd ▼";
 
-    if (choice == "2") {
-        box.innerHTML = "Matches / Differs ▼";
-    }
+    if(choice=="2")
+        contract.innerHTML = "Matches / Differs ▼";
 
-    if (choice == "3") {
-        box.innerHTML = "Rise / Fall ▼";
-    }
+    if(choice=="3")
+        contract.innerHTML = "Rise / Fall ▼";
 
-    if (choice == "4") {
-        box.innerHTML = "Over / Under ▼";
-    }
+    if(choice=="4")
+        contract.innerHTML = "Over / Under ▼";
 }
+
 </script>
