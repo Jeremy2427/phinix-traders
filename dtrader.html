@@ -142,7 +142,12 @@ body{
     width:100%;
     box-sizing:border-box;
 }
-
+.trade-section{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:15px;
+}
 
 .selected{
     border-color:#c94fff;
@@ -160,6 +165,7 @@ body{
     display:flex;
     gap:12px;
     margin-top:15px;
+    flex-wrap:wrap;
 }
 
 .over{
@@ -289,12 +295,21 @@ Demo Balance
 
 </div> 
 
-<div class="trade-box" onclick="changeContract()">
-    Over / Under ▼
-</div>
+<div class="trade-section">
 
-<div class="trade-box">
-    Stake: 125 USD
+    <div class="trade-box" onclick="changeContract()">
+        Over / Under ▼
+    </div>
+
+    <div class="trade-box">
+        Stake: 125 USD
+    </div>
+
+    <div class="buttons">
+        <button class="over">OVER</button>
+        <button class="under">UNDER</button>
+    </div>
+
 </div>
 
 <div class="buttons">
