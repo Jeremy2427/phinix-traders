@@ -297,13 +297,15 @@ body{
 </div> 
 
 <div class="trade-section">
-
+<div class="trade-box" onclick="changeTicks()">
+    Number of ticks: 1 ▼
+</div>
     <div class="trade-box" onclick="changeContract()">
         Over / Under ▼
     </div>
 
-    <div class="trade-box">
-        Stake: 125 USD
+    <div class="trade-box" onclick="changeStake()">
+    Stake: 125 USD
     </div>
 
     <div class="buttons">
@@ -383,7 +385,7 @@ function changeContract() {
     );
 
     const contract =
-        document.querySelectorAll(".trade-box")[1];
+        document.querySelectorAll(".trade-box")[2];
 
     if(choice=="1")
         contract.innerHTML = "Even / Odd ▼";
@@ -398,4 +400,22 @@ function changeContract() {
         contract.innerHTML = "Over / Under ▼";
 }
 
+function changeStake() {
+    let amount = prompt("Enter stake amount:");
+
+    if(amount){
+        document.querySelectorAll(".trade-box")[3]
+        .innerHTML = "Stake: " + amount + " USD";
+    }
+}
+
+
+function changeTicks() {
+    let ticks = prompt("Enter number of ticks:");
+
+    if(ticks){
+        document.querySelectorAll(".trade-box")[1]
+        .innerHTML = "Number of ticks: " + ticks + " ▼";
+    }
+}
 </script>
