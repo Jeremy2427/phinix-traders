@@ -433,7 +433,7 @@ function openBots() {
         <div>🏠</div>
     </div>
 
-    <div class="trade-box">🤖 Even / Odd Bot</div>
+    <div class="trade-box" onclick="openEvenOddBot()">🤖 Even / Odd Bot</div>
 
     <div class="trade-box">🤖 Matches / Differs Bot</div>
 
@@ -450,6 +450,39 @@ function openBots() {
     <div class="trade-box">⬅ Back to Manual Trader</div>
 
     `;
+     }
+    function openEvenOddBot() {
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="openBots()">←</div>
+    <div class="logo">EVEN / ODD BOT</div>
+    <div>🏠</div>
+</div>
+
+<div class="trade-box">
+Market: Volatility 100 (1s)
+</div>
+
+<div class="trade-box">
+Trade Type: Even / Odd
+</div>
+
+<div class="trade-box">
+Stake: 1 USD
+</div>
+
+<div class="trade-box">
+Number of Ticks: 1
+</div>
+
+<div class="buttons">
+<button class="over">EVEN</button>
+<button class="under">ODD</button>
+</div>
+
+`;
 
     }
 </script>
