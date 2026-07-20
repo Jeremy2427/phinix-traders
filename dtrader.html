@@ -423,7 +423,35 @@ function changeTicks() {
 function openBots() {
     alert("🚧 Phinix Bots is under construction.\n\nSoon you'll be able to use:\n• Even/Odd Bot\n• Matches/Differs Bot\n• Rise/Fall Bot\n• Over/Under Bot\n• Bulk Trader");
 }
+function openBots() {
 
+    document.querySelector(".container").innerHTML = `
+
+    <div class="header">
+        <div>←</div>
+        <div class="logo">PHINIX BOTS</div>
+        <div>🏠</div>
+    </div>
+
+    <div class="trade-box">🤖 Even / Odd Bot</div>
+
+    <div class="trade-box">🤖 Matches / Differs Bot</div>
+
+    <div class="trade-box">🤖 Rise / Fall Bot</div>
+
+    <div class="trade-box">🤖 Over / Under Bot</div>
+
+    <div class="trade-box">🤖 Bulk Trader</div>
+
+    <div class="trade-box">🤖 Signal Zone</div>
+
+    <div class="trade-box">📊 Analysis Tool</div>
+
+    <div class="trade-box">⬅ Back to Manual Trader</div>
+
+    `;
+
+    }
 </script>
 
 </body>
