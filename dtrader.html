@@ -208,8 +208,9 @@ body{
 </div>
 
 <div class="tabs">
-<div class="tab">🤖 Bot Builder</div>
-<div class="tab active">📈 Manual Trader</div>
+    <div class="tab">🤖 Bot Builder</div>
+    <div class="tab active">📈 Manual Trader</div>
+    <div class="tab" onclick="openBots()">🤖 Phinix Bots</div>
 </div>
 
 <div class="market">
@@ -413,9 +414,17 @@ function changeStake() {
 function changeTicks() {
     let ticks = prompt("Enter number of ticks:");
 
-    if(ticks){
+    if (ticks) {
         document.querySelectorAll(".trade-box")[1]
         .innerHTML = "Number of ticks: " + ticks + " ▼";
     }
 }
+
+function openBots() {
+    alert("🚧 Phinix Bots is under construction.\n\nSoon you'll be able to use:\n• Even/Odd Bot\n• Matches/Differs Bot\n• Rise/Fall Bot\n• Over/Under Bot\n• Bulk Trader");
+}
+
 </script>
+
+</body>
+</html>
