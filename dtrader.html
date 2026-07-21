@@ -199,16 +199,37 @@ body{
     background:#05050b;
 }
 
-.run-btn{
+.bottom-run-bar{
+    position:fixed;
+    bottom:0;
+    left:0;
     width:100%;
-    padding:18px;
-    border:none;
-    border-radius:18px;
+    background:#080814;
+    display:flex;
+    padding:10px;
+    border-top:1px solid #222;
+}
+
+.play-btn{
     background:#00b894;
     color:white;
+    border:none;
+    padding:16px 35px;
+    border-radius:12px;
     font-size:20px;
     font-weight:bold;
 }
+
+.status-text{
+    flex:1;
+    text-align:center;
+    color:white;
+    font-size:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
 
 </style>
 
@@ -520,23 +541,13 @@ Stake: 1 USD
 Number of Ticks: 1
 </div>
 
-<div class="trade-box">
-Target Profit: 10 USD
-</div>
 
-<div class="trade-box">
-Martingale:
-<select>
-<option>Normal Martingale</option>
-<option>Anti Martingale</option>
-<option>Custom Martingale</option>
-<option>Grand Martingale</option>
-<option>Reverse Martingale</option>
-</select>
-</div>
 
-<div class="run-bar">
-<button class="run-btn">▶ RUN BOT</button>
+<div class="bottom-run-bar">
+    <button class="play-btn">▶ Run</button>
+    <div class="status-text">
+        Bot is not running
+    </div>
 </div>
 `;
 
