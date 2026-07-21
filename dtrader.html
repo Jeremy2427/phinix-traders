@@ -182,8 +182,36 @@ body{
     padding:16px;
     text-align:center;
     border-radius:16px;
+.under{
+    flex:1;
+    background:#8b0035;
+    padding:16px;
+    text-align:center;
+    border-radius:16px;
 }
+
+.run-bar{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:15px;
+    background:#05050b;
+}
+
+.run-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:18px;
+    background:#00b894;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+}
+
 </style>
+
 </head>
 
 <body>
@@ -309,10 +337,21 @@ body{
     Stake: 125 USD
     </div>
 
-    <div class="buttons">
-        <button class="over">OVER</button>
-        <button class="under">UNDER</button>
-    </div>
+    <div class="trade-box">
+    Target Profit: 10 USD ▼
+</div>
+
+<div class="trade-box">
+    Stop Loss: 20 USD ▼
+</div>
+
+<div class="trade-box">
+    Martingale: OFF ▼
+</div>
+
+<div class="trade-box">
+    Multiplier: 2.0x ▼
+</div>
 
 </div>
 
@@ -448,7 +487,11 @@ function openBots() {
     <div class="trade-box">📊 Analysis Tool</div>
 
     <div class="trade-box">⬅ Back to Manual Trader</div>
-
+<div class="run-bar">
+    <button class="run-btn">
+        ▶ RUN BOT
+    </button>
+</div>
     `;
      }
     function openEvenOddBot() {
@@ -477,11 +520,24 @@ Stake: 1 USD
 Number of Ticks: 1
 </div>
 
-<div class="buttons">
-<button class="over">EVEN</button>
-<button class="under">ODD</button>
+<div class="trade-box">
+Target Profit: 10 USD
 </div>
 
+<div class="trade-box">
+Martingale:
+<select>
+<option>Normal Martingale</option>
+<option>Anti Martingale</option>
+<option>Custom Martingale</option>
+<option>Grand Martingale</option>
+<option>Reverse Martingale</option>
+</select>
+</div>
+
+<div class="run-bar">
+<button class="run-btn">▶ RUN BOT</button>
+</div>
 `;
 
     }
