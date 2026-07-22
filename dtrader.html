@@ -153,7 +153,37 @@ body{
     border-color:#c94fff;
     box-shadow:0 0 15px #c94fff;
 }
+.bot-card{
+    background:#090914;
+    border:2px solid #7a2cff;
+    border-radius:25px;
+    padding:20px;
+    margin-top:20px;
+    box-shadow:0 0 15px rgba(122,44,255,0.4);
+}
 
+.bot-title{
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.bot-desc{
+    color:#bdbdbd;
+    margin-bottom:20px;
+}
+
+.load-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(90deg,#00d4ff,#7a2cff);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+}
 .option{
     background:#090913;
     padding:14px;
@@ -519,38 +549,83 @@ function openBots() {
         <div>🏠</div>
     </div>
 
-    <div class="trade-box" onclick="openEvenOddBot()">🤖 Even / Odd Bot</div>
+    
 
-    <div class="trade-box">🤖 Matches / Differs Bot</div>
+<div class="bot-card" onclick="openApexBot()">
+    <div class="bot-title">🤖 Apex Bot</div>
+    <div class="bot-desc">
+        Smart automated trading strategy
+    </div>
 
-    <div class="trade-box">🤖 Rise / Fall Bot</div>
-
- <div class="trade-box" onclick="openApexBot()">
-🤖 Apex Bot
+    <button class="load-btn">
+        Load Bot
+    </button>
 </div>
 
-<div class="trade-box" onclick="openPhinixProBot()">
-🚀 Phinix Pro Bot
+<div class="bot-card" onclick="openPhinixProBot()">
+    <div class="bot-title">🚀 Phinix Pro Bot</div>
+    <div class="bot-desc">
+        Smart automated trading strategy
+    </div>
+
+    <button class="load-btn">
+        Load Bot
+    </button>
 </div>
 
-<div class="trade-box" onclick="openLightningBot()">
-⚡ Lightning Bot
+<div class="bot-card" onclick="openLightningBot()">
+    <div class="bot-title">⚡ Lightning Bot</div>
+    <div class="bot-desc">
+        Smart automated trading strategy
+    </div>
+
+    <button class="load-btn">
+        Load Bot
+    </button>
 </div>
 
-<div class="trade-box" onclick="openSniperBot()">
-🎯 Sniper Bot
+<div class="bot-card" onclick="openSniperBot()">
+    <div class="bot-title">🎯 Sniper Bot</div>
+    <div class="bot-desc">
+        Smart automated trading strategy
+    </div>
+
+    <button class="load-btn">
+        Load Bot
+    </button>
 </div>
 
-<div class="trade-box" onclick="openTrendBot()">
-📈 Trend Bot
+<div class="bot-card" onclick="openTrendBot()">
+    <div class="bot-title">📈 Trend Bot</div>
+    <div class="bot-desc">
+        Smart automated trading strategy
+    </div>
+
+    <button class="load-btn">
+        Load Bot
+    </button>
 </div>
 
-<div class="trade-box" onclick="openPremiumBot()">
-💎 Premium Bot
+<div class="bot-card" onclick="openPremiumBot()">
+    <div class="bot-title">💎 Premium Bot</div>
+    <div class="bot-desc">
+        Smart automated trading strategy
+    </div>
+
+    <button class="load-btn">
+        Load Bot
+    </button>
 </div>
 
-<div class="trade-box" onclick="openAIBot()">
-🧠 AI Predictor Bot
+<div class="bot-card" onclick="openAIBot()">
+    <div class="bot-title">🧠 AI Predictor Bot</div>
+    <div class="bot-desc">
+        Smart automated trading strategy
+    </div>
+
+    <button class="load-btn">
+        Load Bot
+    </button>
 </div>
     <div class="trade-box">⬅ Back to Manual Trader</div>
 
