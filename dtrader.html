@@ -274,7 +274,6 @@ body{
 .container{
     padding-bottom:120px;
 }
-
 .run-bar-new{
     position:fixed;
     bottom:0;
@@ -287,6 +286,27 @@ body{
     box-sizing:border-box;
     border-top:1px solid #222;
 }
+.input{
+    width:100%;
+    background:#111;
+    color:#fff;
+    border:1px solid #6f2cff;
+    border-radius:10px;
+    padding:12px;
+    margin:8px 0 18px;
+    font-size:16px;
+    box-sizing:border-box;
+}
+
+.trade-box h3{
+    color:#bb66ff;
+    margin-bottom:15px;
+}
+
+.trade-box p{
+    color:#ddd;
+    margin:10px 0 5px;
+    }
 </style>
 
 </head>
@@ -677,15 +697,25 @@ function openApexBot(){
         </div>
 
         <div class="trade-box">
-    💰 Balance: 10,000 USD
-</div>
+    <h3>📋 Trade Parameters</h3>
 
-<div class="trade-box">
-    🤖 Status: Ready to Trade
-</div>
+    <p>Market</p>
+    <select class="input">
+        <option>Derived</option>
+    </select>
 
-<div class="trade-box">
-    📊 Strategy: Even / Odd
+    <p>Volatility</p>
+    <select class="input">
+        <option>Volatility 100 Index</option>
+    </select>
+
+    <p>Trade Type</p>
+    <select class="input">
+        <option>Even / Odd</option>
+    </select>
+
+    <p>Stake (USD)</p>
+    <input class="input" type="number" value="2">
 </div>
 
 <button class="load-btn">
