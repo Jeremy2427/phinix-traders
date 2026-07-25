@@ -556,15 +556,13 @@ function changeTicks() {
     }
 }
 
-function openBots() {
-    alert("🚧 Phinix Bots is under construction.\n\nSoon you'll be able to use:\n• Even/Odd Bot\n• Matches/Differs Bot\n• Rise/Fall Bot\n• Over/Under Bot\n• Bulk Trader");
-}
+
 function openBots() {
 
     document.querySelector(".container").innerHTML = `
 
     <div class="header">
-        <div>←</div>
+        <div onclick="openHome()">←</div>
         <div class="logo">PHINIX BOTS</div>
         <div>🏠</div>
     </div>
