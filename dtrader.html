@@ -818,7 +818,7 @@ margin-bottom:15px;">
 <input class="input" type="number" value="1000">
 </div>   
 </div>
-<button class="load-btn">
+<button class="load-btn" onclick="startApexBot()">
     ▶ Start Apex Bot
 </button>
 
@@ -981,7 +981,14 @@ document.querySelector(".container").innerHTML = `
 
 `;
 }
-    
+ function startApexBot() {
+    alert("Apex Bot Started!");
+
+    console.log("Stake:", document.querySelectorAll(".input")[0].value);
+    console.log("Target Profit:", document.querySelectorAll(".input")[2].value);
+    console.log("Stop Loss:", document.querySelectorAll(".input")[3].value);
+    console.log("Prediction:", document.querySelectorAll(".input")[5].value);
+ }   
 </script>
 
 </body>
