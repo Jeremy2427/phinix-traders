@@ -991,12 +991,27 @@ function toggleApexBot() {
         console.log("Target Profit:", document.querySelector('input[value="5"]').value);
         console.log("Stop Loss:", document.querySelector('input[value="10"]').value);
         console.log("Prediction:", document.querySelector('input[value="4"]').value);
-
-    } else {
+} else {
         apexRunning = false;
         btn.innerHTML = "▶ RUN";
 
         alert("Apex Bot Stopped!");
+    }
+}
+    let apexRunning = false;
+
+function toggleApexBot() {
+    const btn = document.getElementById("apexBotBtn");
+    const status = document.querySelector(".status-text");
+
+    if (!apexRunning) {
+        apexRunning = true;
+        btn.textContent = "⏹ STOP";
+        status.textContent = "Bot is running";
+    } else {
+        apexRunning = false;
+        btn.textContent = "▶ RUN";
+        status.textContent = "Bot is not running";
     }
 }
 </script>
