@@ -562,7 +562,7 @@ function openBots() {
     document.querySelector(".container").innerHTML = `
 
     <div class="header">
-        <div onclick="openHome()">←</div>
+        <div onclick="location.reload()">←</div>
         <div class="logo">PHINIX BOTS</div>
         <div>🏠</div>
     </div>
@@ -819,9 +819,14 @@ margin-bottom:15px;">
 <button id="apexBotBtn" class="load-btn" onclick="toggleApexBot()">
     ▶ RUN
 </button>
-        <div class="trade-box" onclick="openBots()">
-            ← Back to Bots
-        </div>
+
+<div class="status-text">
+    Bot is not running
+</div>
+
+<div class="trade-box" onclick="openBots()">
+    ← Back to Bots
+</div>
     `;
 }
 
@@ -974,28 +979,7 @@ document.querySelector(".container").innerHTML = `
 
 `;
 }
- let apexRunning = false;
-
-function toggleApexBot() {
-    const btn = document.getElementById("apexBotBtn");
-
-    if (!apexRunning) {
-        apexRunning = true;
-        btn.innerHTML = "⏹ STOP";
-
-        alert("Apex Bot Started!");
-
-        console.log("Stake:", document.querySelector('input[value="2"]').value);
-        console.log("Target Profit:", document.querySelector('input[value="5"]').value);
-        console.log("Stop Loss:", document.querySelector('input[value="10"]').value);
-        console.log("Prediction:", document.querySelector('input[value="4"]').value);
-} else {
-        apexRunning = false;
-        btn.innerHTML = "▶ RUN";
-
-        alert("Apex Bot Stopped!");
-    }
-}
+ 
     let apexRunning = false;
 
 function toggleApexBot() {
