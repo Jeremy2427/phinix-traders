@@ -698,8 +698,8 @@ function openApexBot(){
         <div class="trade-box" style="
 max-width:340px;
 margin:15px auto;
-padding:12px;
-font-size:13px;
+padding:8px;
+font-size:12px;
 line-height:1.2;
 ">
     <div style="
@@ -778,10 +778,17 @@ margin-bottom:15px;">
 
 <p>Restart last trade on error</p>
 <input type="checkbox" checked>
-    <p>Stake (USD)</p>
-    <input class="input" type="number" value="2" style="width:100%;">
-<p>Duration (Ticks)</p>
-<input class="input" type="number" value="1">
+    
+<div style="display:flex;gap:6px;margin-bottom:8px;">
+    <span style="width:80px;">Duration</span>
+
+    <select class="input" style="width:80px;">
+        <option>Ticks</option>
+        <option>Minutes</option>
+    </select>
+
+    <input class="input" type="number" value="1" style="flex:1;">
+</div>
 
 <p>Target Profit (USD)</p>
 <input class="input" type="number" value="5">
