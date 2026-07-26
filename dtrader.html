@@ -1025,19 +1025,82 @@ document.querySelector(".container").innerHTML = `
     let apexRunning = false;
 
 function toggleApexBot() {
-    const btn = document.getElementById("apexBotBtn");
-    const status = document.querySelector(".status-text");
 
-    if (!apexRunning) {
-        apexRunning = true;
-        btn.textContent = "⏹ STOP";
-        status.textContent = "Bot is running";
-    } else {
-        apexRunning = false;
-        btn.textContent = "▶ RUN";
-        status.textContent = "Bot is not running";
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="openApexBot()">←</div>
+    <div class="logo">APEX BOT</div>
+    <div>🏠</div>
+</div>
+
+<div class="trade-box">
+
+<div style="display:flex;justify-content:space-around;font-weight:bold;margin-bottom:15px;">
+    <span>Summary</span>
+    <span style="color:#ff4d4d;border-bottom:2px solid #ff4d4d;">Transactions</span>
+    <span>Journal</span>
+</div>
+
+<table style="width:100%;font-size:13px;border-collapse:collapse;">
+
+<tr style="color:#999;">
+<th align="left">Type</th>
+<th align="left">Entry/Exit</th>
+<th align="right">P/L</th>
+</tr>
+
+<tbody id="tradeHistory">
+
+<tr>
+<td>📈</td>
+<td>2557.24</td>
+<td style="color:#00ff88;" align="right">+28.82 USD</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<hr style="margin:15px 0;border:1px solid #222;">
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px;">
+
+<div>Total Stake<br><b id="stakeTotal">30 USD</b></div>
+
+<div>Total Payout<br><b id="payoutTotal">58.82 USD</b></div>
+
+<div>Contracts Won<br><b id="wonTotal">1</b></div>
+
+<div>Contracts Lost<br><b id="lostTotal">0</b></div>
+
+<div>No. of Runs<br><b id="runsTotal">1</b></div>
+
+<div>Total Profit<br><b id="profitTotal" style="color:#00ff88;">28.82 USD</b></div>
+
+</div>
+
+</div>
+
+<button
+style="
+width:100%;
+margin-top:18px;
+padding:18px;
+background:#d60000;
+color:white;
+border:none;
+border-radius:15px;
+font-size:22px;
+font-weight:bold;"
+onclick="openApexBot()">
+
+⏹ STOP
+
+</button>
+
+`;
     }
-}
 </script>
 
 </body>
