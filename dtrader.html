@@ -739,10 +739,16 @@ margin-bottom:15px;">
 
 </div>
 
-    <p>Volatility</p>
-    <select class="input" style="width:100%;">
-        <option>Volatility 100 Index</option>
-    </select>
+    <option>Volatility 10 Index</option>
+<option>Volatility 10 (1s) Index</option>
+<option>Volatility 25 Index</option>
+<option>Volatility 25 (1s) Index</option>
+<option>Volatility 50 Index</option>
+<option>Volatility 50 (1s) Index</option>
+<option>Volatility 75 Index</option>
+<option>Volatility 75 (1s) Index</option>
+<option selected>Volatility 100 Index</option>
+<option>Volatility 100 (1s) Index</option>
 
     <div style="display:flex;gap:8px;margin-bottom:12px;">
 
@@ -787,7 +793,15 @@ margin-bottom:15px;">
         <option>Minutes</option>
     </select>
 
-    <input class="input" type="number" value="1" style="flex:1;">
+    <select class="input" style="flex:1;">
+    <option>1 Tick</option>
+    <option>2 Ticks</option>
+    <option>3 Ticks</option>
+    <option>4 Ticks</option>
+    <option>5 Ticks</option>
+    <option>6 Ticks</option>
+    <option>7 Ticks</option>
+</select>
 </div>
 
 <div style="display:flex;gap:6px;margin-bottom:8px;">
@@ -813,8 +827,11 @@ margin-bottom:15px;">
     <option>OFF</option>
     <option>ON</option>
 </select>
-<p>Prediction</p>
-<input class="input" type="number" value="4">
+<div style="display:flex;gap:6px;margin-bottom:8px;">
+    <span style="width:80px;">Prediction</span>
+
+    <input class="input" type="number" value="4" style="flex:1;">
+</div>
 <h3 style="margin-top:20px;">Run once at start</h3>
 
 <div class="trade-box">
