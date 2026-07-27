@@ -1141,7 +1141,12 @@ function startFakeTrading(){
     botInterval = setInterval(function(){
 
         runs++;
-
+document.getElementById("runsTotal").innerHTML = runs;
+document.getElementById("stakeTotal").innerHTML = (runs * 30) + " USD";
+document.getElementById("payoutTotal").innerHTML = (runs * 58.82).toFixed(2) + " USD";
+document.getElementById("wonTotal").innerHTML = runs;
+document.getElementById("profitTotal").innerHTML =
+((runs * 28.82).toFixed(2)) + " USD";
         totalStake = runs * 30;
 
         document.getElementById("runsTotal").innerText = runs;
