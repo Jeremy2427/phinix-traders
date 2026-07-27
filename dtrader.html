@@ -862,8 +862,8 @@ margin-bottom:15px;">
     ▶ RUN
 </button>
 
-<div class="status-text">
-    Bot is not running
+<div id="botStatus" class="status-text">
+    🔴 Bot is not running
 </div>
 
 <div class="trade-box" onclick="openBots()">
@@ -1131,19 +1131,25 @@ startFakeTrading();
 
 let botInterval;
 
-function startFakeTrading() {
+function startFakeTrading(){
+
+    alert("Bot Started");
 
     let runs = 0;
+    let totalStake = 0;
 
-botInterval = setInterval(function () {
+    botInterval = setInterval(function(){
 
-    runs++;
+        runs++;
 
-    document.getElementById("runsTotal").innerHTML = runs;
+        totalStake = runs * 30;
 
-}, 1000);
+        document.getElementById("runsTotal").innerText = runs;
+        document.getElementById("stakeTotal").innerText = totalStake + " USD";
 
-    }
+    },2000);
+
+            }
 </script>
 </body>
 </html>
