@@ -1050,39 +1050,9 @@ document.querySelector(".container").innerHTML = `
 <th align="right">P/L</th>
 </tr>
 
-<tbody id="tradeHistory">
 
-<tr>
-<td>📈</td>
-<td>2557.24</td>
-<td style="color:#00ff88;" align="right">+28.82 USD</td>
-</tr>
+<tbody id="tradeHistory"></tbody>
 
-<tr>
-<td>📈</td>
-<td>2557.23</td>
-<td style="color:#00ff88;" align="right">+28.82 USD</td>
-</tr>
-
-<tr>
-<td>📈</td>
-<td>2557.94</td>
-<td style="color:#00ff88;" align="right">+28.82 USD</td>
-</tr>
-
-<tr>
-<td>📈</td>
-<td>2558.40</td>
-<td style="color:#00ff88;" align="right">+28.82 USD</td>
-</tr>
-
-<tr>
-<td>📈</td>
-<td>2558.71</td>
-<td style="color:#00ff88;" align="right">+28.82 USD</td>
-</tr>
-
-</tbody>
 
 </table>
 
@@ -1124,7 +1094,12 @@ onclick="openApexBot()">
 </button>
 
 `;
-
+document.getElementById("stakeTotal").innerText = "0 USD";
+document.getElementById("payoutTotal").innerText = "0 USD";
+document.getElementById("wonTotal").innerText = "0";
+document.getElementById("lostTotal").innerText = "0";
+document.getElementById("runsTotal").innerText = "0";
+document.getElementById("profitTotal").innerText = "0 USD";
 startFakeTrading();
 
 }
