@@ -1133,7 +1133,15 @@ let botInterval;
 
 function startFakeTrading() {
 
-    alert("Bot Started");
+    let runs = 0;
+
+botInterval = setInterval(function () {
+
+    runs++;
+
+    document.getElementById("runsTotal").innerHTML = runs;
+
+}, 1000);
 
     }
 </script>
