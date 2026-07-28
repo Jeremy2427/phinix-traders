@@ -1236,42 +1236,59 @@ document.querySelector(".trade-box").innerHTML = `
 
 <div style="background:#181818;padding:12px;border-radius:10px;">
 Total Stake<br>
-<b id="summaryStake">0 USD</b>
+<b id="summaryStake"></b>
 </div>
 
 <div style="background:#181818;padding:12px;border-radius:10px;">
 Total Payout<br>
-<b id="summaryPayout">0 USD</b>
+<b id="summaryPayout"></b>
 </div>
 
 <div style="background:#181818;padding:12px;border-radius:10px;">
 Contracts Won<br>
-<b id="summaryWon">0</b>
+<b id="summaryWon"></b>
 </div>
 
 <div style="background:#181818;padding:12px;border-radius:10px;">
 Contracts Lost<br>
-<b id="summaryLost">0</b>
+<b id="summaryLost"></b>
 </div>
 
 <div style="background:#181818;padding:12px;border-radius:10px;">
 Runs<br>
-<b id="summaryRuns">0</b>
+<b id="summaryRuns"></b>
 </div>
 
 <div style="background:#181818;padding:12px;border-radius:10px;">
 Profit<br>
-<b style="color:#00ff88;" id="summaryProfit">0 USD</b>
+<b style="color:#00ff88;" id="summaryProfit"></b>
 </div>
 
 </div>
 
 `;
-                              }
+   document.getElementById("summaryStake").innerHTML =
+document.getElementById("stakeTotal").innerHTML;
 
+document.getElementById("summaryPayout").innerHTML =
+document.getElementById("payoutTotal").innerHTML;
+
+document.getElementById("summaryWon").innerHTML =
+document.getElementById("wonTotal").innerHTML;
+
+document.getElementById("summaryLost").innerHTML =
+document.getElementById("lostTotal").innerHTML;
+
+document.getElementById("summaryRuns").innerHTML =
+document.getElementById("runsTotal").innerHTML;
+
+document.getElementById("summaryProfit").innerHTML =
+document.getElementById("profitTotal").innerHTML;                           
+}
 function showJournal() {
     alert("Journal page coming next.");
     }                         
+
 </script>
 </body>
 </html>
