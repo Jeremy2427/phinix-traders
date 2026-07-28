@@ -1226,9 +1226,48 @@ function startFakeTrading(){
     alert("Summary page coming next.");
 }
 
-function showTransactions() {
-    alert("You are already on Transactions.");
-}
+function showSummary() {
+
+document.querySelector(".trade-box").innerHTML = `
+
+<h3 style="color:#7a2cff;">Bot Summary</h3>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px;">
+
+<div style="background:#181818;padding:12px;border-radius:10px;">
+Total Stake<br>
+<b id="summaryStake">0 USD</b>
+</div>
+
+<div style="background:#181818;padding:12px;border-radius:10px;">
+Total Payout<br>
+<b id="summaryPayout">0 USD</b>
+</div>
+
+<div style="background:#181818;padding:12px;border-radius:10px;">
+Contracts Won<br>
+<b id="summaryWon">0</b>
+</div>
+
+<div style="background:#181818;padding:12px;border-radius:10px;">
+Contracts Lost<br>
+<b id="summaryLost">0</b>
+</div>
+
+<div style="background:#181818;padding:12px;border-radius:10px;">
+Runs<br>
+<b id="summaryRuns">0</b>
+</div>
+
+<div style="background:#181818;padding:12px;border-radius:10px;">
+Profit<br>
+<b style="color:#00ff88;" id="summaryProfit">0 USD</b>
+</div>
+
+</div>
+
+`;
+                              }
 
 function showJournal() {
     alert("Journal page coming next.");
