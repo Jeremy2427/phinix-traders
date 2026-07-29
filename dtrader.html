@@ -1098,7 +1098,7 @@ Journal
         Download
     </button>
 
-    <button style="
+    <button onclick="viewTradeDetails()" style="
         flex:1;
         padding:10px;
         border-radius:10px;
@@ -1241,19 +1241,50 @@ function startFakeTrading(){
 let history = document.getElementById("tradeHistory");
 
 if (history) {
-    history.innerHTML += `
+
+    let entry = (2557 + Math.random() * 10).toFixed(2);
+    let exit = (parseFloat(entry) + Math.random()).toFixed(2);
+
+    history.innerHTML =
+    `
     <tr>
-        <td>📈</td>
-        <td>${(2557 + Math.random() * 10).toFixed(2)}</td>
-        <td style="color:#00ff88;" align="right">+28.82 USD</td>
-    </tr>`;
-               }
+        <td style="padding:10px;">📈</td>
+
+        <td style="padding:10px;">
+            <div><b>Entry:</b> ${entry}</div>
+            <div><b>Exit:</b> ${exit}</div>
+        </td>
+
+        <td style="padding:10px;text-align:right;">
+            <div>30 USD</div>
+            <div style="color:#00ff88;font-weight:bold;">
+                +28.82 USD
+            </div>
+        </td>
+    </tr>
+    ` + history.innerHTML;
+
+        }
 }, 5000);
+}
+function viewTradeDetails() {
+    alert(
+`Trade Details
+
+Entry Price: 2563.93
+Exit Price: 2564.18
+
+Stake: 30 USD
+Payout: 58.82 USD
+
+Profit: +28.82 USD
+
+Status: WON`
+    );
 }
      function showSummary() {
     alert("Summary page coming next.");
-}
-
+     }
 function showSummary() {
 
 document.querySelector(".trade-box").innerHTML = `
