@@ -1143,77 +1143,86 @@ Total Stake<br>
 </div>
 
 <div style="
-background:#181818;
-padding:14px;
-border-radius:12px;
-border:1px solid #333;
-">
-Total Payout<br>
-<b id="payoutTotal" style="font-size:20px;">294.10 USD</b>
-</div>
-<div style="
-background:#181818;
-padding:14px;
-border-radius:12px;
-border:1px solid #333;
-">
-Contracts Won<br>
-<b id="wonTotal" style="font-size:20px;">5</b>
+function toggleApexBot() {
+    apexRunning = !apexRunning;
+
+    if (apexRunning) {
+        document.getElementById("apexBotBtn").innerHTML = "⏹ STOP";
+        document.getElementById("botStatus").innerHTML = "🟢 Bot Running";
+        openTransactionsPage();
+    } else {
+        document.getElementById("apexBotBtn").innerHTML = "▶ RUN";
+        document.getElementById("botStatus").innerHTML = "🔴 Bot Stopped";
+        clearInterval(botInterval);
+    }
+    }
+function openTransactionsPage() {
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="openApexBot()">←</div>
+    <div class="logo">APEX BOT</div>
+    <div>🏠</div>
 </div>
 
-<div style="
-background:#181818;
-padding:14px;
-border-radius:12px;
-border:1px solid #333;
-">
-Contracts Lost<br>
-<b id="lostTotal" style="font-size:20px;">0</b>
-</div>
-<div style="
-background:#181818;
-padding:14px;
-border-radius:12px;
-border:1px solid #333;
-">
-No. of Runs<br>
-<b id="runsTotal" style="font-size:20px;">5</b>
-</div>
-<div style="
-background:#181818;
-padding:14px;
-border-radius:12px;
-border:1px solid #333;
-">
-Total Profit<br>
-<b id="profitTotal" style="
-font-size:20px;
-color:#00ff88;
-">
-144.10 USD
-</b>
-</div>
+<div class="trade-box">
+
+<div style="display:flex;justify-content:space-around;font-weight:bold;margin-bottom:15px;">
+    <span onclick="showSummary()">Summary</span>
+    <span style="color:#ff4d4d;border-bottom:2px solid #ff4d4d;">Transactions</span>
+    <span onclick="showJournal()">Journal</span>
 </div>
 
+<div id="tradeHistory"></div>
+
+<div style="margin-top:20px;">
+<b id="stakeTotal">0 USD</b><br>
+Total Stake
+</div>
+
+<div>
+<b id="payoutTotal">0 USD</b><br>
+Total Payout
+</div>
+
+<div>
+<b id="wonTotal">0</b><br>
+Contracts Won
+</div>
+
+<div>
+<b id="lostTotal">0</b><br>
+Contracts Lost
+</div>
+
+<div>
+<b id="runsTotal">0</b><br>
+Runs
+</div>
+
+<div>
+<b id="profitTotal" style="color:#00ff88;">0 USD</b><br>
+Profit
 </div>
 
 <button
 style="
 width:100%;
-margin-top:18px;
-padding:18px;
+margin-top:20px;
+padding:16px;
 background:#d60000;
 color:white;
 border:none;
 border-radius:15px;
-font-size:22px;
-font-weight:bold;"
-onclick="openApexBot()">
+font-size:20px;"
+onclick="toggleApexBot()">
 
 ⏹ STOP
 
 </button>
 
+</div>
 `;
 
 startFakeTrading();
@@ -1224,9 +1233,8 @@ let botInterval;
 
 function startFakeTrading(){
 
-    
-
     let runs = 0;
+    let totalStake = 0;
     let totalStake = 0;
 
     botInterval = setInterval(function(){
