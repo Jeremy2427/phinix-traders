@@ -858,7 +858,7 @@ margin-bottom:15px;">
 <input class="input" type="number" value="1000">
 </div>   
 </div>
-<button id="apexBotBtn" class="load-btn" onclick="startFakeTrading()">
+<button id="apexBotBtn" class="load-btn" onclick="toggleApexBot(); startFakeTrading();">
     ▶ RUN
 </button>
 
@@ -1200,7 +1200,7 @@ let botInterval;
 
 function startFakeTrading(){
 
-    toggleApexBot();
+    
 
     let runs = 0;
     let totalStake = 0;
@@ -1214,7 +1214,16 @@ function startFakeTrading(){
     document.getElementById("payoutTotal").innerHTML = (runs * 58.82).toFixed(2) + " USD";
     document.getElementById("wonTotal").innerHTML = runs;
     document.getElementById("profitTotal").innerHTML = (runs * 28.82).toFixed(2) + " USD";
+let history = document.getElementById("tradeHistory");
 
+if (history) {
+    history.innerHTML += `
+    <tr>
+        <td>📈</td>
+        <td>${(2557 + Math.random() * 10).toFixed(2)}</td>
+        <td style="color:#00ff88;" align="right">+28.82 USD</td>
+    </tr>`;
+               }
 }, 2000);
 }
      function showSummary() {
