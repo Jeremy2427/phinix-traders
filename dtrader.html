@@ -1015,141 +1015,33 @@ document.querySelector(".container").innerHTML = `
 
 `;
 }
- 
-    let apexRunning = false;
+ let apexRunning = false;
+let botInterval = null;
 
 function toggleApexBot() {
 
-document.querySelector(".container").innerHTML = `
-
-<div class="header">
-    <div onclick="openApexBot()">←</div>
-    <div class="logo">APEX BOT</div>
-    <div>🏠</div>
-</div>
-
-<div class="trade-box">
-
-<div style="
-display:flex;
-background:#111;
-border-radius:12px;
-padding:8px;
-margin-bottom:15px;
-">
-
-<div
-onclick="showSummary()"
-style="
-flex:1;
-text-align:center;
-padding:10px;
-border-radius:8px;
-cursor:pointer;
-color:#aaa;
-font-weight:bold;">
-Summary
-</div>
-
-<div
-onclick="showTransactions()"
-style="
-flex:1;
-text-align:center;
-padding:10px;
-border-radius:8px;
-background:#7a2cff;
-color:white;
-font-weight:bold;
-cursor:pointer;">
-Transactions
-</div>
-
-<div
-onclick="showJournal()"
-style="
-flex:1;
-text-align:center;
-padding:10px;
-border-radius:8px;
-cursor:pointer;
-color:#aaa;
-font-weight:bold;">
-Journal
-</div>
-
-</div>
-</div>
-
-<div style="display:flex;gap:10px;margin:15px 0;">
-    <button style="
-        flex:1;
-        padding:10px;
-        border-radius:10px;
-        border:none;
-        background:#2b2b2b;
-        color:white;">
-        Download
-    </button>
-
-    <button onclick="viewTradeDetails()" style="
-        flex:1;
-        padding:10px;
-        border-radius:10px;
-        border:none;
-        background:#7a2cff;
-        color:white;
-        font-weight:bold;">
-        View Details
-    </button>
-</div>
-
-<table style="width:100%;font-size:13px;...
-<table style="width:100%;font-size:13px;border-collapse:collapse;">
-
-<tr style="color:#999;">
-<th align="left">Type</th>
-<th align="left">Entry/Exit Spot</th>
-<th align="right">Buy Price & P/L</th>
-</tr>
-
-<tbody id="tradeHistory"></tbody>
-
-
-</table>
-
-<hr style="margin:15px 0;border:1px solid #222;">
-
-<div style="
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:14px;
-margin-top:20px;
-">
-<div style="
-background:#181818;
-padding:14px;
-border-radius:12px;
-border:1px solid #333;
-">
-Total Stake<br>
-<b id="stakeTotal" style="font-size:20px;">150 USD</b>
-</div>
-
-<div style="
-function toggleApexBot() {
     apexRunning = !apexRunning;
 
+    const btn = document.getElementById("apexBotBtn");
+    const status = document.getElementById("botStatus");
+
     if (apexRunning) {
-        document.getElementById("apexBotBtn").innerHTML = "⏹ STOP";
-        document.getElementById("botStatus").innerHTML = "🟢 Bot Running";
+
+        btn.innerHTML = "⏹ STOP";
+        status.innerHTML = "🟢 Bot Running";
+
         openTransactionsPage();
+
     } else {
-        document.getElementById("apexBotBtn").innerHTML = "▶ RUN";
-        document.getElementById("botStatus").innerHTML = "🔴 Bot Stopped";
+
+        btn.innerHTML = "▶ RUN";
+        status.innerHTML = "🔴 Bot is not running";
+
         clearInterval(botInterval);
+
     }
-    }
+}
+    
 function openTransactionsPage() {
 
 document.querySelector(".container").innerHTML = `
@@ -1168,39 +1060,33 @@ document.querySelector(".container").innerHTML = `
     <span onclick="showJournal()">Journal</span>
 </div>
 
-<div id="tradeHistory"></div>
+<table style="width:100%;font-size:13px;border-collapse:collapse;">
+<tr>
+<th align="left">Type</th>
+<th align="left">Entry / Exit</th>
+<th align="right">Profit</th>
+</tr>
 
-<div style="margin-top:20px;">
-<b id="stakeTotal">0 USD</b><br>
-Total Stake
-</div>
+<tbody id="tradeHistory"></tbody>
 
-<div>
-<b id="payoutTotal">0 USD</b><br>
-Total Payout
-</div>
+</table>
 
-<div>
-<b id="wonTotal">0</b><br>
-Contracts Won
-</div>
+<hr style="margin:15px 0;border:1px solid #222;">
 
-<div>
-<b id="lostTotal">0</b><br>
-Contracts Lost
-</div>
+<div>Total Stake<br><b id="stakeTotal">0 USD</b></div>
 
-<div>
-<b id="runsTotal">0</b><br>
-Runs
-</div>
+<div>Total Payout<br><b id="payoutTotal">0 USD</b></div>
 
-<div>
-<b id="profitTotal" style="color:#00ff88;">0 USD</b><br>
-Profit
-</div>
+<div>Contracts Won<br><b id="wonTotal">0</b></div>
+
+<div>Contracts Lost<br><b id="lostTotal">0</b></div>
+
+<div>Runs<br><b id="runsTotal">0</b></div>
+
+<div>Profit<br><b id="profitTotal" style="color:#00ff88;">0 USD</b></div>
 
 <button
+id="apexBotBtn"
 style="
 width:100%;
 margin-top:20px;
@@ -1221,17 +1107,15 @@ onclick="toggleApexBot()">
 
 startFakeTrading();
 
-}
+     }
 
-let botInterval;
+function startFakeTrading() {
 
-function startFakeTrading(){
+let runs = 0;
 
-    let runs = 0;
-    let totalStake = 0;
-    let totalStake = 0;
+clearInterval(botInterval);
 
-    botInterval = setInterval(function(){
+botInterval = setInterval(function () {
 
     runs++;
 
@@ -1239,38 +1123,40 @@ function startFakeTrading(){
     document.getElementById("stakeTotal").innerHTML = (runs * 30) + " USD";
     document.getElementById("payoutTotal").innerHTML = (runs * 58.82).toFixed(2) + " USD";
     document.getElementById("wonTotal").innerHTML = runs;
-    document.getElementById("profitTotal").innerHTML = (runs * 28.82).toFixed(2) + " USD";
-let history = document.getElementById("tradeHistory");
+    document.getElementById("lostTotal").innerHTML = 0;
+    document.getElementById("profitTotal").innerHTML =
+        (runs * 28.82).toFixed(2) + " USD";
 
-if (history) {
+    let history = document.getElementById("tradeHistory");
 
-    let entry = (2557 + Math.random() * 10).toFixed(2);
-    let exit = (parseFloat(entry) + Math.random()).toFixed(2);
+    if (history) {
 
-    history.innerHTML =
-    `
-    <tr>
-        <td style="padding:10px;">📈</td>
+        let entry = (2557 + Math.random() * 10).toFixed(2);
+        let exit = (parseFloat(entry) + Math.random()).toFixed(2);
 
-        <td style="padding:10px;">
-            <div><b>Entry:</b> ${entry}</div>
-            <div><b>Exit:</b> ${exit}</div>
-        </td>
-
-        <td style="padding:10px;text-align:right;">
-            <div>30 USD</div>
-            <div style="color:#00ff88;font-weight:bold;">
+        history.innerHTML =
+        `
+        <tr>
+            <td>📈</td>
+            <td>
+                <div><b>Entry:</b> ${entry}</div>
+                <div><b>Exit:</b> ${exit}</div>
+            </td>
+            <td style="text-align:right;color:#00ff88;">
                 +28.82 USD
-            </div>
-        </td>
-    </tr>
-    ` + history.innerHTML;
+            </td>
+        </tr>
+        ` + history.innerHTML;
 
-        }
+    }
+
 }, 5000);
+
 }
+
 function viewTradeDetails() {
-    alert(
+
+alert(
 `Trade Details
 
 Entry Price: 2563.93
@@ -1282,74 +1168,19 @@ Payout: 58.82 USD
 Profit: +28.82 USD
 
 Status: WON`
-    );
+);
+
 }
-     function showSummary() {
-    alert("Summary page coming next.");
-     }
+
 function showSummary() {
 
-document.querySelector(".trade-box").innerHTML = `
+alert("Summary page coming soon.");
 
-<h3 style="color:#7a2cff;">Bot Summary</h3>
-
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px;">
-
-<div style="background:#181818;padding:12px;border-radius:10px;">
-Total Stake<br>
-<b id="summaryStake"></b>
-</div>
-
-<div style="background:#181818;padding:12px;border-radius:10px;">
-Total Payout<br>
-<b id="summaryPayout"></b>
-</div>
-
-<div style="background:#181818;padding:12px;border-radius:10px;">
-Contracts Won<br>
-<b id="summaryWon"></b>
-</div>
-
-<div style="background:#181818;padding:12px;border-radius:10px;">
-Contracts Lost<br>
-<b id="summaryLost"></b>
-</div>
-
-<div style="background:#181818;padding:12px;border-radius:10px;">
-Runs<br>
-<b id="summaryRuns"></b>
-</div>
-
-<div style="background:#181818;padding:12px;border-radius:10px;">
-Profit<br>
-<b style="color:#00ff88;" id="summaryProfit"></b>
-</div>
-
-</div>
-
-`;
-   document.getElementById("summaryStake").innerHTML =
-document.getElementById("stakeTotal").innerHTML;
-
-document.getElementById("summaryPayout").innerHTML =
-document.getElementById("payoutTotal").innerHTML;
-
-document.getElementById("summaryWon").innerHTML =
-document.getElementById("wonTotal").innerHTML;
-
-document.getElementById("summaryLost").innerHTML =
-document.getElementById("lostTotal").innerHTML;
-
-document.getElementById("summaryRuns").innerHTML =
-document.getElementById("runsTotal").innerHTML;
-
-document.getElementById("summaryProfit").innerHTML =
-document.getElementById("profitTotal").innerHTML;                           
 }
-function showJournal() {
-    alert("Journal page coming next.");
-    }                         
 
-</script>
-</body>
-</html>
+function showJournal() {
+
+alert("Journal page coming soon.");
+
+}
+
