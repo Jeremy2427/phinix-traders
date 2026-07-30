@@ -491,8 +491,43 @@ function changeTicks(){
     alert("Number of ticks selector coming soon");
 }
 
-function changeContract(){
-    alert("Contract selector coming soon");
+function changeContract() {
+
+    let choice = prompt(
+`Choose Trade Type
+
+1 = Over / Under
+2 = Matches / Differs
+3 = Even / Odd
+4 = Rise / Fall`
+    );
+
+    const contract = document.querySelectorAll(".trade-box")[2];
+
+    if(choice=="1"){
+        contract.innerHTML = "Over / Under ▼";
+        document.querySelector(".over").innerHTML = "OVER";
+        document.querySelector(".under").innerHTML = "UNDER";
+    }
+
+    if(choice=="2"){
+        contract.innerHTML = "Matches / Differs ▼";
+        document.querySelector(".over").innerHTML = "MATCHES";
+        document.querySelector(".under").innerHTML = "DIFFERS";
+    }
+
+    if(choice=="3"){
+        contract.innerHTML = "Even / Odd ▼";
+        document.querySelector(".over").innerHTML = "EVEN";
+        document.querySelector(".under").innerHTML = "ODD";
+    }
+
+    if(choice=="4"){
+        contract.innerHTML = "Rise / Fall ▼";
+        document.querySelector(".over").innerHTML = "RISE";
+        document.querySelector(".under").innerHTML = "FALL";
+    }
+
 }
 
 function changeStake(){
