@@ -487,8 +487,27 @@ function changeVolatility(){
     alert("Volatility selector coming soon");
 }
 
-function changeTicks(){
-    alert("Number of ticks selector coming soon");
+function changeTicks() {
+
+    let choice = prompt(
+`Choose Number of Ticks
+
+1
+2
+3
+4
+5
+6
+7`
+    );
+
+    if(choice >= 1 && choice <= 7){
+
+        document.querySelectorAll(".trade-box")[1].innerHTML =
+        "Number of ticks: " + choice + " ▼";
+
+    }
+
 }
 
 function changeContract() {
