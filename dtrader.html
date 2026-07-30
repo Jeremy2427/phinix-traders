@@ -483,8 +483,36 @@ function changeWallet(){
     alert("Wallet coming soon");
 }
 
-function changeVolatility(){
-    alert("Volatility selector coming soon");
+function changeVolatility() {
+
+    let choice = prompt(
+`Choose Volatility
+
+1 = Volatility 10
+2 = Volatility 10 (1s)
+3 = Volatility 25
+4 = Volatility 25 (1s)
+5 = Volatility 50
+6 = Volatility 50 (1s)
+7 = Volatility 75
+8 = Volatility 75 (1s)
+9 = Volatility 100
+10 = Volatility 100 (1s)`
+    );
+
+    const market = document.querySelectorAll(".trade-box")[0];
+
+    if(choice=="1") market.innerHTML="Volatility 10 Index ▼";
+    if(choice=="2") market.innerHTML="Volatility 10 (1s) Index ▼";
+    if(choice=="3") market.innerHTML="Volatility 25 Index ▼";
+    if(choice=="4") market.innerHTML="Volatility 25 (1s) Index ▼";
+    if(choice=="5") market.innerHTML="Volatility 50 Index ▼";
+    if(choice=="6") market.innerHTML="Volatility 50 (1s) Index ▼";
+    if(choice=="7") market.innerHTML="Volatility 75 Index ▼";
+    if(choice=="8") market.innerHTML="Volatility 75 (1s) Index ▼";
+    if(choice=="9") market.innerHTML="Volatility 100 Index ▼";
+    if(choice=="10") market.innerHTML="Volatility 100 (1s) Index ▼";
+
 }
 
 function changeTicks() {
