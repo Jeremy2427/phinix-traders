@@ -444,7 +444,29 @@ Stake: 125 USD
 <script>
 
 function changeWallet(){
-    alert("Wallet coming soon");
+
+    let choice = prompt(
+`Wallet
+
+1 = Deposit
+2 = Withdraw
+3 = Transfer`
+    );
+
+    const wallet = document.querySelector(".wallet-btn");
+
+    if(choice=="1"){
+        wallet.innerHTML="Deposit ▼";
+    }
+
+    if(choice=="2"){
+        wallet.innerHTML="Withdraw ▼";
+    }
+
+    if(choice=="3"){
+        wallet.innerHTML="Transfer ▼";
+    }
+
 }
 
 function changeVolatility() {
@@ -542,7 +564,16 @@ function changeContract() {
 }
 
 function changeStake(){
-    alert("Stake selector coming soon");
+
+    let amount = prompt("Enter stake amount (USD):");
+
+    if(amount && !isNaN(amount)){
+
+        document.querySelectorAll(".trade-box")[3].innerHTML =
+        "Stake: " + amount + " USD";
+
+    }
+
 }
 
 function openBots(){
