@@ -1,306 +1,297 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Phinix Traders</title>
 
 <style>
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-    background:#05050b;
-    color:white;
-    font-family:Arial,sans-serif;
+
+background:#05050b;
+color:white;
+
 }
 
 .container{
-    width:100%;
-    max-width:430px;
-    margin:auto;
-    padding:12px;
+
+max-width:430px;
+margin:auto;
+padding:12px;
+padding-bottom:120px;
+
 }
 
 .header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:10px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:10px;
+
 }
 
 .logo{
-    color:#b266ff;
-    font-size:18px;
-    font-weight:bold;
+
+font-size:20px;
+font-weight:bold;
+color:#b266ff;
+
 }
 
 .wallet-box{
-    margin-top:15px;
-    background:#090913;
-    border:1px solid #6b29ff;
-    border-radius:20px;
-    padding:12px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 0 20px rgba(130,50,255,.3);
+
+margin-top:18px;
+padding:15px;
+border-radius:20px;
+
+background:#0b0b15;
+
+border:1px solid #7a2cff;
+
+box-shadow:0 0 18px rgba(122,44,255,.35);
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+.balance{
+
+font-size:13px;
+
 }
 
 .balance h1{
-    font-size:40px;
+
+font-size:38px;
+margin-top:5px;
+
 }
 
 .wallet-btn{
-    background:linear-gradient(90deg,#7b2cff,#d06fff);
-    padding:12px 18px;
-    border-radius:16px;
+
+background:linear-gradient(90deg,#7a2cff,#c94fff);
+
+padding:12px 18px;
+
+border-radius:15px;
+
+font-weight:bold;
+
+cursor:pointer;
+
 }
 
 .tabs{
-    display:flex;
-    gap:10px;
-    margin-top:15px;
+
+display:flex;
+gap:10px;
+margin-top:18px;
+
 }
 
 .tab{
-    flex:1;
-    background:#090913;
-    padding:16px;
-    border-radius:18px;
-    text-align:center;
-    border:1px solid #222;
+
+flex:1;
+
+background:#101018;
+
+padding:14px;
+
+border-radius:18px;
+
+text-align:center;
+
+cursor:pointer;
+
+border:1px solid #222;
+
 }
 
 .active{
-    border:1px solid #b266ff;
-    color:#d17cff;
+
+border:1px solid #b266ff;
+
+color:#d77fff;
+
 }
 
 .market{
-    margin-top:15px;
-    background:#090913;
-    padding:15px;
-    border-radius:20px;
-}
 
-.price{
-    color:#00ff99;
-    margin-top:10px;
-}
+margin-top:18px;
 
-.digits{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:10px;
-    margin-top:15px;
-}
+background:#090913;
 
-.circle-box{
-    text-align:center;
-}
-.circle-box small{
-    display:block;
-    margin-top:2px;
-    color:#00ff99;
-    font-size:11px;
-}
-.circle{
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    border:3px solid #333;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    margin:auto;
-}
+padding:15px;
 
-.digit{
-    font-size:18px;
-    font-weight:bold;
-    color:white;
-}
+border-radius:20px;
 
-.percent{
-    font-size:11px;
-    color:#00ff99;
-    margin-top:2px;
 }
 
 .trade-box{
-    background:#080814;
-    border:1px solid #1a1a2e;
-    border-radius:15px;
-    padding:10px;
-    margin-top:6px;
-    color:white;
-    font-size:14px;
-    width:100%;
-    box-sizing:border-box;
+
+background:#111118;
+
+border:1px solid #242436;
+
+border-radius:15px;
+
+padding:12px;
+
+margin-top:10px;
+
+cursor:pointer;
+
 }
+
+.price{
+
+margin-top:10px;
+
+font-size:20px;
+
+font-weight:bold;
+
+color:#00ff99;
+
+}
+
+.digits{
+
+display:grid;
+
+grid-template-columns:repeat(5,1fr);
+
+gap:10px;
+
+margin-top:18px;
+
+}
+
+.circle{
+
+width:66px;
+
+height:66px;
+
+border-radius:50%;
+
+border:2px solid #333;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+margin:auto;
+
+}
+
+.circle span:first-child{
+
+font-size:20px;
+
+font-weight:bold;
+
+}
+
+.circle span:last-child{
+
+font-size:11px;
+
+color:#00ff88;
+
+}
+
 .trade-section{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:15px;
-}
 
-.selected{
-    border-color:#c94fff;
-    box-shadow:0 0 15px #c94fff;
-}
-.bot-card{
-    background:#090914;
-    border:2px solid #7a2cff;
-    border-radius:25px;
-    padding:20px;
-    margin-top:20px;
-    box-shadow:0 0 15px rgba(122,44,255,0.4);
-}
+display:flex;
 
-.bot-title{
-    color:white;
-    font-size:24px;
-    font-weight:bold;
-    margin-bottom:10px;
-}
+flex-direction:column;
 
-.bot-desc{
-    color:#bdbdbd;
-    margin-bottom:20px;
-}
+gap:10px;
 
-.load-btn{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:30px;
-    background:linear-gradient(90deg,#00d4ff,#7a2cff);
-    color:white;
-    font-size:18px;
-    font-weight:bold;
-}
-.option{
-    background:#090913;
-    padding:14px;
-    border-radius:16px;
-    margin-top:12px;
+margin-top:18px;
+
 }
 
 .buttons{
-    display:flex;
-    gap:12px;
-    margin-top:15px;
-    flex-wrap:wrap;
+
+display:flex;
+
+gap:10px;
+
+margin-top:18px;
+
 }
 
 .over{
-    flex:1;
-    background:#00695c;
-    padding:16px;
-    text-align:center;
-    border-radius:16px;
+
+flex:1;
+
+background:#00695c;
+
+padding:18px;
+
+border-radius:16px;
+
+text-align:center;
+
+font-weight:bold;
+
+cursor:pointer;
+
 }
 
 .under{
-    flex:1;
-    background:#8b0035;
-    padding:16px;
-    text-align:center;
-    border-radius:16px;
+
+flex:1;
+
+background:#8b0035;
+
+padding:18px;
+
+border-radius:16px;
+
+text-align:center;
+
+font-weight:bold;
+
+cursor:pointer;
+
 }
 
-.run-bar{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:#111;
-    display:flex;
-    align-items:center;
-    padding:10px;
-    box-sizing:border-box;
-    border-top:1px solid #222;
-}
-.run-bar-new{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:#111;
-    display:flex;
-    align-items:center;
-    padding:12px;
-    box-sizing:border-box;
-    border-top:1px solid #222;
+.selected{
+
+border:2px solid #c94fff;
+
+box-shadow:0 0 15px #c94fff;
+
 }
 
-.play-btn{
-    background:#00b894;
-    color:white;
-    border:none;
-    padding:16px 35px;
-    border-radius:12px;
-    font-size:20px;
-    font-weight:bold;
+.bottom-space{
+
+height:80px;
+
 }
 
-.status-text{
-    flex:1;
-    text-align:center;
-    color:white;
-    font-size:18px;
-}
-.status-box{
-    flex:1;
-    background:#111;
-    color:white;
-    border-radius:12px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:20px;
-}
-.container{
-    padding-bottom:120px;
-}
-.run-bar-new{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:#111;
-    display:flex;
-    align-items:center;
-    padding:12px;
-    box-sizing:border-box;
-    border-top:1px solid #222;
-}
-.input{
-    width:100%;
-    height:34px;
-background:#111;
-    color:#fff;
-    border:1px solid #6f2cff;
-    border-radius:8px;
-    padding:6px 8px;
-    margin:3px 0 8px;
-    font-size:13px;
-    box-sizing:border-box;
-}
-.trade-box h3{
-    color:#bb66ff;
-    margin-bottom:15px;
-}
-
-.trade-box p{
-    color:#ddd;
-    margin:10px 0 5px;
-    }
 </style>
 
 </head>
@@ -310,877 +301,190 @@ background:#111;
 <div class="container">
 
 <div class="header">
+
 <div>☰</div>
+
 <div class="logo">PHINIX TRADERS</div>
+
 <div>🔔</div>
+
 </div>
 
 <div class="wallet-box">
-    <div class="balance">
-        Demo Balance
-        <h1>$10,000</h1>
-    </div>
 
-    <div class="wallet-btn" onclick="changeWallet()">
-        Wallet ▼
-    </div>
+<div class="balance">
+
+Demo Balance
+
+<h1>$10,000</h1>
+
+</div>
+
+<div class="wallet-btn" onclick="changeWallet()">
+
+Wallet ▼
+
+</div>
+
 </div>
 
 <div class="tabs">
-    <div class="tab">🤖 Bot Builder</div>
-    <div class="tab active">📈 Manual Trader</div>
-    <div class="tab" onclick="openBots()">🤖 Phinix Bots</div>
+
+<div class="tab">
+
+🤖 Bot Builder
+
 </div>
 
+<div class="tab active">
+
+📈 Manual Trader
+
+</div>
+
+<div class="tab" onclick="openBots()">
+
+🤖 Phinix Bots
+</div>
+
+</div>
 <div class="market">
+
 <div class="trade-box" onclick="changeVolatility()">
-    Volatility 100 (1s) Index ▼
+Volatility 100 (1s) Index ▼
 </div>
 
 <div class="price">
 6,719.71 ▲ 0.42%
 </div>
+
 </div>
 
 <div class="digits">
 
-  <div class="circle-box">
-    <div class="circle">
-      <div class="digit">0</div>
-      <div class="percent">10%</div>
-    </div>
-  </div>
+<div class="circle">
+<span>0</span>
+<span>10%</span>
+</div>
 
-  <div class="circle-box">
-    <div class="circle">
-      <div class="digit">1</div>
-      <div class="percent">10%</div>
-    </div>
-  </div>
+<div class="circle">
+<span>1</span>
+<span>10%</span>
+</div>
 
-  <div class="circle-box">
-    <div class="circle">
-      <div class="digit">2</div>
-      <div class="percent">10%</div>
-    </div>
-  </div>
+<div class="circle">
+<span>2</span>
+<span>10%</span>
+</div>
 
-  <div class="circle-box">
-    <div class="circle">
-      <div class="digit">3</div>
-      <div class="percent">10%</div>
-    </div>
-  </div>
+<div class="circle">
+<span>3</span>
+<span>10%</span>
+</div>
 
-  <div class="circle-box">
-    <div class="circle">
-      <div class="digit">4</div>
-      <div class="percent">10%</div>
-    </div>
-  </div>
+<div class="circle">
+<span>4</span>
+<span>10%</span>
+</div>
 
-  <div class="circle-box">
-    <div class="circle">
-      <div class="digit">5</div>
-      <div class="percent">10%</div>
-    </div>
-  </div>
+<div class="circle">
+<span>5</span>
+<span>10%</span>
+</div>
 
-  <div class="circle-box">
-    <div class="circle">
-      <div class="digit">6</div>
-      <div class="percent">10%</div>
-    </div>
-  </div>
+<div class="circle">
+<span>6</span>
+<span>10%</span>
+</div>
 
-  <div class="circle-box">
-    <div class="circle">
-      <div class="digit">7</div>
-      <div class="percent">10%</div>
-    </div>
-  </div>
+<div class="circle">
+<span>7</span>
+<span>10%</span>
+</div>
 
-  <div class="circle-box">
-    <div class="circle">
-      <div class="digit">8</div>
-      <div class="percent">10%</div>
-    </div>
-  </div>
+<div class="circle">
+<span>8</span>
+<span>10%</span>
+</div>
 
-  <div class="circle-box">
-    <div class="circle">
-      <div class="digit">9</div>
-      <div class="percent">10%</div>
-    </div>
-  </div>
+<div class="circle">
+<span>9</span>
+<span>10%</span>
+</div>
 
-</div> 
+</div>
 
 <div class="trade-section">
+
 <div class="trade-box" onclick="changeTicks()">
-    Number of ticks: 1 ▼
+Number of ticks: 1 ▼
 </div>
-    <div class="trade-box" onclick="changeContract()">
-        Over / Under ▼
-    </div>
 
-    <div class="trade-box" onclick="changeStake()">
-    Stake: 125 USD
-    </div>
+<div class="trade-box" onclick="changeContract()">
+Over / Under ▼
+</div>
 
-    <div class="trade-box">
-    Target Profit: 10 USD ▼
+<div class="trade-box" onclick="changeStake()">
+Stake: 125 USD
 </div>
 
 <div class="trade-box">
-    Stop Loss: 20 USD ▼
+Target Profit: 10 USD ▼
 </div>
 
 <div class="trade-box">
-    Martingale: OFF ▼
+Stop Loss: 20 USD ▼
 </div>
 
 <div class="trade-box">
-    Multiplier: 2.0x ▼
+Martingale: OFF ▼
+</div>
+
+<div class="trade-box">
+Multiplier: 2.0x ▼
 </div>
 
 </div>
 
+<div class="buttons">
+
+<div class="over">
+OVER
+</div>
+
+<div class="under">
+UNDER
+</div>
+
+</div>
+<div class="bottom-space"></div>
 <script>
 
-const overBtn = document.querySelector(".over");
-const underBtn = document.querySelector(".under");
-
-overBtn.addEventListener("click", () => {
-    overBtn.classList.add("selected");
-    underBtn.classList.remove("selected");
-    alert("OVER selected");
-});
-
-underBtn.addEventListener("click", () => {
-    underBtn.classList.add("selected");
-    overBtn.classList.remove("selected");
-    alert("UNDER selected");
-});
-
-
-function changeWallet() {
-    let choice = prompt(
-        "1 = Deposit\n2 = Withdraw\n3 = Transfer"
-    );
-
-    const wallet = document.querySelector(".wallet-btn");
-
-    if(choice == "1"){
-        wallet.innerHTML = "Deposit ▼";
-    }
-
-    if(choice == "2"){
-        wallet.innerHTML = "Withdraw ▼";
-    }
-
-    if(choice == "3"){
-        wallet.innerHTML = "Transfer ▼";
-    }
+function changeWallet(){
+    alert("Wallet coming soon");
 }
 
-
-function changeVolatility() {
-    let choice = prompt(
-        "1 = Volatility 10\n2 = Volatility 25\n3 = Volatility 50\n4 = Volatility 75\n5 = Volatility 100"
-    );
-
-    const market =
-document.querySelectorAll(".trade-box")[0];
-
-    if(choice=="1")
-        market.innerHTML = "Volatility 10 (1s) Index ▼";
-
-    if(choice=="2")
-        market.innerHTML = "Volatility 25 (1s) Index ▼";
-
-    if(choice=="3")
-        market.innerHTML = "Volatility 50 (1s) Index ▼";
-
-    if(choice=="4")
-        market.innerHTML = "Volatility 75 (1s) Index ▼";
-
-    if(choice=="5")
-        market.innerHTML = "Volatility 100 (1s) Index ▼";
+function changeVolatility(){
+    alert("Volatility selector coming soon");
 }
 
-
-function changeContract() {
-    let choice = prompt(
-        "1 = Even/Odd\n2 = Matches/Differs\n3 = Rise/Fall\n4 = Over/Under"
-    );
-
-    const contract =
-        document.querySelectorAll(".trade-box")[2];
-
-    if(choice=="1")
-        contract.innerHTML = "Even / Odd ▼";
-
-    if(choice=="2")
-        contract.innerHTML = "Matches / Differs ▼";
-
-    if(choice=="3")
-        contract.innerHTML = "Rise / Fall ▼";
-
-    if(choice=="4")
-        contract.innerHTML = "Over / Under ▼";
+function changeTicks(){
+    alert("Number of ticks selector coming soon");
 }
 
-function changeStake() {
-    let amount = prompt("Enter stake amount:");
-
-    if(amount){
-        document.querySelectorAll(".trade-box")[3]
-        .innerHTML = "Stake: " + amount + " USD";
-    }
+function changeContract(){
+    alert("Contract selector coming soon");
 }
 
-
-function changeTicks() {
-    let ticks = prompt("Enter number of ticks:");
-
-    if (ticks) {
-        document.querySelectorAll(".trade-box")[1]
-        .innerHTML = "Number of ticks: " + ticks + " ▼";
-    }
+function changeStake(){
+    alert("Stake selector coming soon");
 }
 
-
-function openBots() {
-
-    document.querySelector(".container").innerHTML = `
-
-    <div class="header">
-        <div onclick="location.reload()">←</div>
-        <div class="logo">PHINIX BOTS</div>
-        <div>🏠</div>
-    </div>
-
-    
-
-<div class="bot-card" onclick="openApexBot()">
-    <div class="bot-title">🤖 Apex Bot</div>
-    <div class="bot-desc">
-        Smart automated trading strategy
-    </div>
-
-    <button class="load-btn" onclick="openApexBot()">
-    Load Bot
-</button>
-</div>
-
-<div class="bot-card" onclick="openPhinixProBot()">
-    <div class="bot-title">🚀 Phinix Pro Bot</div>
-    <div class="bot-desc">
-        Smart automated trading strategy
-    </div>
-
-    <button class="load-btn" onclick="openPhinixProBot()">
-    Load Bot
-</button>
-</div>
-
-<div class="bot-card" onclick="openLightningBot()">
-    <div class="bot-title">⚡ Lightning Bot</div>
-    <div class="bot-desc">
-        Smart automated trading strategy
-    </div>
-
-    <button class="load-btn" onclick="openLightningBot()">
-    Load Bot
-</button>
-</div>
-
-<div class="bot-card" onclick="openSniperBot()">
-    <div class="bot-title">🎯 Sniper Bot</div>
-    <div class="bot-desc">
-        Smart automated trading strategy
-    </div>
-
-    <button class="load-btn" onclick="openSniperBot()">
-    Load Bot
-</button>
-</div>
-
-<div class="bot-card" onclick="openTrendBot()">
-    <div class="bot-title">📈 Trend Bot</div>
-    <div class="bot-desc">
-        Smart automated trading strategy
-    </div>
-
-    <button class="load-btn" onclick="openTrendBot()">
-    Load Bot
-</button>
-</div>
-
-<div class="bot-card" onclick="openPremiumBot()">
-    <div class="bot-title">💎 Premium Bot</div>
-    <div class="bot-desc">
-        Smart automated trading strategy
-    </div>
-<h3 style="margin-top:20px;">Trade options</h3>
-
-    <button class="load-btn">
-        Load Bot
-    </button>
-</div>
-<div class="bot-card" onclick="openAIBot()">
-    <div class="bot-title">🧠 AI Predictor Bot</div>
-
-    <div class="bot-desc">
-        Smart automated trading strategy
-    </div>
-
-    <button class="load-btn" onclick="openAIBot()">
-        Load Bot
-    </button>
-</div>
-    <div class="trade-box">⬅ Back to Manual Trader</div>
-
-    `;
-     }
-    function openEvenOddBot() {
-
-document.querySelector(".container").innerHTML = `
-
-<div class="header">
-    <div onclick="openBots()">←</div>
-    <div class="logo">EVEN / ODD BOT</div>
-    <div>🏠</div>
-</div>
-
-<div class="trade-box">
-Market: Volatility 100 (1s)
-</div>
-
-<div class="trade-box">
-Trade Type: Even / Odd
-</div>
-
-<div class="trade-box">
-Stake: 1 USD
-</div>
-
-<div class="trade-box">
-Number of Ticks: 1
-</div>
-
-
-
-<div class="run-bar-new">
-    <button class="play-btn">▶ Run</button>
-    <div class="status-text">
-        Bot is not running
-    </div>
-</div>
-`;
+function openBots(){
+    alert("Bot page coming next");
 }
 
-function openApexBot(){
-    document.querySelector(".container").innerHTML = `
-        <div class="header">
-            <div onclick="openBots()">⬅</div>
-            <div class="logo">APEX BOT</div>
-            <div>🏠</div>
-        </div>
+</script>
 
-        <div class="trade-box" style="
-max-width:340px;
-margin:15px auto;
-padding:8px;
-font-size:12px;
-line-height:1.2;
-">
-    <div style="
-background:#5b21b6;
-color:white;
-padding:12px;
-border-radius:12px;
-font-size:22px;
-font-weight:bold;
-text-align:center;
-margin-bottom:15px;">
-⚡ Quick Strategy
-</div>
-
-<div style="
-background:#7c3aed;
-color:white;
-padding:10px;
-border-radius:10px;
-font-weight:bold;
-margin-bottom:15px;">
-1. Trade Parameters
-<div style="display:flex;gap:8px;margin-bottom:12px;align-items:center;">
-
-<select class="input" style="flex:1;">
-    <option>Derived</option>
-</select>
-
-<select class="input" style="flex:1;">
-    <option>Continuous Indices</option>
-</select>
-
-<select class="input" style="flex:1;">
-    <option>Volatility 10 Index</option>
-    <option>Volatility 10 (1s) Index</option>
-    <option>Volatility 25 Index</option>
-    <option>Volatility 25 (1s) Index</option>
-    <option>Volatility 50 Index</option>
-    <option>Volatility 50 (1s) Index</option>
-    <option>Volatility 75 Index</option>
-    <option>Volatility 75 (1s) Index</option>
-    <option selected>Volatility 100 Index</option>
-    <option>Volatility 100 (1s) Index</option>
-</select>
-
-</div>
-    <div style="display:flex;gap:8px;margin-bottom:12px;">
-
-<select class="input" style="flex:1;">
-    <option>Digits</option>
-</select>
-
-<select class="input" style="flex:1;">
-    <option>Matches/Differs</option>
-</select>
-
-<select class="input" style="flex:1;">
-    <option>Even / Odd</option>
-</select>
-
-</div>
-<p>Contract Type</p>
-
-<select class="input" style="width:100%;">
-    <option selected>Matches</option>
-    <option>Differs</option>
-    <option>Over</option>
-    <option>Under</option>
-    <option>Even</option>
-    <option>Odd</option>
-</select>
-
-<p>Default Candle Interval</p>
-<select class="input" style="width:100%;">
-    <option>1 Minute</option>
-    <option>5 Minutes</option>
-    <option>15 Minutes</option>
-</select>
-
-<p>Restart buy/sell on error</p>
-<input type="checkbox">
-
-<p>Restart last trade on error</p>
-<input type="checkbox" checked>
-    
-<div style="display:flex;gap:6px;margin-bottom:8px;">
-    <span style="width:80px;">Duration</span>
-
-    <select class="input" style="width:80px;">
-        <option>Ticks</option>
-        <option>Minutes</option>
-    </select>
-
-    <select class="input" style="flex:1;">
-    <option>1 Tick</option>
-    <option>2 Ticks</option>
-    <option>3 Ticks</option>
-    <option>4 Ticks</option>
-    <option>5 Ticks</option>
-    <option>6 Ticks</option>
-    <option>7 Ticks</option>
-</select>
-</div>
-
-<div style="display:flex;gap:6px;margin-bottom:8px;">
-    <span style="width:80px;">Profit</span>
-
-    <select class="input" style="width:80px;">
-        <option>USD</option>
-    </select>
-
-    <input class="input" type="number" value="5" style="flex:1;">
-</div>
-<div style="display:flex;gap:6px;margin-bottom:8px;">
-    <span style="width:80px;">Loss</span>
-
-    <select class="input" style="width:80px;">
-        <option>USD</option>
-    </select>
-
-    <input class="input" type="number" value="10" style="flex:1;">
-</div>
-<p>Martingale</p>
-<select class="input" style="width:100%;">
-    <option>OFF</option>
-    <option>ON</option>
-</select>
-<div style="display:flex;gap:6px;margin-bottom:8px;">
-    <span style="width:80px;">Prediction</span>
-
-    <input class="input" type="number" value="4" style="flex:1;">
-</div>
-<h3 style="margin-top:20px;">Run once at start</h3>
-
-<div class="trade-box">
-    <p>Set Stake to</p>
-    <input class="input" type="number" value="2">
-
-    <p>Set Target Profit to</p>
-    <input class="input" type="number" value="5">
-<p>Set Stop Loss to</p>
-    <input class="input" type="number" value="10">
-<p>Set Martingale to</p>
-    <select class="input">
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-    </select>
-    <p>Set Stake Win to</p>
-<select class="input">
-    <option>Stake</option>
-</select>
-<p>Set Count to</p>
-<input class="input" type="number" value="0">
-<p>Set Initial Balance to</p>
-<input class="input" type="number" value="1000">
-</div>   
-</div>
-<button id="apexBotBtn" class="load-btn" onclick="toggleApexBot(); startFakeTrading();">
-    ▶ RUN
-</button>
-
-<div id="botStatus" class="status-text">
-    🔴 Bot is not running
-</div>
-
-<div class="trade-box" onclick="openBots()">
-    ← Back to Bots
-</div>
-    `;
-}
-
-function openPhinixProBot(){
-
-document.querySelector(".container").innerHTML = `
-
-<div class="header">
-    <div onclick="openBots()">←</div>
-    <div class="logo">PHINIX PRO BOT</div>
-    <div>🏠</div>
-</div>
-
-<div class="trade-box">
-    🚀 Phinix Pro Bot is under construction
-</div>
-
-<button class="load-btn">
-    Start Phinix Pro Bot
-</button>
-
-<div class="trade-box" onclick="openBots()">
-    ← Back to Bots
-</div>
-
-`;
-}
-
-function openLightningBot(){
-
-document.querySelector(".container").innerHTML = `
-
-<div class="header">
-    <div onclick="openBots()">←</div>
-    <div class="logo">LIGHTNING BOT</div>
-    <div>🏠</div>
-</div>
-
-<div class="trade-box">
-    ⚡ Lightning Bot is under construction
-</div>
-
-<button class="load-btn">
-    Start Lightning Bot
-</button>
-
-<div class="trade-box" onclick="openBots()">
-    ← Back to Bots
-</div>
-
-`;
-}
-
-function openSniperBot(){
-
-document.querySelector(".container").innerHTML = `
-
-<div class="header">
-    <div onclick="openBots()">←</div>
-    <div class="logo">SNIPER BOT</div>
-    <div>🏠</div>
-</div>
-
-<div class="trade-box">
-    🎯 Sniper Bot is under construction
-</div>
-
-<button class="load-btn">
-    Start Sniper Bot
-</button>
-
-<div class="trade-box" onclick="openBots()">
-    ← Back to Bots
-</div>
-
-`;
-}
-
-function openTrendBot(){
-
-document.querySelector(".container").innerHTML = `
-
-<div class="header">
-    <div onclick="openBots()">←</div>
-    <div class="logo">TREND BOT</div>
-    <div>🏠</div>
-</div>
-
-<div class="trade-box">
-    📈 Trend Bot is under construction
-</div>
-
-<button class="load-btn">
-    Start Trend Bot
-</button>
-
-<div class="trade-box" onclick="openBots()">
-    ← Back to Bots
-</div>
-
-`;
-    }
-
-function openPremiumBot(){
-
-document.querySelector(".container").innerHTML = `
-
-<div class="header">
-    <div onclick="openBots()">←</div>
-    <div class="logo">PREMIUM BOT</div>
-    <div>🏠</div>
-</div>
-
-<div class="trade-box">
-    💎 Premium Bot is under construction
-</div>
-
-<button class="load-btn">
-    Start Premium Bot
-</button>
-
-<div class="trade-box" onclick="openBots()">
-    ← Back to Bots
-</div>
-
-`;
-}
-
-function openAIBot(){
-
-document.querySelector(".container").innerHTML = `
-
-<div class="header">
-    <div onclick="openBots()">←</div>
-    <div class="logo">AI PREDICTOR BOT</div>
-    <div>🏠</div>
-</div>
-
-<div class="trade-box">
-    🧠 AI Predictor Bot is under construction
-</div>
-
-<button class="load-btn">
-    Start AI Predictor Bot
-</button>
-
-<div class="trade-box" onclick="openBots()">
-    ← Back to Bots
-</div>
-
-`;
-}
- let apexRunning = false;
-let botInterval = null;
-
-function toggleApexBot() {
-
-    apexRunning = !apexRunning;
-
-    const btn = document.getElementById("apexBotBtn");
-    const status = document.getElementById("botStatus");
-
-    if (apexRunning) {
-
-        btn.innerHTML = "⏹ STOP";
-        status.innerHTML = "🟢 Bot Running";
-
-        openTransactionsPage();
-
-    } else {
-
-        btn.innerHTML = "▶ RUN";
-        status.innerHTML = "🔴 Bot is not running";
-
-        clearInterval(botInterval);
-
-    }
-}
-    
-function openTransactionsPage() {
-
-document.querySelector(".container").innerHTML = `
-
-<div class="header">
-    <div onclick="openApexBot()">←</div>
-    <div class="logo">APEX BOT</div>
-    <div>🏠</div>
-</div>
-
-<div class="trade-box">
-
-<div style="display:flex;justify-content:space-around;font-weight:bold;margin-bottom:15px;">
-    <span onclick="showSummary()">Summary</span>
-    <span style="color:#ff4d4d;border-bottom:2px solid #ff4d4d;">Transactions</span>
-    <span onclick="showJournal()">Journal</span>
-</div>
-
-<table style="width:100%;font-size:13px;border-collapse:collapse;">
-<tr>
-<th align="left">Type</th>
-<th align="left">Entry / Exit</th>
-<th align="right">Profit</th>
-</tr>
-
-<tbody id="tradeHistory"></tbody>
-
-</table>
-
-<hr style="margin:15px 0;border:1px solid #222;">
-
-<div>Total Stake<br><b id="stakeTotal">0 USD</b></div>
-
-<div>Total Payout<br><b id="payoutTotal">0 USD</b></div>
-
-<div>Contracts Won<br><b id="wonTotal">0</b></div>
-
-<div>Contracts Lost<br><b id="lostTotal">0</b></div>
-
-<div>Runs<br><b id="runsTotal">0</b></div>
-
-<div>Profit<br><b id="profitTotal" style="color:#00ff88;">0 USD</b></div>
-
-<button
-id="apexBotBtn"
-style="
-width:100%;
-margin-top:20px;
-padding:16px;
-background:#d60000;
-color:white;
-border:none;
-border-radius:15px;
-font-size:20px;"
-onclick="toggleApexBot()">
-
-⏹ STOP
-
-</button>
-
-</div>
-`;
-
-startFakeTrading();
-
-     }
-
-function startFakeTrading() {
-
-let runs = 0;
-
-clearInterval(botInterval);
-
-botInterval = setInterval(function () {
-
-    runs++;
-
-    document.getElementById("runsTotal").innerHTML = runs;
-    document.getElementById("stakeTotal").innerHTML = (runs * 30) + " USD";
-    document.getElementById("payoutTotal").innerHTML = (runs * 58.82).toFixed(2) + " USD";
-    document.getElementById("wonTotal").innerHTML = runs;
-    document.getElementById("lostTotal").innerHTML = 0;
-    document.getElementById("profitTotal").innerHTML =
-        (runs * 28.82).toFixed(2) + " USD";
-
-    let history = document.getElementById("tradeHistory");
-
-    if (history) {
-
-        let entry = (2557 + Math.random() * 10).toFixed(2);
-        let exit = (parseFloat(entry) + Math.random()).toFixed(2);
-
-        history.innerHTML =
-        `
-        <tr>
-            <td>📈</td>
-            <td>
-                <div><b>Entry:</b> ${entry}</div>
-                <div><b>Exit:</b> ${exit}</div>
-            </td>
-            <td style="text-align:right;color:#00ff88;">
-                +28.82 USD
-            </td>
-        </tr>
-        ` + history.innerHTML;
-
-    }
-
-}, 5000);
-
-}
-
-function viewTradeDetails() {
-
-alert(
-`Trade Details
-
-Entry Price: 2563.93
-Exit Price: 2564.18
-
-Stake: 30 USD
-Payout: 58.82 USD
-
-Profit: +28.82 USD
-
-Status: WON`
-);
-
-}
-
-function showSummary() {
-
-alert("Summary page coming soon.");
-
-}
-
-function showJournal() {
-
-alert("Journal page coming soon.");
-
-}
-
+</body>
+</html>
