@@ -330,21 +330,20 @@ Wallet ▼
 
 <div class="tabs">
 
-<div class="tab">
-
-🤖 Bot Builder
-
+<div class="tab" onclick="openDashboard()">
+🏠 Dashboard
 </div>
 
 <div class="tab active">
-
 📈 Manual Trader
-
 </div>
 
 <div class="tab" onclick="openBots()">
-
 🤖 Phinix Bots
+</div>
+
+<div class="tab" onclick="openBotBuilder()">
+🛠 Bot Builder
 </div>
 
 </div>
@@ -505,7 +504,13 @@ function changeStake(){
 function openBots(){
     alert("Bot page coming next");
 }
+function openDashboard() {
+    alert("Dashboard page coming next.");
+}
 
+function openBotBuilder() {
+    alert("Bot Builder page coming next.");
+}
 </script>
 
 </body>
