@@ -99,7 +99,7 @@ cursor:pointer;
 .tabs{
 
 display:flex;
-gap:10px;
+gap:6px;
 margin-top:18px;
 
 }
@@ -110,8 +110,8 @@ flex:1;
 
 background:#101018;
 
-padding:14px;
-
+padding:8px 6px;
+font-size:15px;
 border-radius:18px;
 
 text-align:center;
@@ -506,76 +506,8 @@ function openBots(){
 }
 function openDashboard() {
 
-document.querySelector(".container").innerHTML = `
-
-<div class="header">
-<div>☰</div>
-<div class="logo">PHINIX TRADERS</div>
-<div>🔔</div>
-</div>
-
-<div class="trade-box">
-
-<h2 style="color:#b45cff;">
-🏠 Dashboard
-</h2>
-
-<div style="margin-top:25px;display:grid;gap:15px;">
-
-<div class="option-box">
-Demo Balance
-<h1>$10,000</h1>
-</div>
-
-<div class="option-box">
-Today's Profit
 
 
-<hr style="border:1px solid #222;">
-
-Total Trades
-<h2>0</h2>
-
-<hr style="border:1px solid #222;">
-
-
-
-
-<hr style="border:1px solid #222;">
-
-
-<h2 style="color:#ff4d4d;">0</h2>
-
-<hr style="border:1px solid #222;">
-
-Winning Rate
-<h2 style="color:#00ff88;">0%</h2>
-<h2 style="color:#00ff88;">
-
-
-</div>
-
-</div>
-
-<button
-style="
-margin-top:25px;
-width:100%;
-padding:15px;
-background:#7a2cff;
-color:white;
-border:none;
-border-radius:12px;
-font-size:18px;"
-onclick="location.reload()">
-
-⬅ Back to Trading
-
-</button>
-
-</div>
-
-`;
 
 }
 
