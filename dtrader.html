@@ -290,6 +290,37 @@ box-shadow:0 0 15px #c94fff;
 height:80px;
 
 }
+    .bot-card{
+    background:#161625;
+    border:1px solid #2d2d45;
+    border-radius:15px;
+    padding:15px;
+    margin:12px 0;
+    color:white;
+}
+
+.bot-card h3{
+    margin:0;
+    font-size:18px;
+}
+
+.bot-card p{
+    color:#bdbdbd;
+    font-size:13px;
+    margin:8px 0 15px 0;
+}
+
+.bot-card button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:#7a2cff;
+    color:white;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+}
 
 </style>
 
@@ -577,8 +608,42 @@ function changeStake(){
 }
 
 function openBots(){
-    alert("Bot page coming next");
-}
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="location.reload()">←</div>
+    <div class="logo">PHINIX BOTS</div>
+    <div>🏠</div>
+</div>
+
+<div class="bot-card">
+    <h3>🤖 Apex Bot</h3>
+    <p>AI-powered precision trading</p>
+    <button onclick="openApexBot()">LOAD BOT</button>
+</div>
+
+<div class="bot-card">
+    <h3>🚀 Phinix Pro Bot</h3>
+    <p>Advanced trend detection</p>
+    <button>LOAD BOT</button>
+</div>
+
+<div class="bot-card">
+    <h3>⚡ Lightning Bot</h3>
+    <p>High-speed scalping</p>
+    <button>LOAD BOT</button>
+</div>
+
+<div class="bot-card">
+    <h3>🎯 Sniper Bot</h3>
+    <p>Precision entry strategy</p>
+    <button>LOAD BOT</button>
+</div>
+
+`;
+
+            }
 function openDashboard() {
 
 
