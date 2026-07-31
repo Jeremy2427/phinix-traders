@@ -668,8 +668,108 @@ function openDashboard() {
 
 }
 
-function openBotBuilder() {
-    alert("Bot Builder page coming next.");
+function openApexBot(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="openBots()">←</div>
+    <div class="logo">APEX BOT</div>
+    <div>🏠</div>
+</div>
+
+<div class="trade-box">
+
+<h2 style="text-align:center;color:#7a2cff;">
+🟢 Bot Status
+</h2>
+
+<div id="botStatus"
+style="text-align:center;font-weight:bold;color:#00ff88;margin-bottom:20px;">
+
+🔴 Bot Stopped
+
+</div>
+
+<div class="tabs">
+
+<div class="tab active">
+Summary
+</div>
+
+<div class="tab">
+Transactions
+</div>
+
+<div class="tab">
+Journal
+</div>
+
+</div>
+
+<div style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:20px;
+">
+
+<div class="bot-card">
+Total Stake<br>
+<b id="stakeTotal">0 USD</b>
+</div>
+
+<div class="bot-card">
+Total Payout<br>
+<b id="payoutTotal">0 USD</b>
+</div>
+
+<div class="bot-card">
+Contracts Won<br>
+<b id="wonTotal">0</b>
+</div>
+
+<div class="bot-card">
+Contracts Lost<br>
+<b id="lostTotal">0</b>
+</div>
+
+<div class="bot-card">
+Runs<br>
+<b id="runsTotal">0</b>
+</div>
+
+<div class="bot-card">
+Profit<br>
+<b id="profitTotal" style="color:#00ff88;">0 USD</b>
+</div>
+
+</div>
+
+<div style="margin-top:20px;">
+
+<button
+id="apexBotBtn"
+onclick="toggleApexBot()"
+style="
+width:100%;
+padding:16px;
+background:#7a2cff;
+color:white;
+border:none;
+border-radius:15px;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;">
+
+▶ RUN
+
+</button>
+
+</div>
+
+`;
+
 }
 </script>
 
