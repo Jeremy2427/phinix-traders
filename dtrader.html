@@ -679,71 +679,70 @@ document.querySelector(".container").innerHTML = `
 </div>
 
 <div class="trade-box">
-
 <h2 style="text-align:center;color:#7a2cff;">
-🟢 Bot Status
+⚡ Quick Strategy
 </h2>
-
-<div id="botStatus"
-style="text-align:center;font-weight:bold;color:#00ff88;margin-bottom:20px;">
-
-🔴 Bot Stopped
-
 </div>
 
-<div class="tabs">
+<div class="trade-box">
+<b>1. Trade Parameters</b>
+<br><br>
 
-<div class="tab active">
-Summary
+Market
+<br>
+Derived ▼
+
+<br><br>
+
+Index
+<br>
+Volatility 100 (1s) ▼
+
+<br><br>
+
+Trade Type
+<br>
+Over / Under ▼
+
+<br><br>
+
+Trade Options
+<br>
+Digits ▼
+
+<br><br>
+
+Number of Ticks
+<br>
+1 Tick ▼
+
+<br><br>
+
+Stake
+<br>
+125 USD ▼
 </div>
 
-<div class="tab">
-Transactions
-</div>
+<div class="trade-box">
+<b>2. Purchase Conditions</b>
 
-<div class="tab">
-Journal
-</div>
+<br><br>
 
-</div>
+Purchase
+<br>
+Odd ▼
 
-<div style="
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-margin-top:20px;
-">
+<br><br>
 
-<div class="bot-card">
-Total Stake<br>
-<b id="stakeTotal">0 USD</b>
-</div>
+Allow Bulk Purchase
+<br>
+No ▼
 
-<div class="bot-card">
-Total Payout<br>
-<b id="payoutTotal">0 USD</b>
-</div>
+<br><br>
 
-<div class="bot-card">
-Contracts Won<br>
-<b id="wonTotal">0</b>
-</div>
-
-<div class="bot-card">
-Contracts Lost<br>
-<b id="lostTotal">0</b>
-</div>
-
-<div class="bot-card">
-Runs<br>
-<b id="runsTotal">0</b>
-</div>
-
-<div class="bot-card">
-Profit<br>
-<b id="profitTotal" style="color:#00ff88;">0 USD</b>
-</div>
-
+Number of Trades
+<br>
+1 ▼
 </div>
 
 <div style="margin-top:20px;">
@@ -753,14 +752,14 @@ id="apexBotBtn"
 onclick="toggleApexBot()"
 style="
 width:100%;
-padding:16px;
-background:#7a2cff;
+padding:18px;
+background:#00b050;
 color:white;
-border:none;
-border-radius:15px;
 font-size:20px;
 font-weight:bold;
-cursor:pointer;">
+border:none;
+border-radius:15px;
+">
 
 ▶ RUN
 
@@ -771,7 +770,3 @@ cursor:pointer;">
 `;
 
 }
-</script>
-
-</body>
-</html>
