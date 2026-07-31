@@ -692,76 +692,290 @@ box-shadow:0 0 15px rgba(122,44,255,.4);
 </div>
 
 <div style="
-background:#7a2cff;
-padding:18px;
-border-radius:18px;
+background:linear-gradient(180deg,#7d3cff,#5b23b8);
+padding:20px;
+border-radius:22px;
 margin-bottom:18px;
+box-shadow:0 0 18px rgba(122,44,255,.45);
+border:1px solid rgba(255,255,255,.15);
 ">
 
 <h3 style="margin-bottom:15px;color:white;">
 1. Trade Parameters
 </h3>
 
-<label>Market</label><br>
-<select style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+<label style="
+font-size:13px;
+font-weight:bold;
+color:#f0e8ff;
+display:block;
+margin-bottom:6px;
+">
+Market
+</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+margin-bottom:14px;
+">
 <option>Derived</option>
 </select>
 
-<label>Index</label><br>
-<select style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+<label style="
+font-size:13px;
+font-weight:bold;
+color:#f0e8ff;
+display:block;
+margin-bottom:6px;
+">
+Index
+</label>
+
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+margin-bottom:14px;
+">
 <option>Volatility 100 (1s)</option>
 </select>
 
-<label>Trade Options</label><br>
-<select style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+<label style="
+font-size:13px;
+font-weight:bold;
+color:#f0e8ff;
+display:block;
+margin-bottom:6px;
+">
+Trade Options
+</label>
+
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+margin-bottom:14px;
+">
 <option>Digits</option>
 </select>
 
-<label>Contract Type</label><br>
-<select style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+<label style="
+font-size:13px;
+font-weight:bold;
+color:#f0e8ff;
+display:block;
+margin-bottom:6px;
+">
+Contract Type
+</label>
+
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+margin-bottom:14px;
+">
 <option>Over / Under</option>
 </select>
-<label>Duration</label><br>
-<select style="width:48%;padding:10px;border-radius:10px;">
-    <option>Ticks</option>
+
+<label style="
+font-size:13px;
+font-weight:bold;
+color:#f0e8ff;
+display:block;
+margin-bottom:6px;
+">
+Duration
+</label>
+
+<div style="
+display:flex;
+gap:10px;
+margin-bottom:14px;
+">
+
+<select style="
+flex:1;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+">
+<option>Ticks</option>
 </select>
 
-<select style="width:48%;padding:10px;border-radius:10px;float:right;">
-    <option>1 Tick</option>
+<select style="
+flex:1;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+">
+<option>1 Tick</option>
 </select>
+
+</div>
 
 <br><br><br>
 
-<label>Profit</label><br>
-<select style="width:28%;padding:10px;border-radius:10px;">
-    <option>USD</option>
+<label style="
+font-size:13px;
+font-weight:bold;
+color:#f0e8ff;
+display:block;
+margin-bottom:6px;
+">
+Profit
+</label>
+
+<div style="
+display:flex;
+gap:10px;
+margin-bottom:14px;
+">
+
+<select style="
+width:90px;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+">
+<option>USD</option>
 </select>
 
-<input type="text" value="5"
-style="width:68%;padding:10px;border-radius:10px;float:right;">
+<input
+type="text"
+value="5"
+style="
+flex:1;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+">
+
+</div>
 
 <br><br><br>
 
-<label>Loss</label><br>
-<select style="width:28%;padding:10px;border-radius:10px;">
-    <option>USD</option>
+<label style="
+font-size:13px;
+font-weight:bold;
+color:#f0e8ff;
+display:block;
+margin-bottom:6px;
+">
+Loss
+</label>
+
+<div style="
+display:flex;
+gap:10px;
+margin-bottom:14px;
+">
+
+<select style="
+width:90px;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+">
+<option>USD</option>
 </select>
 
-<input type="text" value="10"
-style="width:68%;padding:10px;border-radius:10px;float:right;">
+<input
+type="text"
+value="10"
+style="
+flex:1;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+">
 
+</div>
 <br><br><br>
 
-<label>Martingale</label><br>
-<select style="width:100%;padding:10px;border-radius:10px;">
-    <option>OFF</option>
-</select>
+<label style="
+font-size:13px;
+font-weight:bold;
+color:#f0e8ff;
+display:block;
+margin-bottom:6px;
+">
+Martingale
+</label>
 
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+margin-bottom:14px;
+">
+<option>OFF</option>
+<option>ON</option>
+</select>
 <br>
 
-<label>Prediction</label><br>
-<input type="text" value="4"
-style="width:100%;padding:10px;border-radius:10px;">
+<label style="
+font-size:13px;
+font-weight:bold;
+color:#f0e8ff;
+display:block;
+margin-bottom:6px;
+">
+Prediction
+</label>
+
+<input
+type="text"
+value="4"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+margin-bottom:14px;
+">
 </div>
 <br><br>
 
