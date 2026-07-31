@@ -679,10 +679,10 @@ document.querySelector(".container").innerHTML = `
 
 <div style="
 background:linear-gradient(180deg,#8a3cff,#6d28d9);
-padding:22px;
-border-radius:24px;
-margin-top:18px;
-box-shadow:0 0 20px rgba(122,44,255,.35);
+padding:16px;
+border-radius:18px;
+margin-top:12px;
+box-shadow:0 0 12px rgba(122,44,255,.30);
 ">
 
 <h2 style="
@@ -708,12 +708,12 @@ Market
 
 <select style="
 width:100%;
-padding:12px;
-border-radius:12px;
+padding:10px;
+border-radius:10px;
 border:none;
 background:white;
 color:#222;
-font-size:15px;
+font-size:14px;
 margin-bottom:14px;
 ">
 <option>Derived</option>
@@ -735,7 +735,39 @@ margin-bottom:14px;
 ">
 <option>Volatility 100 (1s)</option>
 </select>
+<h3 style="
+color:#7a2cff;
+text-align:center;
+margin-bottom:18px;
+">
+⚙ Run once at start
+</h3>
 
+<label>Set Stake to</label>
+<input type="text" value="2" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Set Target Profit to</label>
+<input type="text" value="5" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Set Stop Loss to</label>
+<input type="text" value="10" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Set Martingale to</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<option>2</option>
+</select>
+
+<label>Set Stake Win to</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<option>Stake</option>
+</select>
+
+<label>Set Count to</label>
+<input type="text" value="0" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Set Initial Balance to</label>
+<input type="text" value="1000" style="width:100%;padding:12px;border-radius:12px;">
+    
 <label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
 Trade Options
 </label>
@@ -768,6 +800,15 @@ margin-bottom:14px;
 ">
 <option>Over / Under</option>
 </select>
+
+<h3 style="
+font-size:24px;
+color:white;
+margin-top:20px;
+margin-bottom:18px;
+">
+2. Trade Options
+</h3>
 
 <label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
 Duration
@@ -919,7 +960,7 @@ font-size:24px;
 text-align:center;
 margin-bottom:18px;
 ">
-2. Purchase Conditions
+4. Purchase Conditions
 </h3>
 
 <label style="font-size:13px;font-weight:bold;color:white;">Purchase</label>
@@ -973,38 +1014,6 @@ padding:18px;
 margin-top:20px;
 ">
 
-<h3 style="
-color:#7a2cff;
-text-align:center;
-margin-bottom:18px;
-">
-⚙ Run once at start
-</h3>
-
-<label>Set Stake to</label>
-<input type="text" value="2" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
-
-<label>Set Target Profit to</label>
-<input type="text" value="5" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
-
-<label>Set Stop Loss to</label>
-<input type="text" value="10" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
-
-<label>Set Martingale to</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
-<option>2</option>
-</select>
-
-<label>Set Stake Win to</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
-<option>Stake</option>
-</select>
-
-<label>Set Count to</label>
-<input type="text" value="0" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
-
-<label>Set Initial Balance to</label>
-<input type="text" value="1000" style="width:100%;padding:12px;border-radius:12px;">
 
 </div>
 
