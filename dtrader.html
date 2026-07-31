@@ -678,92 +678,133 @@ document.querySelector(".container").innerHTML = `
     <div>🏠</div>
 </div>
 
-<div class="trade-box">
-<h2 style="text-align:center;color:#7a2cff;">
-⚡ Quick Strategy
-</h2>
-</div>
-
-<div class="trade-box">
-<b>1. Trade Parameters</b>
-<br><br>
-
-Market
-<br>
-Derived ▼
-
-<br><br>
-
-Index
-<br>
-Volatility 100 (1s) ▼
-
-<br><br>
-
-Trade Type
-<br>
-Over / Under ▼
-
-<br><br>
-
-Trade Options
-<br>
-Digits ▼
-
-<br><br>
-
-Number of Ticks
-<br>
-1 Tick ▼
-
-<br><br>
-
-Stake
-<br>
-125 USD ▼
-</div>
-
-<div class="trade-box">
-<b>2. Purchase Conditions</b>
-
-<br><br>
-
-Purchase
-<br>
-Odd ▼
-
-<br><br>
-
-Allow Bulk Purchase
-<br>
-No ▼
-
-<br><br>
-
-Number of Trades
-<br>
-1 ▼
-</div>
-
-<div style="margin-top:20px;">
-
-<button
-id="apexBotBtn"
-onclick="toggleApexBot()"
-style="
-width:100%;
+<div style="
+background:linear-gradient(90deg,#7a2cff,#9c4dff);
 padding:18px;
-background:#00b050;
-color:white;
-font-size:20px;
+border-radius:18px;
+text-align:center;
+font-size:28px;
 font-weight:bold;
-border:none;
-border-radius:15px;
+margin-bottom:18px;
+box-shadow:0 0 15px rgba(122,44,255,.4);
+">
+⚡ Quick Strategy
+</div>
+
+<div style="
+background:#7a2cff;
+padding:18px;
+border-radius:18px;
+margin-bottom:18px;
 ">
 
-▶ RUN
+<h3 style="margin-bottom:15px;color:white;">
+1. Trade Parameters
+</h3>
 
-</button>
+<label>Market</label><br>
+<select style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+<option>Derived</option>
+</select>
+
+<label>Index</label><br>
+<select style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+<option>Volatility 100 (1s)</option>
+</select>
+
+<label>Trade Options</label><br>
+<select style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+<option>Digits</option>
+</select>
+
+<label>Contract Type</label><br>
+<select style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+<option>Over / Under</option>
+</select>
+<label>Duration</label><br>
+<select style="width:48%;padding:10px;border-radius:10px;">
+    <option>Ticks</option>
+</select>
+
+<select style="width:48%;padding:10px;border-radius:10px;float:right;">
+    <option>1 Tick</option>
+</select>
+
+<br><br><br>
+
+<label>Profit</label><br>
+<select style="width:28%;padding:10px;border-radius:10px;">
+    <option>USD</option>
+</select>
+
+<input type="text" value="5"
+style="width:68%;padding:10px;border-radius:10px;float:right;">
+
+<br><br><br>
+
+<label>Loss</label><br>
+<select style="width:28%;padding:10px;border-radius:10px;">
+    <option>USD</option>
+</select>
+
+<input type="text" value="10"
+style="width:68%;padding:10px;border-radius:10px;float:right;">
+
+<br><br><br>
+
+<label>Martingale</label><br>
+<select style="width:100%;padding:10px;border-radius:10px;">
+    <option>OFF</option>
+</select>
+
+<br>
+
+<label>Prediction</label><br>
+<input type="text" value="4"
+style="width:100%;padding:10px;border-radius:10px;">
+</div>
+<br><br>
+
+<div style="
+background:#0d0d14;
+border-radius:18px;
+padding:15px;
+margin-top:15px;
+">
+
+<h3 style="color:white;margin-bottom:15px;">
+Run once at start
+</h3>
+
+<label>Set Stake to</label><br>
+<input type="text" value="2"
+style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+
+<label>Set Target Profit to</label><br>
+<input type="text" value="5"
+style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+
+<label>Set Stop Loss to</label><br>
+<input type="text" value="10"
+style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+
+<label>Set Martingale to</label><br>
+<select style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+    <option>2</option>
+</select>
+
+<label>Set Stake Win to</label><br>
+<select style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+    <option>Stake</option>
+</select>
+
+<label>Set Count to</label><br>
+<input type="text" value="0"
+style="width:100%;padding:10px;border-radius:10px;margin-bottom:10px;">
+
+<label>Set Initial Balance to</label><br>
+<input type="text" value="1000"
+style="width:100%;padding:10px;border-radius:10px;">
 
 </div>
 
@@ -772,7 +813,47 @@ border-radius:15px;
 }
 function toggleApexBot(){
 
-alert("Apex Bot RUN page coming next.");
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="openApexBot()">←</div>
+    <div class="logo">APEX BOT</div>
+    <div>🏠</div>
+</div>
+
+<div class="tabs">
+    <div class="tab active">Summary</div>
+    <div class="tab">Transactions</div>
+    <div class="tab">Journal</div>
+</div>
+
+<div class="bot-card">Total Stake<br><b>0 USD</b></div>
+
+<div class="bot-card">Total Payout<br><b>0 USD</b></div>
+
+<div class="bot-card">Contracts Won<br><b>0</b></div>
+
+<div class="bot-card">Contracts Lost<br><b>0</b></div>
+
+<div class="bot-card">Runs<br><b>0</b></div>
+
+<div class="bot-card">Profit<br><b style="color:#00ff88;">0 USD</b></div>
+
+<button style="
+width:100%;
+padding:18px;
+margin-top:20px;
+background:#e00000;
+color:white;
+font-size:22px;
+font-weight:bold;
+border:none;
+border-radius:15px;
+">
+⏹ STOP
+</button>
+
+`;
 
 }
     </script>
