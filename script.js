@@ -193,7 +193,6 @@ function openDashboard() {
 }
 
 function openApexBot(){
-
 document.querySelector(".container").innerHTML = `
 
 <div class="header">
@@ -203,32 +202,56 @@ document.querySelector(".container").innerHTML = `
 </div>
 
 <div style="
-background:linear-gradient(180deg,#7a2cff,#5314a3);
-padding:16px;
-border-radius:20px;
+background:linear-gradient(180deg,#8a3cff,#6d28d9);
+border-radius:18px;
+padding:14px;
 margin-top:12px;
+box-shadow:0 0 12px rgba(122,44,255,.35);
 ">
 
 <h2 style="
 text-align:center;
-margin-bottom:15px;
+font-size:22px;
+margin-bottom:16px;
+color:white;
 ">
-⚡ PHINIX APEX BOT
+⚡ Quick Strategy
 </h2>
 
-<h3>Trade Parameters</h3>
+<h3 style="
+font-size:18px;
+margin-bottom:12px;
+color:white;
+">
+1. Trade Parameters
+</h3>
 
-<label>Market</label>
+<label style="font-size:13px;">Market</label>
 
-<select id="marketSelect" class="trade-box">
+<select id="marketSelect" style="
+width:100%;
+padding:8px;
+margin-bottom:8px;
+border-radius:10px;
+border:none;
+">
+
 <option>Derived</option>
 <option>Forex</option>
-<option>Crypto</option>
+<option>Synthetic</option>
+
 </select>
 
-<label>Index</label>
+<label style="font-size:13px;">Index</label>
 
-<select id="indexSelect" class="trade-box">
+<select id="indexSelect" style="
+width:100%;
+padding:8px;
+margin-bottom:8px;
+border-radius:10px;
+border:none;
+">
+
 <option>Volatility 10</option>
 <option>Volatility 10 (1s)</option>
 <option>Volatility 25</option>
@@ -238,37 +261,68 @@ margin-bottom:15px;
 <option>Volatility 75</option>
 <option>Volatility 75 (1s)</option>
 <option selected>Volatility 100 (1s)</option>
+
 </select>
 
-<label>Stake</label>
+<h3 style="
+font-size:18px;
+margin-top:18px;
+margin-bottom:12px;
+text-align:center;
+color:white;
+">
+⚙ Run Once At Start
+</h3>
 
-<input
-id="stakeInput"
+<label style="font-size:13px;">Stake</label>
+
+<input id="stakeInput"
 type="number"
 value="2"
-class="trade-box">
+style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+">
 
-<label>Target Profit</label>
+<label style="font-size:13px;">Target Profit</label>
 
-<input
-id="profitInput"
+<input id="profitInput"
 type="number"
 value="5"
-class="trade-box">
+style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+">
 
-<label>Stop Loss</label>
+<label style="font-size:13px;">Stop Loss</label>
 
-<input
-id="lossInput"
+<input id="lossInput"
 type="number"
 value="10"
-class="trade-box">
+style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+">
 
-<label>Martingale</label>
+<label style="font-size:13px;">Martingale</label>
 
-<select
-id="martingaleSelect"
-class="trade-box">
+<select id="martingaleSelect"
+style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:14px;
+">
 
 <option>OFF</option>
 <option>2</option>
@@ -278,11 +332,25 @@ class="trade-box">
 
 </select>
 
-<label>Trade Type</label>
+<h3 style="
+font-size:18px;
+margin-top:18px;
+margin-bottom:12px;
+color:white;
+">
+2. Trade Options
+</h3>
 
-<select
-id="tradeType"
-class="trade-box">
+<label style="font-size:13px;">Trade Type</label>
+
+<select id="tradeType"
+style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+">
 
 <option>Over / Under</option>
 <option>Even / Odd</option>
@@ -291,23 +359,33 @@ class="trade-box">
 
 </select>
 
-<label>Duration</label>
+<label style="font-size:13px;">Duration Type</label>
 
-<select
-id="durationType"
-class="trade-box">
+<select id="durationType"
+style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+">
 
-<option>Ticks</option>
+<option selected>Ticks</option>
 <option>Seconds</option>
 <option>Minutes</option>
 
 </select>
 
-<label>Value</label>
+<label style="font-size:13px;">Duration Value</label>
 
-<select
-id="durationValue"
-class="trade-box">
+<select id="durationValue"
+style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+">
 
 <option>1</option>
 <option>2</option>
@@ -318,11 +396,16 @@ class="trade-box">
 
 </select>
 
-<label>Prediction</label>
+<label style="font-size:13px;">Prediction</label>
 
-<select
-id="prediction"
-class="trade-box">
+<select id="prediction"
+style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:14px;
+">
 
 <option>0</option>
 <option>1</option>
@@ -337,172 +420,92 @@ class="trade-box">
 
 </select>
 
+<h3 style="
+font-size:18px;
+margin-top:18px;
+margin-bottom:12px;
+color:white;
+">
+3. Purchase Conditions
+</h3>
+
+<label style="font-size:13px;">Purchase</label>
+
+<select id="purchaseType"
+style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+">
+
+<option>Odd</option>
+<option>Even</option>
+<option>Over</option>
+<option>Under</option>
+<option>Matches</option>
+<option>Differs</option>
+<option>Rise</option>
+<option>Fall</option>
+
+</select>
+
+<label style="font-size:13px;">Allow Bulk Purchase</label>
+
+<select id="bulkPurchase"
+style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+">
+
+<option>No</option>
+<option>Yes</option>
+
+</select>
+
+<label style="font-size:13px;">Number of Trades</label>
+
+<select id="tradeCount"
+style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:16px;
+">
+
+<option>1</option>
+<option>2</option>
+<option>5</option>
+<option>10</option>
+
+</select>
+
 <button
 id="runBotBtn"
 onclick="toggleApexBot()"
 style="
 width:100%;
-margin-top:18px;
-padding:16px;
+padding:14px;
 background:#00b050;
 color:white;
-border:none;
-border-radius:15px;
 font-size:18px;
 font-weight:bold;
+border:none;
+border-radius:12px;
 cursor:pointer;
 ">
-
 ▶ RUN
-
 </button>
 
 </div>
 
-<div id="botResults">
-
-<div style="
-margin-top:15px;
-background:#12111c;
-border:1px solid #7a2cff;
-border-radius:18px;
-padding:12px;
-">
-
-<h2 style="
-text-align:center;
-color:#c94fff;
-margin-bottom:12px;
-">
-Transactions
-</h2>
-
-<div id="transactionContainer"
-style="
-max-height:220px;
-overflow-y:auto;
-border:1px solid #303040;
-border-radius:10px;
-">
-
-<table
-id="transactionsTable"
-style="
-width:100%;
-border-collapse:collapse;
-color:white;
-font-size:13px;
-">
-
-<thead>
-
-<tr style="background:#1f1f30;">
-<th>Type</th>
-<th>Entry</th>
-<th>Stake</th>
-<th>P/L</th>
-</tr>
-
-</thead>
-
-<tbody>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-<div style="
-margin-top:15px;
-background:#181625;
-border:1px solid #7a2cff;
-border-radius:18px;
-padding:15px;
-">
-
-<div style="
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-text-align:center;
-">
-
-<div>
-<b>Total Stake</b><br>
-<span id="totalStake">0 USD</span>
-</div>
-
-<div>
-<b>Total Payout</b><br>
-<span id="totalPayout">0 USD</span>
-</div>
-
-<div>
-<b>Contracts Won</b><br>
-<span id="contractsWon">0</span>
-</div>
-
-<div>
-<b>Contracts Lost</b><br>
-<span id="contractsLost">0</span>
-</div>
-
-<div>
-<b>No. of Runs</b><br>
-<span id="numberRuns">0</span>
-</div>
-
-<div>
-<b>Profit/Loss</b><br>
-<span id="profitLoss">0 USD</span>
-</div>
-
-</div>
-
-<div style="
-margin-top:18px;
-display:flex;
-gap:10px;
-">
-
-<div
-id="botStatus"
-style="
-flex:1;
-background:#2d2d3d;
-padding:14px;
-text-align:center;
-border-radius:12px;
-font-weight:bold;
-">
-
-READY
-
-</div>
-
-<div
-style="
-flex:1;
-background:#7a2cff;
-padding:14px;
-text-align:center;
-border-radius:12px;
-font-weight:bold;
-">
-
-APEX BOT
-
-</div>
-
-</div>
-
-</div>
-
-</div>
 `;
+}
 
 }
 
