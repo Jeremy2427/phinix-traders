@@ -518,19 +518,20 @@ border:1px solid #7a2cff;
 border-radius:18px;
 padding:12px;
 margin-top:12px;
+height:320px;
+overflow-y:auto;
 ">
 
 <h2 style="color:#c94fff;text-align:center;">
 Transactions
 </h2>
 
-<table style="
+<table id="transactionsTable" style="
 width:100%;
 color:white;
 border-collapse:collapse;
 font-size:13px;
 ">
-
 <tr>
 <th>Type</th>
 <th>Entry</th>
