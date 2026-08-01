@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Phinix Traders</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+
+background:#05050b;
+color:white;
+
+}
+
+.container{
+
+max-width:430px;
+margin:auto;
+padding:12px;
+padding-bottom:120px;
+
+}
+
+.header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:10px;
+
+}
+
+.logo{
+
+font-size:20px;
+font-weight:bold;
+color:#b266ff;
+
+}
+
+.wallet-box{
+
+margin-top:18px;
+padding:15px;
+border-radius:20px;
+
+background:#0b0b15;
+
+border:1px solid #7a2cff;
+
+box-shadow:0 0 18px rgba(122,44,255,.35);
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+.balance{
+
+font-size:13px;
+
+}
+
+.balance h1{
+
+font-size:38px;
+margin-top:5px;
+
+}
+
+.wallet-btn{
+
+background:linear-gradient(90deg,#7a2cff,#c94fff);
+
+padding:12px 18px;
+
+border-radius:15px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+.tabs{
+
+display:flex;
+gap:4px;
+margin-top:18px;
+
+}
+
+.tab{
+
+flex:1;
+
+background:#101018;
+
+padding:6px 4px;
+font-size:13px;
+border-radius:18px;
+
+text-align:center;
+
+cursor:pointer;
+
+border:1px solid #222;
+
+}
+
+.active{
+
+border:1px solid #b266ff;
+
+color:#d77fff;
+
+}
+
+.market{
+
+margin-top:18px;
+
+background:#090913;
+
+padding:15px;
+
+border-radius:20px;
+
+}
+
+.trade-box{
+    background:#080814;
+    border:1px solid #1a1a2e;
+    border-radius:15px;
+    padding:8px;
+    margin-top:6px;
+    color:white;
+    font-size:13px;
+    width:100%;
+    box-sizing:border-box;
+    min-height:42px;
+    display:flex;
+    align-items:center;
+}
+
+.price{
+
+margin-top:10px;
+
+font-size:20px;
+
+font-weight:bold;
+
+color:#00ff99;
+
+}
+
+.digits{
+
+display:grid;
+
+grid-template-columns:repeat(5,1fr);
+
+gap:10px;
+
+margin-top:18px;
+
+}
+
+.circle{
+
+width:66px;
+
+height:66px;
+
+border-radius:50%;
+
+border:2px solid #333;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+margin:auto;
+
+}
+
+.circle span:first-child{
+
+font-size:20px;
+
+font-weight:bold;
+
+}
+
+.circle span:last-child{
+
+font-size:11px;
+
+color:#00ff88;
+
+}
+
+.trade-section{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+margin-top:18px;
+
+}
+
+.buttons{
+
+display:flex;
+
+gap:10px;
+
+margin-top:18px;
+
+}
+
+.over{
+
+flex:1;
+
+background:#00695c;
+
+padding:18px;
+
+border-radius:16px;
+
+text-align:center;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+.under{
+
+flex:1;
+
+background:#8b0035;
+
+padding:18px;
+
+border-radius:16px;
+
+text-align:center;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+.selected{
+
+border:2px solid #c94fff;
+
+box-shadow:0 0 15px #c94fff;
+
+}
+
+.bottom-space{
+
+height:80px;
+
+}
+    .bot-card{
+    background:#161625;
+    border:1px solid #2d2d45;
+    border-radius:15px;
+    padding:15px;
+    margin:12px 0;
+    color:white;
+}
+
+.bot-card h3{
+    margin:0;
+    font-size:18px;
+}
+
+.bot-card p{
+    color:#bdbdbd;
+    font-size:13px;
+    margin:8px 0 15px 0;
+}
+
+.bot-card button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:#7a2cff;
+    color:white;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<div>☰</div>
+
+<div class="logo">PHINIX TRADERS</div>
+
+<div>🔔</div>
+
+</div>
+
+<div class="wallet-box">
+
+<div class="balance">
+
+Demo Balance
+
+<h1>$10,000</h1>
+
+</div>
+
+<div class="wallet-btn" onclick="changeWallet()">
+
+Wallet ▼
+
+</div>
+
+</div>
+
+<div class="tabs">
+
+<div class="tab" onclick="openDashboard()">
+🏠 Dashboard
+</div>
+
+<div class="tab active">
+📈 Manual Trader
+</div>
+
+<div class="tab" onclick="openBots()">
+🤖 Phinix Bots
+</div>
+
+<div class="tab" onclick="openBotBuilder()">
+🛠 Bot Builder
+</div>
+
+</div>
+<div class="market">
+
+<div class="trade-box" onclick="changeVolatility()">
+Volatility 100 (1s) Index ▼
+</div>
+
+<div class="price">
+6,719.71 ▲ 0.42%
+</div>
+
+</div>
+
+<div class="digits">
+
+<div class="circle">
+<span>0</span>
+<span>10%</span>
+</div>
+
+<div class="circle">
+<span>1</span>
+<span>10%</span>
+</div>
+
+<div class="circle">
+<span>2</span>
+<span>10%</span>
+</div>
+
+<div class="circle">
+<span>3</span>
+<span>10%</span>
+</div>
+
+<div class="circle">
+<span>4</span>
+<span>10%</span>
+</div>
+
+<div class="circle">
+<span>5</span>
+<span>10%</span>
+</div>
+
+<div class="circle">
+<span>6</span>
+<span>10%</span>
+</div>
+
+<div class="circle">
+<span>7</span>
+<span>10%</span>
+</div>
+
+<div class="circle">
+<span>8</span>
+<span>10%</span>
+</div>
+
+<div class="circle">
+<span>9</span>
+<span>10%</span>
+</div>
+
+</div>
+
+<div class="trade-section">
+
+<div class="trade-box" onclick="changeTicks()">
+Number of ticks: 1 ▼
+</div>
+
+<div class="trade-box" onclick="changeContract()">
+Over / Under ▼
+</div>
+
+<div class="trade-box" onclick="changeStake()">
+Stake: 125 USD
+</div>
+
+<div class="buttons">
+
+    <div class="over">
+        OVER
+    </div>
+
+    <div class="under">
+        UNDER
+    </div>
+
+</div>
+
+</div>
+
+<div class="bottom-space"></div>
+<script>
+
+function changeWallet(){
+
+    let choice = prompt(
+`Wallet
+
+1 = Deposit
+2 = Withdraw
+3 = Transfer`
+    );
+
+    const wallet = document.querySelector(".wallet-btn");
+
+    if(choice=="1"){
+        wallet.innerHTML="Deposit ▼";
+    }
+
+    if(choice=="2"){
+        wallet.innerHTML="Withdraw ▼";
+    }
+
+    if(choice=="3"){
+        wallet.innerHTML="Transfer ▼";
+    }
+
+}
+
+function changeVolatility() {
+
+    let choice = prompt(
+`Choose Volatility
+
+1 = Volatility 10
+2 = Volatility 10 (1s)
+3 = Volatility 25
+4 = Volatility 25 (1s)
+5 = Volatility 50
+6 = Volatility 50 (1s)
+7 = Volatility 75
+8 = Volatility 75 (1s)
+9 = Volatility 100
+10 = Volatility 100 (1s)`
+    );
+
+    const market = document.querySelectorAll(".trade-box")[0];
+
+    if(choice=="1") market.innerHTML="Volatility 10 Index ▼";
+    if(choice=="2") market.innerHTML="Volatility 10 (1s) Index ▼";
+    if(choice=="3") market.innerHTML="Volatility 25 Index ▼";
+    if(choice=="4") market.innerHTML="Volatility 25 (1s) Index ▼";
+    if(choice=="5") market.innerHTML="Volatility 50 Index ▼";
+    if(choice=="6") market.innerHTML="Volatility 50 (1s) Index ▼";
+    if(choice=="7") market.innerHTML="Volatility 75 Index ▼";
+    if(choice=="8") market.innerHTML="Volatility 75 (1s) Index ▼";
+    if(choice=="9") market.innerHTML="Volatility 100 Index ▼";
+    if(choice=="10") market.innerHTML="Volatility 100 (1s) Index ▼";
+
+}
+
+function changeTicks() {
+
+    let choice = prompt(
+`Choose Number of Ticks
+
+1
+2
+3
+4
+5
+6
+7`
+    );
+
+    if(choice >= 1 && choice <= 7){
+
+        document.querySelectorAll(".trade-box")[1].innerHTML =
+        "Number of ticks: " + choice + " ▼";
+
+    }
+
+}
+
+function changeContract() {
+
+    let choice = prompt(
+`Choose Trade Type
+
+1 = Over / Under
+2 = Matches / Differs
+3 = Even / Odd
+4 = Rise / Fall`
+    );
+
+    const contract = document.querySelectorAll(".trade-box")[2];
+
+    if(choice=="1"){
+        contract.innerHTML = "Over / Under ▼";
+        document.querySelector(".over").innerHTML = "OVER";
+        document.querySelector(".under").innerHTML = "UNDER";
+    }
+
+    if(choice=="2"){
+        contract.innerHTML = "Matches / Differs ▼";
+        document.querySelector(".over").innerHTML = "MATCHES";
+        document.querySelector(".under").innerHTML = "DIFFERS";
+    }
+
+    if(choice=="3"){
+        contract.innerHTML = "Even / Odd ▼";
+        document.querySelector(".over").innerHTML = "EVEN";
+        document.querySelector(".under").innerHTML = "ODD";
+    }
+
+    if(choice=="4"){
+        contract.innerHTML = "Rise / Fall ▼";
+        document.querySelector(".over").innerHTML = "RISE";
+        document.querySelector(".under").innerHTML = "FALL";
+    }
+
+}
+
+function changeStake(){
+
+    let amount = prompt("Enter stake amount (USD):");
+
+    if(amount && !isNaN(amount)){
+
+        document.querySelectorAll(".trade-box")[3].innerHTML =
+        "Stake: " + amount + " USD";
+
+    }
+
+}
+
+function openBots(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="location.reload()">←</div>
+    <div class="logo">PHINIX BOTS</div>
+    <div>🏠</div>
+</div>
+
+<div class="bot-card">
+    <h3>🤖 Apex Bot</h3>
+    <p>AI-powered precision trading</p>
+    <button onclick="openApexBot()">LOAD BOT</button>
+</div>
+
+<div class="bot-card">
+    <h3>🚀 Phinix Pro Bot</h3>
+    <p>Advanced trend detection</p>
+    <button>LOAD BOT</button>
+</div>
+
+<div class="bot-card">
+    <h3>⚡ Lightning Bot</h3>
+    <p>High-speed scalping</p>
+    <button>LOAD BOT</button>
+</div>
+
+<div class="bot-card">
+    <h3>🎯 Sniper Bot</h3>
+    <p>Precision entry strategy</p>
+    <button>LOAD BOT</button>
+</div>
+
+<div class="bot-card">
+    <h3>📈 Trend Bot</h3>
+    <p>Trend-following system</p>
+    <button>LOAD BOT</button>
+</div>
+
+<div class="bot-card">
+    <h3>💎 Premium Bot</h3>
+    <p>Multi-strategy trading</p>
+    <button>LOAD BOT</button>
+</div>
+
+<div class="bot-card">
+    <h3>🧠 AI Predictor Bot</h3>
+    <p>AI market prediction</p>
+    <button>LOAD BOT</button>
+</div>
+`;
+
+            }
+function openDashboard() {
+
+
+
+
+}
+
+function openApexBot(){
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="openBots()">←</div>
+    <div class="logo">APEX BOT</div>
+    <div>🏠</div>
+</div>
+
+<div style="
+background:linear-gradient(180deg,#8a3cff,#6d28d9);
+padding:16px;
+border-radius:18px;
+margin-top:12px;
+box-shadow:0 0 12px rgba(122,44,255,.30);
+">
+
+<h2 style="
+font-size:30px;
+text-align:center;
+color:white;
+margin-bottom:20px;
+">
+⚡ Quick Strategy
+</h2>
+
+<h3 style="
+font-size:24px;
+color:white;
+margin-bottom:18px;
+">
+1. Trade Parameters
+</h3>
+
+<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
+Market
+</label>
+
+<select style="
+width:100%;
+padding:10px;
+border-radius:10px;
+border:none;
+background:white;
+color:#222;
+font-size:14px;
+margin-bottom:13px;
+">
+<option>Derived</option>
+</select>
+
+<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
+Index
+</label>
+
+<select style="
+width:100%;
+padding:10px;
+border-radius:10px;
+border:none;
+background:white;
+color:#222;
+font-size:14px;
+margin-bottom:13px;
+">
+<option>Volatility 100 (1s)</option>
+</select>
+<h3 style="
+font-size:24px;
+color:white;
+margin-top:20px;
+margin-bottom:18px;
+text-align:center;
+">
+⚙ Run once at start
+</h3>
+
+<label>Set Stake to</label>
+<input type="text" value="2" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Set Target Profit to</label>
+<input type="text" value="5" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Set Stop Loss to</label>
+<input type="text" value="10" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Set Martingale to</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<option>2</option>
+</select>
+
+<label>Set Stake Win to</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<option>Stake</option>
+</select>
+
+<label>Set Count to</label>
+<input type="text" value="0" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Set Initial Balance to</label>
+<input type="text" value="1000" style="width:100%;padding:12px;border-radius:12px;">
+ </div>
+
+<div style="background:#111118;border:1px solid #2c2c3f;border-radius:20px;padding:14px;margin-top:14px;">
+
+
+
+<h3 style="
+font-size:24px;
+color:white;
+margin-top:20px;
+margin-bottom:18px;
+">
+2. Trade Options
+</h3>
+
+<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
+Duration
+</label>
+
+<div style="
+display:flex;
+gap:10px;
+margin-bottom:14px;
+">
+
+<select style="
+flex:1;
+padding:9px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:13px;
+">
+<option>Ticks</option>
+</select>
+
+<select style="
+flex:1;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+">
+<option>1 Tick</option>
+</select>
+
+</div>
+
+<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
+Profit
+</label>
+
+<div style="display:flex;gap:10px;margin-bottom:14px;">
+
+<select style="
+width:90px;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+">
+<option>USD</option>
+</select>
+
+<input
+type="text"
+value="5"
+style="
+flex:1;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+">
+
+</div>
+
+<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
+Loss
+</label>
+
+<div style="display:flex;gap:10px;margin-bottom:14px;">
+
+<select style="
+width:90px;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+">
+<option>USD</option>
+</select>
+
+<input
+type="text"
+value="10"
+style="
+flex:1;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+">
+
+</div>
+
+<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
+Martingale
+</label>
+
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+margin-bottom:14px;
+">
+<option>OFF</option>
+<option>ON</option>
+</select>
+
+<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
+Prediction
+</label>
+
+<input
+type="text"
+value="4"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+background:white;
+color:#222;
+font-size:15px;
+margin-bottom:14px;
+">
+</div>
+</div>
+
+<h3 style="
+font-size:24px;
+color:white;
+margin-top:20px;
+margin-bottom:18px;
+">
+4. Purchase Conditions
+</h3>
+
+<div style="
+background:#111118;
+border:1px solid #2c2c3f;
+border-radius:20px;
+padding:18px;
+margin-top:20px;
+box-shadow:0 0 10px rgba(0,0,0,.5);
+">
+
+
+
+<label style="font-size:13px;font-weight:bold;color:white;">Purchase</label>
+
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:14px;
+">
+<option>Odd</option>
+<option>Even</option>
+<option>Over</option>
+<option>Under</option>
+<option>Matches</option>
+<option>Differs</option>
+</select>
+
+<label style="font-size:13px;font-weight:bold;color:white;">Allow Bulk Purchase</label>
+
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:14px;
+">
+<option>No</option>
+<option>Yes</option>
+</select>
+
+<label style="font-size:13px;font-weight:bold;color:white;">Number of Trades</label>
+
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+">
+<option>1</option>
+<option>2</option>
+<option>5</option>
+<option>10</option>
+</select>
+
+</div>
+
+
+
+
+</div>
+
+<button
+id="apexBotBtn"
+onclick="toggleApexBot()"
+style="
+width:100%;
+padding:18px;
+margin-top:20px;
+background:#00b050;
+color:white;
+font-size:22px;
+font-weight:bold;
+border:none;
+border-radius:15px;
+cursor:pointer;
+">
+</div>
+
+▶ RUN
+
+</button>
+
+`;
+
+}
+
+
+
+
+
+function toggleApexBot(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="openApexBot()">←</div>
+    <div class="logo">APEX BOT</div>
+    <div>🏠</div>
+</div>
+
+<div class="tabs">
+    <div class="tab active">Summary</div>
+    <div class="tab">Transactions</div>
+    <div class="tab">Journal</div>
+</div>
+
+<div class="bot-card">Total Stake<br><b>0 USD</b></div>
+
+<div class="bot-card">Total Payout<br><b>0 USD</b></div>
+
+<div class="bot-card">Contracts Won<br><b>0</b></div>
+
+<div class="bot-card">Contracts Lost<br><b>0</b></div>
+
+<div class="bot-card">Runs<br><b>0</b></div>
+
+<div class="bot-card">Profit<br><b style="color:#00ff88;">0 USD</b></div>
+
+<button style="
+width:100%;
+padding:18px;
+margin-top:20px;
+background:#e00000;
+color:white;
+font-size:22px;
+font-weight:bold;
+border:none;
+border-radius:15px;
+">
+⏹ STOP
+</button>
+
+`;
+
+}
+    </script>
+
+</body>
+
+  </html>
+  
