@@ -353,9 +353,26 @@ font-size:13px;
 
 </select>
 
-<label style="font-size:13px;">Number of Ticks</label>
+<label style="font-size:13px;">Duration Type</label>
 
-<select id="ticks" style="
+<select id="durationType" style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+font-size:13px;
+">
+
+<option selected>Ticks</option>
+<option>Seconds</option>
+<option>Minutes</option>
+
+</select>
+
+<label style="font-size:13px;">Duration Value</label>
+
+<select id="durationValue" style="
 width:100%;
 padding:8px;
 border:none;
@@ -369,14 +386,9 @@ font-size:13px;
 <option>3</option>
 <option>4</option>
 <option>5</option>
-<option>6</option>
-<option>7</option>
-<option>8</option>
-<option>9</option>
 <option>10</option>
 
 </select>
-
 <label style="font-size:13px;">Prediction</label>
 
 <select id="prediction" style="
