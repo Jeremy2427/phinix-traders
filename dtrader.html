@@ -669,397 +669,308 @@ function openDashboard() {
 }
 
 function openApexBot(){
+
 document.querySelector(".container").innerHTML = `
 
 <div class="header">
-    <div onclick="openBots()">←</div>
+    <div onclick="openBots()" style="cursor:pointer;">←</div>
     <div class="logo">APEX BOT</div>
     <div>🏠</div>
 </div>
 
 <div style="
 background:linear-gradient(180deg,#8a3cff,#6d28d9);
-padding:16px;
 border-radius:18px;
+padding:14px;
 margin-top:12px;
-box-shadow:0 0 12px rgba(122,44,255,.30);
+box-shadow:0 0 12px rgba(122,44,255,.35);
 ">
 
 <h2 style="
-font-size:30px;
 text-align:center;
+font-size:22px;
+margin-bottom:14px;
 color:white;
-margin-bottom:20px;
 ">
 ⚡ Quick Strategy
 </h2>
 
 <h3 style="
-font-size:24px;
+font-size:18px;
+margin-bottom:12px;
 color:white;
-margin-bottom:18px;
 ">
 1. Trade Parameters
 </h3>
 
-<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
-Market
-</label>
+<label style="font-size:13px;">Market</label>
 
-<select style="
+<select id="marketSelect" style="
 width:100%;
-padding:10px;
+padding:8px;
+margin-bottom:8px;
 border-radius:10px;
 border:none;
-background:white;
-color:#222;
-font-size:14px;
-margin-bottom:13px;
+font-size:13px;
 ">
+
 <option>Derived</option>
+<option>Forex</option>
+<option>Synthetic</option>
+
 </select>
 
-<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
-Index
-</label>
+<label style="font-size:13px;">Index</label>
 
-<select style="
+<select id="indexSelect" style="
 width:100%;
-padding:10px;
+padding:8px;
+margin-bottom:8px;
 border-radius:10px;
 border:none;
-background:white;
-color:#222;
-font-size:14px;
-margin-bottom:13px;
+font-size:13px;
 ">
-<option>Volatility 100 (1s)</option>
+
+<option>Volatility 10</option>
+<option>Volatility 10 (1s)</option>
+<option>Volatility 25</option>
+<option>Volatility 25 (1s)</option>
+<option>Volatility 50</option>
+<option>Volatility 50 (1s)</option>
+<option>Volatility 75</option>
+<option>Volatility 75 (1s)</option>
+<option selected>Volatility 100 (1s)</option>
+
 </select>
+
 <h3 style="
-font-size:24px;
+font-size:18px;
+margin-top:16px;
+margin-bottom:12px;
 color:white;
-margin-top:20px;
-margin-bottom:18px;
 text-align:center;
 ">
 ⚙ Run once at start
 </h3>
 
-<label>Set Stake to</label>
-<input type="text" value="2" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<label style="font-size:13px;">Stake</label>
+<input id="stakeInput" type="number" value="2" style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+font-size:13px;
+">
 
-<label>Set Target Profit to</label>
-<input type="text" value="5" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<label style="font-size:13px;">Target Profit</label>
+<input id="profitInput" type="number" value="5" style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+font-size:13px;
+">
 
-<label>Set Stop Loss to</label>
-<input type="text" value="10" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<label style="font-size:13px;">Stop Loss</label>
+<input id="lossInput" type="number" value="10" style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+font-size:13px;
+">
 
-<label>Set Martingale to</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<label style="font-size:13px;">Martingale</label>
+
+<select id="martingaleSelect" style="
+width:100%;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+font-size:13px;
+">
+
+<option>OFF</option>
 <option>2</option>
+<option>2.5</option>
+<option>3</option>
+<option>4</option>
+
 </select>
-
-<label>Set Stake Win to</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
-<option>Stake</option>
-</select>
-
-<label>Set Count to</label>
-<input type="text" value="0" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
-
-<label>Set Initial Balance to</label>
-<input type="text" value="1000" style="width:100%;padding:12px;border-radius:12px;">
- </div>
-
-<div style="background:#111118;border:1px solid #2c2c3f;border-radius:20px;padding:14px;margin-top:14px;">
-
-
 
 <h3 style="
-font-size:24px;
+font-size:18px;
+margin-top:16px;
+margin-bottom:12px;
 color:white;
-margin-top:20px;
-margin-bottom:18px;
 ">
 2. Trade Options
 </h3>
 
-<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
-Duration
-</label>
+<label style="font-size:13px;">Trade Type</label>
 
-<div style="
-display:flex;
-gap:10px;
-margin-bottom:14px;
-">
-
-<select style="
-flex:1;
-padding:9px;
-border-radius:12px;
+<select id="tradeType" style="
+width:100%;
+padding:8px;
 border:none;
-background:white;
-color:#222;
+border-radius:10px;
+margin-bottom:8px;
 font-size:13px;
 ">
-<option>Ticks</option>
+
+<option>Over / Under</option>
+<option>Even / Odd</option>
+<option>Matches / Differs</option>
+<option>Rise / Fall</option>
+
 </select>
 
-<select style="
-flex:1;
-padding:12px;
-border-radius:12px;
-border:none;
-background:white;
-color:#222;
-font-size:15px;
-">
-<option>1 Tick</option>
-</select>
+<label style="font-size:13px;">Number of Ticks</label>
 
-</div>
-
-<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
-Profit
-</label>
-
-<div style="display:flex;gap:10px;margin-bottom:14px;">
-
-<select style="
-width:90px;
-padding:12px;
-border-radius:12px;
-border:none;
-background:white;
-color:#222;
-">
-<option>USD</option>
-</select>
-
-<input
-type="text"
-value="5"
-style="
-flex:1;
-padding:12px;
-border-radius:12px;
-border:none;
-background:white;
-color:#222;
-">
-
-</div>
-
-<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
-Loss
-</label>
-
-<div style="display:flex;gap:10px;margin-bottom:14px;">
-
-<select style="
-width:90px;
-padding:12px;
-border-radius:12px;
-border:none;
-background:white;
-color:#222;
-">
-<option>USD</option>
-</select>
-
-<input
-type="text"
-value="10"
-style="
-flex:1;
-padding:12px;
-border-radius:12px;
-border:none;
-background:white;
-color:#222;
-">
-
-</div>
-
-<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
-Martingale
-</label>
-
-<select style="
+<select id="ticks" style="
 width:100%;
-padding:12px;
-border-radius:12px;
+padding:8px;
 border:none;
-background:white;
-color:#222;
-font-size:15px;
-margin-bottom:14px;
+border-radius:10px;
+margin-bottom:8px;
+font-size:13px;
 ">
-<option>OFF</option>
-<option>ON</option>
+
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+<option>10</option>
+
 </select>
 
-<label style="font-size:13px;font-weight:bold;color:#f0e8ff;display:block;margin-bottom:6px;">
-Prediction
-</label>
+<label style="font-size:13px;">Prediction</label>
 
-<input
-type="text"
-value="4"
-style="
+<select id="prediction" style="
 width:100%;
-padding:12px;
-border-radius:12px;
+padding:8px;
 border:none;
-background:white;
-color:#222;
-font-size:15px;
-margin-bottom:14px;
+border-radius:10px;
+margin-bottom:8px;
+font-size:13px;
 ">
-</div>
-</div>
+
+<option>0</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option selected>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+
+</select>
 
 <h3 style="
-font-size:24px;
+font-size:18px;
+margin-top:16px;
+margin-bottom:12px;
 color:white;
-margin-top:20px;
-margin-bottom:18px;
 ">
-4. Purchase Conditions
+3. Purchase Conditions
 </h3>
 
-<div style="
-background:#111118;
-border:1px solid #2c2c3f;
-border-radius:20px;
-padding:18px;
-margin-top:20px;
-box-shadow:0 0 10px rgba(0,0,0,.5);
-">
+<label style="font-size:13px;">Purchase</label>
 
-
-
-<label style="font-size:13px;font-weight:bold;color:white;">Purchase</label>
-
-<select style="
+<select id="purchaseType" style="
 width:100%;
-padding:12px;
-border-radius:12px;
-margin-bottom:14px;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+font-size:13px;
 ">
+
 <option>Odd</option>
 <option>Even</option>
 <option>Over</option>
 <option>Under</option>
 <option>Matches</option>
 <option>Differs</option>
+<option>Rise</option>
+<option>Fall</option>
+
 </select>
 
-<label style="font-size:13px;font-weight:bold;color:white;">Allow Bulk Purchase</label>
+<label style="font-size:13px;">Allow Bulk Purchase</label>
 
-<select style="
+<select id="bulkPurchase" style="
 width:100%;
-padding:12px;
-border-radius:12px;
-margin-bottom:14px;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:8px;
+font-size:13px;
 ">
+
 <option>No</option>
 <option>Yes</option>
+
 </select>
 
-<label style="font-size:13px;font-weight:bold;color:white;">Number of Trades</label>
+<label style="font-size:13px;">Number of Trades</label>
 
-<select style="
+<select id="tradeCount" style="
 width:100%;
-padding:12px;
-border-radius:12px;
+padding:8px;
+border:none;
+border-radius:10px;
+margin-bottom:12px;
+font-size:13px;
 ">
+
 <option>1</option>
 <option>2</option>
 <option>5</option>
 <option>10</option>
+
 </select>
 
-</div>
-
-
-
-
-</div>
-
 <button
-id="apexBotBtn"
+id="runBotBtn"
 onclick="toggleApexBot()"
 style="
 width:100%;
-padding:18px;
-margin-top:20px;
+padding:14px;
+margin-top:12px;
 background:#00b050;
 color:white;
-font-size:22px;
+font-size:18px;
 font-weight:bold;
 border:none;
-border-radius:15px;
+border-radius:12px;
 cursor:pointer;
 ">
-</div>
-
 ▶ RUN
-
 </button>
 
+</div>
+
 `;
-
-}
-
-
-
+    }
 
 
 function toggleApexBot(){
 
-document.querySelector(".container").innerHTML = `
 
-<div class="header">
-    <div onclick="openApexBot()">←</div>
-    <div class="logo">APEX BOT</div>
-    <div>🏠</div>
-</div>
 
-<div class="tabs">
-    <div class="tab active">Summary</div>
-    <div class="tab">Transactions</div>
-    <div class="tab">Journal</div>
-</div>
 
-<div class="bot-card">Total Stake<br><b>0 USD</b></div>
-
-<div class="bot-card">Total Payout<br><b>0 USD</b></div>
-
-<div class="bot-card">Contracts Won<br><b>0</b></div>
-
-<div class="bot-card">Contracts Lost<br><b>0</b></div>
-
-<div class="bot-card">Runs<br><b>0</b></div>
-
-<div class="bot-card">Profit<br><b style="color:#00ff88;">0 USD</b></div>
-
-<button style="
-width:100%;
-padding:18px;
-margin-top:20px;
-background:#e00000;
-color:white;
-font-size:22px;
-font-weight:bold;
-border:none;
-border-radius:15px;
-">
-⏹ STOP
-</button>
-
-`;
 
 }
     </script>
