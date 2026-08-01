@@ -503,142 +503,33 @@ cursor:pointer;
 
 
 function toggleApexBot(){
+let botRunning = false;
+let botInterval;
 
-document.querySelector(".container").innerHTML = `
+function toggleApexBot(){
 
-<div class="header">
-    <div onclick="location.reload()">←</div>
-    <div class="logo">APEX BOT</div>
-    <div>🏠</div>
-</div>
+    if(botRunning){
 
-<div style="
-background:#12111c;
-border:1px solid #7a2cff;
-border-radius:18px;
-padding:12px;
-margin-top:12px;
-height:320px;
-overflow-y:auto;
-">
+        clearInterval(botInterval);
+        botRunning = false;
 
-<h2 style="color:#c94fff;text-align:center;">
-Transactions
-</h2>
+        document.getElementById("runBotBtn").innerHTML = "▶ RUN";
+        document.getElementById("runBotBtn").style.background = "#00b050";
 
-<table id="transactionsTable" style="
-width:100%;
-color:white;
-border-collapse:collapse;
-font-size:13px;
-">
-<tr>
-<th>Type</th>
-<th>Entry</th>
-<th>Buy Price</th>
-<th>P/L</th>
-</tr>
+        return;
+    }
 
-<tr>
-<td>📈</td>
-<td>735.08</td>
-<td>5 USD</td>
-<td style="color:#00ff88;">+0.87</td>
-</tr>
+    botRunning = true;
 
-<tr>
-<td>📉</td>
-<td>735.13</td>
-<td>5 USD</td>
-<td style="color:red;">-5.00</td>
-</tr>
+    document.getElementById("runBotBtn").innerHTML = "■ STOP";
+    document.getElementById("runBotBtn").style.background = "#d62828";
 
-</table>
-
-</div>
-
-<div style="
-margin-top:15px;
-background:#181625;
-border:1px solid #7a2cff;
-border-radius:18px;
-padding:15px;
-">
-
-<div style="
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-text-align:center;
-">
-
-<div>
-<b>Total Stake</b><br>
-15 USD
-</div>
-
-<div>
-<b>Total Payout</b><br>
-17.61 USD
-</div>
-
-<div>
-<b>Contracts Won</b><br>
-3
-</div>
-
-<div>
-<b>Contracts Lost</b><br>
-0
-</div>
-
-<div>
-<b>No. of Runs</b><br>
-3
-</div>
-
-<div>
-<b>Profit/Loss</b><br>
-<span style="color:#00ff88;">+2.61 USD</span>
-</div>
-
-</div>
-
-<div style="
-display:flex;
-gap:10px;
-margin-top:18px;
-">
-
-<button style="
-flex:1;
-background:#d62828;
-color:white;
-padding:14px;
-border:none;
-border-radius:12px;
-font-weight:bold;
-">
-■ STOP
-</button>
-
-<div style="
-flex:1;
-background:#1f1f2f;
-border-radius:12px;
-display:flex;
-justify-content:center;
-align-items:center;
-font-weight:bold;
-color:#00ff88;
-">
-RUNNING
-</div>
-
-</div>
-
-</div>
-
-`;
+    botInterval = setInterval(addFakeTrade,2500);
 
 }
+function addFakeTrade(){
+
+    alert("Bot is running...");
+
+}
+
