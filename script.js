@@ -511,38 +511,7 @@ cursor:pointer;
 
 
 
-function addFakeTrade(){
 
-    const table = document.getElementById("transactionsTable");
-
-    const row = table.insertRow(-1);
-
-    const type = Math.random()>0.5 ? "📈" : "📉";
-    const entry = (735 + Math.random()).toFixed(2);
-    const buy = "5 USD";
-
-    const win = Math.random()>0.3;
-    const pnl = win ? "+0.87" : "-5.00";
-
-    row.innerHTML = `
-        <td>${type}</td>
-        <td>${entry}</td>
-        <td>${buy}</td>
-        <td style="color:${win ? '#00ff88' : '#ff4444'}">${pnl}</td>
-    `;
-
-    table.parentElement.scrollTop = table.parentElement.scrollHeight;
-
-}
-let botRunning = false;
-let botInterval;
-
-let totalStake = 0;
-let totalPayout = 0;
-let contractsWon = 0;
-let contractsLost = 0;
-let numberRuns = 0;
-let profitLoss = 0;
 
 function toggleApexBot(){
 
