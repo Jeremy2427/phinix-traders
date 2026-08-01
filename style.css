@@ -230,3 +230,43 @@ height:80px;
     font-size:15px;
     cursor:pointer;
 }
+#transactionContainer{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:auto;
+}
+
+#transactionsTable{
+    width:100%;
+    table-layout:fixed;
+    border-collapse:collapse;
+}
+
+#transactionsTable th,
+#transactionsTable td{
+    text-align:center;
+    padding:6px 2px;
+    word-wrap:break-word;
+    overflow:hidden;
+    font-size:13px;
+}
+
+#transactionsTable th:nth-child(1),
+#transactionsTable td:nth-child(1){
+    width:12%;
+}
+
+#transactionsTable th:nth-child(2),
+#transactionsTable td:nth-child(2){
+    width:38%;
+}
+
+#transactionsTable th:nth-child(3),
+#transactionsTable td:nth-child(3){
+    width:25%;
+}
+
+#transactionsTable th:nth-child(4),
+#transactionsTable td:nth-child(4){
+    width:25%;
+}
