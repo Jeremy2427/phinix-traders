@@ -487,7 +487,7 @@ margin-bottom:16px;
 
 <button
 id="runBotBtn"
-onclick="toggleApexBot()"
+onclick="openBotRunningScreen()"
 style="
 width:100%;
 padding:14px;
@@ -507,35 +507,10 @@ cursor:pointer;
 `;
 }
 
-}
 
 
 
 
-
-
-
-function toggleApexBot(){
-
-    if(botRunning){
-
-        clearInterval(botInterval);
-        botRunning = false;
-
-        document.getElementById("runBotBtn").innerHTML = "▶ RUN";
-        document.getElementById("runBotBtn").style.background = "#00b050";
-
-        return;
-    }
-
-    botRunning = true;
-
-    document.getElementById("runBotBtn").innerHTML = "■ STOP";
-    document.getElementById("runBotBtn").style.background = "#d62828";
-
-    botInterval = setInterval(addFakeTrade,2500);
-
-}
 function addFakeTrade(){
 
     const table = document.getElementById("transactionsTable");
@@ -668,5 +643,133 @@ function addFakeTrade(){
     const container=document.getElementById("transactionContainer");
 
     container.scrollTop=container.scrollHeight;
+
+}
+function openBotRunningScreen(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="openApexBot()" style="cursor:pointer;">←</div>
+    <div class="logo">APEX BOT</div>
+    <div id="botStatus" style="color:#00ff88;font-weight:bold;">
+        RUNNING
+    </div>
+</div>
+
+<div id="transactionContainer"
+style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:16px;
+padding:12px;
+margin-top:12px;
+height:260px;
+overflow-y:auto;
+">
+
+<table
+id="transactionsTable"
+style="
+width:100%;
+border-collapse:collapse;
+color:white;
+font-size:13px;
+">
+
+<thead>
+<tr style="color:#c94fff;">
+<th>Type</th>
+<th>Entry</th>
+<th>Stake</th>
+<th>P/L</th>
+</tr>
+</thead>
+
+<tbody>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div style="
+margin-top:14px;
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:16px;
+padding:14px;
+">
+
+<div style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+text-align:center;
+">
+
+<div>
+<b>Total Stake</b><br>
+<span id="totalStake">0 USD</span>
+</div>
+
+<div>
+<b>Total Payout</b><br>
+<span id="totalPayout">0 USD</span>
+</div>
+
+<div>
+<b>Contracts Won</b><br>
+<span id="contractsWon">0</span>
+</div>
+
+<div>
+<b>Contracts Lost</b><br>
+<span id="contractsLost">0</span>
+</div>
+
+<div>
+<b>No. of Runs</b><br>
+<span id="numberRuns">0</span>
+</div>
+
+<div>
+<b>Profit/Loss</b><br>
+<span id="profitLoss" style="color:#00ff88;">0 USD</span>
+</div>
+
+</div>
+
+<button
+id="runBotBtn"
+onclick="toggleApexBot()"
+style="
+width:100%;
+margin-top:16px;
+padding:14px;
+background:#d62828;
+border:none;
+border-radius:12px;
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+">
+■ STOP
+</button>
+
+</div>
+`;
+
+botRunning = true;
+totalStake = 0;
+totalPayout = 0;
+contractsWon = 0;
+contractsLost = 0;
+numberRuns = 0;
+profitLoss = 0;
+
+botInterval = setInterval(addFakeTrade,2500);
 
 }
