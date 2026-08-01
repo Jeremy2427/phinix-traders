@@ -634,6 +634,16 @@ border-radius:16px;
 padding:12px;
 margin-top:12px;
 height:260px;
+overflow:auto;
+"
+>
+style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:16px;
+padding:12px;
+margin-top:12px;
+height:260px;
 overflow-y:auto;
 ">
 
