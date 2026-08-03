@@ -628,7 +628,7 @@ ${message}<br>
 journal.scrollTop = journal.scrollHeight;
 
 }
-
+}
 function openBotRunningScreen(){
 
 document.querySelector(".container").innerHTML = `
