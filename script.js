@@ -667,6 +667,7 @@ Transactions
 </button>
 
 <button
+onclick="showJournal()"
 style="
 flex:1;
 padding:12px;
@@ -679,7 +680,6 @@ cursor:pointer;
 ">
 Journal
 </button>
-
 </div>
 
 <div id="transactionContainer"
@@ -854,6 +854,48 @@ APEX BOT PERFORMANCE
 <span style="color:${profitLoss>=0 ? "#00ff88" : "#ff4444"};">
 ${profitLoss.toFixed(2)} USD
 </span>
+
+</div>
+
+</div>
+
+`;
+}
+function showJournal(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openBotRunningScreen()" style="cursor:pointer;">←</div>
+<div class="logo">JOURNAL</div>
+<div>📖</div>
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:18px;
+margin-top:14px;
+">
+
+<h2 style="
+text-align:center;
+color:#c94fff;
+margin-bottom:18px;
+">
+BOT ACTIVITY
+</h2>
+
+<div id="journalList"
+style="
+line-height:2;
+font-size:15px;
+">
+
+🟢 Bot Started<br>
+📈 Monitoring Market...<br>
+⏳ Waiting for Entry Signal...<br>
 
 </div>
 
