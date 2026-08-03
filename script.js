@@ -918,3 +918,6 @@ color:white;
 </div>
 `;
 }
+function showTransactions(){
+    openBotRunningScreen();
+}
