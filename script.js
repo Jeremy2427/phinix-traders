@@ -636,6 +636,7 @@ gap:8px;
 ">
 
 <button
+onclick="showSummary()"
 style="
 flex:1;
 padding:12px;
@@ -793,5 +794,21 @@ numberRuns = 0;
 profitLoss = 0;
 
 botInterval = setInterval(addFakeTrade,2500);
+
+}
+function showSummary(){
+
+alert(
+`APEX BOT SUMMARY
+
+Win Rate:
+Profit Factor:
+Average Win:
+Average Loss:
+Longest Win Streak:
+Longest Loss Streak:
+ROI:
+Trading Time:`
+);
 
 }
