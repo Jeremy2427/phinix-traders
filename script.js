@@ -613,20 +613,21 @@ row.innerHTML=`
     container.scrollTop=container.scrollHeight;
 const journal = document.getElementById("journalLogs");
 
-if(journal){
-
 let message = win
 ? `💰 Contract Won (+${pnl.toFixed(2)} USD)`
 : `❌ Contract Lost (${pnl.toFixed(2)} USD)`;
 
-journal.innerHTML += `
+journalHistory += `
 🎯 Signal Found<br>
 ${message}<br>
 📈 Monitoring Market...<br>
 `;
 
-journal.scrollTop = journal.scrollHeight;
+const journal = document.getElementById("journalLogs");
 
+if(journal){
+    journal.innerHTML = journalHistory;
+    journal.scrollTop = journal.scrollHeight;
 }
 }
 function openBotRunningScreen(){
@@ -805,6 +806,7 @@ cursor:pointer;
 botRunning = true;
 totalStake = 0;
 totalPayout = 0;
+let journalHistory = "";
 contractsWon = 0;
 contractsLost = 0;
 numberRuns = 0;
@@ -908,13 +910,7 @@ line-height:2;
 font-size:18px;
 color:white;
 ">
-
-🟢 Bot Started<br>
-📈 Monitoring Market...<br>
-⏳ Waiting for Entry Signal...<br>
-
-</div>
-
+${journalHistory}
 </div>
 `;
 }
