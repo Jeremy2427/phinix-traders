@@ -579,14 +579,13 @@ function addFakeTrade(){
     profitLoss+=pnl;
     numberRuns++;
 
-    row.innerHTML=`
-        <td>${win?"📈":"📉"}</td>
-        <td>${entry}</td>
-        <td>${stake} USD</td>
-        <td style="color:${win?"#00ff88":"#ff4444"};">
+row.innerHTML=`
+    <td>${win ? "📈" : "📉"}</td>
+    <td>${entry}</td>
+    <td style="color:${win ? "#00ff88" : "#ff4444"};">
         ${pnl.toFixed(2)}
-        </td>
-    `;
+    </td>
+`;
 
     document.getElementById("totalStake").innerHTML=
     totalStake.toFixed(2)+" USD";
