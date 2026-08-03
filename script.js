@@ -161,7 +161,7 @@ document.querySelector(".container").innerHTML = `
 <div class="bot-card">
     <h3>🚀 Phinix Pro Bot</h3>
     <p>Advanced trend detection</p>
-    <button>LOAD BOT</button>
+    <button onclick="openPhinixProBot()">LOAD BOT</button>
 </div>
 
 <div class="bot-card">
