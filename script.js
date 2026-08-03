@@ -651,6 +651,7 @@ Summary
 </button>
 
 <button
+onclick="showTransactions()"
 style="
 flex:1;
 padding:12px;
@@ -809,6 +810,40 @@ Longest Win Streak:
 Longest Loss Streak:
 ROI:
 Trading Time:`
+);
+
+}
+function showSummary(){
+
+let totalTrades = contractsWon + contractsLost;
+
+let winRate = totalTrades > 0
+? ((contractsWon / totalTrades) * 100).toFixed(1)
+: 0;
+
+let avgWin = contractsWon > 0
+? ((totalPayout - totalStake + (contractsLost * 5)) / contractsWon).toFixed(2)
+: "0.00";
+
+let avgLoss = contractsLost > 0
+? "5.00"
+: "0.00";
+
+alert(
+`📊 APEX BOT SUMMARY
+
+Win Rate: ${winRate}%
+
+Contracts Won: ${contractsWon}
+Contracts Lost: ${contractsLost}
+
+Total Stake: ${totalStake.toFixed(2)} USD
+Total Payout: ${totalPayout.toFixed(2)} USD
+
+Average Win: ${avgWin} USD
+Average Loss: ${avgLoss} USD
+
+Total Profit: ${profitLoss.toFixed(2)} USD`
 );
 
 }
