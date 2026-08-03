@@ -611,8 +611,24 @@ row.innerHTML=`
     const container=document.getElementById("transactionContainer");
 
     container.scrollTop=container.scrollHeight;
+const journal = document.getElementById("journalLogs");
+
+if(journal){
+
+let message = win
+? `💰 Contract Won (+${pnl.toFixed(2)} USD)`
+: `❌ Contract Lost (${pnl.toFixed(2)} USD)`;
+
+journal.innerHTML += `
+🎯 Signal Found<br>
+${message}<br>
+📈 Monitoring Market...<br>
+`;
+
+journal.scrollTop = journal.scrollHeight;
 
 }
+
 function openBotRunningScreen(){
 
 document.querySelector(".container").innerHTML = `
@@ -884,12 +900,11 @@ color:#c94fff;
 margin-bottom:18px;
 ">
 BOT ACTIVITY
-</h2>
-
-<div id="journalList"
-style="
+<div id="journalLogs" style="
+margin-top:20px;
 line-height:2;
-font-size:15px;
+font-size:18px;
+color:white;
 ">
 
 🟢 Bot Started<br>
@@ -897,8 +912,5 @@ font-size:15px;
 ⏳ Waiting for Entry Signal...<br>
 
 </div>
-
-</div>
-
 `;
 }
