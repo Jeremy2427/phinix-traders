@@ -704,8 +704,7 @@ font-size:13px;
 <thead>
 <tr style="color:#c94fff;">
 <th>Type</th>
-<th>Entry</th>
-<th>Stake</th>
+<th>Entry/Exit</th>
 <th>P/L</th>
 </tr>
 </thead>
@@ -759,7 +758,7 @@ text-align:center;
 </div>
 
 <div>
-<b>Profit/Loss</b><br>
+<b>Total Profit</b><br>
 <span id="profitLoss" style="color:#00ff88;">0 USD</span>
 </div>
 
