@@ -704,7 +704,7 @@ font-size:13px;
 <thead>
 <tr style="color:#c94fff;">
 <th>Type</th>
-<th>Entry/Exit</th>
+<th>Entry</th>
 <th>P/L</th>
 </tr>
 </thead>
