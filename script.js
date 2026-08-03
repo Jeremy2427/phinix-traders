@@ -636,7 +636,6 @@ gap:8px;
 ">
 
 <button
-<button
 onclick="showSummary()"
 style="
 flex:1;
