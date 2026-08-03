@@ -900,6 +900,8 @@ color:#c94fff;
 margin-bottom:18px;
 ">
 BOT ACTIVITY
+</h2>
+
 <div id="journalLogs" style="
 margin-top:20px;
 line-height:2;
@@ -910,6 +912,8 @@ color:white;
 🟢 Bot Started<br>
 📈 Monitoring Market...<br>
 ⏳ Waiting for Entry Signal...<br>
+
+</div>
 
 </div>
 `;
