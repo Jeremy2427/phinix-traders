@@ -214,20 +214,25 @@ document.querySelector(".container").innerHTML = `
 
 <div style="
 background:linear-gradient(180deg,#8a3cff,#6d28d9);
-border-radius:18px;
-padding:14px;
-margin-top:12px;
+border-radius:16px;
+padding:12px;
+margin-top:10px;
 box-shadow:0 0 12px rgba(122,44,255,.35);
 ">
 
-<h2 style="
+<div style="
+background:linear-gradient(90deg,#7a2cff,#b84dff,#ffd700);
+padding:16px;
+border-radius:16px;
 text-align:center;
-font-size:22px;
-margin-bottom:16px;
+font-size:28px;
+font-weight:bold;
+margin-bottom:18px;
+box-shadow:0 0 20px rgba(255,215,0,.35);
 color:white;
 ">
-⚡ Quick Strategy
-</h2>
+⚡ QUICK STRATEGY
+</div>
 
 <h3 style="
 font-size:18px;
@@ -237,7 +242,22 @@ color:white;
 1. Trade Parameters
 </h3>
 
-<label style="font-size:13px;">Market</label>
+<h3 style="
+text-align:center;
+color:#ffd700;
+font-size:20px;
+margin:18px 0 12px 0;
+">
+📊 TRADE PARAMETERS
+</h3>
+
+<label style="
+font-size:12px;
+font-weight:bold;
+color:#ffffff;
+">
+Market
+</label>
 
 <select id="marketSelect" style="
 width:100%;
@@ -253,14 +273,25 @@ border:none;
 
 </select>
 
-<label style="font-size:13px;">Index</label>
+<label style="
+font-size:12px;
+font-weight:bold;
+color:#ffffff;
+">
+Index
+</label>
 
 <select id="indexSelect" style="
 width:100%;
-padding:8px;
-margin-bottom:8px;
-border-radius:10px;
-border:none;
+padding:12px;
+margin-bottom:12px;
+border-radius:14px;
+border:1px solid #b84dff;
+background:#1b1b2d;
+color:#ffffff;
+font-size:15px;
+font-weight:bold;
+outline:none;
 ">
 
 <option>Volatility 10</option>
