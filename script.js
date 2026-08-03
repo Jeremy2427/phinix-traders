@@ -611,7 +611,6 @@ row.innerHTML=`
     const container=document.getElementById("transactionContainer");
 
     container.scrollTop=container.scrollHeight;
-const journal = document.getElementById("journalLogs");
 
 let message = win
 ? `💰 Contract Won (+${pnl.toFixed(2)} USD)`
@@ -806,12 +805,12 @@ cursor:pointer;
 botRunning = true;
 totalStake = 0;
 totalPayout = 0;
-let journalHistory = "";
+ journalHistory = "";
 contractsWon = 0;
 contractsLost = 0;
 numberRuns = 0;
 profitLoss = 0;
-
+let journalHistory = "";
 botInterval = setInterval(addFakeTrade,2500);
 
 }
@@ -911,6 +910,8 @@ font-size:18px;
 color:white;
 ">
 ${journalHistory}
+</div>
+
 </div>
 `;
 }
