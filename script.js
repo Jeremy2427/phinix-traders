@@ -1,3 +1,14 @@
+let botRunning = false;
+let botInterval = null;
+
+let totalStake = 0;
+let totalPayout = 0;
+let contractsWon = 0;
+let contractsLost = 0;
+let numberRuns = 0;
+let profitLoss = 0;
+
+let journalHistory = "";
 function changeWallet(){
 
     let choice = prompt(
@@ -810,7 +821,7 @@ contractsWon = 0;
 contractsLost = 0;
 numberRuns = 0;
 profitLoss = 0;
-let journalHistory = "";
+
 botInterval = setInterval(addFakeTrade,2500);
 
 }
