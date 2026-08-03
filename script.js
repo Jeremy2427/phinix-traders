@@ -960,3 +960,82 @@ ${journalHistory}
 function showTransactions(){
     openBotRunningScreen();
 }
+function openPhinixProBot(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openBots()" style="cursor:pointer;">←</div>
+<div class="logo">PHINIX PRO BOT</div>
+<div>⚙️</div>
+</div>
+
+<div style="
+background:linear-gradient(180deg,#7a2cff,#9d4edd,#ffd700);
+padding:14px;
+border-radius:18px;
+margin-top:12px;
+">
+
+<h2 style="
+text-align:center;
+font-size:28px;
+font-weight:bold;
+color:white;
+margin-bottom:20px;
+">
+⚡ Quick Strategy
+</h2>
+
+<h3 style="
+color:#ffd700;
+font-size:22px;
+margin-bottom:15px;
+">
+1. Trade Parameters
+</h3>
+
+<div style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+">
+
+<div>
+<label style="font-size:12px;color:white;">Market</label>
+<select style="width:100%;padding:10px;border-radius:10px;">
+<option>Derived</option>
+</select>
+</div>
+
+<div>
+<label style="font-size:12px;color:white;">Category</label>
+<select style="width:100%;padding:10px;border-radius:10px;">
+<option>Continuous Indices</option>
+</select>
+</div>
+
+<div>
+<label style="font-size:12px;color:white;">Index</label>
+<select style="width:100%;padding:10px;border-radius:10px;">
+<option>Volatility 100 (1s)</option>
+</select>
+</div>
+
+<div>
+<label style="font-size:12px;color:white;">Contract</label>
+<select style="width:100%;padding:10px;border-radius:10px;">
+<option>Matches / Differs</option>
+<option>Over / Under</option>
+<option>Even / Odd</option>
+<option>Rise / Fall</option>
+</select>
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
