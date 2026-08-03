@@ -583,7 +583,7 @@ row.innerHTML=`
     <td>${win ? "📈" : "📉"}</td>
     <td>${entry}</td>
     <td style="color:${win ? "#00ff88" : "#ff4444"};">
-        ${pnl.toFixed(2)}
+        ${pnl.toFixed(2)} USD
     </td>
 `;
 
