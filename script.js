@@ -625,7 +625,60 @@ document.querySelector(".container").innerHTML = `
         RUNNING
     </div>
 </div>
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:10px;
+margin-top:12px;
+display:flex;
+justify-content:space-between;
+gap:8px;
+">
 
+<button
+style="
+flex:1;
+padding:12px;
+background:#111;
+color:white;
+border:none;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+">
+Summary
+</button>
+
+<button
+style="
+flex:1;
+padding:12px;
+background:linear-gradient(90deg,#7a2cff,#c94fff);
+color:white;
+border:none;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+">
+Transactions
+</button>
+
+<button
+style="
+flex:1;
+padding:12px;
+background:#111;
+color:white;
+border:none;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+">
+Journal
+</button>
+
+</div>
 
 <div id="transactionContainer"
 style="
