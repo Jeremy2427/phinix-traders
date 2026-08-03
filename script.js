@@ -799,51 +799,64 @@ botInterval = setInterval(addFakeTrade,2500);
 }
 function showSummary(){
 
-alert(
-`APEX BOT SUMMARY
-
-Win Rate:
-Profit Factor:
-Average Win:
-Average Loss:
-Longest Win Streak:
-Longest Loss Streak:
-ROI:
-Trading Time:`
-);
-
-}
-function showSummary(){
-
 let totalTrades = contractsWon + contractsLost;
 
 let winRate = totalTrades > 0
 ? ((contractsWon / totalTrades) * 100).toFixed(1)
-: 0;
+: "0.0";
 
 let avgWin = contractsWon > 0
-? ((totalPayout - totalStake + (contractsLost * 5)) / contractsWon).toFixed(2)
+? (totalPayout / contractsWon).toFixed(2)
 : "0.00";
 
 let avgLoss = contractsLost > 0
-? "5.00"
+? (totalStake / contractsLost).toFixed(2)
 : "0.00";
 
-alert(
-`📊 APEX BOT SUMMARY
+document.querySelector(".container").innerHTML = `
 
-Win Rate: ${winRate}%
+<div class="header">
+<div onclick="openBotRunningScreen()" style="cursor:pointer;">←</div>
+<div class="logo">SUMMARY</div>
+<div>📊</div>
+</div>
 
-Contracts Won: ${contractsWon}
-Contracts Lost: ${contractsLost}
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:18px;
+margin-top:14px;
+">
 
-Total Stake: ${totalStake.toFixed(2)} USD
-Total Payout: ${totalPayout.toFixed(2)} USD
+<h2 style="text-align:center;color:#c94fff;">
+APEX BOT PERFORMANCE
+</h2>
 
-Average Win: ${avgWin} USD
-Average Loss: ${avgLoss} USD
+<div style="margin-top:20px;line-height:2;font-size:16px;">
 
-Total Profit: ${profitLoss.toFixed(2)} USD`
-);
+<b>Win Rate:</b> ${winRate}%<br>
 
+<b>Contracts Won:</b> ${contractsWon}<br>
+
+<b>Contracts Lost:</b> ${contractsLost}<br>
+
+<b>Total Stake:</b> ${totalStake.toFixed(2)} USD<br>
+
+<b>Total Payout:</b> ${totalPayout.toFixed(2)} USD<br>
+
+<b>Average Win:</b> ${avgWin} USD<br>
+
+<b>Average Loss:</b> ${avgLoss} USD<br>
+
+<b>Total Profit:</b>
+<span style="color:${profitLoss>=0 ? "#00ff88" : "#ff4444"};">
+${profitLoss.toFixed(2)} USD
+</span>
+
+</div>
+
+</div>
+
+`;
 }
