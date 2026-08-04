@@ -196,13 +196,9 @@ document.querySelector(".container").innerHTML = `
 `;
 
             }
-function openDashboard() {
-
-
-
-
+function openDashboard(){
+    location.reload();
 }
-
 function openApexBot(){
     activeBot = "Apex";
 document.querySelector(".container").innerHTML = `
@@ -557,14 +553,17 @@ cursor:pointer;
 
 
 function toggleApexBot(){
-
+if (botInterval) {
+    clearInterval(botInterval);
+    botInterval = null;
+}
     if(!document.getElementById("transactionsTable")) return;
 
     if(botRunning){
 
         clearInterval(botInterval);
-        botRunning = false;
-
+botInterval = null;
+botRunning = false;
         document.getElementById("runBotBtn").innerHTML="▶ RUN";
         document.getElementById("runBotBtn").style.background="#00b050";
 
@@ -671,7 +670,7 @@ if(journal){
     journal.innerHTML = journalHistory;
     journal.scrollTop = journal.scrollHeight;
 }
-}
+
 function openBotRunningScreen(){
 
 document.querySelector(".container").innerHTML = `
@@ -959,7 +958,7 @@ ${journalHistory}
 `;
 }
 function showTransactions(){
-    openBotRunningScreen();
+    // Already on Transactions screen
 }
 // ===============================
 // PHINIX PRO BOT
@@ -1136,7 +1135,7 @@ cursor:pointer;
 
 `;
 }
-}
+
 function openPhinixRunningScreen(){
 
 document.querySelector(".container").innerHTML = `
@@ -1261,12 +1260,26 @@ font-weight:bold;
 phBotRunning = true;
 
 }
-function togglePhinixBot(){
+    phStake = 0;
+phPayout = 0;
+phWon = 0;
+phLost = 0;
+phRuns = 0;
+phProfit = 0;
+phJournal = "";
 
+phInterval = setInterval(addPhinixTrade, 2500);
+    
+function togglePhinixBot(){
+if (phInterval) {
+    clearInterval(phInterval);
+    phInterval = null;
+}
     if(phBotRunning){
 
         clearInterval(phInterval);
-        phBotRunning = false;
+phInterval = null;
+phBotRunning = false;
 
         document.getElementById("phRunBtn").innerHTML = "▶ RUN";
         document.getElementById("phStatus").innerHTML = "STOPPED";
@@ -1278,7 +1291,7 @@ function togglePhinixBot(){
 
     document.getElementById("phRunBtn").innerHTML = "■ STOP";
     document.getElementById("phStatus").innerHTML = "RUNNING";
-
+clearInterval(phInterval);
     phInterval = setInterval(addPhinixTrade,2500);
 
 }
@@ -1335,7 +1348,7 @@ ${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)<br>
 
 }
 function showPhinixTransactions(){
-    openPhinixRunningScreen();
+    // Already on Transactions screen
 }
 
 function showPhinixSummary(){
