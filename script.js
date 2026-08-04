@@ -1215,22 +1215,201 @@ margin-bottom:20px;
 </select>
 
 <button
-onclick="openBotRunningScreen()"
-style="
-width:100%;
-padding:16px;
-background:linear-gradient(90deg,#ffd700,#ffb300);
-color:#111;
-font-size:20px;
-font-weight:bold;
-border:none;
-border-radius:14px;
-cursor:pointer;
-">
-▶ RUN
-</button>
+function openPhinixRunningScreen(){
+
+    activeBot = "Phinix Pro";
+
+    document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="openPhinixProBot()">←</div>
+    <div class="logo">PHINIX PRO BOT</div>
+    <div id="botStatus" style="color:#00ff88;font-weight:bold;">RUNNING</div>
 </div>
 
-`;
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:10px;
+margin-top:12px;
+display:flex;
+justify-content:space-between;
+gap:8px;
+">
 
+<button onclick="showPhinixSummary()" style="flex:1;padding:12px;background:#111;color:white;border:none;border-radius:12px;">
+Summary
+</button>
+
+<button onclick="showPhinixTransactions()" style="flex:1;padding:12px;background:linear-gradient(90deg,#7a2cff,#c94fff);color:white;border:none;border-radius:12px;">
+Transactions
+</button>
+
+<button onclick="showPhinixJournal()" style="flex:1;padding:12px;background:#111;color:white;border:none;border-radius:12px;">
+Journal
+</button>
+
+</div>
+
+<div id="phinixTransactionContainer"
+style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:16px;
+padding:12px;
+margin-top:12px;
+height:260px;
+overflow-y:auto;
+">
+
+<table id="phinixTransactionsTable"
+style="width:100%;color:white;">
+
+<thead>
+<tr>
+<th>Type</th>
+<th>Entry</th>
+<th>P/L</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:16px;
+padding:14px;
+margin-top:12px;
+">
+
+<div style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+text-align:center;
+">
+
+<div><b>Total Stake</b><br><span id="phStake">0 USD</span></div>
+<div><b>Total Payout</b><br><span id="phPayout">0 USD</span></div>
+<div><b>Won</b><br><span id="phWon">0</span></div>
+<div><b>Lost</b><br><span id="phLost">0</span></div>
+<div><b>Runs</b><br><span id="phRuns">0</span></div>
+<div><b>Profit</b><br><span id="phProfit">0 USD</span></div>
+
+</div>
+
+<button
+onclick="togglePhinixBot()"
+id="phRunBtn"
+style="
+width:100%;
+margin-top:16px;
+padding:14px;
+background:#d62828;
+color:white;
+border:none;
+border-radius:12px;
+font-size:18px;
+">
+■ STOP
+</button>
+
+</div>
+    // ===============================
+// PHINIX PRO BOT
+// ===============================
+
+let phBotRunning = false;
+let phInterval = null;
+
+let phStake = 0;
+let phPayout = 0;
+let phWon = 0;
+let phLost = 0;
+let phRuns = 0;
+let phProfit = 0;
+let phJournal = "";
+
+function togglePhinixBot(){
+
+    if(phBotRunning){
+        clearInterval(phInterval);
+        phBotRunning = false;
+
+        document.getElementById("phRunBtn").innerHTML = "▶ RUN";
+        document.getElementById("botStatus").innerHTML = "STOPPED";
+        return;
+    }
+
+    phBotRunning = true;
+
+    document.getElementById("phRunBtn").innerHTML = "■ STOP";
+    document.getElementById("botStatus").innerHTML = "RUNNING";
+
+    phInterval = setInterval(addPhinixTrade,2500);
 }
+
+function addPhinixTrade(){
+
+    const table = document
+    .getElementById("phinixTransactionsTable")
+    .getElementsByTagName("tbody")[0];
+
+    const row = table.insertRow();
+
+    const win = Math.random() > 0.35;
+
+    const entry = (735 + Math.random()).toFixed(2);
+
+    let pnl = win ? 3.70 : -5.00;
+
+    phStake += 5;
+    phPayout += win ? 8.70 : 0;
+    phRuns++;
+
+    if(win){
+        phWon++;
+    }else{
+        phLost++;
+    }
+
+    phProfit += pnl;
+
+    row.innerHTML = `
+    <td>${win?"📈":"📉"}</td>
+    <td>${entry}</td>
+    <td style="color:${win?"#00ff88":"#ff4444"}">
+    ${pnl.toFixed(2)} USD
+    </td>`;
+
+    document.getElementById("phStake").innerHTML = phStake.toFixed(2)+" USD";
+    document.getElementById("phPayout").innerHTML = phPayout.toFixed(2)+" USD";
+    document.getElementById("phWon").innerHTML = phWon;
+    document.getElementById("phLost").innerHTML = phLost;
+    document.getElementById("phRuns").innerHTML = phRuns;
+    document.getElementById("phProfit").innerHTML = phProfit.toFixed(2)+" USD";
+
+    phJournal += `
+🎯 Signal Found<br>
+${win?"💰 Contract Won":"❌ Contract Lost"} (${pnl.toFixed(2)} USD)<br>
+📈 Monitoring Market...<br>
+`;
+}
+
+function showPhinixTransactions(){
+    openPhinixRunningScreen();
+}
+
+function showPhinixSummary(){
+    alert("Phinix Summary page coming next.");
+}
+
+function showPhinixJournal(){
+    alert("Phinix Journal page coming next.");
+    }
