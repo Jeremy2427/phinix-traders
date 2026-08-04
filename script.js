@@ -961,197 +961,67 @@ ${journalHistory}
 function showTransactions(){
     openBotRunningScreen();
 }
+// ===============================
+// PHINIX PRO BOT
+// ===============================
+
+let phBotRunning = false;
+let phInterval = null;
+
+let phStake = 0;
+let phPayout = 0;
+let phWon = 0;
+let phLost = 0;
+let phRuns = 0;
+let phProfit = 0;
+let phJournal = "";
+
 function openPhinixProBot(){
+
 activeBot = "Phinix Pro";
+
 document.querySelector(".container").innerHTML = `
 
 <div class="header">
 <div onclick="openBots()" style="cursor:pointer;">←</div>
 <div class="logo">PHINIX PRO BOT</div>
-<div>⚙️</div>
+<div>🏠</div>
 </div>
 
 <div style="
 background:linear-gradient(180deg,#7a2cff,#9d4edd,#ffd700);
-padding:14px;
+padding:16px;
 border-radius:18px;
 margin-top:12px;
 ">
 
 <h2 style="
 text-align:center;
-font-size:28px;
-font-weight:bold;
 color:white;
+font-size:28px;
 margin-bottom:20px;
 ">
-⚡ Quick Strategy
+⚡ QUICK STRATEGY
 </h2>
 
-<h3 style="
-color:#ffd700;
-font-size:22px;
-margin-bottom:15px;
-">
-1. Trade Parameters
-</h3>
+<h3 style="color:#ffd700;">Trade Parameters</h3>
 
-<div style="
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-">
-
-<div>
-<label style="font-size:12px;color:white;">Market</label>
-<select style="width:100%;padding:10px;border-radius:10px;">
+<label>Market</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 <option>Derived</option>
 </select>
-</div>
 
-<div>
-<label style="font-size:12px;color:white;">Category</label>
-<select style="width:100%;padding:10px;border-radius:10px;">
-<option>Continuous Indices</option>
-</select>
-</div>
-
-<div>
-<label style="font-size:12px;color:white;">Index</label>
-<select style="width:100%;padding:10px;border-radius:10px;">
+<label>Index</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 <option>Volatility 100 (1s)</option>
 </select>
-</div>
 
-<div>
-<label style="font-size:12px;color:white;">Contract</label>
-<select style="width:100%;padding:10px;border-radius:10px;">
-<option>Matches / Differs</option>
-<option>Over / Under</option>
-<option>Even / Odd</option>
-<option>Rise / Fall</option>
-</select>
-</div>
+<label>Stake</label>
+<input type="number" value="2"
+style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 
-</div>
-
-<h3 style="
-color:#ffd700;
-font-size:22px;
-margin-top:20px;
-margin-bottom:15px;
-text-align:center;
-">
-⚙ Run Once At Start
-</h3>
-
-<label style="font-size:13px;color:white;">Stake</label>
-<input
-type="number"
-value="2"
-style="
-width:100%;
-padding:12px;
-border:none;
-border-radius:12px;
-margin-bottom:12px;
-">
-
-<label style="font-size:13px;color:white;">Target Profit</label>
-<input
-type="number"
-value="5"
-style="
-width:100%;
-padding:12px;
-border:none;
-border-radius:12px;
-margin-bottom:12px;
-">
-
-<label style="font-size:13px;color:white;">Stop Loss</label>
-<input
-type="number"
-value="10"
-style="
-width:100%;
-padding:12px;
-border:none;
-border-radius:12px;
-margin-bottom:12px;
-">
-
-<label style="font-size:13px;color:white;">Martingale</label>
-<select
-style="
-width:100%;
-padding:12px;
-border-radius:12px;
-margin-bottom:20px;
-">
-<option>OFF</option>
-<option>2</option>
-<option>2.5</option>
-<option>3</option>
-<option>4</option>
-</select>
-<h3 style="
-color:#ffd700;
-font-size:22px;
-margin-top:10px;
-margin-bottom:15px;
-text-align:center;
-">
-📊 Trade Options
-</h3>
-
-<label style="font-size:13px;color:white;">Trade Type</label>
-<select style="
-width:100%;
-padding:12px;
-border-radius:12px;
-margin-bottom:12px;
-">
-<option>Over / Under</option>
-<option>Matches / Differs</option>
-<option>Even / Odd</option>
-<option>Rise / Fall</option>
-</select>
-
-<label style="font-size:13px;color:white;">Duration Type</label>
-<select style="
-width:100%;
-padding:12px;
-border-radius:12px;
-margin-bottom:12px;
-">
-<option>Ticks</option>
-<option>Seconds</option>
-<option>Minutes</option>
-</select>
-
-<label style="font-size:13px;color:white;">Duration Value</label>
-<select style="
-width:100%;
-padding:12px;
-border-radius:12px;
-margin-bottom:12px;
-">
-<option>1</option>
-<option>2</option>
-<option>3</option>
-<option>4</option>
-<option>5</option>
-<option>10</option>
-</select>
-
-<label style="font-size:13px;color:white;">Prediction</label>
-<select style="
-width:100%;
-padding:12px;
-border-radius:12px;
-margin-bottom:20px;
-">
+<label>Prediction</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:20px;">
 <option>0</option>
 <option>1</option>
 <option>2</option>
@@ -1163,72 +1033,38 @@ margin-bottom:20px;
 <option>8</option>
 <option>9</option>
 </select>
-<h3 style="
-color:#ffd700;
-font-size:22px;
-margin-top:10px;
-margin-bottom:15px;
-text-align:center;
-">
-🛒 Purchase Conditions
-</h3>
-
-<label style="font-size:13px;color:white;">Purchase</label>
-<select style="
-width:100%;
-padding:12px;
-border-radius:12px;
-margin-bottom:12px;
-">
-<option>Odd</option>
-<option>Even</option>
-<option>Over</option>
-<option>Under</option>
-<option>Matches</option>
-<option>Differs</option>
-<option>Rise</option>
-<option>Fall</option>
-</select>
-
-<label style="font-size:13px;color:white;">Allow Bulk Purchase</label>
-<select style="
-width:100%;
-padding:12px;
-border-radius:12px;
-margin-bottom:12px;
-">
-<option>No</option>
-<option>Yes</option>
-</select>
-
-<label style="font-size:13px;color:white;">Number of Trades</label>
-<select style="
-width:100%;
-padding:12px;
-border-radius:12px;
-margin-bottom:20px;
-">
-<option>1</option>
-<option>2</option>
-<option>5</option>
-<option>10</option>
-</select>
 
 <button
-function openPhinixRunningScreen(){
+onclick="openPhinixRunningScreen()"
+style="
+width:100%;
+padding:16px;
+background:#00b050;
+color:white;
+font-size:20px;
+border:none;
+border-radius:14px;
+font-weight:bold;
+">
+▶ RUN
+</button>
 
-    activeBot = "Phinix Pro";
-
-    document.querySelector(".container").innerHTML = `
-
-<div class="header">
-    <div onclick="openPhinixProBot()">←</div>
-    <div class="logo">PHINIX PRO BOT</div>
-    <div id="botStatus" style="color:#00ff88;font-weight:bold;">RUNNING</div>
 </div>
-    `;
+
+`;
 
 }
+function openPhinixRunningScreen(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openPhinixProBot()" style="cursor:pointer;">←</div>
+<div class="logo">PHINIX PRO BOT</div>
+<div id="phStatus" style="color:#00ff88;font-weight:bold;">
+RUNNING
+</div>
+</div>
 
 <div style="
 background:#161625;
@@ -1237,37 +1073,43 @@ border-radius:18px;
 padding:10px;
 margin-top:12px;
 display:flex;
-justify-content:space-between;
 gap:8px;
 ">
 
-<button onclick="showPhinixSummary()" style="flex:1;padding:12px;background:#111;color:white;border:none;border-radius:12px;">
+<button onclick="showPhinixSummary()"
+style="flex:1;padding:12px;border:none;border-radius:12px;">
 Summary
 </button>
 
-<button onclick="showPhinixTransactions()" style="flex:1;padding:12px;background:linear-gradient(90deg,#7a2cff,#c94fff);color:white;border:none;border-radius:12px;">
+<button onclick="showPhinixTransactions()"
+style="flex:1;padding:12px;border:none;border-radius:12px;background:#7a2cff;color:white;">
 Transactions
 </button>
 
-<button onclick="showPhinixJournal()" style="flex:1;padding:12px;background:#111;color:white;border:none;border-radius:12px;">
+<button onclick="showPhinixJournal()"
+style="flex:1;padding:12px;border:none;border-radius:12px;">
 Journal
 </button>
 
 </div>
 
-<div id="phinixTransactionContainer"
+<div id="phTransactionContainer"
 style="
 background:#161625;
 border:1px solid #7a2cff;
 border-radius:16px;
 padding:12px;
 margin-top:12px;
-height:260px;
+height:250px;
 overflow-y:auto;
 ">
 
-<table id="phinixTransactionsTable"
-style="width:100%;color:white;">
+<table id="phTransactionsTable"
+style="
+width:100%;
+color:white;
+border-collapse:collapse;
+">
 
 <thead>
 <tr>
@@ -1298,18 +1140,23 @@ gap:12px;
 text-align:center;
 ">
 
-<div><b>Total Stake</b><br><span id="phStake">0 USD</span></div>
-<div><b>Total Payout</b><br><span id="phPayout">0 USD</span></div>
-<div><b>Won</b><br><span id="phWon">0</span></div>
-<div><b>Lost</b><br><span id="phLost">0</span></div>
-<div><b>Runs</b><br><span id="phRuns">0</span></div>
-<div><b>Profit</b><br><span id="phProfit">0 USD</span></div>
+<div><b>Total Stake</b><br><span id="phStakeDisplay">0 USD</span></div>
+
+<div><b>Total Payout</b><br><span id="phPayoutDisplay">0 USD</span></div>
+
+<div><b>Won</b><br><span id="phWonDisplay">0</span></div>
+
+<div><b>Lost</b><br><span id="phLostDisplay">0</span></div>
+
+<div><b>Runs</b><br><span id="phRunsDisplay">0</span></div>
+
+<div><b>Profit</b><br><span id="phProfitDisplay">0 USD</span></div>
 
 </div>
 
 <button
-onclick="togglePhinixBot()"
 id="phRunBtn"
+onclick="togglePhinixBot()"
 style="
 width:100%;
 margin-top:16px;
@@ -1319,28 +1166,160 @@ color:white;
 border:none;
 border-radius:12px;
 font-size:18px;
+font-weight:bold;
 ">
 ■ STOP
 </button>
 
 </div>
-    
+
+`;
+
+phBotRunning = true;
+
+}
+function togglePhinixBot(){
+
+    if(phBotRunning){
+
+        clearInterval(phInterval);
+        phBotRunning = false;
+
+        document.getElementById("phRunBtn").innerHTML = "▶ RUN";
+        document.getElementById("phStatus").innerHTML = "STOPPED";
+
+        return;
+    }
+
+    phBotRunning = true;
+
+    document.getElementById("phRunBtn").innerHTML = "■ STOP";
+    document.getElementById("phStatus").innerHTML = "RUNNING";
+
+    phInterval = setInterval(addPhinixTrade,2500);
+
+}
+
+function addPhinixTrade(){
+
+    const table = document
+        .getElementById("phTransactionsTable")
+        .getElementsByTagName("tbody")[0];
+
+    const row = table.insertRow();
+
+    const win = Math.random() > 0.35;
+
+    const entry = (735 + Math.random()).toFixed(2);
+
+    const pnl = win ? 3.70 : -5.00;
+
+    phStake += 5;
+    phPayout += win ? 8.70 : 0;
+    phRuns++;
+
+    if(win){
+        phWon++;
+    }else{
+        phLost++;
+    }
+
+    phProfit += pnl;
+
+    row.innerHTML = `
+    <td>${win ? "📈" : "📉"}</td>
+    <td>${entry}</td>
+    <td style="color:${win ? "#00ff88" : "#ff4444"};">
+        ${pnl.toFixed(2)} USD
+    </td>
+    `;
+
+    document.getElementById("phStakeDisplay").innerHTML = phStake.toFixed(2)+" USD";
+    document.getElementById("phPayoutDisplay").innerHTML = phPayout.toFixed(2)+" USD";
+    document.getElementById("phWonDisplay").innerHTML = phWon;
+    document.getElementById("phLostDisplay").innerHTML = phLost;
+    document.getElementById("phRunsDisplay").innerHTML = phRuns;
+    document.getElementById("phProfitDisplay").innerHTML = phProfit.toFixed(2)+" USD";
+
+    phJournal += `
+🎯 Signal Found<br>
+${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)<br>
+📈 Monitoring Market...<br>
+`;
+
+    const container = document.getElementById("phTransactionContainer");
+    container.scrollTop = container.scrollHeight;
+
+}
+function showPhinixTransactions(){
+    openPhinixRunningScreen();
+}
+
+function showPhinixSummary(){
+
+document.querySelector(".container").innerHTML=`
+
+<div class="header">
+<div onclick="openPhinixRunningScreen()">←</div>
+<div class="logo">SUMMARY</div>
+<div>📊</div>
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:18px;
+margin-top:14px;
+color:white;
+line-height:2;
+">
+
+<h2 style="text-align:center;color:#ffd700;">
+PHINIX PRO PERFORMANCE
+</h2>
+
+<b>Contracts Won:</b> ${phWon}<br>
+<b>Contracts Lost:</b> ${phLost}<br>
+<b>Total Stake:</b> ${phStake.toFixed(2)} USD<br>
+<b>Total Payout:</b> ${phPayout.toFixed(2)} USD<br>
+
+<b>Total Profit:</b>
+<span style="color:${phProfit>=0?"#00ff88":"#ff4444"};">
+${phProfit.toFixed(2)} USD
+</span>
+
 </div>
 
 `;
 
 }
-// ===============================
-// PHINIX PRO BOT
-// ===============================
 
-let phBotRunning = false;
-let phInterval = null;
+function showPhinixJournal(){
 
-let phStake = 0;
-let phPayout = 0;
-let phWon = 0;
-let phLost = 0;
-let phRuns = 0;
-let phProfit = 0;
-let phJournal = "";
+document.querySelector(".container").innerHTML=`
+
+<div class="header">
+<div onclick="openPhinixRunningScreen()">←</div>
+<div class="logo">JOURNAL</div>
+<div>📖</div>
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:18px;
+margin-top:14px;
+color:white;
+line-height:2;
+">
+
+${phJournal}
+
+</div>
+
+`;
+
+}
+
