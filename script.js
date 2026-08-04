@@ -1,6 +1,6 @@
 let botRunning = false;
 let botInterval = null;
-
+let activeBot = "Apex";
 let totalStake = 0;
 let totalPayout = 0;
 let contractsWon = 0;
@@ -204,6 +204,7 @@ function openDashboard() {
 }
 
 function openApexBot(){
+    activeBot = "Apex";
 document.querySelector(".container").innerHTML = `
 
 <div class="header">
@@ -961,7 +962,7 @@ function showTransactions(){
     openBotRunningScreen();
 }
 function openPhinixProBot(){
-
+activeBot = "Phinix Pro";
 document.querySelector(".container").innerHTML = `
 
 <div class="header">
