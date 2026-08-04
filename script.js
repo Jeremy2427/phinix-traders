@@ -1226,6 +1226,9 @@ function openPhinixRunningScreen(){
     <div class="logo">PHINIX PRO BOT</div>
     <div id="botStatus" style="color:#00ff88;font-weight:bold;">RUNNING</div>
 </div>
+    `;
+
+}
 
 <div style="
 background:#161625;
@@ -1321,7 +1324,13 @@ font-size:18px;
 </button>
 
 </div>
-    // ===============================
+    
+</div>
+
+`;
+
+}
+// ===============================
 // PHINIX PRO BOT
 // ===============================
 
@@ -1335,81 +1344,3 @@ let phLost = 0;
 let phRuns = 0;
 let phProfit = 0;
 let phJournal = "";
-
-function togglePhinixBot(){
-
-    if(phBotRunning){
-        clearInterval(phInterval);
-        phBotRunning = false;
-
-        document.getElementById("phRunBtn").innerHTML = "▶ RUN";
-        document.getElementById("botStatus").innerHTML = "STOPPED";
-        return;
-    }
-
-    phBotRunning = true;
-
-    document.getElementById("phRunBtn").innerHTML = "■ STOP";
-    document.getElementById("botStatus").innerHTML = "RUNNING";
-
-    phInterval = setInterval(addPhinixTrade,2500);
-}
-
-function addPhinixTrade(){
-
-    const table = document
-    .getElementById("phinixTransactionsTable")
-    .getElementsByTagName("tbody")[0];
-
-    const row = table.insertRow();
-
-    const win = Math.random() > 0.35;
-
-    const entry = (735 + Math.random()).toFixed(2);
-
-    let pnl = win ? 3.70 : -5.00;
-
-    phStake += 5;
-    phPayout += win ? 8.70 : 0;
-    phRuns++;
-
-    if(win){
-        phWon++;
-    }else{
-        phLost++;
-    }
-
-    phProfit += pnl;
-
-    row.innerHTML = `
-    <td>${win?"📈":"📉"}</td>
-    <td>${entry}</td>
-    <td style="color:${win?"#00ff88":"#ff4444"}">
-    ${pnl.toFixed(2)} USD
-    </td>`;
-
-    document.getElementById("phStake").innerHTML = phStake.toFixed(2)+" USD";
-    document.getElementById("phPayout").innerHTML = phPayout.toFixed(2)+" USD";
-    document.getElementById("phWon").innerHTML = phWon;
-    document.getElementById("phLost").innerHTML = phLost;
-    document.getElementById("phRuns").innerHTML = phRuns;
-    document.getElementById("phProfit").innerHTML = phProfit.toFixed(2)+" USD";
-
-    phJournal += `
-🎯 Signal Found<br>
-${win?"💰 Contract Won":"❌ Contract Lost"} (${pnl.toFixed(2)} USD)<br>
-📈 Monitoring Market...<br>
-`;
-}
-
-function showPhinixTransactions(){
-    openPhinixRunningScreen();
-}
-
-function showPhinixSummary(){
-    alert("Phinix Summary page coming next.");
-}
-
-function showPhinixJournal(){
-    alert("Phinix Journal page coming next.");
-    }
