@@ -1034,6 +1034,200 @@ gap:10px;
 
 </div>
 
+<h3 style="
+color:#ffd700;
+font-size:22px;
+margin-top:20px;
+margin-bottom:15px;
+text-align:center;
+">
+⚙ Run Once At Start
+</h3>
+
+<label style="font-size:13px;color:white;">Stake</label>
+<input
+type="number"
+value="2"
+style="
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+margin-bottom:12px;
+">
+
+<label style="font-size:13px;color:white;">Target Profit</label>
+<input
+type="number"
+value="5"
+style="
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+margin-bottom:12px;
+">
+
+<label style="font-size:13px;color:white;">Stop Loss</label>
+<input
+type="number"
+value="10"
+style="
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+margin-bottom:12px;
+">
+
+<label style="font-size:13px;color:white;">Martingale</label>
+<select
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:20px;
+">
+<option>OFF</option>
+<option>2</option>
+<option>2.5</option>
+<option>3</option>
+<option>4</option>
+</select>
+<h3 style="
+color:#ffd700;
+font-size:22px;
+margin-top:10px;
+margin-bottom:15px;
+text-align:center;
+">
+📊 Trade Options
+</h3>
+
+<label style="font-size:13px;color:white;">Trade Type</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>Over / Under</option>
+<option>Matches / Differs</option>
+<option>Even / Odd</option>
+<option>Rise / Fall</option>
+</select>
+
+<label style="font-size:13px;color:white;">Duration Type</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>Ticks</option>
+<option>Seconds</option>
+<option>Minutes</option>
+</select>
+
+<label style="font-size:13px;color:white;">Duration Value</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>10</option>
+</select>
+
+<label style="font-size:13px;color:white;">Prediction</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:20px;
+">
+<option>0</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option selected>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+</select>
+<h3 style="
+color:#ffd700;
+font-size:22px;
+margin-top:10px;
+margin-bottom:15px;
+text-align:center;
+">
+🛒 Purchase Conditions
+</h3>
+
+<label style="font-size:13px;color:white;">Purchase</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>Odd</option>
+<option>Even</option>
+<option>Over</option>
+<option>Under</option>
+<option>Matches</option>
+<option>Differs</option>
+<option>Rise</option>
+<option>Fall</option>
+</select>
+
+<label style="font-size:13px;color:white;">Allow Bulk Purchase</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>No</option>
+<option>Yes</option>
+</select>
+
+<label style="font-size:13px;color:white;">Number of Trades</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:20px;
+">
+<option>1</option>
+<option>2</option>
+<option>5</option>
+<option>10</option>
+</select>
+
+<button
+onclick="openBotRunningScreen()"
+style="
+width:100%;
+padding:16px;
+background:linear-gradient(90deg,#ffd700,#ffb300);
+color:#111;
+font-size:20px;
+font-weight:bold;
+border:none;
+border-radius:14px;
+cursor:pointer;
+">
+▶ RUN
+</button>
 </div>
 
 `;
