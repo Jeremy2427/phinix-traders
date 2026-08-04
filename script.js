@@ -977,7 +977,6 @@ let phProfit = 0;
 let phJournal = "";
 
 function openPhinixProBot(){
-
 activeBot = "Phinix Pro";
 
 document.querySelector(".container").innerHTML = `
@@ -1004,21 +1003,76 @@ margin-bottom:20px;
 ⚡ QUICK STRATEGY
 </h2>
 
-<h3 style="color:#ffd700;">Trade Parameters</h3>
+<h3 style="color:#ffd700;">
+📊 Trade Parameters
+</h3>
 
 <label>Market</label>
 <select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 <option>Derived</option>
 </select>
 
+<label>Category</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<option>Continuous Indices</option>
+</select>
+
 <label>Index</label>
 <select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 <option>Volatility 100 (1s)</option>
 </select>
+<h3 style="color:#ffd700;margin-top:20px;">
+⚙ Run Once At Start
+</h3>
 
 <label>Stake</label>
 <input type="number" value="2"
 style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Target Profit</label>
+<input type="number" value="5"
+style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Stop Loss</label>
+<input type="number" value="10"
+style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Martingale</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:20px;">
+<option>OFF</option>
+<option>2</option>
+<option>2.5</option>
+<option>3</option>
+<option>4</option>
+</select>
+<h3 style="color:#ffd700;margin-top:20px;">
+📊 Trade Options
+</h3>
+
+<label>Trade Type</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<option>Over / Under</option>
+<option>Matches / Differs</option>
+<option>Even / Odd</option>
+<option>Rise / Fall</option>
+</select>
+
+<label>Duration Type</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<option>Ticks</option>
+<option>Seconds</option>
+<option>Minutes</option>
+</select>
+
+<label>Duration Value</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>10</option>
+</select>
 
 <label>Prediction</label>
 <select style="width:100%;padding:12px;border-radius:12px;margin-bottom:20px;">
@@ -1033,7 +1087,35 @@ style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 <option>8</option>
 <option>9</option>
 </select>
+<h3 style="color:#ffd700;margin-top:20px;">
+🛒 Purchase Conditions
+</h3>
 
+<label>Purchase</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<option>Odd</option>
+<option>Even</option>
+<option>Over</option>
+<option>Under</option>
+<option>Matches</option>
+<option>Differs</option>
+<option>Rise</option>
+<option>Fall</option>
+</select>
+
+<label>Allow Bulk Purchase</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<option>No</option>
+<option>Yes</option>
+</select>
+
+<label>Number of Trades</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:20px;">
+<option>1</option>
+<option>2</option>
+<option>5</option>
+<option>10</option>
+</select>
 <button
 onclick="openPhinixRunningScreen()"
 style="
@@ -1042,9 +1124,10 @@ padding:16px;
 background:#00b050;
 color:white;
 font-size:20px;
+font-weight:bold;
 border:none;
 border-radius:14px;
-font-weight:bold;
+cursor:pointer;
 ">
 ▶ RUN
 </button>
@@ -1052,7 +1135,7 @@ font-weight:bold;
 </div>
 
 `;
-
+}
 }
 function openPhinixRunningScreen(){
 
