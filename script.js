@@ -670,7 +670,8 @@ if(journal){
     journal.innerHTML = journalHistory;
     journal.scrollTop = journal.scrollHeight;
 }
-
+    
+}
 function openBotRunningScreen(){
 
 document.querySelector(".container").innerHTML = `
@@ -1259,8 +1260,7 @@ font-weight:bold;
 
 phBotRunning = true;
 
-}
-    phStake = 0;
+        phStake = 0;
 phPayout = 0;
 phWon = 0;
 phLost = 0;
@@ -1269,6 +1269,9 @@ phProfit = 0;
 phJournal = "";
 
 phInterval = setInterval(addPhinixTrade, 2500);
+    
+}
+
     
 function togglePhinixBot(){
 if (phInterval) {
