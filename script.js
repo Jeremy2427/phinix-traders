@@ -1676,15 +1676,14 @@ cursor:pointer;
 `;
 }
 function openLightningRunningScreen(){
-
 document.querySelector(".container").innerHTML = `
 
 <div class="header">
-<div onclick="openLightningBot()" style="cursor:pointer;">←</div>
-<div class="logo">⚡ LIGHTNING BOT</div>
-<div id="lightStatus" style="color:#00ff88;font-weight:bold;">
-RUNNING
-</div>
+    <div onclick="openLightningBot()" style="cursor:pointer;">←</div>
+    <div class="logo">⚡ LIGHTNING BOT</div>
+    <div id="lightStatus" style="color:#00ff88;font-weight:bold;">
+        RUNNING
+    </div>
 </div>
 
 <div style="
@@ -1697,98 +1696,218 @@ display:flex;
 gap:8px;
 ">
 
-<button style="flex:1;padding:12px;border:none;border-radius:12px;">
+<button onclick="showLightningSummary()"
+style="
+flex:1;
+padding:12px;
+border:none;
+border-radius:12px;
+">
 Summary
 </button>
 
-<button style="flex:1;padding:12px;border:none;border-radius:12px;background:#7a2cff;color:white;">
+<button onclick="showLightningTransactions()"
+style="
+flex:1;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#7a2cff;
+color:white;
+">
 Transactions
 </button>
 
-<button style="flex:1;padding:12px;border:none;border-radius:12px;">
+<button onclick="showLightningJournal()"
+style="
+flex:1;
+padding:12px;
+border:none;
+border-radius:12px;
+">
 Journal
 </button>
 
 </div>
 
-<div style="
+<div id="lightTransactionContainer"
+style="
 background:#161625;
 border:1px solid #7a2cff;
-border-radius:18px;
-padding:15px;
-margin-top:15px;
-color:white;
+border-radius:16px;
+padding:12px;
+margin-top:12px;
+height:250px;
+overflow-y:auto;
 ">
 
-<h3 style="color:#ffd700;">
-📜 Recent Transactions
-</h3>
-
-<table style="width:100%;text-align:center;">
-<tr style="color:#7a2cff;font-weight:bold;">
-<th>Time</th>
-<th>Contract</th>
-<th>Result</th>
-<th>Profit</th>
-</tr>
-
-<tbody id="lightningTransactions">
-
-<tr>
-<td>22:12</td>
-<td>Over 4</td>
-<td style="color:#00ff66;">WIN</td>
-<td style="color:#00ff66;">3.70 USD</td>
-</tr>
-
-</tbody>
-
-</table>
-
-<div style="
-background:#161625;
-border:1px solid #7a2cff;
-border-radius:18px;
-padding:18px;
-margin-top:18px;
-color:white;
-">
-
-<h2 style="
-margin:0 0 15px 0;
-font-size:22px;
-color:#ffffff;
-text-align:left;
-">
-Transactions
-</h2>
-
-<table style="
+<table id="lightTransactionsTable"
+style="
 width:100%;
 border-collapse:collapse;
+table-layout:fixed;
+color:white;
 text-align:center;
-font-size:18px;
 ">
 
 <thead>
-<tr style="color:white;">
-<th>Type</th>
-<th>Entry</th>
-<th>P/L</th>
+<tr>
+<th style="width:20%;">Type</th>
+<th style="width:40%;">Entry</th>
+<th style="width:40%;">P/L</th>
 </tr>
 </thead>
 
 <tbody id="lightningTransactions">
-
-<tr>
-<td>📈</td>
-<td>--</td>
-<td style="color:#00ff66;">0.00 USD</td>
-</tr>
-
 </tbody>
 
 </table>
 
 </div>
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:16px;
+padding:14px;
+margin-top:12px;
+">
 
+<div style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+text-align:center;
+">
+
+<div>
+<b>Total Stake</b><br>
+<span id="lightStakeDisplay">0 USD</span>
+</div>
+
+<div>
+<b>Total Payout</b><br>
+<span id="lightPayoutDisplay">0 USD</span>
+</div>
+
+<div>
+<b>Won</b><br>
+<span id="lightWonDisplay">0</span>
+</div>
+
+<div>
+<b>Lost</b><br>
+<span id="lightLostDisplay">0</span>
+</div>
+
+<div>
+<b>Runs</b><br>
+<span id="lightRunsDisplay">0</span>
+</div>
+
+<div>
+<b>Profit</b><br>
+<span id="lightProfitDisplay">0 USD</span>
+</div>
+
+</div>
+
+<button
+id="lightRunBtn"
+onclick="toggleLightningBot()"
+style="
+width:100%;
+margin-top:16px;
+padding:14px;
+background:#d62828;
+color:white;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+">
+■ STOP
+</button>
+
+</div>
+
+`;
+
+lightBotRunning = true;
+
+lightStake = 0;
+lightPayout = 0;
+lightWon = 0;
+lightLost = 0;
+lightRuns = 0;
+lightProfit = 0;
+lightJournal = "";
+
+lightInterval = setInterval(addLightningTrade, 2500);
+
+}
+function addLightningTrade(){
+
+const table =
+document.getElementById("lightningTransactions");
+
+const win = Math.random() > 0.35;
+
+const entry = (735 + Math.random()).toFixed(2);
+
+const pnl = win ? 3.70 : -5.00;
+
+lightStake += 5;
+lightPayout += win ? 8.70 : 0;
+lightRuns++;
+
+if(win){
+    lightWon++;
+}else{
+    lightLost++;
+}
+
+lightProfit += pnl;
+
+table.innerHTML += `
+<tr>
+<td style="text-align:center;">${win ? "📈" : "📉"}</td>
+<td style="text-align:center;">${entry}</td>
+<td style="text-align:center;color:${win ? "#00ff88" : "#ff4444"};">
+${pnl.toFixed(2)} USD
+</td>
+</tr>
+`;
+
+document.getElementById("lightStakeDisplay").innerHTML =
+lightStake.toFixed(2)+" USD";
+
+document.getElementById("lightPayoutDisplay").innerHTML =
+lightPayout.toFixed(2)+" USD";
+
+document.getElementById("lightWonDisplay").innerHTML =
+lightWon;
+
+document.getElementById("lightLostDisplay").innerHTML =
+lightLost;
+
+document.getElementById("lightRunsDisplay").innerHTML =
+lightRuns;
+
+document.getElementById("lightProfitDisplay").innerHTML =
+lightProfit.toFixed(2)+" USD";
+
+document.getElementById("lightProfitDisplay").style.color =
+lightProfit >= 0 ? "#00ff88" : "#ff4444";
+
+const container =
+document.getElementById("lightTransactionContainer");
+
+container.scrollTop = container.scrollHeight;
+
+lightJournal += `
+🎯 Signal Found<br>
+${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)<br>
+📈 Monitoring Market...<br>
+`;
+
+}
