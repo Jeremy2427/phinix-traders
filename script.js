@@ -1735,10 +1735,10 @@ color:white;
 <tbody id="lightningTransactions">
 
 <tr>
-<td>--:--</td>
-<td>Waiting...</td>
-<td>...</td>
-<td>0.00</td>
+<td>22:12</td>
+<td>Over 4</td>
+<td style="color:#00ff66;">WIN</td>
+<td style="color:#00ff66;">3.70 USD</td>
 </tr>
 
 </tbody>
@@ -1759,17 +1759,17 @@ color:white;
 
 <div>
 <div style="font-size:18px;font-weight:bold;">Total Stake</div>
-<div id="lightStake">0.00 USD</div>
+<div id="lightStake">5.00 USD</div>
 </div>
 
 <div>
 <div style="font-size:18px;font-weight:bold;">Total Payout</div>
-<div id="lightPayout">0.00 USD</div>
+<div id="lightPayout">8.70 USD</div>
 </div>
 
 <div>
 <div style="font-size:18px;font-weight:bold;">Won</div>
-<div id="lightWon">0</div>
+<div id="lightWon">1</div>
 </div>
 
 <div>
@@ -1779,12 +1779,12 @@ color:white;
 
 <div>
 <div style="font-size:18px;font-weight:bold;">Runs</div>
-<div id="lightRuns">0</div>
+<div id="lightRuns">1</div>
 </div>
 
 <div>
 <div style="font-size:18px;font-weight:bold;">Profit</div>
-<div id="lightProfit">0.00 USD</div>
+<div id="lightProfit">3.70 USD</div>
 </div>
 
 </div>
