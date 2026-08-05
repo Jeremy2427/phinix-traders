@@ -1610,7 +1610,9 @@ margin-bottom:20px;
 <button
 onclick="openLightningRunningScreen()"
 <h3 style="color:#ffd700;margin-top:20px;">
+<h3 style="color:#ffd700;margin-top:20px;">
 🛒 Purchase Conditions
+<label>Purchase</label>
 </h3>
 
 <label>Purchase</label>
