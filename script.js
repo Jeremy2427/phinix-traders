@@ -1745,7 +1745,6 @@ color:white;
 
 </table>
 
-</div>
 <div style="
 background:#161625;
 border:1px solid #7a2cff;
@@ -1755,57 +1754,41 @@ margin-top:18px;
 color:white;
 ">
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;text-align:center;">
-
-<div>
-<div style="font-size:18px;font-weight:bold;">Total Stake</div>
-<div id="lightStake">5.00 USD</div>
-</div>
-
-<div>
-<div style="font-size:18px;font-weight:bold;">Total Payout</div>
-<div id="lightPayout">8.70 USD</div>
-</div>
-
-<div>
-<div style="font-size:18px;font-weight:bold;">Won</div>
-<div id="lightWon">1</div>
-</div>
-
-<div>
-<div style="font-size:18px;font-weight:bold;">Lost</div>
-<div id="lightLost">0</div>
-</div>
-
-<div>
-<div style="font-size:18px;font-weight:bold;">Runs</div>
-<div id="lightRuns">1</div>
-</div>
-
-<div>
-<div style="font-size:18px;font-weight:bold;">Profit</div>
-<div id="lightProfit">3.70 USD</div>
-</div>
-
-</div>
-
-<button
-style="
-width:100%;
-margin-top:22px;
-padding:16px;
-background:#d62828;
-color:white;
+<h2 style="
+margin:0 0 15px 0;
 font-size:22px;
-font-weight:bold;
-border:none;
-border-radius:14px;
-cursor:pointer;
+color:#ffffff;
+text-align:left;
 ">
-■ STOP
-</button>
+Transactions
+</h2>
+
+<table style="
+width:100%;
+border-collapse:collapse;
+text-align:center;
+font-size:18px;
+">
+
+<thead>
+<tr style="color:white;">
+<th>Type</th>
+<th>Entry</th>
+<th>P/L</th>
+</tr>
+</thead>
+
+<tbody id="lightningTransactions">
+
+<tr>
+<td>📈</td>
+<td>--</td>
+<td style="color:#00ff66;">0.00 USD</td>
+</tr>
+
+</tbody>
+
+</table>
 
 </div>
-`;
-}
 
