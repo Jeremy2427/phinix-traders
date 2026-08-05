@@ -1746,6 +1746,65 @@ color:white;
 </table>
 
 </div>
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:18px;
+margin-top:18px;
+color:white;
+">
 
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;text-align:center;">
+
+<div>
+<div style="font-size:18px;font-weight:bold;">Total Stake</div>
+<div id="lightStake">0.00 USD</div>
+</div>
+
+<div>
+<div style="font-size:18px;font-weight:bold;">Total Payout</div>
+<div id="lightPayout">0.00 USD</div>
+</div>
+
+<div>
+<div style="font-size:18px;font-weight:bold;">Won</div>
+<div id="lightWon">0</div>
+</div>
+
+<div>
+<div style="font-size:18px;font-weight:bold;">Lost</div>
+<div id="lightLost">0</div>
+</div>
+
+<div>
+<div style="font-size:18px;font-weight:bold;">Runs</div>
+<div id="lightRuns">0</div>
+</div>
+
+<div>
+<div style="font-size:18px;font-weight:bold;">Profit</div>
+<div id="lightProfit">0.00 USD</div>
+</div>
+
+</div>
+
+<button
+style="
+width:100%;
+margin-top:22px;
+padding:16px;
+background:#d62828;
+color:white;
+font-size:22px;
+font-weight:bold;
+border:none;
+border-radius:14px;
+cursor:pointer;
+">
+■ STOP
+</button>
+
+</div>
 `;
 }
