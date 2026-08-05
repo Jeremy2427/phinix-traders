@@ -1654,6 +1654,8 @@ margin-bottom:20px;
 <option selected>10</option>
 <option>20</option>
 </select>
+<button
+onclick="openLightningRunningScreen()"
 style="
 width:100%;
 padding:16px;
@@ -1669,5 +1671,7 @@ cursor:pointer;
 </button>
 
 </div>
+
 `;
 }
+
