@@ -1465,7 +1465,7 @@ function openLightningBot() {
 </div>
 
 <div style="
-background:linear-gradient(180deg,#6a00ff,#8d3cff,#ffd700);
+background:#5f22b6;
 padding:16px;
 border-radius:18px;
 margin-top:12px;
