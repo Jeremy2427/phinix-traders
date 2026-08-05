@@ -1610,12 +1610,26 @@ margin-bottom:20px;
 <button
 onclick="openLightningRunningScreen()"
 <h3 style="color:#ffd700;margin-top:20px;">
-<h3 style="color:#ffd700;margin-top:20px;">
 🛒 Purchase Conditions
-<label>Purchase</label>
 </h3>
 
 <label>Purchase</label>
+
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>Odd</option>
+<option>Even</option>
+<option>Over</option>
+<option>Under</option>
+<option>Matches</option>
+<option>Differs</option>
+<option>Rise</option>
+<option>Fall</option>
+</select>
 <select style="
 width:100%;
 padding:12px;
