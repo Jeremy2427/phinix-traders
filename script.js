@@ -173,7 +173,7 @@ document.querySelector(".container").innerHTML = `
 <div class="bot-card">
     <h3>🎯 Sniper Bot</h3>
     <p>Precision entry strategy</p>
-    <button>LOAD BOT</button>
+    <button onclick="openSniperBot()">LOAD BOT</button>
 </div>
 
 <div class="bot-card">
@@ -2014,4 +2014,375 @@ function toggleLightningBot(){
 
     lightInterval = setInterval(addLightningTrade, 2500);
 
+}
+function openSniperBot(){
+
+activeBot = "Sniper";
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openBots()" style="cursor:pointer;">←</div>
+<div class="logo">🎯 SNIPER BOT</div>
+<div>🏠</div>
+</div>
+
+<div style="
+background:linear-gradient(180deg,#7a2cff,#9d4edd,#ffd700);
+padding:16px;
+border-radius:18px;
+margin-top:12px;
+">
+
+<h2 style="
+text-align:center;
+color:white;
+font-size:28px;
+margin-bottom:20px;
+">
+⚡ QUICK STRATEGY
+</h2>
+<h3 style="color:#ffd700;">📊 Trade Parameters</h3>
+
+<label>Market</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<option>Derived</option>
+</select>
+
+<label>Index</label>
+<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<option selected>Volatility 100 (1s)</option>
+</select>
+
+<label>Stake</label>
+<input type="number" value="2"
+style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Target Profit</label>
+<input type="number" value="5"
+style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Stop Loss</label>
+<input type="number" value="10"
+style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<button
+onclick="openSniperRunningScreen()"
+style="
+width:100%;
+padding:16px;
+background:#00b050;
+color:white;
+font-size:20px;
+font-weight:bold;
+border:none;
+border-radius:14px;
+">
+▶ RUN
+</button>
+
+</div>
+
+`;
+
+}
+function openSniperRunningScreen(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openSniperBot()" style="cursor:pointer;">←</div>
+<div class="logo">🎯 SNIPER BOT</div>
+<div id="sniperStatus" style="color:#00ff88;font-weight:bold;">
+RUNNING
+</div>
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:10px;
+margin-top:12px;
+display:flex;
+gap:8px;
+">
+
+<button onclick="showSniperSummary()"
+style="flex:1;padding:12px;border:none;border-radius:12px;">
+Summary
+</button>
+
+<button onclick="showSniperTransactions()"
+style="flex:1;padding:12px;border:none;border-radius:12px;background:#7a2cff;color:white;">
+Transactions
+</button>
+
+<button onclick="showSniperJournal()"
+style="flex:1;padding:12px;border:none;border-radius:12px;">
+Journal
+</button>
+
+</div>
+
+<div id="sniperTransactionContainer"
+style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:16px;
+padding:12px;
+margin-top:12px;
+height:250px;
+overflow-y:auto;
+">
+
+<table id="sniperTransactionsTable"
+style="
+width:100%;
+border-collapse:collapse;
+table-layout:fixed;
+color:white;
+text-align:center;
+">
+
+<thead>
+<tr>
+<th style="width:20%;">Type</th>
+<th style="width:40%;">Entry</th>
+<th style="width:40%;">P/L</th>
+</tr>
+</thead>
+
+<tbody id="sniperTransactions"></tbody>
+
+</table>
+
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:16px;
+padding:14px;
+margin-top:12px;
+">
+
+<div style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+text-align:center;
+">
+
+<div><b>Total Stake</b><br><span id="sniperStakeDisplay">0 USD</span></div>
+
+<div><b>Total Payout</b><br><span id="sniperPayoutDisplay">0 USD</span></div>
+
+<div><b>Won</b><br><span id="sniperWonDisplay">0</span></div>
+
+<div><b>Lost</b><br><span id="sniperLostDisplay">0</span></div>
+
+<div><b>Runs</b><br><span id="sniperRunsDisplay">0</span></div>
+
+<div><b>Profit</b><br><span id="sniperProfitDisplay">0 USD</span></div>
+
+</div>
+
+<button
+id="sniperRunBtn"
+onclick="toggleSniperBot()"
+style="
+width:100%;
+margin-top:16px;
+padding:14px;
+background:#d62828;
+color:white;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+">
+■ STOP
+</button>
+
+</div>
+
+`;
+
+sniperBotRunning = true;
+
+sniperStake = 0;
+sniperPayout = 0;
+sniperWon = 0;
+sniperLost = 0;
+sniperRuns = 0;
+sniperProfit = 0;
+sniperJournal = "";
+
+sniperInterval = setInterval(addSniperTrade,2500);
+
+}
+
+function addSniperTrade(){
+
+const table =
+document.getElementById("sniperTransactions");
+
+const win = Math.random() > 0.30; // Sniper wins slightly more often
+
+const entry = (735 + Math.random()).toFixed(2);
+
+const pnl = win ? 3.70 : -5.00;
+
+sniperStake += 5;
+sniperPayout += win ? 8.70 : 0;
+sniperRuns++;
+
+if(win){
+    sniperWon++;
+}else{
+    sniperLost++;
+}
+
+sniperProfit += pnl;
+
+table.innerHTML += `
+<tr>
+<td style="text-align:center;">${win ? "📈" : "📉"}</td>
+<td style="text-align:center;">${entry}</td>
+<td style="text-align:center;color:${win ? "#00ff88" : "#ff4444"};">
+${pnl.toFixed(2)} USD
+</td>
+</tr>
+`;
+
+document.getElementById("sniperStakeDisplay").innerHTML =
+sniperStake.toFixed(2)+" USD";
+
+document.getElementById("sniperPayoutDisplay").innerHTML =
+sniperPayout.toFixed(2)+" USD";
+
+document.getElementById("sniperWonDisplay").innerHTML =
+sniperWon;
+
+document.getElementById("sniperLostDisplay").innerHTML =
+sniperLost;
+
+document.getElementById("sniperRunsDisplay").innerHTML =
+sniperRuns;
+
+document.getElementById("sniperProfitDisplay").innerHTML =
+sniperProfit.toFixed(2)+" USD";
+
+document.getElementById("sniperProfitDisplay").style.color =
+sniperProfit >= 0 ? "#00ff88" : "#ff4444";
+
+const container =
+document.getElementById("sniperTransactionContainer");
+
+container.scrollTop = container.scrollHeight;
+
+sniperJournal += `
+🎯 Sniper signal detected<br>
+${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)<br>
+🎯 Waiting for next precision entry...<br>
+`;
+
+}
+function toggleSniperBot(){
+
+    if(sniperBotRunning){
+
+        clearInterval(sniperInterval);
+        sniperBotRunning = false;
+
+        document.getElementById("sniperRunBtn").innerHTML = "▶ RUN";
+        document.getElementById("sniperRunBtn").style.background = "#00b050";
+
+        document.getElementById("sniperStatus").innerHTML = "STOPPED";
+
+        return;
+    }
+
+    sniperBotRunning = true;
+
+    document.getElementById("sniperRunBtn").innerHTML = "■ STOP";
+    document.getElementById("sniperRunBtn").style.background = "#d62828";
+
+    document.getElementById("sniperStatus").innerHTML = "RUNNING";
+
+    sniperInterval = setInterval(addSniperTrade,2500);
+
+}
+
+function showSniperSummary(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openSniperRunningScreen()">←</div>
+<div class="logo">SUMMARY</div>
+<div>📊</div>
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:18px;
+margin-top:14px;
+color:white;
+line-height:2;
+">
+
+<h2 style="text-align:center;color:#ffd700;">
+SNIPER BOT PERFORMANCE
+</h2>
+
+<b>Contracts Won:</b> ${sniperWon}<br>
+<b>Contracts Lost:</b> ${sniperLost}<br>
+<b>Total Stake:</b> ${sniperStake.toFixed(2)} USD<br>
+<b>Total Payout:</b> ${sniperPayout.toFixed(2)} USD<br>
+
+<b>Total Profit:</b>
+<span style="color:${sniperProfit>=0?"#00ff88":"#ff4444"};">
+${sniperProfit.toFixed(2)} USD
+</span>
+
+</div>
+
+`;
+
+}
+
+function showSniperJournal(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openSniperRunningScreen()">←</div>
+<div class="logo">JOURNAL</div>
+<div>📖</div>
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:18px;
+margin-top:14px;
+color:white;
+line-height:2;
+">
+
+${sniperJournal}
+
+</div>
+
+`;
+
+}
+
+function showSniperTransactions(){
+    openSniperRunningScreen();
 }
