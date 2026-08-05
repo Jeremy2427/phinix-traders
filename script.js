@@ -1454,5 +1454,175 @@ ${phJournal}
 
 }
 function openLightningBot() {
-    alert("Lightning Bot is coming next.");
+    activeBot = "Lightning Bot";
+
+    document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="openBots()" style="cursor:pointer;">←</div>
+    <div class="logo">⚡ LIGHTNING BOT</div>
+    <div>🏠</div>
+</div>
+
+<div style="
+background:linear-gradient(180deg,#6a00ff,#8d3cff,#ffd700);
+padding:16px;
+border-radius:18px;
+margin-top:12px;
+">
+
+<h2 style="
+text-align:center;
+color:white;
+font-size:28px;
+margin-bottom:20px;
+">
+⚡ HIGH SPEED SCALPING
+</h2>
+
+<h3 style="color:#ffd700;">📊 Trade Parameters</h3>
+
+<label>Market</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option selected>Derived</option>
+<option>Forex</option>
+<option>Synthetic</option>
+</select>
+
+<label>Index</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>Volatility 10</option>
+<option>Volatility 25</option>
+<option>Volatility 50</option>
+<option>Volatility 75</option>
+<option selected>Volatility 100 (1s)</option>
+</select>
+
+<label>Stake</label>
+<input
+type="number"
+value="2"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+
+<label>Target Profit</label>
+<input
+type="number"
+value="5"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+
+<label>Stop Loss</label>
+<input
+type="number"
+value="10"
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+
+<label>Martingale</label>
+<select
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:20px;
+">
+<option selected>OFF</option>
+<option>2</option>
+<option>2.5</option>
+<option>3</option>
+<option>4</option>
+</select>
+
+<h3 style="color:#ffd700;">⚙ Trade Options</h3>
+
+<label>Trade Type</label>
+<select
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option selected>Over / Under</option>
+<option>Matches / Differs</option>
+<option>Even / Odd</option>
+<option>Rise / Fall</option>
+</select>
+
+<label>Duration</label>
+<select
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>1 Tick</option>
+<option>2 Ticks</option>
+<option>3 Ticks</option>
+<option selected>5 Ticks</option>
+<option>10 Ticks</option>
+</select>
+
+<label>Prediction</label>
+<select
+style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:20px;
+">
+<option>0</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option selected>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+</select>
+
+<button
+onclick="openLightningRunningScreen()"
+style="
+width:100%;
+padding:16px;
+background:#00b050;
+color:white;
+font-size:20px;
+font-weight:bold;
+border:none;
+border-radius:14px;
+cursor:pointer;
+">
+▶ RUN
+</button>
+
+</div>
+`;
 }
