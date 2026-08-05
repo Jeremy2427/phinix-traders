@@ -1220,15 +1220,17 @@ overflow-y:auto;
 <table id="phTransactionsTable"
 style="
 width:100%;
-color:white;
 border-collapse:collapse;
+table-layout:fixed;
+color:white;
+text-align:center;
 ">
 
 <thead>
 <tr>
-<th>Type</th>
-<th>Entry</th>
-<th>P/L</th>
+<th style="width:20%;">Type</th>
+<th style="width:40%;">Entry</th>
+<th style="width:40%;">P/L</th>
 </tr>
 </thead>
 
@@ -1356,12 +1358,12 @@ function addPhinixTrade(){
     phProfit += pnl;
 
     row.innerHTML = `
-    <td>${win ? "📈" : "📉"}</td>
-    <td>${entry}</td>
-    <td style="color:${win ? "#00ff88" : "#ff4444"};">
-        ${pnl.toFixed(2)} USD
-    </td>
-    `;
+<td style="text-align:center;">${win ? "📈" : "📉"}</td>
+<td style="text-align:center;">${entry}</td>
+<td style="text-align:center;color:${win ? "#00ff88" : "#ff4444"};">
+${pnl.toFixed(2)} USD
+</td>
+`;
 
     document.getElementById("phStakeDisplay").innerHTML = phStake.toFixed(2)+" USD";
     document.getElementById("phPayoutDisplay").innerHTML = phPayout.toFixed(2)+" USD";
