@@ -1711,5 +1711,41 @@ Journal
 
 </div>
 
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:15px;
+margin-top:15px;
+color:white;
+">
+
+<h3 style="color:#ffd700;">
+📜 Recent Transactions
+</h3>
+
+<table style="width:100%;text-align:center;">
+<tr style="color:#7a2cff;font-weight:bold;">
+<th>Time</th>
+<th>Contract</th>
+<th>Result</th>
+<th>Profit</th>
+</tr>
+
+<tbody id="lightningTransactions">
+
+<tr>
+<td>--:--</td>
+<td>Waiting...</td>
+<td>...</td>
+<td>0.00</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
 `;
 }
