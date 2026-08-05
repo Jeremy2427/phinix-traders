@@ -167,7 +167,7 @@ document.querySelector(".container").innerHTML = `
 <div class="bot-card">
     <h3>⚡ Lightning Bot</h3>
     <p>High-speed scalping</p>
-    <button>LOAD BOT</button>
+    <button onclick="openLightningBot()">LOAD BOT</button>
 </div>
 
 <div class="bot-card">
