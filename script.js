@@ -1609,6 +1609,51 @@ margin-bottom:20px;
 
 <button
 onclick="openLightningRunningScreen()"
+<h3 style="color:#ffd700;margin-top:20px;">
+🛒 Purchase Conditions
+</h3>
+
+<label>Purchase</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>Odd</option>
+<option>Even</option>
+<option>Over</option>
+<option>Under</option>
+<option>Matches</option>
+<option>Differs</option>
+<option>Rise</option>
+<option>Fall</option>
+</select>
+
+<label>Allow Bulk Purchase</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>No</option>
+<option>Yes</option>
+</select>
+
+<label>Number of Trades</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:20px;
+">
+<option>1</option>
+<option>2</option>
+<option>5</option>
+<option selected>10</option>
+<option>20</option>
+</select>
 style="
 width:100%;
 padding:16px;
