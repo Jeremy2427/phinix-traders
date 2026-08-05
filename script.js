@@ -1675,4 +1675,41 @@ cursor:pointer;
 
 `;
 }
+function openLightningRunningScreen(){
 
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openLightningBot()" style="cursor:pointer;">←</div>
+<div class="logo">⚡ LIGHTNING BOT</div>
+<div id="lightStatus" style="color:#00ff88;font-weight:bold;">
+RUNNING
+</div>
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:10px;
+margin-top:12px;
+display:flex;
+gap:8px;
+">
+
+<button style="flex:1;padding:12px;border:none;border-radius:12px;">
+Summary
+</button>
+
+<button style="flex:1;padding:12px;border:none;border-radius:12px;background:#7a2cff;color:white;">
+Transactions
+</button>
+
+<button style="flex:1;padding:12px;border:none;border-radius:12px;">
+Journal
+</button>
+
+</div>
+
+`;
+}
