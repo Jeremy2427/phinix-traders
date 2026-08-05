@@ -1007,19 +1007,49 @@ margin-bottom:20px;
 📊 Trade Parameters
 </h3>
 
-<label>Market</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<label style="font-size:12px;font-weight:bold;color:#ffffff;">
+Market
+</label>
+
+<select id="marketSelect"
+style="
+width:100%;
+padding:8px;
+margin-bottom:8px;
+border-radius:10px;
+border:none;
+">
 <option>Derived</option>
+<option>Forex</option>
+<option>Synthetic</option>
 </select>
 
-<label>Category</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
-<option>Continuous Indices</option>
-</select>
+<label style="font-size:12px;font-weight:bold;color:#ffffff;">
+Index
+</label>
 
-<label>Index</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
-<option>Volatility 100 (1s)</option>
+<select id="indexSelect"
+style="
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border-radius:14px;
+border:1px solid #b84dff;
+background:#1b1b2d;
+color:#ffffff;
+font-size:15px;
+font-weight:bold;
+outline:none;
+">
+<option>Volatility 10</option>
+<option>Volatility 10 (1s)</option>
+<option>Volatility 25</option>
+<option>Volatility 25 (1s)</option>
+<option>Volatility 50</option>
+<option>Volatility 50 (1s)</option>
+<option>Volatility 75</option>
+<option>Volatility 75 (1s)</option>
+<option selected>Volatility 100 (1s)</option>
 </select>
 <h3 style="color:#ffd700;margin-top:20px;">
 ⚙ Run Once At Start
