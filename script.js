@@ -1607,8 +1607,7 @@ margin-bottom:20px;
 <option>9</option>
 </select>
 
-<button
-onclick="openLightningRunningScreen()"
+
 <h3 style="color:#ffd700;margin-top:20px;">
 🛒 Purchase Conditions
 </h3>
