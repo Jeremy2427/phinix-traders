@@ -1989,3 +1989,29 @@ ${lightJournal}
 function showLightningTransactions(){
     openLightningRunningScreen();
 }
+function toggleLightningBot(){
+
+    if(lightBotRunning){
+
+        clearInterval(lightInterval);
+        lightBotRunning = false;
+
+        document.getElementById("lightRunBtn").innerHTML = "▶ RUN";
+        document.getElementById("lightRunBtn").style.background = "#00b050";
+
+        document.getElementById("lightStatus").innerHTML = "STOPPED";
+
+        return;
+
+    }
+
+    lightBotRunning = true;
+
+    document.getElementById("lightRunBtn").innerHTML = "■ STOP";
+    document.getElementById("lightRunBtn").style.background = "#d62828";
+
+    document.getElementById("lightStatus").innerHTML = "RUNNING";
+
+    lightInterval = setInterval(addLightningTrade, 2500);
+
+}
