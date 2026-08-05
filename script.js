@@ -1911,3 +1911,81 @@ ${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)<br>
 `;
 
 }
+function showLightningSummary(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openLightningRunningScreen()" style="cursor:pointer;">←</div>
+<div class="logo">SUMMARY</div>
+<div>📊</div>
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:18px;
+margin-top:14px;
+color:white;
+line-height:2;
+">
+
+<h2 style="text-align:center;color:#ffd700;">
+LIGHTNING BOT PERFORMANCE
+</h2>
+
+<b>Contracts Won:</b> ${lightWon}<br>
+<b>Contracts Lost:</b> ${lightLost}<br>
+<b>Total Stake:</b> ${lightStake.toFixed(2)} USD<br>
+<b>Total Payout:</b> ${lightPayout.toFixed(2)} USD<br>
+
+<b>Total Profit:</b>
+<span style="color:${lightProfit>=0 ? "#00ff88" : "#ff4444"};">
+${lightProfit.toFixed(2)} USD
+</span>
+
+</div>
+
+`;
+
+}
+function showLightningJournal(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openLightningRunningScreen()" style="cursor:pointer;">←</div>
+<div class="logo">JOURNAL</div>
+<div>📖</div>
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:18px;
+margin-top:14px;
+color:white;
+line-height:2;
+">
+
+<h2 style="
+text-align:center;
+color:#ffd700;
+margin-bottom:18px;
+">
+LIGHTNING BOT ACTIVITY
+</h2>
+
+${lightJournal}
+
+</div>
+
+`;
+
+}
+
+function showLightningTransactions(){
+    openLightningRunningScreen();
+}
