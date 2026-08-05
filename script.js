@@ -1453,4 +1453,6 @@ ${phJournal}
 `;
 
 }
-
+function openLightningBot() {
+    alert("Lightning Bot is coming next.");
+}
