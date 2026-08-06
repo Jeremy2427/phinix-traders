@@ -2513,3 +2513,537 @@ ${sniperJournal}
 function showSniperTransactions(){
     openSniperRunningScreen();
 }
+function openTrendBot(){
+
+activeBot = "Trend Bot";
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openBots()" style="cursor:pointer;">←</div>
+<div class="logo">📈 TREND BOT</div>
+<div>🏠</div>
+</div>
+
+<div style="
+background:linear-gradient(180deg,#7a2cff,#9d4edd,#ffd700);
+padding:16px;
+border-radius:18px;
+margin-top:12px;
+">
+
+<h2 style="
+text-align:center;
+color:white;
+font-size:28px;
+margin-bottom:20px;
+">
+📈 TREND FOLLOWING STRATEGY
+</h2>
+
+<h3 style="color:#ffd700;">
+📊 Trade Parameters
+</h3>
+
+<label style="font-size:12px;font-weight:bold;color:#ffffff;">
+Market
+</label>
+
+<select id="trendMarketSelect"
+style="
+width:100%;
+padding:8px;
+margin-bottom:8px;
+border-radius:10px;
+border:none;
+">
+<option>Derived</option>
+<option>Forex</option>
+<option>Synthetic</option>
+</select>
+
+<label style="font-size:12px;font-weight:bold;color:#ffffff;">
+Index
+</label>
+
+<select id="trendIndexSelect"
+style="
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border-radius:14px;
+border:1px solid #b84dff;
+background:#1b1b2d;
+color:#ffffff;
+font-size:15px;
+font-weight:bold;
+outline:none;
+">
+<option>Volatility 10</option>
+<option>Volatility 10 (1s)</option>
+<option>Volatility 25</option>
+<option>Volatility 25 (1s)</option>
+<option>Volatility 50</option>
+<option>Volatility 50 (1s)</option>
+<option>Volatility 75</option>
+<option>Volatility 75 (1s)</option>
+<option selected>Volatility 100 (1s)</option>
+</select>
+
+<label>Stake</label>
+<input type="number" value="2"
+style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Target Profit</label>
+<input type="number" value="5"
+style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<label>Stop Loss</label>
+<input type="number" value="10"
+style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<h3 style="color:#ffd700;margin-top:20px;">
+⚙ Run Once At Start
+</h3>
+
+<label>Martingale</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:20px;
+">
+<option>OFF</option>
+<option>2</option>
+<option>2.5</option>
+<option>3</option>
+<option>4</option>
+</select>
+
+<h3 style="color:#ffd700;margin-top:20px;">
+📊 Trade Options
+</h3>
+
+<label>Trade Type</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>Over / Under</option>
+<option>Matches / Differs</option>
+<option>Even / Odd</option>
+<option>Rise / Fall</option>
+</select>
+
+<label>Duration Type</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>Ticks</option>
+<option>Seconds</option>
+<option>Minutes</option>
+</select>
+
+<label>Duration Value</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>10</option>
+</select>
+
+<label>Prediction</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:20px;
+">
+<option>0</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option selected>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+</select>
+
+<h3 style="color:#ffd700;margin-top:20px;">
+🛒 Purchase Conditions
+</h3>
+
+<label>Purchase</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>Odd</option>
+<option>Even</option>
+<option>Over</option>
+<option>Under</option>
+<option>Matches</option>
+<option>Differs</option>
+<option>Rise</option>
+<option>Fall</option>
+</select>
+
+<label>Allow Bulk Purchase</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:12px;
+">
+<option>No</option>
+<option>Yes</option>
+</select>
+
+<label>Number of Trades</label>
+<select style="
+width:100%;
+padding:12px;
+border-radius:12px;
+margin-bottom:20px;
+">
+<option>1</option>
+<option>2</option>
+<option>5</option>
+<option selected>10</option>
+<option>20</option>
+</select>
+
+<button
+onclick="openTrendRunningScreen()"
+style="
+width:100%;
+padding:16px;
+background:#00b050;
+color:white;
+font-size:20px;
+font-weight:bold;
+border:none;
+border-radius:14px;
+cursor:pointer;
+">
+▶ RUN
+</button>
+
+</div>
+
+`;
+}
+function openTrendRunningScreen(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openTrendBot()" style="cursor:pointer;">←</div>
+<div class="logo">📈 TREND BOT</div>
+<div id="trendStatus" style="color:#00ff88;font-weight:bold;">
+RUNNING
+</div>
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:10px;
+margin-top:12px;
+display:flex;
+gap:8px;
+">
+
+<button onclick="showTrendSummary()"
+style="flex:1;padding:12px;border:none;border-radius:12px;">
+Summary
+</button>
+
+<button onclick="showTrendTransactions()"
+style="flex:1;padding:12px;border:none;border-radius:12px;background:#7a2cff;color:white;">
+Transactions
+</button>
+
+<button onclick="showTrendJournal()"
+style="flex:1;padding:12px;border:none;border-radius:12px;">
+Journal
+</button>
+
+</div>
+<div id="trendTransactionContainer"
+style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:16px;
+padding:12px;
+margin-top:12px;
+height:250px;
+overflow-y:auto;
+">
+
+<table id="trendTransactionsTable"
+style="
+width:100%;
+border-collapse:collapse;
+table-layout:fixed;
+color:white;
+text-align:center;
+">
+
+<thead>
+<tr>
+<th style="width:20%;">Type</th>
+<th style="width:40%;">Entry</th>
+<th style="width:40%;">P/L</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+</div>
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:16px;
+padding:14px;
+margin-top:12px;
+">
+
+<div style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+text-align:center;
+">
+
+<div><b>Total Stake</b><br><span id="trendStakeDisplay">0 USD</span></div>
+
+<div><b>Total Payout</b><br><span id="trendPayoutDisplay">0 USD</span></div>
+
+<div><b>Won</b><br><span id="trendWonDisplay">0</span></div>
+
+<div><b>Lost</b><br><span id="trendLostDisplay">0</span></div>
+
+<div><b>Runs</b><br><span id="trendRunsDisplay">0</span></div>
+
+<div><b>Profit</b><br><span id="trendProfitDisplay">0 USD</span></div>
+
+</div>
+
+<button
+id="trendRunBtn"
+onclick="toggleTrendBot()"
+style="
+width:100%;
+margin-top:16px;
+padding:14px;
+background:#d62828;
+color:white;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+">
+■ STOP
+</button>
+
+</div>
+
+`;
+}
+
+let trendBotRunning = false;
+let trendInterval = null;
+
+let trendStake = 0;
+let trendPayout = 0;
+let trendWon = 0;
+let trendLost = 0;
+let trendRuns = 0;
+let trendProfit = 0;
+let trendJournal = "";
+
+function toggleTrendBot(){
+
+    if(trendBotRunning){
+
+        clearInterval(trendInterval);
+        trendInterval = null;
+        trendBotRunning = false;
+
+        document.getElementById("trendRunBtn").innerHTML = "▶ RUN";
+        document.getElementById("trendRunBtn").style.background = "#00b050";
+
+        document.getElementById("trendStatus").innerHTML = "STOPPED";
+
+        return;
+    }
+
+    trendBotRunning = true;
+
+    document.getElementById("trendRunBtn").innerHTML = "■ STOP";
+    document.getElementById("trendRunBtn").style.background = "#d62828";
+
+    document.getElementById("trendStatus").innerHTML = "RUNNING";
+
+    trendInterval = setInterval(addTrendTrade,2500);
+
+}
+
+function addTrendTrade(){
+
+const table =
+document.getElementById("trendTransactionsTable")
+.getElementsByTagName("tbody")[0];
+
+const row = table.insertRow();
+
+const win = Math.random() > 0.40; // Trend Bot win rate
+
+const entry = (735 + Math.random()).toFixed(2);
+
+const pnl = win ? 3.70 : -5.00;
+
+trendStake += 5;
+trendPayout += win ? 8.70 : 0;
+trendRuns++;
+
+if(win){
+    trendWon++;
+}else{
+    trendLost++;
+}
+
+trendProfit += pnl;
+
+row.innerHTML = `
+<td style="text-align:center;">${win ? "📈" : "📉"}</td>
+<td style="text-align:center;">${entry}</td>
+<td style="text-align:center;color:${win ? "#00ff88" : "#ff4444"};">
+${pnl.toFixed(2)} USD
+</td>
+`;
+
+document.getElementById("trendStakeDisplay").innerHTML =
+trendStake.toFixed(2)+" USD";
+
+document.getElementById("trendPayoutDisplay").innerHTML =
+trendPayout.toFixed(2)+" USD";
+
+document.getElementById("trendWonDisplay").innerHTML =
+trendWon;
+
+document.getElementById("trendLostDisplay").innerHTML =
+trendLost;
+
+document.getElementById("trendRunsDisplay").innerHTML =
+trendRuns;
+
+document.getElementById("trendProfitDisplay").innerHTML =
+trendProfit.toFixed(2)+" USD";
+
+document.getElementById("trendProfitDisplay").style.color =
+trendProfit >= 0 ? "#00ff88" : "#ff4444";
+
+trendJournal += `
+📈 Trend detected<br>
+${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)<br>
+📊 Monitoring next trend...<br>
+`;
+
+const container =
+document.getElementById("trendTransactionContainer");
+
+container.scrollTop = container.scrollHeight;
+
+}
+
+function showTrendSummary(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openTrendRunningScreen()">←</div>
+<div class="logo">SUMMARY</div>
+<div>📊</div>
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:18px;
+margin-top:14px;
+color:white;
+line-height:2;
+">
+
+<h2 style="text-align:center;color:#ffd700;">
+TREND BOT PERFORMANCE
+</h2>
+
+<b>Contracts Won:</b> ${trendWon}<br>
+<b>Contracts Lost:</b> ${trendLost}<br>
+<b>Total Stake:</b> ${trendStake.toFixed(2)} USD<br>
+<b>Total Payout:</b> ${trendPayout.toFixed(2)} USD<br>
+
+<b>Total Profit:</b>
+<span style="color:${trendProfit>=0?"#00ff88":"#ff4444"};">
+${trendProfit.toFixed(2)} USD
+</span>
+
+</div>
+
+`;
+
+}
+
+function showTrendJournal(){
+
+document.querySelector(".container").innerHTML = `
+
+<div class="header">
+<div onclick="openTrendRunningScreen()">←</div>
+<div class="logo">JOURNAL</div>
+<div>📖</div>
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:18px;
+margin-top:14px;
+color:white;
+line-height:2;
+">
+
+${trendJournal}
+
+</div>
+
+`;
+
+}
+
+function showTrendTransactions(){
+    openTrendRunningScreen();
+}
