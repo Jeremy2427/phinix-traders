@@ -179,7 +179,7 @@ document.querySelector(".container").innerHTML = `
 <div class="bot-card">
     <h3>📈 Trend Bot</h3>
     <p>Trend-following system</p>
-    <button>LOAD BOT</button>
+    <button onclick="openTrendBot()">LOAD BOT</button>
 </div>
 
 <div class="bot-card">
@@ -2513,6 +2513,7 @@ ${sniperJournal}
 function showSniperTransactions(){
     openSniperRunningScreen();
 }
+
 function openTrendBot(){
 
 activeBot = "Trend Bot";
