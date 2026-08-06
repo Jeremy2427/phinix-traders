@@ -2515,6 +2515,7 @@ function showSniperTransactions(){
 }
 
 function openTrendBot(){
+    alert("Trend Bot opened!");
 
 activeBot = "Trend Bot";
 
