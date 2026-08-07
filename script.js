@@ -3049,3 +3049,4 @@ ${trendJournal}
 function showTrendTransactions(){
     openTrendRunningScreen();
 }
+
