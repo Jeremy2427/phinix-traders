@@ -182,17 +182,6 @@ document.querySelector(".container").innerHTML = `
     <button onclick="openTrendBot()">LOAD BOT</button>
 </div>
 
-<div class="bot-card">
-    <h3>💎 Premium Bot</h3>
-    <p>Multi-strategy trading</p>
-    <button>LOAD BOT</button>
-</div>
-
-<div class="bot-card">
-    <h3>🧠 AI Predictor Bot</h3>
-    <p>AI market prediction</p>
-    <button>LOAD BOT</button>
-</div>
 `;
 
             }
