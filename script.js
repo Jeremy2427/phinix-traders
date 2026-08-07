@@ -2515,7 +2515,6 @@ function showSniperTransactions(){
 }
 
 function openTrendBot(){
-    alert("Trend Bot opened!");
 
 activeBot = "Trend Bot";
 
@@ -2731,7 +2730,10 @@ margin-bottom:20px;
 </select>
 
 <button
-onclick="openTrendRunningScreen()"
+onclick="
+openTrendRunningScreen();
+setTimeout(toggleTrendBot,200);
+"
 style="
 width:100%;
 padding:16px;
