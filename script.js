@@ -3139,3 +3139,352 @@ function openAnalysisTool(){
 function openRiskCalculator(){
     alert("Risk Calculator coming next...");
 }
+
+function openManualTrader(){
+    document.querySelector(".container").innerHTML = `
+
+<div class="header">
+    <div onclick="openDashboard()" style="cursor:pointer;">☰</div>
+    <div class="logo">PHINIX TRADERS</div>
+    <div>🔔</div>
+</div>
+
+<!-- BALANCE / WALLET -->
+<div style="
+margin:15px 20px;
+background:#0d0d18;
+border:1px solid #7a2cff;
+border-radius:22px;
+padding:18px;
+box-shadow:0 0 15px rgba(122,44,255,.25);
+">
+
+<div style="font-size:14px;color:white;">
+Demo Balance
+</div>
+
+<div style="
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+">
+
+<div style="
+font-size:42px;
+font-weight:bold;
+color:white;
+">
+$10,000
+</div>
+
+<button
+onclick="changeWallet()"
+class="wallet-btn"
+style="
+background:linear-gradient(90deg,#7a2cff,#c94fff);
+color:white;
+border:none;
+border-radius:18px;
+padding:14px 20px;
+font-size:17px;
+font-weight:bold;
+">
+Wallet ▼
+</button>
+
+</div>
+
+<div style="
+display:flex;
+gap:8px;
+margin-top:15px;
+">
+
+<button
+onclick="alert('Deposit selected')"
+style="
+flex:1;
+background:#00a878;
+color:white;
+border:none;
+border-radius:12px;
+padding:11px;
+font-weight:bold;
+">
+💰 Deposit
+</button>
+
+<button
+onclick="alert('Withdraw selected')"
+style="
+flex:1;
+background:#c0003c;
+color:white;
+border:none;
+border-radius:12px;
+padding:11px;
+font-weight:bold;
+">
+🏧 Withdraw
+</button>
+
+</div>
+
+</div>
+
+<!-- SWIPEABLE TABS -->
+<div style="
+display:flex;
+gap:8px;
+overflow-x:auto;
+white-space:nowrap;
+padding:8px 20px 15px;
+scrollbar-width:none;
+">
+
+<button onclick="openDashboard()" style="
+flex:0 0 auto;
+padding:12px 18px;
+border-radius:18px;
+border:1px solid #292936;
+background:#11111b;
+color:white;
+font-size:15px;
+">
+🏠 Dashboard
+</button>
+
+<button style="
+flex:0 0 auto;
+padding:12px 18px;
+border-radius:18px;
+border:1px solid #9d4edd;
+background:#17101f;
+color:#c94fff;
+font-size:15px;
+">
+📈 Manual Trader
+</button>
+
+<button onclick="openBots()" style="
+flex:0 0 auto;
+padding:12px 18px;
+border-radius:18px;
+border:1px solid #292936;
+background:#11111b;
+color:white;
+font-size:15px;
+">
+🤖 Phinix Bots
+</button>
+
+<button onclick="openBotBuilder()" style="
+flex:0 0 auto;
+padding:12px 18px;
+border-radius:18px;
+border:1px solid #292936;
+background:#11111b;
+color:white;
+font-size:15px;
+">
+🛠 Bot Builder
+</button>
+
+<button onclick="openBulkTrader()" style="
+flex:0 0 auto;
+padding:12px 18px;
+border-radius:18px;
+border:1px solid #292936;
+background:#11111b;
+color:white;
+font-size:15px;
+">
+📦 Bulk Trader
+</button>
+
+<button onclick="openAnalysisTool()" style="
+flex:0 0 auto;
+padding:12px 18px;
+border-radius:18px;
+border:1px solid #292936;
+background:#11111b;
+color:white;
+font-size:15px;
+">
+📊 Analysis
+</button>
+
+</div>
+
+<!-- MARKET -->
+<div style="
+margin:10px 20px;
+background:#0d0d18;
+border-radius:20px;
+padding:18px;
+">
+
+<div
+class="trade-box"
+onclick="changeVolatility()"
+style="
+border:1px solid #222232;
+border-radius:15px;
+padding:16px;
+color:white;
+font-size:17px;
+cursor:pointer;
+">
+Volatility 100 (1s) Index ▼
+</div>
+
+<div style="
+margin-top:18px;
+font-size:28px;
+font-weight:bold;
+color:#00ff88;
+">
+6,719.71 ▲
+<span style="font-size:18px;">
+0.42%
+</span>
+</div>
+
+</div>
+
+<!-- DIGITS -->
+<div style="
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:14px;
+padding:10px 20px;
+">
+
+${[0,1,2,3,4,5,6,7,8,9].map(n => `
+
+<div style="
+height:82px;
+border:2px solid #292929;
+border-radius:50%;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:28px;
+font-weight:bold;
+">
+
+${n}
+
+<span style="
+font-size:13px;
+color:#00ff88;
+margin-top:4px;
+">
+10%
+</span>
+
+</div>
+
+`).join("")}
+
+</div>
+
+<!-- TRADE SETTINGS -->
+<div style="padding:5px 20px;">
+
+<div
+class="trade-box"
+onclick="changeTicks()"
+style="
+background:#0d0d18;
+border:1px solid #222232;
+border-radius:15px;
+padding:16px;
+margin-top:12px;
+color:white;
+font-size:16px;
+cursor:pointer;
+">
+Number of ticks: 1 ▼
+</div>
+
+<div
+class="trade-box"
+onclick="changeContract()"
+style="
+background:#0d0d18;
+border:1px solid #222232;
+border-radius:15px;
+padding:16px;
+margin-top:12px;
+color:white;
+font-size:16px;
+cursor:pointer;
+">
+Over / Under ▼
+</div>
+
+<div
+class="trade-box"
+onclick="changeStake()"
+style="
+background:#0d0d18;
+border:1px solid #222232;
+border-radius:15px;
+padding:16px;
+margin-top:12px;
+color:white;
+font-size:16px;
+cursor:pointer;
+">
+Stake: 5 USD
+</div>
+
+</div>
+
+<!-- TRADE BUTTONS -->
+<div style="
+display:flex;
+gap:16px;
+padding:25px 20px 20px;
+">
+
+<button
+class="over"
+onclick="alert('OVER trade selected')"
+style="
+flex:1;
+padding:18px;
+background:#008f7a;
+color:white;
+border:none;
+border-radius:18px 18px 0 0;
+font-size:20px;
+font-weight:bold;
+">
+OVER
+</button>
+
+<button
+class="under"
+onclick="alert('UNDER trade selected')"
+style="
+flex:1;
+padding:18px;
+background:#c0003c;
+color:white;
+border:none;
+border-radius:18px 18px 0 0;
+font-size:20px;
+font-weight:bold;
+">
+UNDER
+</button>
+
+</div>
+
+`;
+}
