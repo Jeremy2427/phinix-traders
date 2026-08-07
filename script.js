@@ -189,7 +189,88 @@ function openDashboard(){
 
 document.querySelector(".container").innerHTML = `
 <div id="dashboardPage">
-<!-- PHINIX DASHBOARD WILL GO HERE -->
+
+<div style="
+background:linear-gradient(180deg,#5b21b6,#7c3aed,#9333ea);
+padding:18px;
+border-radius:18px;
+color:white;
+margin-top:12px;
+">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<div>
+<h2 style="margin:0;">👋 Hello Jeremy</h2>
+<p style="margin:4px 0 0 0;font-size:13px;">
+Welcome to Phinix Traders
+</p>
+</div>
+
+<div style="font-size:28px;">
+👤
+</div>
+
+</div>
+
+</div>
+
+<div style="
+display:flex;
+justify-content:space-between;
+gap:10px;
+margin-top:15px;
+">
+
+<button style="
+flex:1;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#16a34a;
+color:white;
+font-weight:bold;
+">
+💰 Deposit
+</button>
+
+<button style="
+flex:1;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#dc2626;
+color:white;
+font-weight:bold;
+">
+🏧 Withdraw
+</button>
+
+</div>
+
+<div style="
+margin-top:15px;
+background:#1b1b2d;
+padding:16px;
+border-radius:16px;
+text-align:center;
+color:white;
+">
+
+<h3 style="margin:0;color:#c084fc;">
+Account Balance
+</h3>
+
+<h1 style="margin-top:10px;">
+10,000 USD
+</h1>
+
+</div>
+
 </div>
 `;
 
