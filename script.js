@@ -188,92 +188,82 @@ document.querySelector(".container").innerHTML = `
 function openDashboard(){
 
 document.querySelector(".container").innerHTML = `
+
 <div id="dashboardPage">
 
+<!-- Purple Welcome Banner -->
 <div style="
-background:linear-gradient(180deg,#5b21b6,#7c3aed,#9333ea);
-padding:18px;
-border-radius:18px;
+background:linear-gradient(135deg,#5b21b6,#7c3aed,#9333ea);
+padding:20px;
+border-radius:20px;
+margin:15px;
 color:white;
-margin-top:12px;
-">
-
-<div style="
 display:flex;
 justify-content:space-between;
 align-items:center;
+box-shadow:0 5px 20px rgba(0,0,0,.3);
 ">
 
 <div>
 <h2 style="margin:0;">👋 Hello Jeremy</h2>
-<p style="margin:4px 0 0 0;font-size:13px;">
+<p style="margin-top:6px;">
 Welcome to Phinix Traders
 </p>
 </div>
 
-<div style="font-size:28px;">
-👤
-</div>
+<div style="font-size:40px;">👤</div>
 
 </div>
 
-</div>
-
+<!-- Dashboard Tabs -->
 <div style="
 display:flex;
-justify-content:space-between;
-gap:10px;
-margin-top:15px;
+overflow-x:auto;
+white-space:nowrap;
+background:#111827;
+padding:10px;
+gap:12px;
 ">
 
-<button style="
-flex:1;
-padding:12px;
-border:none;
-border-radius:12px;
-background:#16a34a;
-color:white;
-font-weight:bold;
-">
-💰 Deposit
-</button>
+<button onclick="openDashboard()">🏠 Dashboard</button>
 
-<button style="
-flex:1;
-padding:12px;
-border:none;
-border-radius:12px;
-background:#dc2626;
-color:white;
-font-weight:bold;
-">
-🏧 Withdraw
-</button>
+<button onclick="openManualTrader()">📈 Manual Trader</button>
+
+<button onclick="openLightningBot()">🤖 Phinix Bots</button>
+
+<button onclick="openBotBuilder()">🛠 Bot Builder</button>
+
+<button onclick="openBulkTrader()">📦 Bulk Trader</button>
+
+<button onclick="openAnalysisTool()">📊 Analysis Tool</button>
+<button onclick="openRiskCalculator()">🧮 Risk Calculator</button>
 
 </div>
 
+<!-- Deposit / Withdraw -->
+<div style="display:flex;gap:10px;padding:15px;">
+<button style="flex:1;background:#16a34a;color:white;padding:14px;border:none;border-radius:12px;">💰 Deposit</button>
+
+<button style="flex:1;background:#dc2626;color:white;padding:14px;border:none;border-radius:12px;">🏧 Withdraw</button>
+</div>
+
+<!-- Balance -->
 <div style="
-margin-top:15px;
+margin:15px;
 background:#1b1b2d;
-padding:16px;
-border-radius:16px;
+padding:20px;
+border-radius:18px;
 text-align:center;
 color:white;
 ">
 
-<h3 style="margin:0;color:#c084fc;">
-Account Balance
-</h3>
+<h3 style="color:#c084fc;">Account Balance</h3>
 
-<h1 style="margin-top:10px;">
-10,000 USD
-</h1>
+<h1>10,000 USD</h1>
 
 </div>
 
-</div>
 `;
-
 }
 
 function openApexBot(){
@@ -3130,3 +3120,22 @@ function showTrendTransactions(){
     openTrendRunningScreen();
 }
 
+function openManualTrader(){
+    alert("Manual Trader coming next...");
+}
+
+function openPhinixBots(){
+    alert("Phinix Bots coming next...");
+}
+
+function openBulkTrader(){
+    alert("Bulk Trader coming next...");
+}
+
+function openAnalysisTool(){
+    alert("Analysis Tool coming next...");
+}
+
+function openRiskCalculator(){
+    alert("Risk Calculator coming next...");
+}
