@@ -186,8 +186,15 @@ document.querySelector(".container").innerHTML = `
 
             }
 function openDashboard(){
-    location.reload();
+
+document.querySelector(".container").innerHTML = `
+<div id="dashboardPage">
+<!-- PHINIX DASHBOARD WILL GO HERE -->
+</div>
+`;
+
 }
+
 function openApexBot(){
     activeBot = "Apex";
 document.querySelector(".container").innerHTML = `
@@ -1371,6 +1378,7 @@ ${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)<br>
     container.scrollTop = container.scrollHeight;
 
 }
+
 function showPhinixTransactions(){
     // Already on Transactions screen
 }
