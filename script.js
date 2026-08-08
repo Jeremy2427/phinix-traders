@@ -330,7 +330,7 @@ font-weight:bold;
 padding:0 15px 15px;
 ">
 
-<button onclick="window.location.href='dtrader.html'" style="
+<button onclick="openManualTrader()" style="
 width:100%;
 background:#252536;
 color:white;
