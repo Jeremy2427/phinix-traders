@@ -186,6 +186,8 @@ document.querySelector(".container").innerHTML = `
 
             }
 
+
+
 function openDashboard(){
 
 document.querySelector(".container").innerHTML = `
@@ -215,7 +217,6 @@ Welcome to Phinix Traders
 <div style="font-size:36px;">👤</div>
 
 </div>
-
 
 <!-- Deposit / Withdraw -->
 <div style="
@@ -250,7 +251,6 @@ font-weight:bold;
 
 </div>
 
-
 <!-- Account Balance -->
 <div style="
 margin:15px;
@@ -270,7 +270,6 @@ $10,000
 </h1>
 
 </div>
-
 
 <!-- Dashboard Tools -->
 <div style="
@@ -326,30 +325,9 @@ font-weight:bold;
 
 </div>
 
-
-<!-- Manual Trader -->
-<div style="padding:0 15px;">
-
-<button onclick="openManualTrader()" style="
-width:100%;
-background:#7a2cff;
-color:white;
-border:none;
-border-radius:15px;
-padding:15px;
-font-size:16px;
-font-weight:bold;
-">
-📈 Manual Trader
-</button>
-
-</div>
-
-
 <!-- Home Button -->
 <div style="
-padding:15px;
-margin-top:10px;
+padding:0 15px 15px;
 ">
 
 <button onclick="window.location.href='Dtrader.html'" style="
