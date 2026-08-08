@@ -3574,6 +3574,57 @@ UNDER
 `;
 }
 
+function openWalletMenu(){
+
+document.querySelector(".container").innerHTML = `
+
+<div style="
+padding:20px;
+color:white;
+">
+
+<h2 style="
+color:#c084fc;
+margin-bottom:20px;
+">
+💳 Wallet
+</h2>
+
+<button onclick="alert('Deposit option selected')"
+style="
+width:100%;
+padding:18px;
+margin-bottom:12px;
+background:#16a34a;
+color:white;
+border:none;
+border-radius:15px;
+font-size:17px;
+font-weight:bold;
+">
+💰 Deposit
+</button>
+
+<button onclick="alert('Withdraw option selected')"
+style="
+width:100%;
+padding:18px;
+background:#dc2626;
+color:white;
+border:none;
+border-radius:15px;
+font-size:17px;
+font-weight:bold;
+">
+🏧 Withdraw
+</button>
+
+</div>
+
+`;
+
+}
+
 window.addEventListener("DOMContentLoaded", function() {
     openDashboard();
 });
