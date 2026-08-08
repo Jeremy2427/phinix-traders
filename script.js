@@ -191,7 +191,7 @@ document.querySelector(".container").innerHTML = `
 
 <div id="dashboardPage">
 
-<!-- Purple Welcome Banner -->
+<!-- Welcome Banner -->
 <div style="
 background:linear-gradient(135deg,#5b21b6,#7c3aed,#9333ea);
 padding:20px;
@@ -215,36 +215,31 @@ Welcome to Phinix Traders
 
 </div>
 
-<!-- Dashboard Tabs -->
-<div style="
-display:flex;
-overflow-x:auto;
-white-space:nowrap;
-background:#111827;
-padding:10px;
-gap:12px;
-">
-
-<button onclick="openDashboard()">🏠 Dashboard</button>
-
-<button onclick="openManualTrader()">📈 Manual Trader</button>
-
-<button onclick="openLightningBot()">🤖 Phinix Bots</button>
-
-<button onclick="openBotBuilder()">🛠 Bot Builder</button>
-
-<button onclick="openBulkTrader()">📦 Bulk Trader</button>
-
-<button onclick="openAnalysisTool()">📊 Analysis Tool</button>
-<button onclick="openRiskCalculator()">🧮 Risk Calculator</button>
-
-</div>
-
 <!-- Deposit / Withdraw -->
 <div style="display:flex;gap:10px;padding:15px;">
-<button style="flex:1;background:#16a34a;color:white;padding:14px;border:none;border-radius:12px;">💰 Deposit</button>
 
-<button style="flex:1;background:#dc2626;color:white;padding:14px;border:none;border-radius:12px;">🏧 Withdraw</button>
+<button style="
+flex:1;
+background:#16a34a;
+color:white;
+padding:14px;
+border:none;
+border-radius:12px;
+">
+💰 Deposit
+</button>
+
+<button style="
+flex:1;
+background:#dc2626;
+color:white;
+padding:14px;
+border:none;
+border-radius:12px;
+">
+🏧 Withdraw
+</button>
+
 </div>
 
 <!-- Balance -->
@@ -260,6 +255,141 @@ color:white;
 <h3 style="color:#c084fc;">Account Balance</h3>
 
 <h1>10,000 USD</h1>
+
+</div>
+
+<!-- Trading Tools -->
+<div style="
+margin:15px;
+color:white;
+">
+
+<h2 style="
+text-align:center;
+color:#c084fc;
+margin-bottom:15px;
+">
+TRADING TOOLS
+</h2>
+
+<div style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+">
+
+<button onclick="openBotBuilder()" style="
+padding:20px 10px;
+background:#111827;
+color:white;
+border:2px solid #f97316;
+border-radius:18px;
+font-size:16px;
+">
+📁<br>
+<b>Bot Editor</b><br>
+<small>Build and customize trading bots</small>
+</button>
+
+<button onclick="openLightningBot()" style="
+padding:20px 10px;
+background:#111827;
+color:white;
+border:2px solid #22c55e;
+border-radius:18px;
+font-size:16px;
+">
+🤖<br>
+<b>Free Bots</b><br>
+<small>Use ready-made strategies</small>
+</button>
+
+<button style="
+padding:20px 10px;
+background:#111827;
+color:white;
+border:2px solid #a855f7;
+border-radius:18px;
+font-size:16px;
+">
+🧩<br>
+<b>Upload Bot</b><br>
+<small>Import your XML bot</small>
+</button>
+
+<button onclick="openQuickStrategy()" style="
+padding:20px 10px;
+background:#111827;
+color:white;
+border:2px solid #eab308;
+border-radius:18px;
+font-size:16px;
+">
+⚡<br>
+<b>Quick Strategy</b><br>
+<small>Start with pre-built strategies</small>
+</button>
+
+<button onclick="openBulkTrader()" style="
+padding:20px 10px;
+background:#111827;
+color:white;
+border:2px solid #06b6d4;
+border-radius:18px;
+font-size:16px;
+">
+📦<br>
+<b>Bulk Trader</b>
+</button>
+
+<button onclick="openAnalysisTool()" style="
+padding:20px 10px;
+background:#111827;
+color:white;
+border:2px solid #8b5cf6;
+border-radius:18px;
+font-size:16px;
+">
+📊<br>
+<b>Analysis Tool</b>
+</button>
+
+<button onclick="openRiskCalculator()" style="
+padding:20px 10px;
+background:#111827;
+color:white;
+border:2px solid #ec4899;
+border-radius:18px;
+font-size:16px;
+">
+🧮<br>
+<b>Risk Calculator</b>
+</button>
+
+</div>
+
+</div>
+
+<!-- HOME BUTTON -->
+<div style="
+margin:20px 15px 30px;
+">
+
+<button onclick="openTradingHome()" style="
+width:100%;
+padding:16px;
+border:none;
+border-radius:16px;
+background:linear-gradient(135deg,#7c3aed,#c026d3);
+color:white;
+font-size:18px;
+font-weight:bold;
+box-shadow:0 5px 18px rgba(124,58,237,.35);
+">
+🏠 Home
+</button>
+
+</div>
 
 </div>
 
