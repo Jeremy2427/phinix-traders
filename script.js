@@ -3625,6 +3625,57 @@ font-weight:bold;
 
 }
 
+function openAccountMenu(){
+
+document.querySelector(".container").innerHTML = `
+
+<div style="
+padding:20px;
+color:white;
+">
+
+<h2 style="
+color:#c084fc;
+margin-bottom:20px;
+">
+💰 Account
+</h2>
+
+<button onclick="openDashboard()"
+style="
+width:100%;
+padding:18px;
+margin-bottom:12px;
+background:#151522;
+color:white;
+border:1px solid #7a2cff;
+border-radius:15px;
+font-size:17px;
+font-weight:bold;
+">
+🎮 Demo Balance
+</button>
+
+<button onclick="alert('Real Account selected')"
+style="
+width:100%;
+padding:18px;
+background:#151522;
+color:white;
+border:1px solid #7a2cff;
+border-radius:15px;
+font-size:17px;
+font-weight:bold;
+">
+💵 Real Account
+</button>
+
+</div>
+
+`;
+
+}
+
 window.addEventListener("DOMContentLoaded", function() {
     openDashboard();
 });
