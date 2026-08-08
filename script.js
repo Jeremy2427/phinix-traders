@@ -185,6 +185,7 @@ document.querySelector(".container").innerHTML = `
 `;
 
             }
+
 function openDashboard(){
 
 document.querySelector(".container").innerHTML = `
@@ -194,7 +195,7 @@ document.querySelector(".container").innerHTML = `
 <!-- Welcome Banner -->
 <div style="
 background:linear-gradient(135deg,#5b21b6,#7c3aed,#9333ea);
-padding:20px;
+padding:18px;
 border-radius:20px;
 margin:15px;
 color:white;
@@ -211,20 +212,26 @@ Welcome to Phinix Traders
 </p>
 </div>
 
-<div style="font-size:40px;">👤</div>
+<div style="font-size:36px;">👤</div>
 
 </div>
 
+
 <!-- Deposit / Withdraw -->
-<div style="display:flex;gap:10px;padding:15px;">
+<div style="
+display:flex;
+gap:10px;
+padding:0 15px;
+">
 
 <button style="
 flex:1;
 background:#16a34a;
 color:white;
-padding:14px;
+padding:12px;
 border:none;
 border-radius:12px;
+font-weight:bold;
 ">
 💰 Deposit
 </button>
@@ -233,158 +240,127 @@ border-radius:12px;
 flex:1;
 background:#dc2626;
 color:white;
-padding:14px;
+padding:12px;
 border:none;
 border-radius:12px;
+font-weight:bold;
 ">
 🏧 Withdraw
 </button>
 
 </div>
 
-<!-- Balance -->
+
+<!-- Account Balance -->
 <div style="
 margin:15px;
 background:#1b1b2d;
-padding:20px;
+padding:18px;
 border-radius:18px;
 text-align:center;
 color:white;
 ">
 
-<h3 style="color:#c084fc;">Account Balance</h3>
+<h3 style="color:#c084fc;">
+Account Balance
+</h3>
 
-<h1>10,000 USD</h1>
+<h1 style="margin-top:8px;">
+$10,000
+</h1>
 
 </div>
 
-<!-- Trading Tools -->
-<div style="
-margin:15px;
-color:white;
-">
 
-<h2 style="
-text-align:center;
-color:#c084fc;
-margin-bottom:15px;
-">
-TRADING TOOLS
-</h2>
-
+<!-- Dashboard Tools -->
 <div style="
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:14px;
+gap:12px;
+padding:15px;
 ">
 
 <button onclick="openBotBuilder()" style="
-padding:20px 10px;
-background:#111827;
+background:#151522;
 color:white;
-border:2px solid #f97316;
-border-radius:18px;
-font-size:16px;
+border:1px solid #29293d;
+border-radius:15px;
+padding:18px 10px;
+font-weight:bold;
 ">
-📁<br>
-<b>Bot Editor</b><br>
-<small>Build and customize trading bots</small>
+🛠 Bot Editor
 </button>
 
-<button onclick="openLightningBot()" style="
-padding:20px 10px;
-background:#111827;
+<button onclick="openBots()" style="
+background:#151522;
 color:white;
-border:2px solid #22c55e;
-border-radius:18px;
-font-size:16px;
+border:1px solid #29293d;
+border-radius:15px;
+padding:18px 10px;
+font-weight:bold;
 ">
-🤖<br>
-<b>Free Bots</b><br>
-<small>Use ready-made strategies</small>
+🤖 Free Bots
 </button>
 
-<button style="
-padding:20px 10px;
-background:#111827;
+<button onclick="openBotBuilder()" style="
+background:#151522;
 color:white;
-border:2px solid #a855f7;
-border-radius:18px;
-font-size:16px;
+border:1px solid #29293d;
+border-radius:15px;
+padding:18px 10px;
+font-weight:bold;
 ">
-🧩<br>
-<b>Upload Bot</b><br>
-<small>Import your XML bot</small>
+📤 Upload Bot
 </button>
 
 <button onclick="openQuickStrategy()" style="
-padding:20px 10px;
-background:#111827;
+background:#151522;
 color:white;
-border:2px solid #eab308;
-border-radius:18px;
-font-size:16px;
-">
-⚡<br>
-<b>Quick Strategy</b><br>
-<small>Start with pre-built strategies</small>
-</button>
-
-<button onclick="openBulkTrader()" style="
-padding:20px 10px;
-background:#111827;
-color:white;
-border:2px solid #06b6d4;
-border-radius:18px;
-font-size:16px;
-">
-📦<br>
-<b>Bulk Trader</b>
-</button>
-
-<button onclick="openAnalysisTool()" style="
-padding:20px 10px;
-background:#111827;
-color:white;
-border:2px solid #8b5cf6;
-border-radius:18px;
-font-size:16px;
-">
-📊<br>
-<b>Analysis Tool</b>
-</button>
-
-<button onclick="openRiskCalculator()" style="
-padding:20px 10px;
-background:#111827;
-color:white;
-border:2px solid #ec4899;
-border-radius:18px;
-font-size:16px;
-">
-🧮<br>
-<b>Risk Calculator</b>
-</button>
-
-</div>
-
-</div>
-
-<!-- HOME BUTTON -->
-<div style="
-margin:20px 15px 30px;
-">
-
-<button onclick="openTradingHome()" style="
-width:100%;
-padding:16px;
-border:none;
-border-radius:16px;
-background:linear-gradient(135deg,#7c3aed,#c026d3);
-color:white;
-font-size:18px;
+border:1px solid #29293d;
+border-radius:15px;
+padding:18px 10px;
 font-weight:bold;
-box-shadow:0 5px 18px rgba(124,58,237,.35);
+">
+⚡ Quick Strategy
+</button>
+
+</div>
+
+
+<!-- Manual Trader -->
+<div style="padding:0 15px;">
+
+<button onclick="openManualTrader()" style="
+width:100%;
+background:#7a2cff;
+color:white;
+border:none;
+border-radius:15px;
+padding:15px;
+font-size:16px;
+font-weight:bold;
+">
+📈 Manual Trader
+</button>
+
+</div>
+
+
+<!-- Home Button -->
+<div style="
+padding:15px;
+margin-top:10px;
+">
+
+<button onclick="window.location.href='Dtrader.html'" style="
+width:100%;
+background:#252536;
+color:white;
+border:1px solid #7a2cff;
+border-radius:15px;
+padding:13px;
+font-weight:bold;
+font-size:15px;
 ">
 🏠 Home
 </button>
@@ -394,6 +370,7 @@ box-shadow:0 5px 18px rgba(124,58,237,.35);
 </div>
 
 `;
+
 }
 
 function openApexBot(){
@@ -3618,3 +3595,7 @@ UNDER
 
 `;
 }
+
+window.addEventListener("DOMContentLoaded", function() {
+    openDashboard();
+});
