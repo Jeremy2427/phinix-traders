@@ -3578,15 +3578,9 @@ function openWalletMenu(){
 
 document.querySelector(".container").innerHTML = `
 
-<div style="
-padding:20px;
-color:white;
-">
+<div style="padding:20px;color:white;">
 
-<h2 style="
-color:#c084fc;
-margin-bottom:20px;
-">
+<h2 style="color:#c084fc;">
 💳 Wallet
 </h2>
 
@@ -3619,38 +3613,20 @@ font-weight:bold;
 🏧 Withdraw
 </button>
 
-<button onclick="openDashboard()" style="
-width:100%;
-padding:14px;
-margin-top:15px;
-background:#252536;
-color:white;
-border:1px solid #7a2cff;
-border-radius:15px;
-font-weight:bold;
-">
-← Back
-</button>
-
 </div>
 
 `;
 
 }
 
+
 function openAccountMenu(){
 
 document.querySelector(".container").innerHTML = `
 
-<div style="
-padding:20px;
-color:white;
-">
+<div style="padding:20px;color:white;">
 
-<h2 style="
-color:#c084fc;
-margin-bottom:20px;
-">
+<h2 style="color:#c084fc;">
 💰 Account
 </h2>
 
@@ -3683,24 +3659,13 @@ font-weight:bold;
 💵 Real Account
 </button>
 
-<button onclick="openDashboard()" style="
-width:100%;
-padding:14px;
-margin-top:15px;
-background:#252536;
-color:white;
-border:1px solid #7a2cff;
-border-radius:15px;
-font-weight:bold;
-">
-← Back
-</button>
-
 </div>
 
 `;
 
 }
+
+
 
 window.addEventListener("DOMContentLoaded", function() {
     openDashboard();
