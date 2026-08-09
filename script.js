@@ -3576,97 +3576,184 @@ UNDER
 
 function openWalletMenu(){
 
-document.querySelector(".container").innerHTML = `
+    const menu = document.createElement("div");
 
-<div style="padding:20px;color:white;">
+    menu.style.cssText = `
+        position:fixed;
+        inset:0;
+        background:rgba(5,5,11,.85);
+        z-index:9999;
+        display:flex;
+        align-items:flex-start;
+        justify-content:center;
+        padding:80px 20px 20px;
+    `;
 
-<h2 style="color:#c084fc;">
-💳 Wallet
-</h2>
+    menu.innerHTML = `
+        <div style="
+            width:100%;
+            max-width:390px;
+            background:#11111d;
+            border:1px solid #7a2cff;
+            border-radius:20px;
+            padding:20px;
+            box-shadow:0 0 30px rgba(122,44,255,.4);
+        ">
 
-<button onclick="alert('Deposit option selected')"
-style="
-width:100%;
-padding:18px;
-margin-bottom:12px;
-background:#16a34a;
-color:white;
-border:none;
-border-radius:15px;
-font-size:17px;
-font-weight:bold;
-">
-💰 Deposit
-</button>
+            <h2 style="
+                color:#c084fc;
+                margin-bottom:20px;
+                text-align:center;
+            ">
+                💳 Wallet
+            </h2>
 
-<button onclick="alert('Withdraw option selected')"
-style="
-width:100%;
-padding:18px;
-background:#dc2626;
-color:white;
-border:none;
-border-radius:15px;
-font-size:17px;
-font-weight:bold;
-">
-🏧 Withdraw
-</button>
+            <button onclick="alert('Deposit option selected')"
+            style="
+                width:100%;
+                padding:18px;
+                margin-bottom:12px;
+                background:#16a34a;
+                color:white;
+                border:none;
+                border-radius:15px;
+                font-size:17px;
+                font-weight:bold;
+            ">
+                💰 Deposit
+            </button>
 
-</div>
+            <button onclick="alert('Withdraw option selected')"
+            style="
+                width:100%;
+                padding:18px;
+                background:#dc2626;
+                color:white;
+                border:none;
+                border-radius:15px;
+                font-size:17px;
+                font-weight:bold;
+            ">
+                🏧 Withdraw
+            </button>
 
-`;
+            <button onclick="this.closest('.wallet-menu-overlay').remove()"
+            style="
+                width:100%;
+                padding:14px;
+                margin-top:12px;
+                background:#252536;
+                color:white;
+                border:1px solid #7a2cff;
+                border-radius:15px;
+                font-size:16px;
+                font-weight:bold;
+            ">
+                ✕ Close
+            </button>
 
+        </div>
+    `;
+
+    menu.className = "wallet-menu-overlay";
+
+    document.body.appendChild(menu);
 }
 
 
 function openAccountMenu(){
 
-document.querySelector(".container").innerHTML = `
+    const menu = document.createElement("div");
 
-<div style="padding:20px;color:white;">
+    menu.style.cssText = `
+        position:fixed;
+        inset:0;
+        background:rgba(5,5,11,.85);
+        z-index:9999;
+        display:flex;
+        align-items:flex-start;
+        justify-content:center;
+        padding:80px 20px 20px;
+    `;
 
-<h2 style="color:#c084fc;">
-💰 Account
-</h2>
+    menu.innerHTML = `
+        <div style="
+            width:100%;
+            max-width:390px;
+            background:#11111d;
+            border:1px solid #7a2cff;
+            border-radius:20px;
+            padding:20px;
+            box-shadow:0 0 30px rgba(122,44,255,.4);
+        ">
 
-<button onclick="openDashboard()"
-style="
-width:100%;
-padding:18px;
-margin-bottom:12px;
-background:#151522;
-color:white;
-border:1px solid #7a2cff;
-border-radius:15px;
-font-size:17px;
-font-weight:bold;
-">
-🎮 Demo Balance
-</button>
+            <h2 style="
+                color:#c084fc;
+                margin-bottom:20px;
+                text-align:center;
+            ">
+                💰 Account
+            </h2>
 
-<button onclick="alert('Real Account selected')"
-style="
-width:100%;
-padding:18px;
-background:#151522;
-color:white;
-border:1px solid #7a2cff;
-border-radius:15px;
-font-size:17px;
-font-weight:bold;
-">
-💵 Real Account
-</button>
+            <button onclick="selectDemoAccount(this)"
+            style="
+                width:100%;
+                padding:18px;
+                margin-bottom:12px;
+                background:#151522;
+                color:white;
+                border:1px solid #7a2cff;
+                border-radius:15px;
+                font-size:17px;
+                font-weight:bold;
+            ">
+                🎮 Demo Balance
+            </button>
 
-</div>
+            <button onclick="alert('Real Account selected')"
+            style="
+                width:100%;
+                padding:18px;
+                background:#151522;
+                color:white;
+                border:1px solid #7a2cff;
+                border-radius:15px;
+                font-size:17px;
+                font-weight:bold;
+            ">
+                💵 Real Account
+            </button>
 
-`;
+            <button onclick="this.closest('.account-menu-overlay').remove()"
+            style="
+                width:100%;
+                padding:14px;
+                margin-top:12px;
+                background:#252536;
+                color:white;
+                border:1px solid #7a2cff;
+                border-radius:15px;
+                font-size:16px;
+                font-weight:bold;
+            ">
+                ✕ Close
+            </button>
 
+        </div>
+    `;
+
+    menu.className = "account-menu-overlay";
+
+    document.body.appendChild(menu);
 }
 
 
+function selectDemoAccount(button){
 
-window.addEventListener("DOMContentLoaded", function() {
-    openDashboard();
-});
+    const menu = button.closest(".account-menu-overlay");
+
+    if(menu){
+        menu.remove();
+    }
+
+}
