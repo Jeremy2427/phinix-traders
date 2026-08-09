@@ -3619,6 +3619,19 @@ font-weight:bold;
 🏧 Withdraw
 </button>
 
+<button onclick="openDashboard()" style="
+width:100%;
+padding:14px;
+margin-top:15px;
+background:#252536;
+color:white;
+border:1px solid #7a2cff;
+border-radius:15px;
+font-weight:bold;
+">
+← Back
+</button>
+
 </div>
 
 `;
@@ -3668,6 +3681,19 @@ font-size:17px;
 font-weight:bold;
 ">
 💵 Real Account
+</button>
+
+<button onclick="openDashboard()" style="
+width:100%;
+padding:14px;
+margin-top:15px;
+background:#252536;
+color:white;
+border:1px solid #7a2cff;
+border-radius:15px;
+font-weight:bold;
+">
+← Back
 </button>
 
 </div>
