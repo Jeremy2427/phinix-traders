@@ -3225,7 +3225,7 @@ function openRiskCalculator(){
     alert("Risk Calculator coming next...");
 }
 
-function openManualTrader(){
+function openOldManualTrader(){
     document.querySelector(".container").innerHTML = `
 
 <div class="header">
