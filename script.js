@@ -4193,8 +4193,6 @@ color:white;
 padding:15px;
 ">
 
-<!-- HEADER -->
-
 <div style="
 display:flex;
 justify-content:space-between;
@@ -4206,87 +4204,70 @@ margin-bottom:20px;
 cursor:pointer;
 font-size:24px;
 color:#c94fff;
-">
-←
-</div>
+">←</div>
 
 <div style="
 font-size:20px;
 font-weight:bold;
 color:#b266ff;
-">
-⚡ QUICK STRATEGY
-</div>
+">⚡ QUICK STRATEGY</div>
 
 <div onclick="openDashboard()" style="
 cursor:pointer;
 font-size:22px;
-">
-🏠
-</div>
+">🏠</div>
 
 </div>
-
-
-<!-- STRATEGY CARD -->
 
 <div style="
 background:#161625;
 border:1px solid #7a2cff;
 border-radius:20px;
 padding:18px;
-box-shadow:0 0 18px rgba(122,44,255,.2);
 ">
 
-<h3 style="
-color:#c084fc;
-margin-bottom:15px;
-">
+<h3 style="color:#c084fc;margin-bottom:18px;">
 Trade Parameters
 </h3>
 
+<label>Market</label>
 
-<!-- MARKET -->
-
-<label style="color:#aaa;font-size:13px;">
-Market
-</label>
-
-<div style="
+<select id="quickMarket" onchange="updateQuickIndexes()" style="
+width:100%;
 background:#0b0b15;
+color:white;
 border:1px solid #29293d;
 border-radius:12px;
 padding:14px;
-margin-top:6px;
-margin-bottom:14px;
+margin:7px 0 15px;
 ">
-Derived
-</div>
 
+<option>Derived</option>
+<option>Continuous Indices</option>
+<option>Volatility Indices</option>
+<option>Crash/Boom Indices</option>
+<option>Forex</option>
+<option>Commodities</option>
 
-<!-- INDEX -->
+</select>
 
-<label style="color:#aaa;font-size:13px;">
-Index
-</label>
+<label>Index</label>
 
-<div style="
+<select id="quickIndex" style="
+width:100%;
 background:#0b0b15;
+color:white;
 border:1px solid #29293d;
 border-radius:12px;
 padding:14px;
-margin-top:6px;
-margin-bottom:14px;
+margin:7px 0 15px;
 ">
-Volatility 100 (1s)
-</div>
 
+<option>Derived</option>
 
-<!-- TRADE TYPE -->
+</select>
 
-<label style="color:#aaa;font-size:13px;">
-Trade Type
-</label>
+<label>Trade Type</label>
 
 <select id="quickTradeType" style="
 width:100%;
@@ -4295,8 +4276,7 @@ color:white;
 border:1px solid #29293d;
 border-radius:12px;
 padding:14px;
-margin-top:6px;
-margin-bottom:14px;
+margin:7px 0 15px;
 ">
 
 <option>Over / Under</option>
@@ -4305,12 +4285,7 @@ margin-bottom:14px;
 
 </select>
 
-
-<!-- CONTRACT -->
-
-<label style="color:#aaa;font-size:13px;">
-Contract Type
-</label>
+<label>Contract Type</label>
 
 <select style="
 width:100%;
@@ -4319,8 +4294,7 @@ color:white;
 border:1px solid #29293d;
 border-radius:12px;
 padding:14px;
-margin-top:6px;
-margin-bottom:14px;
+margin:7px 0 15px;
 ">
 
 <option>Both</option>
@@ -4329,104 +4303,57 @@ margin-bottom:14px;
 
 </select>
 
+<label>Stake</label>
 
-<!-- STAKE -->
-
-<label style="color:#aaa;font-size:13px;">
-Stake
-</label>
-
-<input
-id="quickStake"
-type="number"
-value="1"
-min="0.01"
-style="
+<input id="quickStake" type="number" value="1" min="0.01" style="
 width:100%;
 background:#0b0b15;
 color:white;
 border:1px solid #29293d;
 border-radius:12px;
 padding:14px;
-margin-top:6px;
-margin-bottom:14px;
+margin:7px 0 15px;
 box-sizing:border-box;
 ">
 
+<label>Number of Trades</label>
 
-<!-- NUMBER OF TRADES -->
-
-<label style="color:#aaa;font-size:13px;">
-Number of Trades
-</label>
-
-<input
-id="quickTrades"
-type="number"
-value="10"
-min="1"
-style="
+<input id="quickTrades" type="number" value="10" min="1" style="
 width:100%;
 background:#0b0b15;
 color:white;
 border:1px solid #29293d;
 border-radius:12px;
 padding:14px;
-margin-top:6px;
-margin-bottom:14px;
+margin:7px 0 15px;
 box-sizing:border-box;
 ">
 
+<label>Stop Loss</label>
 
-<!-- STOP LOSS -->
-
-<label style="color:#aaa;font-size:13px;">
-Stop Loss
-</label>
-
-<input
-id="quickStopLoss"
-type="number"
-value="5"
-min="0"
-style="
+<input id="quickStopLoss" type="number" value="5" min="0" style="
 width:100%;
 background:#0b0b15;
 color:white;
 border:1px solid #29293d;
 border-radius:12px;
 padding:14px;
-margin-top:6px;
-margin-bottom:14px;
+margin:7px 0 15px;
 box-sizing:border-box;
 ">
 
+<label>Take Profit</label>
 
-<!-- TAKE PROFIT -->
-
-<label style="color:#aaa;font-size:13px;">
-Take Profit
-</label>
-
-<input
-id="quickTakeProfit"
-type="number"
-value="10"
-min="0"
-style="
+<input id="quickTakeProfit" type="number" value="10" min="0" style="
 width:100%;
 background:#0b0b15;
 color:white;
 border:1px solid #29293d;
 border-radius:12px;
 padding:14px;
-margin-top:6px;
-margin-bottom:18px;
+margin:7px 0 18px;
 box-sizing:border-box;
 ">
-
-
-<!-- START -->
 
 <button onclick="startQuickStrategy()" style="
 width:100%;
@@ -4437,17 +4364,15 @@ border-radius:15px;
 color:white;
 font-size:16px;
 font-weight:bold;
-cursor:pointer;
 ">
 🚀 START STRATEGY
 </button>
 
-
 <div id="quickStrategyStatus" style="
 text-align:center;
 margin-top:15px;
-font-size:14px;
 color:#aaa;
+font-size:14px;
 ">
 Strategy ready.
 </div>
@@ -4461,8 +4386,102 @@ Strategy ready.
 }
 
 
+function updateQuickIndexes(){
+
+const market = document.getElementById("quickMarket");
+const index = document.getElementById("quickIndex");
+
+if(!market || !index) return;
+
+let options = [];
+
+if(market.value === "Derived"){
+
+options = ["Derived"];
+
+}
+
+else if(market.value === "Continuous Indices"){
+
+options = [
+"Continuous Indices"
+];
+
+}
+
+else if(market.value === "Volatility Indices"){
+
+options = [
+"Volatility 10",
+"Volatility 10 (1s)",
+"Volatility 25",
+"Volatility 25 (1s)",
+"Volatility 50",
+"Volatility 50 (1s)",
+"Volatility 75",
+"Volatility 75 (1s)",
+"Volatility 100",
+"Volatility 100 (1s)"
+];
+
+}
+
+else if(market.value === "Crash/Boom Indices"){
+
+options = [
+"Crash 300",
+"Crash 500",
+"Crash 1000",
+"Boom 300",
+"Boom 500",
+"Boom 1000"
+];
+
+}
+
+else if(market.value === "Forex"){
+
+options = [
+"EUR/USD",
+"GBP/USD",
+"USD/JPY",
+"USD/CHF",
+"AUD/USD",
+"USD/CAD"
+];
+
+}
+
+else if(market.value === "Commodities"){
+
+options = [
+"Gold",
+"Silver",
+"Oil"
+];
+
+}
+
+index.innerHTML = "";
+
+options.forEach(function(item){
+
+const option = document.createElement("option");
+
+option.textContent = item;
+option.value = item;
+
+index.appendChild(option);
+
+});
+
+}
+
+
 function startQuickStrategy(){
 
+const market = document.getElementById("quickMarket").value;
+const index = document.getElementById("quickIndex").value;
 const stake = document.getElementById("quickStake").value;
 const trades = document.getElementById("quickTrades").value;
 const stopLoss = document.getElementById("quickStopLoss").value;
@@ -4472,6 +4491,10 @@ const status = document.getElementById("quickStrategyStatus");
 
 status.innerHTML =
 "⚡ Strategy configured: " +
+market +
+" → " +
+index +
+" | " +
 trades +
 " trades × $" +
 stake +
@@ -4482,4 +4505,6 @@ takeProfit;
 
 status.style.color = "#00ff99";
 
-}
+    }
+
+
