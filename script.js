@@ -4210,12 +4210,16 @@ color:#c94fff;
 font-size:20px;
 font-weight:bold;
 color:#b266ff;
-">⚡ QUICK STRATEGY</div>
+">
+⚡ QUICK STRATEGY
+</div>
 
 <div onclick="openDashboard()" style="
 cursor:pointer;
 font-size:22px;
-">🏠</div>
+">
+🏠
+</div>
 
 </div>
 
@@ -4226,7 +4230,7 @@ border-radius:20px;
 padding:18px;
 ">
 
-<h3 style="color:#c084fc;margin-bottom:18px;">
+<h3 style="color:#c084fc;">
 Trade Parameters
 </h3>
 
@@ -4242,9 +4246,9 @@ padding:14px;
 margin:7px 0 15px;
 ">
 
+<option selected>Volatility Indices</option>
 <option>Derived</option>
 <option>Continuous Indices</option>
-<option>Volatility Indices</option>
 <option>Crash/Boom Indices</option>
 <option>Forex</option>
 <option>Commodities</option>
@@ -4263,7 +4267,7 @@ padding:14px;
 margin:7px 0 15px;
 ">
 
-<option>Derived</option>
+<option>Volatility 100 (1s)</option>
 
 </select>
 
@@ -4305,7 +4309,11 @@ margin:7px 0 15px;
 
 <label>Stake</label>
 
-<input id="quickStake" type="number" value="1" min="0.01" style="
+<input id="quickStake"
+type="number"
+value="1"
+min="0.01"
+style="
 width:100%;
 background:#0b0b15;
 color:white;
@@ -4318,7 +4326,11 @@ box-sizing:border-box;
 
 <label>Number of Trades</label>
 
-<input id="quickTrades" type="number" value="10" min="1" style="
+<input id="quickTrades"
+type="number"
+value="10"
+min="1"
+style="
 width:100%;
 background:#0b0b15;
 color:white;
@@ -4331,7 +4343,11 @@ box-sizing:border-box;
 
 <label>Stop Loss</label>
 
-<input id="quickStopLoss" type="number" value="5" min="0" style="
+<input id="quickStopLoss"
+type="number"
+value="5"
+min="0"
+style="
 width:100%;
 background:#0b0b15;
 color:white;
@@ -4344,7 +4360,11 @@ box-sizing:border-box;
 
 <label>Take Profit</label>
 
-<input id="quickTakeProfit" type="number" value="10" min="0" style="
+<input id="quickTakeProfit"
+type="number"
+value="10"
+min="0"
+style="
 width:100%;
 background:#0b0b15;
 color:white;
@@ -4383,7 +4403,13 @@ Strategy ready.
 
 `;
 
+updateQuickIndexes();
+
 }
+
+
+
+
 
 
 function updateQuickIndexes(){
