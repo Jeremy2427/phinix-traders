@@ -146,45 +146,182 @@ function openBots(){
 
 document.querySelector(".container").innerHTML = `
 
-<div class="header">
-    <div onclick="location.reload()">←</div>
-    <div class="logo">PHINIX BOTS</div>
-    <div>🏠</div>
+<div class="header" style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:10px;
+">
+
+<div onclick="openDashboard()" style="
+cursor:pointer;
+font-size:22px;
+color:#c94fff;
+">
+←
 </div>
 
-<div class="bot-card">
-    <h3>🤖 Apex Bot</h3>
-    <p>AI-powered precision trading</p>
-    <button onclick="openApexBot()">LOAD BOT</button>
+<div style="
+font-size:20px;
+font-weight:bold;
+color:#b266ff;
+">
+PHINIX BOTS
 </div>
 
-<div class="bot-card">
-    <h3>🚀 Phinix Pro Bot</h3>
-    <p>Advanced trend detection</p>
-    <button onclick="openPhinixProBot()">LOAD BOT</button>
+<div onclick="openDashboard()" style="
+cursor:pointer;
+font-size:22px;
+">
+🏠
 </div>
 
-<div class="bot-card">
-    <h3>⚡ Lightning Bot</h3>
-    <p>High-speed scalping</p>
-    <button onclick="openLightningBot()">LOAD BOT</button>
 </div>
 
-<div class="bot-card">
-    <h3>🎯 Sniper Bot</h3>
-    <p>Precision entry strategy</p>
-    <button onclick="openSniperBot()">LOAD BOT</button>
+
+<div style="
+margin-top:20px;
+">
+
+<div class="bot-card" style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:16px;
+margin:12px 0;
+color:white;
+box-shadow:0 0 12px rgba(122,44,255,.15);
+">
+<h3>🤖 Apex Bot</h3>
+<p style="color:#bdbdbd;">
+AI-powered precision trading
+</p>
+<button onclick="openApexBot()" style="
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#7a2cff,#c94fff);
+color:white;
+font-weight:bold;
+">
+LOAD BOT
+</button>
 </div>
 
-<div class="bot-card">
-    <h3>📈 Trend Bot</h3>
-    <p>Trend-following system</p>
-    <button onclick="openTrendBot()">LOAD BOT</button>
+
+<div class="bot-card" style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:16px;
+margin:12px 0;
+color:white;
+box-shadow:0 0 12px rgba(122,44,255,.15);
+">
+<h3>🚀 Phinix Pro Bot</h3>
+<p style="color:#bdbdbd;">
+Advanced trend detection
+</p>
+<button onclick="openPhinixProBot()" style="
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#7a2cff,#c94fff);
+color:white;
+font-weight:bold;
+">
+LOAD BOT
+</button>
+</div>
+
+
+<div class="bot-card" style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:16px;
+margin:12px 0;
+color:white;
+box-shadow:0 0 12px rgba(122,44,255,.15);
+">
+<h3>⚡ Lightning Bot</h3>
+<p style="color:#bdbdbd;">
+High-speed scalping
+</p>
+<button onclick="openLightningBot()" style="
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#7a2cff,#c94fff);
+color:white;
+font-weight:bold;
+">
+LOAD BOT
+</button>
+</div>
+
+
+<div class="bot-card" style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:16px;
+margin:12px 0;
+color:white;
+box-shadow:0 0 12px rgba(122,44,255,.15);
+">
+<h3>🎯 Sniper Bot</h3>
+<p style="color:#bdbdbd;">
+Precision entry strategy
+</p>
+<button onclick="openSniperBot()" style="
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#7a2cff,#c94fff);
+color:white;
+font-weight:bold;
+">
+LOAD BOT
+</button>
+</div>
+
+
+<div class="bot-card" style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:16px;
+margin:12px 0;
+color:white;
+box-shadow:0 0 12px rgba(122,44,255,.15);
+">
+<h3>📈 Trend Bot</h3>
+<p style="color:#bdbdbd;">
+Trend-following system
+</p>
+<button onclick="openTrendBot()" style="
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#7a2cff,#c94fff);
+color:white;
+font-weight:bold;
+">
+LOAD BOT
+</button>
+</div>
+
 </div>
 
 `;
 
-            }
+}
 
 
 
