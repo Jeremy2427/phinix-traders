@@ -4181,3 +4181,305 @@ status.innerHTML = "✅ Bot loaded: " + file.name;
 status.style.color = "#00ff99";
 
 }
+
+function openQuickStrategy(){
+
+document.querySelector(".container").innerHTML = `
+
+<div style="
+min-height:100vh;
+background:#05050b;
+color:white;
+padding:15px;
+">
+
+<!-- HEADER -->
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+">
+
+<div onclick="openDashboard()" style="
+cursor:pointer;
+font-size:24px;
+color:#c94fff;
+">
+←
+</div>
+
+<div style="
+font-size:20px;
+font-weight:bold;
+color:#b266ff;
+">
+⚡ QUICK STRATEGY
+</div>
+
+<div onclick="openDashboard()" style="
+cursor:pointer;
+font-size:22px;
+">
+🏠
+</div>
+
+</div>
+
+
+<!-- STRATEGY CARD -->
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:20px;
+padding:18px;
+box-shadow:0 0 18px rgba(122,44,255,.2);
+">
+
+<h3 style="
+color:#c084fc;
+margin-bottom:15px;
+">
+Trade Parameters
+</h3>
+
+
+<!-- MARKET -->
+
+<label style="color:#aaa;font-size:13px;">
+Market
+</label>
+
+<div style="
+background:#0b0b15;
+border:1px solid #29293d;
+border-radius:12px;
+padding:14px;
+margin-top:6px;
+margin-bottom:14px;
+">
+Derived
+</div>
+
+
+<!-- INDEX -->
+
+<label style="color:#aaa;font-size:13px;">
+Index
+</label>
+
+<div style="
+background:#0b0b15;
+border:1px solid #29293d;
+border-radius:12px;
+padding:14px;
+margin-top:6px;
+margin-bottom:14px;
+">
+Volatility 100 (1s)
+</div>
+
+
+<!-- TRADE TYPE -->
+
+<label style="color:#aaa;font-size:13px;">
+Trade Type
+</label>
+
+<select id="quickTradeType" style="
+width:100%;
+background:#0b0b15;
+color:white;
+border:1px solid #29293d;
+border-radius:12px;
+padding:14px;
+margin-top:6px;
+margin-bottom:14px;
+">
+
+<option>Over / Under</option>
+<option>Matches / Differs</option>
+<option>Even / Odd</option>
+
+</select>
+
+
+<!-- CONTRACT -->
+
+<label style="color:#aaa;font-size:13px;">
+Contract Type
+</label>
+
+<select style="
+width:100%;
+background:#0b0b15;
+color:white;
+border:1px solid #29293d;
+border-radius:12px;
+padding:14px;
+margin-top:6px;
+margin-bottom:14px;
+">
+
+<option>Both</option>
+<option>Matches</option>
+<option>Differs</option>
+
+</select>
+
+
+<!-- STAKE -->
+
+<label style="color:#aaa;font-size:13px;">
+Stake
+</label>
+
+<input
+id="quickStake"
+type="number"
+value="1"
+min="0.01"
+style="
+width:100%;
+background:#0b0b15;
+color:white;
+border:1px solid #29293d;
+border-radius:12px;
+padding:14px;
+margin-top:6px;
+margin-bottom:14px;
+box-sizing:border-box;
+">
+
+
+<!-- NUMBER OF TRADES -->
+
+<label style="color:#aaa;font-size:13px;">
+Number of Trades
+</label>
+
+<input
+id="quickTrades"
+type="number"
+value="10"
+min="1"
+style="
+width:100%;
+background:#0b0b15;
+color:white;
+border:1px solid #29293d;
+border-radius:12px;
+padding:14px;
+margin-top:6px;
+margin-bottom:14px;
+box-sizing:border-box;
+">
+
+
+<!-- STOP LOSS -->
+
+<label style="color:#aaa;font-size:13px;">
+Stop Loss
+</label>
+
+<input
+id="quickStopLoss"
+type="number"
+value="5"
+min="0"
+style="
+width:100%;
+background:#0b0b15;
+color:white;
+border:1px solid #29293d;
+border-radius:12px;
+padding:14px;
+margin-top:6px;
+margin-bottom:14px;
+box-sizing:border-box;
+">
+
+
+<!-- TAKE PROFIT -->
+
+<label style="color:#aaa;font-size:13px;">
+Take Profit
+</label>
+
+<input
+id="quickTakeProfit"
+type="number"
+value="10"
+min="0"
+style="
+width:100%;
+background:#0b0b15;
+color:white;
+border:1px solid #29293d;
+border-radius:12px;
+padding:14px;
+margin-top:6px;
+margin-bottom:18px;
+box-sizing:border-box;
+">
+
+
+<!-- START -->
+
+<button onclick="startQuickStrategy()" style="
+width:100%;
+padding:16px;
+background:linear-gradient(90deg,#7a2cff,#c94fff);
+border:none;
+border-radius:15px;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+">
+🚀 START STRATEGY
+</button>
+
+
+<div id="quickStrategyStatus" style="
+text-align:center;
+margin-top:15px;
+font-size:14px;
+color:#aaa;
+">
+Strategy ready.
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function startQuickStrategy(){
+
+const stake = document.getElementById("quickStake").value;
+const trades = document.getElementById("quickTrades").value;
+const stopLoss = document.getElementById("quickStopLoss").value;
+const takeProfit = document.getElementById("quickTakeProfit").value;
+
+const status = document.getElementById("quickStrategyStatus");
+
+status.innerHTML =
+"⚡ Strategy configured: " +
+trades +
+" trades × $" +
+stake +
+" | SL $" +
+stopLoss +
+" | TP $" +
+takeProfit;
+
+status.style.color = "#00ff99";
+
+}
