@@ -3898,3 +3898,161 @@ function selectDemoAccount(button){
 window.addEventListener("DOMContentLoaded", function() {
     openDashboard();
 });
+
+function openBotBuilder(){
+
+document.querySelector(".container").innerHTML = `
+
+<div style="
+min-height:100vh;
+background:#05050b;
+color:white;
+padding:15px;
+">
+
+<!-- HEADER -->
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+">
+
+<div onclick="openDashboard()" style="
+cursor:pointer;
+font-size:24px;
+color:#c94fff;
+">
+←
+</div>
+
+<div style="
+font-size:20px;
+font-weight:bold;
+color:#b266ff;
+">
+🛠 BOT EDITOR
+</div>
+
+<div onclick="openDashboard()" style="
+cursor:pointer;
+font-size:22px;
+">
+🏠
+</div>
+
+</div>
+
+
+<!-- BOT NAME -->
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:16px;
+margin-bottom:14px;
+">
+
+<div style="
+color:#c084fc;
+font-weight:bold;
+margin-bottom:10px;
+">
+Bot Name
+</div>
+
+<input
+placeholder="My Phinix Bot"
+style="
+width:100%;
+background:#0b0b15;
+border:1px solid #353545;
+border-radius:12px;
+padding:14px;
+color:white;
+font-size:16px;
+outline:none;
+"
+>
+
+</div>
+
+
+<!-- STRATEGY -->
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:16px;
+margin-bottom:14px;
+">
+
+<div style="
+color:#c084fc;
+font-weight:bold;
+margin-bottom:12px;
+">
+Strategy
+</div>
+
+<button onclick="alert('Matches strategy selected')" style="
+width:100%;
+padding:14px;
+margin-bottom:8px;
+background:#101018;
+border:1px solid #29293d;
+border-radius:12px;
+color:white;
+text-align:left;
+">
+🎯 Matches / Differs
+</button>
+
+<button onclick="alert('Over/Under strategy selected')" style="
+width:100%;
+padding:14px;
+margin-bottom:8px;
+background:#101018;
+border:1px solid #29293d;
+border-radius:12px;
+color:white;
+text-align:left;
+">
+📊 Over / Under
+</button>
+
+<button onclick="alert('Even/Odd strategy selected')" style="
+width:100%;
+padding:14px;
+background:#101018;
+border:1px solid #29293d;
+border-radius:12px;
+color:white;
+text-align:left;
+">
+🔢 Even / Odd
+</button>
+
+</div>
+
+
+<!-- SAVE BUTTON -->
+<button onclick="alert('Bot saved successfully!')" style="
+width:100%;
+padding:16px;
+background:linear-gradient(90deg,#7a2cff,#c94fff);
+border:none;
+border-radius:15px;
+color:white;
+font-size:17px;
+font-weight:bold;
+box-shadow:0 0 15px rgba(122,44,255,.4);
+">
+💾 SAVE BOT
+</button>
+
+</div>
+
+`;
+
+}
