@@ -438,7 +438,7 @@ font-weight:bold;
 🤖 Free Bots
 </button>
 
-<button onclick="openBotBuilder()" style="
+<button onclick="openUploadBot()" style="
 background:#151522;
 color:white;
 border:1px solid #29293d;
@@ -4050,6 +4050,99 @@ box-shadow:0 0 15px rgba(122,44,255,.4);
 ">
 💾 SAVE BOT
 </button>
+
+</div>
+
+`;
+
+}
+
+function openUploadBot(){
+
+document.querySelector(".container").innerHTML = `
+
+<div style="
+min-height:100vh;
+background:#05050b;
+color:white;
+padding:15px;
+">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+">
+
+<div onclick="openDashboard()" style="
+cursor:pointer;
+font-size:24px;
+color:#c94fff;
+">
+←
+</div>
+
+<div style="
+font-size:20px;
+font-weight:bold;
+color:#b266ff;
+">
+📤 UPLOAD BOT
+</div>
+
+<div onclick="openDashboard()" style="
+cursor:pointer;
+font-size:22px;
+">
+🏠
+</div>
+
+</div>
+
+<div style="
+background:#161625;
+border:1px solid #7a2cff;
+border-radius:18px;
+padding:20px;
+">
+
+<h3 style="color:#c084fc;">
+Upload your bot
+</h3>
+
+<p style="color:#aaa;">
+Choose a bot file from your device.
+</p>
+
+<input
+type="file"
+accept=".xml,.json,.txt"
+style="
+width:100%;
+padding:15px;
+background:#0b0b15;
+color:white;
+border:1px solid #353545;
+border-radius:12px;
+"
+>
+
+<button onclick="alert('Bot file selected successfully!')" style="
+width:100%;
+margin-top:15px;
+padding:15px;
+background:linear-gradient(90deg,#7a2cff,#c94fff);
+border:none;
+border-radius:15px;
+color:white;
+font-size:16px;
+font-weight:bold;
+">
+📤 LOAD BOT
+</button>
+
+</div>
 
 </div>
 
