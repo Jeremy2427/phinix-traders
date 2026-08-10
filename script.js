@@ -330,7 +330,7 @@ font-weight:bold;
 padding:0 15px 15px;
 ">
 
-<button onclick="openDashboard()" style="
+<button onclick="window.location.href='Dtrader.html'" style="
 width:100%;
 background:#252536;
 color:white;
