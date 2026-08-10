@@ -4116,6 +4116,7 @@ Choose a bot file from your device.
 </p>
 
 <input
+id="botFileInput"
 type="file"
 accept=".xml,.json,.txt"
 style="
@@ -4128,7 +4129,7 @@ border-radius:12px;
 "
 >
 
-<button onclick="alert('Bot file selected successfully!')" style="
+<button onclick="loadSelectedBot()" style="
 width:100%;
 margin-top:15px;
 padding:15px;
@@ -4142,10 +4143,41 @@ font-weight:bold;
 📤 LOAD BOT
 </button>
 
+<div id="uploadStatus" style="
+margin-top:15px;
+text-align:center;
+color:#aaa;
+font-size:14px;
+">
+No bot loaded yet.
+</div>
+
 </div>
 
 </div>
 
 `;
+
+}
+
+
+function loadSelectedBot(){
+
+const fileInput = document.getElementById("botFileInput");
+const status = document.getElementById("uploadStatus");
+
+if(!fileInput || !fileInput.files.length){
+
+status.innerHTML = "⚠️ Please choose a bot file first.";
+status.style.color = "#ffcc00";
+
+return;
+
+}
+
+const file = fileInput.files[0];
+
+status.innerHTML = "✅ Bot loaded: " + file.name;
+status.style.color = "#00ff99";
 
 }
