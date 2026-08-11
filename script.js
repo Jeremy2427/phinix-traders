@@ -3476,7 +3476,7 @@ font-size:15px;
 🏠 Dashboard
 </button>
 
-<button style="
+<button onclick="window.location.href='dtrader.html'" style="
 flex:0 0 auto;
 padding:12px 18px;
 border-radius:18px;
