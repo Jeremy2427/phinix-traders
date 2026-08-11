@@ -3893,9 +3893,7 @@ function selectDemoAccount(button){
 
 }
 
-window.addEventListener("DOMContentLoaded", function() {
-    openDashboard();
-});
+
 
 function openBotBuilder(){
 
