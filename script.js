@@ -3779,28 +3779,28 @@ function openWalletMenu(){
         ">
 
             <div style="
-                color:#c084fc;
-                font-weight:bold;
-                font-size:14px;
-            ">
-                AVAILABLE BALANCE
-            </div>
+    color:#c084fc;
+    font-weight:bold;
+    font-size:14px;
+">
+    REAL ACCOUNT BALANCE
+</div>
 
-            <div style="
-                font-size:38px;
-                font-weight:bold;
-                margin-top:8px;
-            ">
-                $10,000.00
-            </div>
+<div style="
+    font-size:38px;
+    font-weight:bold;
+    margin-top:8px;
+">
+    $0.00
+</div>
 
-            <div style="
-                color:#888;
-                font-size:12px;
-                margin-top:5px;
-            ">
-                Demo Account
-            </div>
+<div style="
+    color:#888;
+    font-size:12px;
+    margin-top:5px;
+">
+    Real Account
+</div>
 
         </div>
 
