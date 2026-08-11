@@ -3845,7 +3845,7 @@ function openAccountMenu(){
                 🎮 Demo Balance
             </button>
 
-            <button onclick="alert('Real Account selected')"
+            <button onclick="selectRealAccount(this)"
             style="
                 width:100%;
                 padding:18px;
