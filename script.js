@@ -3908,9 +3908,289 @@ function openWalletMenu(){
 
 function openDepositPage(){
 
-    alert("💰 Deposit page is next — M-Pesa will be connected later.");
+    document.querySelector(".container").innerHTML = `
+
+    <div style="
+        min-height:100vh;
+        background:#05050b;
+        color:white;
+        padding:15px;
+    ">
+
+        <!-- HEADER -->
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:22px;
+        ">
+
+            <div onclick="openWalletMenu()" style="
+                cursor:pointer;
+                font-size:25px;
+                color:#c94fff;
+            ">
+                ←
+            </div>
+
+            <div style="
+                font-size:21px;
+                font-weight:bold;
+                color:#b266ff;
+            ">
+                💰 DEPOSIT FUNDS
+            </div>
+
+            <div onclick="openDashboard()" style="
+                cursor:pointer;
+                font-size:22px;
+            ">
+                🏠
+            </div>
+
+        </div>
+
+
+        <!-- AMOUNT -->
+        <div style="
+            background:#11111b;
+            border:1px solid #7a2cff;
+            border-radius:18px;
+            padding:18px;
+            margin-bottom:15px;
+        ">
+
+            <div style="
+                color:#c084fc;
+                font-weight:bold;
+                margin-bottom:10px;
+            ">
+                Deposit Amount
+            </div>
+
+            <input
+                id="depositAmount"
+                type="number"
+                min="1"
+                placeholder="Enter amount in USD"
+                style="
+                    width:100%;
+                    padding:15px;
+                    background:#080814;
+                    border:1px solid #353545;
+                    border-radius:12px;
+                    color:white;
+                    font-size:16px;
+                    outline:none;
+                "
+            >
+
+        </div>
+
+
+        <!-- PAYMENT METHOD -->
+        <div style="
+            background:#11111b;
+            border:1px solid #29293d;
+            border-radius:18px;
+            padding:18px;
+            margin-bottom:15px;
+        ">
+
+            <div style="
+                color:#c084fc;
+                font-weight:bold;
+                margin-bottom:12px;
+            ">
+                Payment Method
+            </div>
+
+            <button
+                onclick="selectDepositMethod(this,'M-Pesa')"
+                style="
+                    width:100%;
+                    padding:15px;
+                    background:#17101f;
+                    border:1px solid #7a2cff;
+                    border-radius:13px;
+                    color:white;
+                    text-align:left;
+                    font-size:15px;
+                    margin-bottom:10px;
+                "
+            >
+                🇰🇪 <b>M-Pesa</b>
+                <div style="font-size:12px;color:#888;margin-top:4px;">
+                    Mobile money
+                </div>
+            </button>
+
+            <button
+                onclick="selectDepositMethod(this,'Airtel Money')"
+                style="
+                    width:100%;
+                    padding:15px;
+                    background:#080814;
+                    border:1px solid #29293d;
+                    border-radius:13px;
+                    color:white;
+                    text-align:left;
+                    font-size:15px;
+                    margin-bottom:10px;
+                "
+            >
+                📱 <b>Airtel Money</b>
+                <div style="font-size:12px;color:#888;margin-top:4px;">
+                    Mobile money
+                </div>
+            </button>
+
+            <button
+                onclick="selectDepositMethod(this,'Card')"
+                style="
+                    width:100%;
+                    padding:15px;
+                    background:#080814;
+                    border:1px solid #29293d;
+                    border-radius:13px;
+                    color:white;
+                    text-align:left;
+                    font-size:15px;
+                "
+            >
+                💳 <b>Visa / Mastercard</b>
+                <div style="font-size:12px;color:#888;margin-top:4px;">
+                    Card payment
+                </div>
+            </button>
+
+        </div>
+
+
+        <!-- M-PESA PHONE -->
+        <div id="depositPhoneBox" style="
+            background:#11111b;
+            border:1px solid #29293d;
+            border-radius:18px;
+            padding:18px;
+            margin-bottom:15px;
+        ">
+
+            <div style="
+                color:#c084fc;
+                font-weight:bold;
+                margin-bottom:10px;
+            ">
+                M-Pesa Phone Number
+            </div>
+
+            <input
+                id="depositPhone"
+                type="tel"
+                placeholder="07XXXXXXXX"
+                style="
+                    width:100%;
+                    padding:15px;
+                    background:#080814;
+                    border:1px solid #353545;
+                    border-radius:12px;
+                    color:white;
+                    font-size:16px;
+                    outline:none;
+                "
+            >
+
+            <div style="
+                color:#777;
+                font-size:12px;
+                margin-top:8px;
+            ">
+                Example: 0712345678
+            </div>
+
+        </div>
+
+
+        <!-- CONTINUE -->
+        <button
+            onclick="startDepositTest()"
+            style="
+                width:100%;
+                padding:17px;
+                background:linear-gradient(90deg,#7a2cff,#c94fff);
+                border:none;
+                border-radius:15px;
+                color:white;
+                font-size:17px;
+                font-weight:bold;
+            "
+        >
+            CONTINUE
+        </button>
+
+
+        <div style="
+            text-align:center;
+            color:#777;
+            font-size:11px;
+            margin-top:15px;
+        ">
+            Test interface — no real payment is processed yet.
+        </div>
+
+    </div>
+
+    `;
 }
 
+function selectDepositMethod(button, method){
+
+    const buttons = button.parentElement.querySelectorAll("button");
+
+    buttons.forEach(function(btn){
+        btn.style.border = "1px solid #29293d";
+        btn.style.background = "#080814";
+    });
+
+    button.style.border = "1px solid #7a2cff";
+    button.style.background = "#17101f";
+
+    const phoneBox = document.getElementById("depositPhoneBox");
+
+    if(phoneBox){
+
+        if(method === "M-Pesa" || method === "Airtel Money"){
+            phoneBox.style.display = "block";
+        }else{
+            phoneBox.style.display = "none";
+        }
+
+    }
+}
+
+
+function startDepositTest(){
+
+    const amount = document.getElementById("depositAmount")?.value;
+    const phone = document.getElementById("depositPhone")?.value;
+
+    if(!amount || Number(amount) <= 0){
+        alert("Please enter a valid deposit amount.");
+        return;
+    }
+
+    if(!phone){
+        alert("Please enter your mobile money phone number.");
+        return;
+    }
+
+    alert(
+        "Deposit request created for $" +
+        Number(amount).toFixed(2) +
+        ". Payment integration will be connected next."
+    );
+
+}
 
 function openWithdrawPage(){
 
