@@ -3883,17 +3883,39 @@ function openAccountMenu(){
 }
 
 
-function selectDemoAccount(button){
-
+function selectDemoAccount(button) {
     const menu = button.closest(".account-menu-overlay");
 
-    if(menu){
+    if (menu) {
         menu.remove();
     }
 
+    const balance = document.querySelector(".balance");
+
+    if (balance) {
+        balance.innerHTML = `
+            Demo Balance
+            <h1>$10,000</h1>
+        `;
+    }
 }
 
+function selectRealAccount(button) {
+    const menu = button.closest(".account-menu-overlay");
 
+    if (menu) {
+        menu.remove();
+    }
+
+    const balance = document.querySelector(".balance");
+
+    if (balance) {
+        balance.innerHTML = `
+            Real Account
+            <h1>$0.00</h1>
+        `;
+    }
+}
 
 function openBotBuilder(){
 
