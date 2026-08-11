@@ -323,7 +323,7 @@ LOAD BOT
 
 }
 
-
+let selectedDepositMethod = "M-Pesa";
 
 function openDashboard(){
 
@@ -4145,6 +4145,8 @@ function openDepositPage(){
 
 function selectDepositMethod(button, method){
 
+    selectedDepositMethod = method;
+
     const buttons = button.parentElement.querySelectorAll("button");
 
     buttons.forEach(function(btn){
@@ -4179,17 +4181,259 @@ function startDepositTest(){
         return;
     }
 
-    if(!phone){
+    if(
+        (selectedDepositMethod === "M-Pesa" ||
+         selectedDepositMethod === "Airtel Money") &&
+        !phone
+    ){
         alert("Please enter your mobile money phone number.");
         return;
     }
 
-    alert(
-        "Deposit request created for $" +
-        Number(amount).toFixed(2) +
-        ". Payment integration will be connected next."
-    );
+    const displayAmount = Number(amount).toFixed(2);
 
+    document.querySelector(".container").innerHTML = `
+
+    <div style="
+        min-height:100vh;
+        background:#05050b;
+        color:white;
+        padding:15px;
+    ">
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+        ">
+
+            <div onclick="openDepositPage()" style="
+                cursor:pointer;
+                font-size:25px;
+                color:#c94fff;
+            ">
+                ←
+            </div>
+
+            <div style="
+                font-size:21px;
+                font-weight:bold;
+                color:#b266ff;
+            ">
+                🔐 CONFIRM DEPOSIT
+            </div>
+
+            <div onclick="openDashboard()" style="
+                cursor:pointer;
+                font-size:22px;
+            ">
+                🏠
+            </div>
+
+        </div>
+
+        <div style="
+            background:#11111b;
+            border:1px solid #7a2cff;
+            border-radius:20px;
+            padding:22px;
+            text-align:center;
+            margin-top:20px;
+        ">
+
+            <div style="color:#999;font-size:13px;">
+                DEPOSIT AMOUNT
+            </div>
+
+            <div style="
+                font-size:42px;
+                font-weight:bold;
+                color:#c94fff;
+                margin:8px 0 20px;
+            ">
+                $${displayAmount}
+            </div>
+
+            <div style="
+                border-top:1px solid #29293d;
+                padding-top:18px;
+                text-align:left;
+            ">
+
+                <div style="
+                    color:#999;
+                    font-size:12px;
+                    margin-bottom:5px;
+                ">
+                    PAYMENT METHOD
+                </div>
+
+                <div style="
+                    font-size:17px;
+                    font-weight:bold;
+                ">
+                    ${selectedDepositMethod}
+                </div>
+
+            </div>
+
+            ${
+                phone
+                ? `
+                <div style="
+                    border-top:1px solid #29293d;
+                    margin-top:18px;
+                    padding-top:18px;
+                    text-align:left;
+                ">
+
+                    <div style="
+                        color:#999;
+                        font-size:12px;
+                        margin-bottom:5px;
+                    ">
+                        PHONE NUMBER
+                    </div>
+
+                    <div style="
+                        font-size:17px;
+                        font-weight:bold;
+                    ">
+                        ${phone}
+                    </div>
+
+                </div>
+                `
+                : ""
+            }
+
+        </div>
+
+        <div style="
+            background:#151522;
+            border:1px solid #29293d;
+            border-radius:16px;
+            padding:16px;
+            margin-top:15px;
+            color:#aaa;
+            font-size:13px;
+            line-height:1.5;
+        ">
+            ⚠️ <b style="color:white;">Test mode</b><br>
+            No money will be charged yet. The real payment
+            provider will be connected later.
+        </div>
+
+        <button
+            onclick="confirmDepositTest('${displayAmount}')"
+            style="
+                width:100%;
+                padding:17px;
+                margin-top:20px;
+                background:linear-gradient(90deg,#7a2cff,#c94fff);
+                border:none;
+                border-radius:15px;
+                color:white;
+                font-size:17px;
+                font-weight:bold;
+            "
+        >
+            ✅ CONFIRM DEPOSIT
+        </button>
+
+        <button
+            onclick="openDepositPage()"
+            style="
+                width:100%;
+                padding:15px;
+                margin-top:10px;
+                background:#11111b;
+                border:1px solid #29293d;
+                border-radius:15px;
+                color:white;
+                font-size:15px;
+                font-weight:bold;
+            "
+        >
+            ← CHANGE DETAILS
+        </button>
+
+    </div>
+
+    `;
+        }
+
+function confirmDepositTest(amount){
+
+    document.querySelector(".container").innerHTML = `
+
+    <div style="
+        min-height:100vh;
+        background:#05050b;
+        color:white;
+        padding:15px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        text-align:center;
+    ">
+
+        <div style="
+            font-size:70px;
+            margin-bottom:20px;
+        ">
+            ⏳
+        </div>
+
+        <h2 style="
+            color:#c94fff;
+            margin-bottom:12px;
+        ">
+            PAYMENT PENDING
+        </h2>
+
+        <p style="
+            color:#aaa;
+            line-height:1.5;
+        ">
+            Your deposit request for
+            <b style="color:white;">$${amount}</b>
+            has been created.
+        </p>
+
+        <div style="
+            background:#11111b;
+            border:1px solid #29293d;
+            border-radius:16px;
+            padding:18px;
+            margin-top:20px;
+            color:#999;
+            font-size:13px;
+        ">
+            Test mode: no real payment has been processed.
+        </div>
+
+        <button
+            onclick="openDashboard()"
+            style="
+                width:100%;
+                padding:16px;
+                margin-top:20px;
+                background:linear-gradient(90deg,#7a2cff,#c94fff);
+                border:none;
+                border-radius:15px;
+                color:white;
+                font-size:17px;
+                font-weight:bold;
+            "
+        >
+            🏠 RETURN TO PHINIX TRADERS
+        </button>
+
+    </div>
+
+    `;
 }
 
 function openWithdrawPage(){
