@@ -4533,4 +4533,8 @@ status.style.color = "#00ff99";
 
     }
 
-
+window.addEventListener("DOMContentLoaded", function() {
+    if (!window.location.pathname.toLowerCase().endsWith("dtrader.html")) {
+        openDashboard();
+    }
+});
