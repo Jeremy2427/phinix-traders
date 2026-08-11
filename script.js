@@ -1966,8 +1966,6 @@ cursor:pointer;
 
 function openLightningBotBuilder() {
 
-    alert("✅ NEW BOT BUILDER BUTTON WORKS");
-
     openLightningBot();
 
     const logo = document.querySelector(".logo");
