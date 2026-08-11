@@ -3514,7 +3514,7 @@ font-size:15px;
 🤖 Phinix Bots
 </button>
 
-onclick="openLightningBotBuilder()"
+<button onclick="openLightningBotBuilder()" style="
 flex:0 0 auto;
 padding:12px 18px;
 border-radius:18px;
