@@ -3499,7 +3499,7 @@ font-size:15px;
 🤖 Phinix Bots
 </button>
 
-<button onclick="openBotBuilder()" style="
+onclick="openLightningBotBuilder()"
 flex:0 0 auto;
 padding:12px 18px;
 border-radius:18px;
