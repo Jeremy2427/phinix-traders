@@ -1966,10 +1966,10 @@ cursor:pointer;
 
 function openLightningBotBuilder() {
 
-    // Open the existing bot interface
+    alert("✅ NEW BOT BUILDER BUTTON WORKS");
+
     openLightningBot();
 
-    // Change the visible title so the bot name is not revealed
     const logo = document.querySelector(".logo");
 
     if (logo) {
