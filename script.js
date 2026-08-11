@@ -1963,6 +1963,21 @@ cursor:pointer;
 
 `;
 }
+
+function openLightningBotBuilder() {
+
+    // Open the existing bot interface
+    openLightningBot();
+
+    // Change the visible title so the bot name is not revealed
+    const logo = document.querySelector(".logo");
+
+    if (logo) {
+        logo.innerHTML = "🛠 BOT BUILDER";
+    }
+
+}
+
 function openLightningRunningScreen(){
 document.querySelector(".container").innerHTML = `
 
