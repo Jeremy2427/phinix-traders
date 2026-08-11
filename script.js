@@ -3724,90 +3724,198 @@ UNDER
 
 function openWalletMenu(){
 
-    const menu = document.createElement("div");
+    document.querySelector(".container").innerHTML = `
 
-    menu.style.cssText = `
-        position:fixed;
-        inset:0;
-        background:rgba(5,5,11,.85);
-        z-index:9999;
-        display:flex;
-        align-items:flex-start;
-        justify-content:center;
-        padding:80px 20px 20px;
-    `;
+    <div style="
+        min-height:100vh;
+        background:#05050b;
+        color:white;
+        padding:15px;
+    ">
 
-    menu.innerHTML = `
+        <!-- HEADER -->
         <div style="
-            width:100%;
-            max-width:390px;
-            background:#11111d;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:22px;
+        ">
+
+            <div onclick="openDashboard()" style="
+                cursor:pointer;
+                font-size:25px;
+                color:#c94fff;
+            ">
+                ←
+            </div>
+
+            <div style="
+                font-size:21px;
+                font-weight:bold;
+                color:#b266ff;
+            ">
+                💰 WALLET
+            </div>
+
+            <div onclick="openDashboard()" style="
+                cursor:pointer;
+                font-size:22px;
+            ">
+                🏠
+            </div>
+
+        </div>
+
+
+        <!-- BALANCE -->
+        <div style="
+            background:#11111b;
             border:1px solid #7a2cff;
             border-radius:20px;
             padding:20px;
-            box-shadow:0 0 30px rgba(122,44,255,.4);
+            text-align:center;
+            margin-bottom:20px;
+            box-shadow:0 0 18px rgba(122,44,255,.25);
         ">
 
-            <h2 style="
+            <div style="
                 color:#c084fc;
-                margin-bottom:20px;
-                text-align:center;
-            ">
-                💳 Wallet
-            </h2>
-
-            <button onclick="alert('Deposit option selected')"
-            style="
-                width:100%;
-                padding:18px;
-                margin-bottom:12px;
-                background:#16a34a;
-                color:white;
-                border:none;
-                border-radius:15px;
-                font-size:17px;
                 font-weight:bold;
+                font-size:14px;
             ">
-                💰 Deposit
-            </button>
+                AVAILABLE BALANCE
+            </div>
 
-            <button onclick="alert('Withdraw option selected')"
-            style="
-                width:100%;
-                padding:18px;
-                background:#dc2626;
-                color:white;
-                border:none;
-                border-radius:15px;
-                font-size:17px;
+            <div style="
+                font-size:38px;
                 font-weight:bold;
+                margin-top:8px;
             ">
-                🏧 Withdraw
-            </button>
+                $10,000.00
+            </div>
 
-            <button onclick="this.closest('.wallet-menu-overlay').remove()"
-            style="
-                width:100%;
-                padding:14px;
-                margin-top:12px;
-                background:#252536;
-                color:white;
-                border:1px solid #7a2cff;
-                border-radius:15px;
-                font-size:16px;
-                font-weight:bold;
+            <div style="
+                color:#888;
+                font-size:12px;
+                margin-top:5px;
             ">
-                ✕ Close
-            </button>
+                Demo Account
+            </div>
 
         </div>
+
+
+        <!-- DEPOSIT -->
+        <button onclick="openDepositPage()" style="
+            width:100%;
+            padding:17px;
+            margin-bottom:12px;
+            border:none;
+            border-radius:16px;
+            background:linear-gradient(90deg,#16a34a,#22c55e);
+            color:white;
+            font-size:17px;
+            font-weight:bold;
+        ">
+            💰 DEPOSIT FUNDS
+        </button>
+
+
+        <!-- WITHDRAW -->
+        <button onclick="openWithdrawPage()" style="
+            width:100%;
+            padding:17px;
+            margin-bottom:20px;
+            border:none;
+            border-radius:16px;
+            background:linear-gradient(90deg,#dc2626,#ef4444);
+            color:white;
+            font-size:17px;
+            font-weight:bold;
+        ">
+            🏧 WITHDRAW FUNDS
+        </button>
+
+
+        <!-- PAYMENT METHODS -->
+        <div style="
+            background:#11111b;
+            border:1px solid #29293d;
+            border-radius:18px;
+            padding:16px;
+        ">
+
+            <h3 style="
+                color:#c084fc;
+                margin-bottom:15px;
+            ">
+                💳 PAYMENT METHODS
+            </h3>
+
+            <div style="
+                background:#080814;
+                padding:15px;
+                border-radius:13px;
+                margin-bottom:10px;
+            ">
+                🇰🇪 <b>M-Pesa</b>
+                <div style="font-size:12px;color:#888;margin-top:4px;">
+                    Mobile money
+                </div>
+            </div>
+
+            <div style="
+                background:#080814;
+                padding:15px;
+                border-radius:13px;
+                margin-bottom:10px;
+            ">
+                📱 <b>Airtel Money</b>
+                <div style="font-size:12px;color:#888;margin-top:4px;">
+                    Mobile money
+                </div>
+            </div>
+
+            <div style="
+                background:#080814;
+                padding:15px;
+                border-radius:13px;
+                margin-bottom:10px;
+            ">
+                💳 <b>Visa / Mastercard</b>
+                <div style="font-size:12px;color:#888;margin-top:4px;">
+                    Card payment
+                </div>
+            </div>
+
+            <div style="
+                background:#080814;
+                padding:15px;
+                border-radius:13px;
+            ">
+                🏦 <b>Bank Transfer</b>
+                <div style="font-size:12px;color:#888;margin-top:4px;">
+                    Coming soon
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
     `;
-
-    menu.className = "wallet-menu-overlay";
-
-    document.body.appendChild(menu);
 }
 
+function openDepositPage(){
+
+    alert("💰 Deposit page is next — M-Pesa will be connected later.");
+}
+
+
+function openWithdrawPage(){
+
+    alert("🏧 Withdrawal page is next — payment connection will be added later.");
+}
 
 function openAccountMenu(){
 
