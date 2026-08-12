@@ -4413,10 +4413,6 @@ function confirmDepositTest(amount){
 
 function updatePhinixWalletBalance(){
 
-    const balance = Number(
-        localStorage.getItem("phinixRealBalance") || "0"
-    );
-
     const balanceElement =
         document.getElementById("phinixWalletBalance");
 
