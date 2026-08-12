@@ -153,7 +153,7 @@ align-items:center;
 margin-top:10px;
 ">
 
-<div onclick="openDashboard()" style="
+<div onclick="backToManualTrader()" style="
 cursor:pointer;
 font-size:22px;
 color:#c94fff;
@@ -3393,6 +3393,10 @@ function showTrendTransactions(){
 
 function openManualTrader(){
     alert("Manual Trader coming next...");
+}
+
+function backToManualTrader(){
+    openManualTrader();
 }
 
 function openPhinixBots(){
