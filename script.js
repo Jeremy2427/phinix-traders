@@ -3947,7 +3947,9 @@ function openWalletMenu(){
 
         `;
 
-    updatePhinixWalletBalance();
+localStorage.setItem("phinixRealBalance", "0.00");
+
+updatePhinixWalletBalance();
 
 }
 
@@ -4422,6 +4424,15 @@ function updatePhinixWalletBalance(){
         balanceElement.textContent =
             "$" + balance.toFixed(2);
     }
+}
+
+function resetTestRealWallet(){
+
+    localStorage.setItem("phinixRealBalance", "0.00");
+
+    alert("Real test wallet reset to $0.00");
+
+    openWalletMenu();
 }
 
 function openWithdrawPage(){
