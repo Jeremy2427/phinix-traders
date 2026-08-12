@@ -4571,7 +4571,7 @@ align-items:center;
 margin-bottom:20px;
 ">
 
-<div onclick="openDashboard()" style="
+<div onclick="backToManualTrader()" style="
 cursor:pointer;
 font-size:24px;
 color:#c94fff;
