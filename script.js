@@ -3833,7 +3833,7 @@ function openWalletMenu(){
     font-weight:bold;
     margin-top:8px;
 ">
-    $0.00
+    <span id="phinixWalletBalance">$0.00</span>
 </div>
 
 <div style="
@@ -3945,7 +3945,10 @@ function openWalletMenu(){
 
     </div>
 
-    `;
+        `;
+
+    updatePhinixWalletBalance();
+
 }
 
 function openDepositPage(){
@@ -4404,6 +4407,21 @@ function confirmDepositTest(amount){
     </div>
 
     `;
+}
+
+function updatePhinixWalletBalance(){
+
+    const balance = Number(
+        localStorage.getItem("phinixRealBalance") || "0"
+    );
+
+    const balanceElement =
+        document.getElementById("phinixWalletBalance");
+
+    if(balanceElement){
+        balanceElement.textContent =
+            "$" + balance.toFixed(2);
+    }
 }
 
 function openWithdrawPage(){
