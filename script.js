@@ -4433,8 +4433,278 @@ function resetTestRealWallet(){
 
 function openWithdrawPage(){
 
-    alert("🏧 Withdrawal page is next — payment connection will be added later.");
+    const balance = Number(
+        localStorage.getItem("phinixRealBalance") || "0"
+    );
+
+    document.querySelector(".container").innerHTML = `
+
+    <div style="
+        min-height:100vh;
+        background:#05050b;
+        color:white;
+        padding:15px;
+    ">
+
+        <!-- HEADER -->
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+        ">
+
+            <div onclick="openWalletMenu()" style="
+                cursor:pointer;
+                font-size:25px;
+                color:#c94fff;
+            ">
+                ←
+            </div>
+
+            <div style="
+                font-size:21px;
+                font-weight:bold;
+                color:#b266ff;
+            ">
+                🏧 WITHDRAW
+            </div>
+
+            <div onclick="openDashboard()" style="
+                cursor:pointer;
+                font-size:22px;
+            ">
+                🏠
+            </div>
+
+        </div>
+
+
+        <!-- AVAILABLE BALANCE -->
+        <div style="
+            background:#11111b;
+            border:1px solid #7a2cff;
+            border-radius:20px;
+            padding:20px;
+            text-align:center;
+            margin-bottom:20px;
+        ">
+
+            <div style="
+                color:#c084fc;
+                font-weight:bold;
+                font-size:14px;
+            ">
+                AVAILABLE REAL BALANCE
+            </div>
+
+            <div style="
+                font-size:38px;
+                font-weight:bold;
+                margin-top:8px;
+            ">
+                $${balance.toFixed(2)}
+            </div>
+
+        </div>
+
+
+        <!-- WITHDRAW AMOUNT -->
+        <div style="
+            background:#11111b;
+            border:1px solid #29293d;
+            border-radius:18px;
+            padding:18px;
+            margin-bottom:15px;
+        ">
+
+            <label style="
+                color:#c084fc;
+                font-weight:bold;
+                display:block;
+                margin-bottom:10px;
+            ">
+                Withdrawal Amount
+            </label>
+
+            <input
+                id="withdrawAmount"
+                type="number"
+                placeholder="Enter amount"
+                min="1"
+                style="
+                    width:100%;
+                    padding:15px;
+                    background:#080814;
+                    border:1px solid #353545;
+                    border-radius:12px;
+                    color:white;
+                    font-size:17px;
+                    outline:none;
+                "
+            >
+
+        </div>
+
+
+        <!-- PAYMENT METHOD -->
+        <div style="
+            background:#11111b;
+            border:1px solid #29293d;
+            border-radius:18px;
+            padding:18px;
+            margin-bottom:20px;
+        ">
+
+            <div style="
+                color:#c084fc;
+                font-weight:bold;
+                margin-bottom:12px;
+            ">
+                Withdrawal Method
+            </div>
+
+            <select
+                id="withdrawMethod"
+                style="
+                    width:100%;
+                    padding:15px;
+                    background:#080814;
+                    border:1px solid #353545;
+                    border-radius:12px;
+                    color:white;
+                    font-size:16px;
+                "
+            >
+                <option value="mpesa">🇰🇪 M-Pesa</option>
+                <option value="airtel">📱 Airtel Money</option>
+                <option value="bank">🏦 Bank Transfer</option>
+            </select>
+
+        </div>
+
+
+        <!-- CONTINUE -->
+        <button
+            onclick="startWithdrawalTest()"
+            style="
+                width:100%;
+                padding:17px;
+                background:linear-gradient(90deg,#dc2626,#ef4444);
+                border:none;
+                border-radius:15px;
+                color:white;
+                font-size:17px;
+                font-weight:bold;
+            "
+        >
+            🏧 CONTINUE WITHDRAWAL
+        </button>
+
+    </div>
+
+    `;
 }
+
+function startWithdrawalTest(){
+
+    const amount = Number(
+        document.getElementById("withdrawAmount")?.value || "0"
+    );
+
+    const balance = Number(
+        localStorage.getItem("phinixRealBalance") || "0"
+    );
+
+    if(amount <= 0){
+        alert("Please enter a valid withdrawal amount.");
+        return;
+    }
+
+    if(amount > balance){
+        alert("Insufficient real account balance.");
+        return;
+    }
+
+    const method =
+        document.getElementById("withdrawMethod")?.value || "mpesa";
+
+    document.querySelector(".container").innerHTML = `
+
+        <div style="
+            min-height:100vh;
+            background:#05050b;
+            color:white;
+            padding:15px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            text-align:center;
+        ">
+
+            <div style="
+                font-size:65px;
+                margin-bottom:20px;
+            ">
+                ⏳
+            </div>
+
+            <h2 style="
+                color:#c94fff;
+                margin-bottom:12px;
+            ">
+                WITHDRAWAL PENDING
+            </h2>
+
+            <p style="
+                color:#aaa;
+                line-height:1.5;
+            ">
+                Your withdrawal request for
+                <b style="color:white;">$${amount.toFixed(2)}</b>
+                has been prepared.
+            </p>
+
+            <div style="
+                background:#11111b;
+                border:1px solid #29293d;
+                border-radius:16px;
+                padding:18px;
+                margin-top:20px;
+                color:#999;
+                font-size:13px;
+            ">
+                Test mode: no real withdrawal has been processed.<br><br>
+                Payment method:
+                <b style="color:white;">
+                    ${method === "mpesa" ? "M-Pesa" :
+                      method === "airtel" ? "Airtel Money" :
+                      "Bank Transfer"}
+                </b>
+            </div>
+
+            <button
+                onclick="openWalletMenu()"
+                style="
+                    width:100%;
+                    padding:16px;
+                    margin-top:20px;
+                    background:linear-gradient(90deg,#7a2cff,#c94fff);
+                    border:none;
+                    border-radius:15px;
+                    color:white;
+                    font-size:17px;
+                    font-weight:bold;
+                "
+            >
+                💰 RETURN TO WALLET
+            </button>
+
+        </div>
+
+    `;
+}
+
 function getPhinixBalance() {
     return Number(localStorage.getItem("phinixBalance") || "0");
 }
