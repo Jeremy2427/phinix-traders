@@ -3392,11 +3392,11 @@ function showTrendTransactions(){
 }
 
 function openManualTrader(){
-    alert("Manual Trader coming next...");
+    window.location.href = "dtrader.html";
 }
 
 function backToManualTrader(){
-    openManualTrader();
+    window.location.href = "dtrader.html";
 }
 
 function openPhinixBots(){
