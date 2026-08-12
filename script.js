@@ -4193,33 +4193,35 @@ function selectDepositMethod(button, method){
 function startDepositTest(){
 
     const amount = document.getElementById("depositAmount")?.value;
-    const phone = document.getElementById("depositPhone")?.value;
 
     if(!amount || Number(amount) <= 0){
         alert("Please enter a valid deposit amount.");
         return;
     }
 
-    if(!phone){
-        alert("Please enter your mobile money phone number.");
-        return;
-    }
+    const depositAmount = Number(amount);
 
-    // Test-mode deposit: add the amount to Phinix balance
-    const currentBalance =
-        Number(localStorage.getItem("phinixBalance") || "0");
-
-    const newBalance =
-        currentBalance + Number(amount);
-
-    localStorage.setItem(
-        "phinixBalance",
-        newBalance.toFixed(2)
+    // Get the current REAL account balance
+    const currentRealBalance = Number(
+        localStorage.getItem("phinixRealBalance") || "0"
     );
 
-    openDepositPendingPage(Number(amount));
-}
+    // Add deposit ONLY to the REAL account
+    const newRealBalance = currentRealBalance + depositAmount;
 
+    localStorage.setItem(
+        "phinixRealBalance",
+        newRealBalance.toFixed(2)
+    );
+
+    // Make sure the demo balance is untouched
+    if(!localStorage.getItem("phinixDemoBalance")){
+        localStorage.setItem("phinixDemoBalance", "10000");
+    }
+
+    // Continue to the existing confirmation/pending page
+    openDepositConfirmation(depositAmount);
+}
             
                     
 
