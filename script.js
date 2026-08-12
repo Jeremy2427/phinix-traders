@@ -4212,34 +4212,117 @@ function selectDepositMethod(button, method){
 function startDepositTest(){
 
     const amount = document.getElementById("depositAmount")?.value;
+    const phone = document.getElementById("depositPhone")?.value;
 
     if(!amount || Number(amount) <= 0){
         alert("Please enter a valid deposit amount.");
         return;
     }
 
-    const depositAmount = Number(amount);
-
-    // Get the current REAL account balance
-    const currentRealBalance = Number(
-        localStorage.getItem("phinixRealBalance") || "0"
-    );
-
-    // Add deposit ONLY to the REAL account
-    const newRealBalance = currentRealBalance + depositAmount;
-
-    localStorage.setItem(
-        "phinixRealBalance",
-        newRealBalance.toFixed(2)
-    );
-
-    // Make sure the demo balance is untouched
-    if(!localStorage.getItem("phinixDemoBalance")){
-        localStorage.setItem("phinixDemoBalance", "10000");
+    if(!phone){
+        alert("Please enter your M-PESA phone number.");
+        return;
     }
 
-    // Continue to the existing confirmation/pending page
-    openDepositConfirmation(depositAmount);
+    // Show the payment-processing screen.
+    // Do NOT change the balance yet.
+    document.querySelector(".container").innerHTML = `
+
+    <div style="
+        min-height:100vh;
+        background:#05050b;
+        color:white;
+        padding:20px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        text-align:center;
+    ">
+
+        <div style="
+            font-size:65px;
+            margin-bottom:18px;
+        ">
+            📱
+        </div>
+
+        <h2 style="
+            color:#c94fff;
+            margin-bottom:12px;
+        ">
+            M-PESA PAYMENT
+        </h2>
+
+        <p style="
+            color:#aaa;
+            line-height:1.5;
+        ">
+            Payment request prepared for
+            <b style="color:white;">
+                $${Number(amount).toFixed(2)}
+            </b>
+        </p>
+
+        <div style="
+            background:#11111b;
+            border:1px solid #29293d;
+            border-radius:16px;
+            padding:18px;
+            margin-top:20px;
+            text-align:left;
+        ">
+
+            <div style="color:#aaa;font-size:13px;">
+                Mobile number
+            </div>
+
+            <div style="
+                color:white;
+                font-size:18px;
+                font-weight:bold;
+                margin-top:5px;
+            ">
+                ${phone}
+            </div>
+
+        </div>
+
+        <div style="
+            background:#11111b;
+            border:1px solid #29293d;
+            border-radius:16px;
+            padding:18px;
+            margin-top:12px;
+            color:#aaa;
+            line-height:1.5;
+            font-size:14px;
+        ">
+            🧪 Test mode<br><br>
+            When real M-PESA integration is connected,
+            an official payment prompt will be sent to your phone.
+            You will enter your M-PESA PIN there.
+        </div>
+
+        <button
+            onclick="openDashboard()"
+            style="
+                width:100%;
+                padding:16px;
+                margin-top:20px;
+                background:linear-gradient(90deg,#7a2cff,#c94fff);
+                border:none;
+                border-radius:15px;
+                color:white;
+                font-size:17px;
+                font-weight:bold;
+            "
+        >
+            ← BACK TO DASHBOARD
+        </button>
+
+    </div>
+
+    `;
 }
             
                     
