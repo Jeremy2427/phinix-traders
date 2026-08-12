@@ -4413,12 +4413,16 @@ function selectDemoAccount(button) {
         menu.remove();
     }
 
+    const demoBalance = Number(
+        localStorage.getItem("phinixDemoBalance") || "10000"
+    );
+
     const balance = document.querySelector(".balance");
 
     if (balance) {
         balance.innerHTML = `
             Demo Balance
-            <h1>$10,000</h1>
+            <h1>$${demoBalance.toFixed(2)}</h1>
         `;
     }
 }
