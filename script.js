@@ -493,17 +493,36 @@ font-size:15px;
 
 function updatePhinixDashboardBalance(){
 
-    const balance =
-        Number(localStorage.getItem("phinixBalance") || "0");
+    const selectedAccount =
+        localStorage.getItem("phinixSelectedAccount") || "demo";
+
+    let balance;
+
+    if(selectedAccount === "real"){
+
+        balance = Number(
+            localStorage.getItem("phinixRealBalance") || "0"
+        );
+
+    }else{
+
+        balance = Number(
+            localStorage.getItem("phinixDemoBalance") || "10000"
+        );
+
+    }
 
     const balanceElement =
         document.getElementById("phinixDashboardBalance");
 
     if(balanceElement){
+
         balanceElement.textContent =
             "$" + balance.toFixed(2);
+
     }
 }
+
 
 function openApexBot(){
     activeBot = "Apex";
