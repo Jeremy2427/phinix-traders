@@ -1785,7 +1785,7 @@ function openLightningBot() {
     document.querySelector(".container").innerHTML = `
 
 <div class="header">
-    <div onclick="openBots()" style="cursor:pointer;">←</div>
+    <div onclick="backToManualTrader()" style="cursor:pointer;">←</div>
     <div class="logo">⚡ LIGHTNING BOT</div>
     <div>🏠</div>
 </div>
