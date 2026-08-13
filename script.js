@@ -6209,11 +6209,19 @@ function openBulkTrader(){
                         color:white;
                         font-weight:bold;
                     ">
-                        <option>Volatility 100 (1s) Index</option>
-                        <option>Volatility 75 (1s) Index</option>
-                        <option>Volatility 50 (1s) Index</option>
-                        <option>Volatility 25 (1s) Index</option>
-                        <option>Volatility 10 (1s) Index</option>
+                        <option>Range Break 200 Index</option>
+<option>Bear Market Index</option>
+<option>Bull Market Index</option>
+<option>Volatility 10 Index</option>
+<option>Volatility 100 Index</option>
+<option>Volatility 25 Index</option>
+<option>Volatility 50 Index</option>
+<option>Volatility 75 Index</option>
+<option>Step Index 100</option>
+<option>Step Index 200</option>
+<option>Step Index 300</option>
+<option>Step Index 400</option>
+<option>Step Index 500</option>
                     </select>
                 </div>
 
