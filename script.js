@@ -6824,40 +6824,76 @@ function createBulkDigits(){
             "bulkDigit" + i;
 
         digit.style.cssText = `
-            height:82px;
+            width:64px;
+            height:64px;
+            min-width:64px;
             border-radius:50%;
-            border:5px solid #173967;
-            background:#0d1b31;
+            border:2px solid #302044;
+            background:#0b0712;
             display:flex;
             flex-direction:column;
             justify-content:center;
             align-items:center;
-            transition:.25s;
-            box-shadow:0 0 8px rgba(46,125,255,.08);
+            position:relative;
+            margin:auto;
+            color:white;
+            box-shadow:
+                inset 0 0 8px rgba(201,79,255,.08),
+                0 3px 8px rgba(0,0,0,.45);
+            transition:
+                border-color .2s,
+                box-shadow .2s,
+                transform .2s,
+                background .2s;
         `;
 
         digit.innerHTML = `
-            <span style="
-                font-size:18px;
-                font-weight:bold;
-            ">${i}</span>
 
-            <span id="bulkPercent${i}"
-                style="
-                margin-top:4px;
-                font-size:12px;
-                color:#ddd;
+            <!-- MOVING INDICATOR -->
+            <div id="bulkIndicator${i}" style="
+                position:absolute;
+                top:-8px;
+                left:50%;
+                transform:translateX(-50%);
+                width:0;
+                height:0;
+                border-left:7px solid transparent;
+                border-right:7px solid transparent;
+                border-bottom:12px solid #ff3b4f;
+                display:none;
+                z-index:5;
+            "></div>
+
+            <!-- DIGIT -->
+            <span style="
+                font-size:19px;
+                font-weight:bold;
+                line-height:20px;
+            ">
+                ${i}
+            </span>
+
+            <!-- PERCENTAGE -->
+            <span id="bulkPercent${i}" style="
+                margin-top:3px;
+                font-size:10px;
+                color:#00e58a;
+                line-height:12px;
             ">
                 0.00%
             </span>
+
         `;
 
         container.appendChild(digit);
     }
 }
 
-
 function updateBulkTick(){
+
+    /* -----------------------------
+       CURRENT TICK
+    ----------------------------- */
 
     const tick =
         (Math.random() * 9000 + 100).toFixed(2);
@@ -6867,14 +6903,16 @@ function updateBulkTick(){
 
     if(tickElement){
 
-        tickElement.textContent =
-            tick;
+        tickElement.textContent = tick;
 
-        tickElement.style.color =
-            "#ff4d5e";
-
+        tickElement.style.color = "#c94fff";
+        tickElement.style.transition = "color .2s";
     }
 
+
+    /* -----------------------------
+       GENERATE DIGIT PROBABILITIES
+    ----------------------------- */
 
     let values = [];
 
@@ -6883,8 +6921,8 @@ function updateBulkTick(){
         values.push(
             Math.random() * 10 + 5
         );
-    }
 
+    }
 
     const total =
         values.reduce(
@@ -6892,18 +6930,55 @@ function updateBulkTick(){
             0
         );
 
-
-    let probabilities =
+    const probabilities =
         values.map(
             value => (value / total) * 100
         );
 
+
+    /* -----------------------------
+       LAST DIGIT
+    ----------------------------- */
 
     const lastDigit =
         Number(
             tick.replace(".","").slice(-1)
         );
 
+
+    /* -----------------------------
+       RANK DIGITS BY PROBABILITY
+    ----------------------------- */
+
+    const rankedDigits =
+        probabilities
+            .map((value,index) => ({
+                index:index,
+                value:value
+            }))
+            .sort(
+                (a,b) => b.value - a.value
+            );
+
+
+    /*
+       Four visual indicator levels.
+
+       These are visual indicators for
+       the simulated Bulk Trader display.
+    */
+
+    const indicatorColors = [
+        "#ff3b4f",   // red
+        "#ffb000",   // orange/yellow
+        "#ffd84d",   // yellow
+        "#3485ff"    // blue
+    ];
+
+
+    /* -----------------------------
+       RESET ALL DIGITS
+    ----------------------------- */
 
     for(let i = 0; i < 10; i++){
 
@@ -6917,44 +6992,154 @@ function updateBulkTick(){
                 "bulkDigit" + i
             );
 
+        const indicator =
+            document.getElementById(
+                "bulkIndicator" + i
+            );
+
+
         if(percentage){
 
             percentage.textContent =
                 probabilities[i].toFixed(2) + "%";
+
+            percentage.style.color =
+                "#00e58a";
         }
 
 
         if(circle){
 
             circle.style.borderColor =
-                "#173967";
+                "#302044";
 
-            circle.style.boxShadow =
-                "0 0 8px rgba(46,125,255,.08)";
+            circle.style.background =
+                "#0b0712";
+
+            circle.style.boxShadow = `
+                inset 0 0 8px rgba(201,79,255,.08),
+                0 3px 8px rgba(0,0,0,.45)
+            `;
+
+            circle.style.transform =
+                "scale(1)";
+        }
+
+
+        if(indicator){
+
+            indicator.style.display =
+                "none";
+
+            indicator.style.borderBottomColor =
+                "#ff3b4f";
         }
 
     }
 
+
+    /* -----------------------------
+       ADD COLOUR INDICATORS
+    ----------------------------- */
+
+    for(let rank = 0; rank < 4; rank++){
+
+        const digitNumber =
+            rankedDigits[rank].index;
+
+        const circle =
+            document.getElementById(
+                "bulkDigit" + digitNumber
+            );
+
+        const indicator =
+            document.getElementById(
+                "bulkIndicator" + digitNumber
+            );
+
+        const colour =
+            indicatorColors[rank];
+
+
+        if(circle){
+
+            circle.style.borderColor =
+                colour;
+
+            circle.style.boxShadow =
+                `0 0 13px ${colour}66,
+                 inset 0 0 8px ${colour}22`;
+        }
+
+
+        if(indicator){
+
+            indicator.style.display =
+                "block";
+
+            indicator.style.borderBottomColor =
+                colour;
+        }
+
+    }
+
+
+    /* -----------------------------
+       MOVING TRIANGLE
+    ----------------------------- */
 
     const active =
         document.getElementById(
             "bulkDigit" + lastDigit
         );
 
+    const activeIndicator =
+        document.getElementById(
+            "bulkIndicator" + lastDigit
+        );
+
+
     if(active){
 
         active.style.borderColor =
-            "#ff3f55";
+            "#ff3b4f";
 
         active.style.boxShadow =
-            "0 0 18px rgba(255,63,85,.55)";
+            `
+            0 0 20px rgba(255,59,79,.75),
+            inset 0 0 10px rgba(255,59,79,.12)
+            `;
+
+        active.style.transform =
+            "scale(1.08)";
     }
 
+
+    if(activeIndicator){
+
+        activeIndicator.style.display =
+            "block";
+
+        activeIndicator.style.borderBottomColor =
+            "#ff3b4f";
+
+        activeIndicator.style.filter =
+            "drop-shadow(0 0 5px rgba(255,59,79,.8))";
+
+        activeIndicator.style.animation =
+            "bulkTrianglePulse .7s ease-in-out infinite alternate";
+    }
+
+
+    /* -----------------------------
+       DIGIT HISTORY
+    ----------------------------- */
 
     const history =
         document.getElementById(
             "bulkDigitHistory"
         );
+
 
     if(history){
 
@@ -6967,7 +7152,7 @@ function updateBulkTick(){
         mark.style.cssText = `
             width:30px;
             height:28px;
-            border-radius:6px;
+            border-radius:7px;
             display:flex;
             justify-content:center;
             align-items:center;
@@ -6979,18 +7164,25 @@ function updateBulkTick(){
             color:white;
             font-weight:bold;
             font-size:13px;
+            flex:0 0 auto;
         `;
+
 
         history.appendChild(mark);
 
+
         while(history.children.length > 8){
+
             history.removeChild(
                 history.firstChild
             );
+
         }
+
     }
 
-}
+                }
+
 
 
 function selectBulkContract(contract){
@@ -7456,3 +7648,19 @@ function showBulkSection(section){
     }
 
         }
+
+const bulkTriangleStyle = document.createElement("style");
+
+bulkTriangleStyle.textContent = `
+@keyframes bulkTrianglePulse {
+    from {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    to {
+        transform: translateX(-50%) translateY(4px);
+    }
+}
+`;
+
+document.head.appendChild(bulkTriangleStyle);
