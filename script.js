@@ -3415,7 +3415,232 @@ function openAnalysisTool(){
 }
 
 function openRiskCalculator(){
-    alert("Risk Calculator coming next...");
+
+    document.querySelector(".container").innerHTML = `
+
+    <div style="
+        min-height:100vh;
+        background:#05050b;
+        color:white;
+        padding:15px;
+    ">
+
+        <!-- HEADER -->
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:20px;
+        ">
+
+            <div onclick="backToManualTrader()" style="
+                cursor:pointer;
+                font-size:25px;
+                color:#c94fff;
+            ">
+                ←
+            </div>
+
+            <div style="
+                font-size:20px;
+                font-weight:bold;
+                color:#b266ff;
+            ">
+                🧮 RISK CALCULATOR
+            </div>
+
+            <div onclick="openDashboard()" style="
+                cursor:pointer;
+                font-size:22px;
+            ">
+                🏠
+            </div>
+
+        </div>
+
+        <!-- RISK SETTINGS -->
+        <div style="
+            background:#11111b;
+            border:1px solid #7a2cff;
+            border-radius:18px;
+            padding:16px;
+        ">
+
+            <label style="
+                display:block;
+                color:#c084fc;
+                font-weight:bold;
+                margin-bottom:8px;
+            ">
+                Account Balance
+            </label>
+
+            <input
+                id="riskBalance"
+                type="number"
+                value="10000"
+                style="
+                    width:100%;
+                    padding:13px;
+                    border-radius:12px;
+                    border:1px solid #29293d;
+                    background:#080814;
+                    color:white;
+                    margin-bottom:15px;
+                    box-sizing:border-box;
+                "
+            >
+
+            <label style="
+                display:block;
+                color:#c084fc;
+                font-weight:bold;
+                margin-bottom:8px;
+            ">
+                Risk Percentage
+            </label>
+
+            <input
+                id="riskPercent"
+                type="number"
+                value="2"
+                min="0"
+                max="100"
+                style="
+                    width:100%;
+                    padding:13px;
+                    border-radius:12px;
+                    border:1px solid #29293d;
+                    background:#080814;
+                    color:white;
+                    margin-bottom:15px;
+                    box-sizing:border-box;
+                "
+            >
+
+            <label style="
+                display:block;
+                color:#c084fc;
+                font-weight:bold;
+                margin-bottom:8px;
+            ">
+                Stop Loss
+            </label>
+
+            <input
+                id="riskStopLoss"
+                type="number"
+                value="10"
+                min="0"
+                style="
+                    width:100%;
+                    padding:13px;
+                    border-radius:12px;
+                    border:1px solid #29293d;
+                    background:#080814;
+                    color:white;
+                    margin-bottom:20px;
+                    box-sizing:border-box;
+                "
+            >
+
+            <button onclick="calculatePhinixRisk()" style="
+                width:100%;
+                padding:16px;
+                background:linear-gradient(90deg,#7a2cff,#c94fff);
+                border:none;
+                border-radius:15px;
+                color:white;
+                font-size:17px;
+                font-weight:bold;
+            ">
+                🧮 CALCULATE RISK
+            </button>
+
+        </div>
+
+        <!-- RESULT -->
+        <div id="riskResult" style="
+            margin-top:15px;
+            background:#11111b;
+            border:1px solid #29293d;
+            border-radius:18px;
+            padding:18px;
+            text-align:center;
+        ">
+
+            <div style="
+                color:#888;
+                font-size:13px;
+            ">
+                Maximum Risk
+            </div>
+
+            <h2 style="
+                color:#00ff99;
+                margin-top:8px;
+            ">
+                $0.00
+            </h2>
+
+        </div>
+
+    </div>
+
+    `;
+}
+
+function calculatePhinixRisk(){
+
+    const balance = Number(
+        document.getElementById("riskBalance")?.value || 0
+    );
+
+    const percent = Number(
+        document.getElementById("riskPercent")?.value || 0
+    );
+
+    const stopLoss = Number(
+        document.getElementById("riskStopLoss")?.value || 0
+    );
+
+    if(balance <= 0 || percent <= 0 || stopLoss <= 0){
+        alert("Please enter valid risk settings.");
+        return;
+    }
+
+    const maximumRisk = balance * (percent / 100);
+
+    const result = document.getElementById("riskResult");
+
+    if(result){
+
+        result.innerHTML = `
+            <div style="color:#888;font-size:13px;">
+                Maximum Risk
+            </div>
+
+            <h2 style="
+                color:#00ff99;
+                margin:8px 0;
+            ">
+                $${maximumRisk.toFixed(2)}
+            </h2>
+
+            <div style="color:#aaa;font-size:13px;">
+                Maximum loss allowed at ${percent}% risk
+            </div>
+
+            <div style="
+                margin-top:12px;
+                color:#aaa;
+                font-size:13px;
+            ">
+                Stop Loss: $${stopLoss.toFixed(2)}
+            </div>
+        `;
+
+    }
 }
 
 function openOldManualTrader(){
