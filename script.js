@@ -4816,7 +4816,11 @@ function selectDemoAccount(button) {
     if (menu) {
         menu.remove();
     }
-
+    
+localStorage.setItem(
+    "phinixSelectedAccount",
+    "demo"
+);
     const demoBalance = Number(
         localStorage.getItem("phinixDemoBalance") || "10000"
     );
@@ -4832,18 +4836,30 @@ function selectDemoAccount(button) {
 }
 
 function selectRealAccount(button) {
+
     const menu = button.closest(".account-menu-overlay");
 
     if (menu) {
         menu.remove();
     }
 
+    // Remember that the REAL account is selected
+    localStorage.setItem(
+        "phinixSelectedAccount",
+        "real"
+    );
+
+    // Get the REAL account balance
+    const realBalance = Number(
+        localStorage.getItem("phinixRealBalance") || "0"
+    );
+
     const balance = document.querySelector(".balance");
 
     if (balance) {
         balance.innerHTML = `
             Real Account
-            <h1>$0.00</h1>
+            <h1>$${realBalance.toFixed(2)}</h1>
         `;
     }
 }
