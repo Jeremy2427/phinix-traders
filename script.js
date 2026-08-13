@@ -144,12 +144,6 @@ function changeStake(){
 
 function openBots(){
 
-    history.pushState(
-    { phinixPage: "bots" },
-    "",
-    "#bots"
-);
-
 document.querySelector(".container").innerHTML = `
 
 <div class="header" style="
@@ -5512,14 +5506,4 @@ window.addEventListener("DOMContentLoaded", function() {
     openDashboard();
 });
 
-window.addEventListener("popstate", function () {
 
-    const page = history.state?.phinixPage;
-
-    if (page === "bots") {
-        openManualTrader();
-        return;
-    }
-
-    openDashboard();
-});
