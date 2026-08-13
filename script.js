@@ -6127,3 +6127,1332 @@ window.addEventListener("popstate", function () {
     // Default
     openDashboard();
 });
+
+
+function openBulkTrader(){
+
+    document.querySelector(".container").innerHTML = `
+
+    <div id="phinixBulkTrader" style="
+        min-height:100vh;
+        background:#05020b;
+        color:white;
+        padding:12px;
+        padding-bottom:130px;
+        font-family:Arial,sans-serif;
+    ">
+
+        <!-- HEADER -->
+        <div style="
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            position:relative;
+            height:52px;
+            margin-bottom:8px;
+        ">
+
+            <div onclick="backToManualTrader()" style="
+                position:absolute;
+                left:4px;
+                top:10px;
+                cursor:pointer;
+                font-size:28px;
+                color:#c94fff;
+            ">
+                ←
+            </div>
+
+            <div style="
+                font-size:20px;
+                font-weight:bold;
+                color:#c94fff;
+            ">
+                📦 BULK TRADER
+            </div>
+
+        </div>
+
+
+        <!-- MAIN TRADING AREA -->
+        <div style="
+            background:#080510;
+            border:1px solid #6f2cff;
+            border-radius:20px;
+            padding:12px;
+            box-shadow:0 0 20px rgba(122,44,255,.18);
+        ">
+
+
+            <!-- MARKET + TRADE TYPE -->
+            <div style="
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:10px;
+            ">
+
+                <div>
+                    <label style="
+                        font-size:12px;
+                        color:#bda8d0;
+                    ">
+                        MARKET
+                    </label>
+
+                    <select id="bulkMarket" style="
+                        width:100%;
+                        margin-top:5px;
+                        padding:13px 10px;
+                        border-radius:10px;
+                        border:1px solid #743cff;
+                        background:#120b1d;
+                        color:white;
+                        font-weight:bold;
+                    ">
+                        <option>Volatility 100 (1s) Index</option>
+                        <option>Volatility 75 (1s) Index</option>
+                        <option>Volatility 50 (1s) Index</option>
+                        <option>Volatility 25 (1s) Index</option>
+                        <option>Volatility 10 (1s) Index</option>
+                    </select>
+                </div>
+
+
+                <div>
+                    <label style="
+                        font-size:12px;
+                        color:#bda8d0;
+                    ">
+                        TRADE TYPE
+                    </label>
+
+                    <select id="bulkTradeType"
+                        onchange="bulkTradeTypeChanged()"
+                        style="
+                        width:100%;
+                        margin-top:5px;
+                        padding:13px 10px;
+                        border-radius:10px;
+                        border:1px solid #743cff;
+                        background:#120b1d;
+                        color:white;
+                        font-weight:bold;
+                    ">
+                        <option value="evenodd">Even/Odd</option>
+                        <option value="matches">Matches/Differs</option>
+                        <option value="overunder">Over/Under</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+            <!-- TICKS -->
+            <div style="margin-top:14px;">
+
+                <label style="
+                    font-size:12px;
+                    color:#bda8d0;
+                ">
+                    NUMBER OF TICKS
+                </label>
+
+                <input id="bulkTicks"
+                    type="number"
+                    value="1000"
+                    min="1"
+                    style="
+                    width:100%;
+                    margin-top:5px;
+                    padding:13px;
+                    border-radius:10px;
+                    border:1px solid #743cff;
+                    background:#120b1d;
+                    color:white;
+                    text-align:center;
+                    font-size:16px;
+                    font-weight:bold;
+                    box-sizing:border-box;
+                ">
+
+            </div>
+
+
+            <!-- PREDICTION -->
+            <div id="bulkPredictionBox"
+                style="
+                display:none;
+                margin-top:14px;
+            ">
+
+                <label style="
+                    font-size:12px;
+                    color:#bda8d0;
+                ">
+                    PREDICTION
+                </label>
+
+                <select id="bulkPrediction" style="
+                    width:100%;
+                    margin-top:5px;
+                    padding:13px;
+                    border-radius:10px;
+                    border:1px solid #743cff;
+                    background:#120b1d;
+                    color:white;
+                    font-size:16px;
+                    font-weight:bold;
+                ">
+
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- CURRENT TICK -->
+            <div style="
+                text-align:center;
+                margin-top:20px;
+            ">
+
+                <div style="
+                    font-size:12px;
+                    color:#bda8d0;
+                    letter-spacing:1px;
+                    font-weight:bold;
+                ">
+                    CURRENT TICK
+                </div>
+
+                <div id="bulkCurrentTick"
+                    style="
+                    margin-top:5px;
+                    color:#ff4d5e;
+                    font-size:32px;
+                    font-weight:bold;
+                ">
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <!-- DIGITS -->
+            <div id="bulkDigits"
+                style="
+                display:grid;
+                grid-template-columns:repeat(5,1fr);
+                gap:10px;
+                margin-top:18px;
+            ">
+            </div>
+
+
+            <!-- DIGIT HISTORY -->
+            <div id="bulkDigitHistory"
+                style="
+                display:flex;
+                justify-content:center;
+                gap:7px;
+                margin-top:18px;
+                min-height:30px;
+                overflow:hidden;
+            ">
+            </div>
+
+
+            <!-- SETTINGS -->
+            <div style="
+                display:grid;
+                grid-template-columns:repeat(3,1fr);
+                gap:8px;
+                margin-top:22px;
+            ">
+
+                <div>
+                    <div style="
+                        text-align:center;
+                        color:#bda8d0;
+                        font-size:11px;
+                    ">
+                        TICKS
+                    </div>
+
+                    <input id="bulkTradeTicks"
+                        value="1"
+                        type="number"
+                        min="1"
+                        style="
+                        width:100%;
+                        margin-top:5px;
+                        padding:12px 5px;
+                        border-radius:10px;
+                        border:1px solid #743cff;
+                        background:#120b1d;
+                        color:white;
+                        text-align:center;
+                        box-sizing:border-box;
+                    ">
+                </div>
+
+
+                <div>
+                    <div style="
+                        text-align:center;
+                        color:#bda8d0;
+                        font-size:11px;
+                    ">
+                        STAKE
+                    </div>
+
+                    <input id="bulkStake"
+                        value="0.50"
+                        type="number"
+                        min="0.35"
+                        step="0.01"
+                        style="
+                        width:100%;
+                        margin-top:5px;
+                        padding:12px 5px;
+                        border-radius:10px;
+                        border:1px solid #743cff;
+                        background:#120b1d;
+                        color:white;
+                        text-align:center;
+                        box-sizing:border-box;
+                    ">
+                </div>
+
+
+                <div>
+                    <div style="
+                        text-align:center;
+                        color:#bda8d0;
+                        font-size:11px;
+                    ">
+                        NO. OF TRADES
+                    </div>
+
+                    <input id="bulkNumberTrades"
+                        value="1"
+                        type="number"
+                        min="1"
+                        style="
+                        width:100%;
+                        margin-top:5px;
+                        padding:12px 5px;
+                        border-radius:10px;
+                        border:1px solid #743cff;
+                        background:#120b1d;
+                        color:white;
+                        text-align:center;
+                        box-sizing:border-box;
+                    ">
+                </div>
+
+            </div>
+
+
+            <!-- TRADE BUTTONS -->
+            <div id="bulkTradeButtons"
+                style="
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:10px;
+                margin-top:18px;
+            ">
+            </div>
+
+
+            <!-- WARNING -->
+            <div style="
+                margin-top:22px;
+                display:flex;
+                align-items:center;
+                gap:10px;
+            ">
+
+                <button style="
+                    width:44px;
+                    height:44px;
+                    border:none;
+                    border-radius:10px;
+                    background:#ffd000;
+                    font-size:20px;
+                ">
+                    ⚠️
+                </button>
+
+            </div>
+
+
+            <!-- BOT STATUS -->
+            <div style="
+                margin-top:12px;
+                background:#0d0815;
+                border:1px solid #321650;
+                border-radius:14px;
+                padding:16px;
+                text-align:center;
+            ">
+
+                <div id="bulkBotStatus"
+                    style="
+                    font-weight:bold;
+                    color:#ddd;
+                ">
+                    Bot is not running
+                </div>
+
+                <div style="
+                    height:7px;
+                    background:#160d20;
+                    border-radius:10px;
+                    margin-top:12px;
+                    overflow:hidden;
+                ">
+
+                    <div id="bulkProgress"
+                        style="
+                        width:0%;
+                        height:100%;
+                        background:linear-gradient(90deg,#7a2cff,#c94fff);
+                        transition:width:.3s;
+                    ">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULT NAVIGATION -->
+            <div style="
+                display:grid;
+                grid-template-columns:repeat(3,1fr);
+                margin-top:20px;
+                border-top:1px solid #321650;
+                border-bottom:1px solid #321650;
+            ">
+
+                <button onclick="showBulkSection('summary')"
+                    id="bulkSummaryTab"
+                    style="
+                    padding:14px 5px;
+                    background:#1b0d29;
+                    color:#c94fff;
+                    border:none;
+                    font-weight:bold;
+                ">
+                    Summary
+                </button>
+
+                <button onclick="showBulkSection('transactions')"
+                    style="
+                    padding:14px 5px;
+                    background:transparent;
+                    color:#aaa;
+                    border:none;
+                ">
+                    Transactions
+                </button>
+
+                <button onclick="showBulkSection('journal')"
+                    style="
+                    padding:14px 5px;
+                    background:transparent;
+                    color:#aaa;
+                    border:none;
+                ">
+                    Journal
+                </button>
+
+            </div>
+
+
+            <!-- RESULTS -->
+            <div id="bulkResults"
+                style="
+                min-height:300px;
+                padding-top:20px;
+            ">
+            </div>
+
+
+            <!-- RUN BAR -->
+            <div style="
+                position:sticky;
+                bottom:8px;
+                margin-top:20px;
+                display:flex;
+                background:#17121c;
+                border:1px solid #39204d;
+                border-radius:12px;
+                overflow:hidden;
+                box-shadow:0 0 15px rgba(0,0,0,.5);
+            ">
+
+                <button onclick="runPhinixBulkTrader()"
+                    style="
+                    flex:0 0 140px;
+                    padding:16px;
+                    border:none;
+                    background:#00a99d;
+                    color:white;
+                    font-size:17px;
+                    font-weight:bold;
+                ">
+                    ▶ Run
+                </button>
+
+                <div style="
+                    flex:1;
+                    display:flex;
+                    align-items:center;
+                    padding-left:14px;
+                    font-weight:bold;
+                ">
+                    NORMAL SPEED
+                </div>
+
+                <button id="bulkSpeedButton"
+                    onclick="toggleBulkSpeed()"
+                    style="
+                    width:65px;
+                    background:#10151b;
+                    border:none;
+                    color:#c94fff;
+                    font-size:20px;
+                ">
+                    ●
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+    initializeBulkTrader();
+
+}
+
+let phinixBulkTimer = null;
+let phinixBulkRunning = false;
+let phinixBulkFast = false;
+let phinixBulkTransactions = [];
+let phinixBulkJournal = [];
+let phinixBulkStats = {
+    stake: 0,
+    payout: 0,
+    runs: 0,
+    won: 0,
+    lost: 0,
+    profit: 0
+};
+
+
+function initializeBulkTrader(){
+
+    bulkTradeTypeChanged();
+    createBulkDigits();
+    updateBulkTick();
+
+    if(phinixBulkTimer){
+        clearInterval(phinixBulkTimer);
+    }
+
+    phinixBulkTimer = setInterval(
+        updateBulkTick,
+        1200
+    );
+
+    showBulkSection("summary");
+}
+
+
+function bulkTradeTypeChanged(){
+
+    const type =
+        document.getElementById("bulkTradeType")?.value;
+
+    const predictionBox =
+        document.getElementById("bulkPredictionBox");
+
+    if(predictionBox){
+
+        predictionBox.style.display =
+            type === "matches"
+                ? "block"
+                : "none";
+    }
+
+
+    const buttons =
+        document.getElementById("bulkTradeButtons");
+
+    if(!buttons) return;
+
+
+    if(type === "evenodd"){
+
+        buttons.innerHTML = `
+
+            <button onclick="selectBulkContract('Even')"
+                style="
+                padding:17px;
+                border:none;
+                border-radius:12px;
+                background:#00a99d;
+                color:white;
+                font-weight:bold;
+                font-size:16px;
+            ">
+                Even
+            </button>
+
+            <button onclick="selectBulkContract('Odd')"
+                style="
+                padding:17px;
+                border:none;
+                border-radius:12px;
+                background:#d5223a;
+                color:white;
+                font-weight:bold;
+                font-size:16px;
+            ">
+                Odd
+            </button>
+
+        `;
+
+    }else if(type === "matches"){
+
+        buttons.innerHTML = `
+
+            <button onclick="selectBulkContract('Differs')"
+                style="
+                padding:17px;
+                border:none;
+                border-radius:12px;
+                background:#00a99d;
+                color:white;
+                font-weight:bold;
+                font-size:16px;
+            ">
+                Differs
+            </button>
+
+            <button onclick="selectBulkContract('Matches')"
+                style="
+                padding:17px;
+                border:none;
+                border-radius:12px;
+                background:#d5223a;
+                color:white;
+                font-weight:bold;
+                font-size:16px;
+            ">
+                Matches
+            </button>
+
+        `;
+
+    }else{
+
+        buttons.innerHTML = `
+
+            <button onclick="selectBulkContract('Over')"
+                style="
+                padding:17px;
+                border:none;
+                border-radius:12px;
+                background:#00a99d;
+                color:white;
+                font-weight:bold;
+                font-size:16px;
+            ">
+                Over
+            </button>
+
+            <button onclick="selectBulkContract('Under')"
+                style="
+                padding:17px;
+                border:none;
+                border-radius:12px;
+                background:#d5223a;
+                color:white;
+                font-weight:bold;
+                font-size:16px;
+            ">
+                Under
+            </button>
+
+        `;
+    }
+}
+
+
+function createBulkDigits(){
+
+    const container =
+        document.getElementById("bulkDigits");
+
+    if(!container) return;
+
+    container.innerHTML = "";
+
+    for(let i = 0; i <= 9; i++){
+
+        const digit =
+            document.createElement("div");
+
+        digit.id =
+            "bulkDigit" + i;
+
+        digit.style.cssText = `
+            height:82px;
+            border-radius:50%;
+            border:5px solid #173967;
+            background:#0d1b31;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            transition:.25s;
+            box-shadow:0 0 8px rgba(46,125,255,.08);
+        `;
+
+        digit.innerHTML = `
+            <span style="
+                font-size:18px;
+                font-weight:bold;
+            ">${i}</span>
+
+            <span id="bulkPercent${i}"
+                style="
+                margin-top:4px;
+                font-size:12px;
+                color:#ddd;
+            ">
+                0.00%
+            </span>
+        `;
+
+        container.appendChild(digit);
+    }
+}
+
+
+function updateBulkTick(){
+
+    const tick =
+        (Math.random() * 9000 + 100).toFixed(2);
+
+    const tickElement =
+        document.getElementById("bulkCurrentTick");
+
+    if(tickElement){
+
+        tickElement.textContent =
+            tick;
+
+        tickElement.style.color =
+            "#ff4d5e";
+
+    }
+
+
+    let values = [];
+
+    for(let i = 0; i < 10; i++){
+
+        values.push(
+            Math.random() * 10 + 5
+        );
+    }
+
+
+    const total =
+        values.reduce(
+            (a,b) => a + b,
+            0
+        );
+
+
+    let probabilities =
+        values.map(
+            value => (value / total) * 100
+        );
+
+
+    const lastDigit =
+        Number(
+            tick.replace(".","").slice(-1)
+        );
+
+
+    for(let i = 0; i < 10; i++){
+
+        const percentage =
+            document.getElementById(
+                "bulkPercent" + i
+            );
+
+        const circle =
+            document.getElementById(
+                "bulkDigit" + i
+            );
+
+        if(percentage){
+
+            percentage.textContent =
+                probabilities[i].toFixed(2) + "%";
+        }
+
+
+        if(circle){
+
+            circle.style.borderColor =
+                "#173967";
+
+            circle.style.boxShadow =
+                "0 0 8px rgba(46,125,255,.08)";
+        }
+
+    }
+
+
+    const active =
+        document.getElementById(
+            "bulkDigit" + lastDigit
+        );
+
+    if(active){
+
+        active.style.borderColor =
+            "#ff3f55";
+
+        active.style.boxShadow =
+            "0 0 18px rgba(255,63,85,.55)";
+    }
+
+
+    const history =
+        document.getElementById(
+            "bulkDigitHistory"
+        );
+
+    if(history){
+
+        const mark =
+            document.createElement("div");
+
+        mark.textContent =
+            lastDigit;
+
+        mark.style.cssText = `
+            width:30px;
+            height:28px;
+            border-radius:6px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:${
+                lastDigit % 2 === 0
+                    ? "#00a99d"
+                    : "#d5223a"
+            };
+            color:white;
+            font-weight:bold;
+            font-size:13px;
+        `;
+
+        history.appendChild(mark);
+
+        while(history.children.length > 8){
+            history.removeChild(
+                history.firstChild
+            );
+        }
+    }
+
+}
+
+
+function selectBulkContract(contract){
+
+    window.phinixBulkSelectedContract =
+        contract;
+
+    const status =
+        document.getElementById("bulkBotStatus");
+
+    if(status){
+
+        status.textContent =
+            contract + " selected";
+    }
+
+}
+
+
+function runPhinixBulkTrader(){
+
+    if(phinixBulkRunning){
+        return;
+    }
+
+    phinixBulkRunning = true;
+
+    const status =
+        document.getElementById("bulkBotStatus");
+
+    const progress =
+        document.getElementById("bulkProgress");
+
+    if(status){
+        status.textContent =
+            "Bot is running...";
+        status.style.color =
+            "#c94fff";
+    }
+
+
+    const numberTrades =
+        Number(
+            document.getElementById(
+                "bulkNumberTrades"
+            )?.value || 1
+        );
+
+    const stake =
+        Number(
+            document.getElementById(
+                "bulkStake"
+            )?.value || 0.5
+        );
+
+
+    let completed = 0;
+
+
+    const speed =
+        phinixBulkFast
+            ? 350
+            : 1000;
+
+
+    const timer =
+        setInterval(function(){
+
+            completed++;
+
+            const won =
+                Math.random() > 0.5;
+
+            const payout =
+                won
+                    ? stake * 1.95
+                    : 0;
+
+            const profit =
+                payout - stake;
+
+
+            phinixBulkTransactions.unshift({
+
+                id:
+                    "PHX-" +
+                    Date.now().toString().slice(-8),
+
+                time:
+                    new Date().toLocaleTimeString(),
+
+                contract:
+                    window.phinixBulkSelectedContract ||
+                    "Even",
+
+                stake:
+                    stake,
+
+                payout:
+                    payout,
+
+                profit:
+                    profit,
+
+                result:
+                    won
+                        ? "Won"
+                        : "Lost"
+            });
+
+
+            phinixBulkStats.stake += stake;
+            phinixBulkStats.payout += payout;
+            phinixBulkStats.runs++;
+            phinixBulkStats.profit += profit;
+
+            if(won){
+                phinixBulkStats.won++;
+            }else{
+                phinixBulkStats.lost++;
+            }
+
+
+            phinixBulkJournal.unshift(
+                `${new Date().toLocaleTimeString()} — ${
+                    won ? "WIN" : "LOSS"
+                } — ${(
+                    profit
+                ).toFixed(2)} USD`
+            );
+
+
+            if(progress){
+
+                progress.style.width =
+                    ((completed /
+                        numberTrades) *
+                        100) + "%";
+            }
+
+
+            showBulkSection("summary");
+
+
+            if(completed >= numberTrades){
+
+                clearInterval(timer);
+
+                phinixBulkRunning =
+                    false;
+
+                if(status){
+
+                    status.textContent =
+                        "Bot finished";
+
+                    status.style.color =
+                        "#00d995";
+                }
+
+            }
+
+        }, speed);
+
+}
+
+
+function toggleBulkSpeed(){
+
+    phinixBulkFast =
+        !phinixBulkFast;
+
+    const button =
+        document.getElementById(
+            "bulkSpeedButton"
+        );
+
+    if(button){
+
+        button.textContent =
+            phinixBulkFast
+                ? "⚡"
+                : "●";
+
+        button.style.color =
+            phinixBulkFast
+                ? "#00d995"
+                : "#c94fff";
+    }
+
+}
+
+
+function showBulkSection(section){
+
+    const results =
+        document.getElementById(
+            "bulkResults"
+        );
+
+    if(!results) return;
+
+
+    if(section === "summary"){
+
+        results.innerHTML = `
+
+            <div style="
+                text-align:center;
+                padding:40px 10px;
+            ">
+
+                ${
+                    phinixBulkStats.runs === 0
+                    ? `
+                    <div style="
+                        color:#c5cad5;
+                        line-height:1.6;
+                        font-size:16px;
+                    ">
+                        When you're ready to trade,
+                        hit <b>Run</b>.<br>
+                        You'll be able to track
+                        your bot's performance here.
+                    </div>
+                    `
+                    : `
+                    <div style="
+                        display:grid;
+                        grid-template-columns:repeat(3,1fr);
+                        gap:18px 8px;
+                        margin-top:20px;
+                    ">
+
+                        <div>
+                            <b>Total stake</b>
+                            <div style="margin-top:8px;">
+                                ${phinixBulkStats.stake.toFixed(2)}
+                                USD
+                            </div>
+                        </div>
+
+                        <div>
+                            <b>Total payout</b>
+                            <div style="margin-top:8px;">
+                                ${phinixBulkStats.payout.toFixed(2)}
+                                USD
+                            </div>
+                        </div>
+
+                        <div>
+                            <b>No. of runs</b>
+                            <div style="margin-top:8px;">
+                                ${phinixBulkStats.runs}
+                            </div>
+                        </div>
+
+                        <div>
+                            <b>Contracts lost</b>
+                            <div style="
+                                margin-top:8px;
+                                color:#ff4d5e;
+                            ">
+                                ${phinixBulkStats.lost}
+                            </div>
+                        </div>
+
+                        <div>
+                            <b>Contracts won</b>
+                            <div style="
+                                margin-top:8px;
+                                color:#00d995;
+                            ">
+                                ${phinixBulkStats.won}
+                            </div>
+                        </div>
+
+                        <div>
+                            <b>Total profit/loss</b>
+                            <div style="
+                                margin-top:8px;
+                                color:${
+                                    phinixBulkStats.profit >= 0
+                                    ? "#00d995"
+                                    : "#ff4d5e"
+                                };
+                            ">
+                                ${
+                                    phinixBulkStats.profit >= 0
+                                    ? "+"
+                                    : ""
+                                }${
+                                    phinixBulkStats.profit.toFixed(2)
+                                } USD
+                            </div>
+                        </div>
+
+                    </div>
+                    `
+                }
+
+            </div>
+
+        `;
+
+    }
+
+
+    else if(section === "transactions"){
+
+        results.innerHTML = `
+
+            <div>
+
+                ${
+                    phinixBulkTransactions.length === 0
+
+                    ? `
+                    <div style="
+                        text-align:center;
+                        color:#9d9da8;
+                        padding:50px 10px;
+                    ">
+                        No transactions yet.
+                    </div>
+                    `
+
+                    :
+
+                    phinixBulkTransactions.map(
+                        function(tx){
+
+                            return `
+                                <div style="
+                                    background:#0d0815;
+                                    border:1px solid #321650;
+                                    border-radius:14px;
+                                    padding:15px;
+                                    margin-bottom:10px;
+                                ">
+
+                                    <div style="
+                                        display:flex;
+                                        justify-content:space-between;
+                                    ">
+
+                                        <b>
+                                            ${tx.contract}
+                                        </b>
+
+                                        <span style="
+                                            color:${
+                                                tx.result === "Won"
+                                                ? "#00d995"
+                                                : "#ff4d5e"
+                                            };
+                                            font-weight:bold;
+                                        ">
+                                            ${tx.result}
+                                        </span>
+
+                                    </div>
+
+                                    <div style="
+                                        color:#aaa;
+                                        font-size:12px;
+                                        margin-top:8px;
+                                    ">
+                                        ${tx.id}
+                                        •
+                                        ${tx.time}
+                                    </div>
+
+                                    <div style="
+                                        display:flex;
+                                        justify-content:space-between;
+                                        margin-top:12px;
+                                    ">
+
+                                        <span>
+                                            Stake
+                                            <br>
+                                            $${tx.stake.toFixed(2)}
+                                        </span>
+
+                                        <span>
+                                            Payout
+                                            <br>
+                                            $${tx.payout.toFixed(2)}
+                                        </span>
+
+                                        <span style="
+                                            color:${
+                                                tx.profit >= 0
+                                                ? "#00d995"
+                                                : "#ff4d5e"
+                                            };
+                                        ">
+                                            P/L
+                                            <br>
+                                            ${
+                                                tx.profit >= 0
+                                                ? "+"
+                                                : ""
+                                            }$${tx.profit.toFixed(2)}
+                                        </span>
+
+                                    </div>
+
+                                </div>
+                            `;
+
+                        }
+                    ).join("")
+                }
+
+            </div>
+
+        `;
+
+    }
+
+
+    else if(section === "journal"){
+
+        results.innerHTML = `
+
+            <div>
+
+                ${
+                    phinixBulkJournal.length === 0
+
+                    ? `
+                    <div style="
+                        text-align:center;
+                        color:#9d9da8;
+                        padding:50px 10px;
+                    ">
+                        Journal is empty.
+                    </div>
+                    `
+
+                    :
+
+                    phinixBulkJournal.map(
+                        item => `
+                            <div style="
+                                padding:12px;
+                                border-bottom:1px solid #241331;
+                                color:#c9c9d2;
+                                font-size:13px;
+                            ">
+                                ${item}
+                            </div>
+                        `
+                    ).join("")
+                }
+
+            </div>
+
+        `;
+
+    }
+
+        }
