@@ -3091,6 +3091,7 @@ cursor:pointer;
 
 `;
 }
+
 function openTrendRunningScreen(){
 
 document.querySelector(".container").innerHTML = `
@@ -3783,13 +3784,13 @@ function openWalletMenu(){
             margin-bottom:22px;
         ">
 
-            <div onclick="openDashboard()" style="
-                cursor:pointer;
-                font-size:25px;
-                color:#c94fff;
-            ">
-                ←
-            </div>
+            <div onclick="backToManualTrader()" style="
+    cursor:pointer;
+    font-size:25px;
+    color:#c94fff;
+">
+    ←
+</div>
 
             <div style="
                 font-size:21px;
