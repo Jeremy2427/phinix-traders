@@ -362,7 +362,7 @@ gap:10px;
 padding:0 15px;
 ">
 
-<button style="
+<button onclick="openDepositPage()" style="
 flex:1;
 background:#16a34a;
 color:white;
@@ -374,7 +374,7 @@ font-weight:bold;
 💰 Deposit
 </button>
 
-<button style="
+<button onclick="openWithdrawPage()" style="
 flex:1;
 background:#dc2626;
 color:white;
