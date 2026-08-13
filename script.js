@@ -3420,9 +3420,11 @@ function openRiskCalculator(){
 
     <div style="
         min-height:100vh;
-        background:#05050b;
+        background:#07111f;
         color:white;
-        padding:15px;
+        padding:12px;
+        padding-bottom:110px;
+        font-family:Arial,sans-serif;
     ">
 
         <!-- HEADER -->
@@ -3430,13 +3432,13 @@ function openRiskCalculator(){
             display:flex;
             justify-content:space-between;
             align-items:center;
-            margin-bottom:20px;
+            margin-bottom:12px;
         ">
 
             <div onclick="backToManualTrader()" style="
                 cursor:pointer;
                 font-size:25px;
-                color:#c94fff;
+                color:#4d9cff;
             ">
                 ←
             </div>
@@ -3444,7 +3446,7 @@ function openRiskCalculator(){
             <div style="
                 font-size:20px;
                 font-weight:bold;
-                color:#b266ff;
+                color:#4d9cff;
             ">
                 🧮 RISK CALCULATOR
             </div>
@@ -3458,190 +3460,520 @@ function openRiskCalculator(){
 
         </div>
 
-        <!-- RISK SETTINGS -->
+
+        <!-- MAIN CALCULATOR -->
         <div style="
-            background:#11111b;
-            border:1px solid #7a2cff;
-            border-radius:18px;
-            padding:16px;
+            background:#14263f;
+            border:1px solid #27476d;
+            border-radius:20px;
+            overflow:hidden;
+            box-shadow:0 5px 20px rgba(0,0,0,.35);
         ">
 
-            <label style="
-                display:block;
-                color:#c084fc;
-                font-weight:bold;
-                margin-bottom:8px;
-            ">
-                Account Balance
-            </label>
-
-            <input
-                id="riskBalance"
-                type="number"
-                value="10000"
-                style="
-                    width:100%;
-                    padding:13px;
-                    border-radius:12px;
-                    border:1px solid #29293d;
-                    background:#080814;
-                    color:white;
-                    margin-bottom:15px;
-                    box-sizing:border-box;
-                "
-            >
-
-            <label style="
-                display:block;
-                color:#c084fc;
-                font-weight:bold;
-                margin-bottom:8px;
-            ">
-                Risk Percentage
-            </label>
-
-            <input
-                id="riskPercent"
-                type="number"
-                value="2"
-                min="0"
-                max="100"
-                style="
-                    width:100%;
-                    padding:13px;
-                    border-radius:12px;
-                    border:1px solid #29293d;
-                    background:#080814;
-                    color:white;
-                    margin-bottom:15px;
-                    box-sizing:border-box;
-                "
-            >
-
-            <label style="
-                display:block;
-                color:#c084fc;
-                font-weight:bold;
-                margin-bottom:8px;
-            ">
-                Stop Loss
-            </label>
-
-            <input
-                id="riskStopLoss"
-                type="number"
-                value="10"
-                min="0"
-                style="
-                    width:100%;
-                    padding:13px;
-                    border-radius:12px;
-                    border:1px solid #29293d;
-                    background:#080814;
-                    color:white;
-                    margin-bottom:20px;
-                    box-sizing:border-box;
-                "
-            >
-
-            <button onclick="calculatePhinixRisk()" style="
-                width:100%;
-                padding:16px;
-                background:linear-gradient(90deg,#7a2cff,#c94fff);
-                border:none;
-                border-radius:15px;
-                color:white;
-                font-size:17px;
-                font-weight:bold;
-            ">
-                🧮 CALCULATE RISK
-            </button>
-
-        </div>
-
-        <!-- RESULT -->
-        <div id="riskResult" style="
-            margin-top:15px;
-            background:#11111b;
-            border:1px solid #29293d;
-            border-radius:18px;
-            padding:18px;
-            text-align:center;
-        ">
-
+            <!-- TITLE -->
             <div style="
-                color:#888;
-                font-size:13px;
+                text-align:center;
+                padding:25px 15px;
+                background:#0e2038;
             ">
-                Maximum Risk
+
+                <h1 style="
+                    font-size:27px;
+                    margin:0;
+                ">
+                    Deriv Risk Management
+                    <br>
+                    Calculator 🧮
+                </h1>
+
+                <p style="
+                    color:#b8c4d4;
+                    margin-top:12px;
+                    font-size:14px;
+                ">
+                    Calculate optimal stakes and manage risk effectively
+                </p>
+
             </div>
 
-            <h2 style="
-                color:#00ff99;
-                margin-top:8px;
-            ">
-                $0.00
-            </h2>
+
+            <!-- AMOUNT DISPLAY -->
+            <div style="padding:18px;">
+
+                <div style="
+                    display:flex;
+                    align-items:center;
+                    justify-content:space-between;
+                    background:#10213a;
+                    border:2px solid #245bb0;
+                    border-radius:17px;
+                    padding:15px;
+                    margin-bottom:15px;
+                ">
+
+                    <span style="
+                        font-size:32px;
+                        color:#4d9cff;
+                    ">
+                        $
+                    </span>
+
+                    <input
+                        id="riskCapital"
+                        type="number"
+                        value="30"
+                        min="1"
+                        step="0.01"
+                        oninput="calculatePhinixRisk()"
+                        style="
+                            width:80%;
+                            background:transparent;
+                            border:none;
+                            outline:none;
+                            color:white;
+                            text-align:right;
+                            font-size:38px;
+                            font-weight:bold;
+                        "
+                    >
+
+                </div>
+
+
+                <!-- RISK SETTINGS -->
+
+                <div style="
+                    display:grid;
+                    grid-template-columns:1fr 1fr;
+                    gap:10px;
+                    margin-bottom:18px;
+                ">
+
+                    <div>
+                        <label style="font-size:12px;color:#9db0c8;">
+                            Risk %
+                        </label>
+
+                        <input
+                            id="riskPercent"
+                            type="number"
+                            value="2"
+                            min="0.1"
+                            step="0.1"
+                            oninput="calculatePhinixRisk()"
+                            style="
+                                width:100%;
+                                padding:12px;
+                                margin-top:5px;
+                                border-radius:12px;
+                                border:1px solid #31537c;
+                                background:#0d1d32;
+                                color:white;
+                                box-sizing:border-box;
+                            "
+                        >
+                    </div>
+
+
+                    <div>
+                        <label style="font-size:12px;color:#9db0c8;">
+                            Martingale
+                        </label>
+
+                        <select
+                            id="riskMartingale"
+                            onchange="calculatePhinixRisk()"
+                            style="
+                                width:100%;
+                                padding:12px;
+                                margin-top:5px;
+                                border-radius:12px;
+                                border:1px solid #31537c;
+                                background:#0d1d32;
+                                color:white;
+                                box-sizing:border-box;
+                            "
+                        >
+                            <option value="1">OFF</option>
+                            <option value="1.5">x1.5</option>
+                            <option value="2" selected>x2</option>
+                            <option value="2.5">x2.5</option>
+                            <option value="3">x3</option>
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label style="font-size:12px;color:#9db0c8;">
+                            Take Profit %
+                        </label>
+
+                        <input
+                            id="riskTakeProfit"
+                            type="number"
+                            value="10"
+                            min="0.1"
+                            step="0.1"
+                            oninput="calculatePhinixRisk()"
+                            style="
+                                width:100%;
+                                padding:12px;
+                                margin-top:5px;
+                                border-radius:12px;
+                                border:1px solid #31537c;
+                                background:#0d1d32;
+                                color:white;
+                                box-sizing:border-box;
+                            "
+                        >
+                    </div>
+
+
+                    <div>
+                        <label style="font-size:12px;color:#9db0c8;">
+                            Stop Loss %
+                        </label>
+
+                        <input
+                            id="riskStopLoss"
+                            type="number"
+                            value="30"
+                            min="0.1"
+                            step="0.1"
+                            oninput="calculatePhinixRisk()"
+                            style="
+                                width:100%;
+                                padding:12px;
+                                margin-top:5px;
+                                border-radius:12px;
+                                border:1px solid #31537c;
+                                background:#0d1d32;
+                                color:white;
+                                box-sizing:border-box;
+                            "
+                        >
+                    </div>
+
+                </div>
+
+
+                <!-- RESULT CARD -->
+                <div style="
+                    background:#0d1d32;
+                    border-radius:18px;
+                    padding:18px;
+                ">
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        padding:12px 0;
+                        border-bottom:1px solid #263b57;
+                    ">
+                        <span>🪙 Stake:</span>
+                        <strong id="riskStake" style="color:#00d995;">
+                            $0.60
+                        </strong>
+                    </div>
+
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        padding:12px 0;
+                        border-bottom:1px solid #263b57;
+                    ">
+                        <span>📈 Martingale Size:</span>
+                        <strong id="riskMartingaleResult">
+                            x2
+                        </strong>
+                    </div>
+
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        padding:12px 0;
+                        border-bottom:1px solid #263b57;
+                    ">
+                        <span>⬆️ Take Profit:</span>
+                        <strong id="riskTP" style="color:#00d995;">
+                            $3.00
+                        </strong>
+                    </div>
+
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        padding:12px 0;
+                    ">
+                        <span>⬇️ Stop Loss:</span>
+                        <strong id="riskSL" style="color:#ff4d5e;">
+                            $9.00
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- LOSSES -->
+                <div style="
+                    margin-top:15px;
+                    background:#0d1d32;
+                    border-radius:16px;
+                    padding:16px;
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                ">
+
+                    <span>
+                        ⚠️ Consecutive Losses:
+                    </span>
+
+                    <select
+                        id="riskLosses"
+                        onchange="calculatePhinixRisk()"
+                        style="
+                            background:#10213a;
+                            color:white;
+                            border:1px solid #31537c;
+                            border-radius:10px;
+                            padding:10px;
+                        "
+                    >
+                        <option>1</option>
+                        <option>2</option>
+                        <option selected>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+
+                </div>
+
+
+                <!-- STAKE SEQUENCE -->
+                <div style="
+                    margin-top:15px;
+                    background:#0d1d32;
+                    border-radius:16px;
+                    padding:16px;
+                ">
+
+                    <h3 style="margin-bottom:15px;">
+                        📋 Stake Sequence
+                    </h3>
+
+                    <div id="riskSequence"
+                         style="
+                            display:flex;
+                            flex-wrap:wrap;
+                            gap:10px;
+                         ">
+                    </div>
+
+                </div>
+
+
+                <!-- REQUIRED CAPITAL -->
+                <div style="
+                    margin-top:15px;
+                    padding:15px 5px;
+                    display:flex;
+                    justify-content:space-between;
+                    font-size:16px;
+                ">
+
+                    <span>
+                        🛡 Required Capital:
+                    </span>
+
+                    <strong id="riskRequiredCapital"
+                            style="color:#ffb000;">
+                        $9.00
+                    </strong>
+
+                </div>
+
+
+                <!-- BOT SETTINGS -->
+                <div style="
+                    margin-top:10px;
+                    background:#0d1d32;
+                    border-radius:16px;
+                    padding:16px;
+                ">
+
+                    <h3 style="
+                        color:#4d9cff;
+                        margin-bottom:8px;
+                    ">
+                        🤖 Bot Risk Settings
+                    </h3>
+
+                    <p style="
+                        color:#9db0c8;
+                        font-size:13px;
+                        line-height:1.5;
+                    ">
+                        These calculated values can be used when configuring
+                        Phinix Bots, Lightning Bot, Bulk Trader and other
+                        automated strategies.
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
     `;
+
+    calculatePhinixRisk();
 }
+
 
 function calculatePhinixRisk(){
 
-    const balance = Number(
-        document.getElementById("riskBalance")?.value || 0
-    );
+    const capital =
+        Number(document.getElementById("riskCapital")?.value || 0);
 
-    const percent = Number(
-        document.getElementById("riskPercent")?.value || 0
-    );
+    const riskPercent =
+        Number(document.getElementById("riskPercent")?.value || 0);
 
-    const stopLoss = Number(
-        document.getElementById("riskStopLoss")?.value || 0
-    );
+    const martingale =
+        Number(document.getElementById("riskMartingale")?.value || 1);
 
-    if(balance <= 0 || percent <= 0 || stopLoss <= 0){
-        alert("Please enter valid risk settings.");
+    const takeProfitPercent =
+        Number(document.getElementById("riskTakeProfit")?.value || 0);
+
+    const stopLossPercent =
+        Number(document.getElementById("riskStopLoss")?.value || 0);
+
+    const losses =
+        Number(document.getElementById("riskLosses")?.value || 3);
+
+
+    if(capital <= 0){
         return;
     }
 
-    const maximumRisk = balance * (percent / 100);
 
-    const result = document.getElementById("riskResult");
+    // Base stake
+    const stake =
+        capital * (riskPercent / 100);
 
-    if(result){
 
-        result.innerHTML = `
-            <div style="color:#888;font-size:13px;">
-                Maximum Risk
-            </div>
+    // Take profit
+    const takeProfit =
+        capital * (takeProfitPercent / 100);
 
-            <h2 style="
-                color:#00ff99;
-                margin:8px 0;
-            ">
-                $${maximumRisk.toFixed(2)}
-            </h2>
 
-            <div style="color:#aaa;font-size:13px;">
-                Maximum loss allowed at ${percent}% risk
-            </div>
+    // Stop loss
+    const stopLoss =
+        capital * (stopLossPercent / 100);
 
-            <div style="
-                margin-top:12px;
-                color:#aaa;
-                font-size:13px;
-            ">
-                Stop Loss: $${stopLoss.toFixed(2)}
-            </div>
-        `;
+
+    // Stake sequence
+    const sequence = [];
+
+    let currentStake = stake;
+
+    for(let i = 0; i <= losses; i++){
+
+        sequence.push(currentStake);
+
+        currentStake =
+            currentStake * martingale;
+    }
+
+
+    // Required capital
+    const requiredCapital =
+        sequence.reduce(
+            (total,value) => total + value,
+            0
+        );
+
+
+    // Update results
+    const stakeElement =
+        document.getElementById("riskStake");
+
+    const tpElement =
+        document.getElementById("riskTP");
+
+    const slElement =
+        document.getElementById("riskSL");
+
+    const martingaleElement =
+        document.getElementById("riskMartingaleResult");
+
+    const requiredElement =
+        document.getElementById("riskRequiredCapital");
+
+    const sequenceElement =
+        document.getElementById("riskSequence");
+
+
+    if(stakeElement){
+        stakeElement.textContent =
+            "$" + stake.toFixed(2);
+    }
+
+    if(tpElement){
+        tpElement.textContent =
+            "$" + takeProfit.toFixed(2);
+    }
+
+    if(slElement){
+        slElement.textContent =
+            "$" + stopLoss.toFixed(2);
+    }
+
+    if(martingaleElement){
+
+        martingaleElement.textContent =
+            martingale === 1
+                ? "OFF"
+                : "x" + martingale;
 
     }
-}
+
+    if(requiredElement){
+
+        requiredElement.textContent =
+            "$" + requiredCapital.toFixed(2);
+
+    }
+
+
+    if(sequenceElement){
+
+        sequenceElement.innerHTML =
+            sequence.map(function(value){
+
+                return `
+                    <div style="
+                        background:#2768e8;
+                        color:white;
+                        padding:10px 14px;
+                        border-radius:20px;
+                        font-weight:bold;
+                    ">
+                        $${value.toFixed(2)}
+                    </div>
+                `;
+
+            }).join("");
+
+    }
+
+            }
+        
 
 function openOldManualTrader(){
     document.querySelector(".container").innerHTML = `
