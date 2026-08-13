@@ -144,6 +144,12 @@ function changeStake(){
 
 function openBots(){
 
+    history.pushState(
+    { phinixPage: "bots" },
+    "",
+    "#bots"
+);
+
 document.querySelector(".container").innerHTML = `
 
 <div class="header" style="
@@ -5500,6 +5506,18 @@ status.style.color = "#00ff99";
 
 window.addEventListener("DOMContentLoaded", function() {
     if (window.location.pathname.toLowerCase().endsWith("dtrader.html")) {
+        return;
+    }
+
+    openDashboard();
+});
+
+window.addEventListener("popstate", function () {
+
+    const page = history.state?.phinixPage;
+
+    if (page === "bots") {
+        openManualTrader();
         return;
     }
 
