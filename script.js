@@ -144,6 +144,8 @@ function changeStake(){
 
 function openBots(){
 
+    phinixNavigate("bots");
+
 document.querySelector(".container").innerHTML = `
 
 <div class="header" style="
@@ -5506,4 +5508,65 @@ window.addEventListener("DOMContentLoaded", function() {
     openDashboard();
 });
 
+function phinixNavigate(page) {
 
+    history.pushState(
+        { phinixPage: page },
+        "",
+        "#" + page
+    );
+
+}
+
+function phinixBack() {
+
+    if (history.state && history.state.phinixPage) {
+        history.back();
+    } else {
+        openDashboard();
+    }
+
+}
+
+window.addEventListener("popstate", function () {
+
+    const page = history.state?.phinixPage;
+
+    if (!page) {
+        openDashboard();
+        return;
+    }
+
+    if (page === "bots") {
+        openBots();
+        return;
+    }
+
+    if (page === "manual") {
+        openManualTrader();
+        return;
+    }
+
+    if (page === "wallet") {
+        openWalletMenu();
+        return;
+    }
+
+    if (page === "deposit") {
+        openDepositPage();
+        return;
+    }
+
+    if (page === "withdraw") {
+        openWithdrawPage();
+        return;
+    }
+
+    if (page === "botbuilder") {
+        openBotBuilder();
+        return;
+    }
+
+    // Default
+    openDashboard();
+});
