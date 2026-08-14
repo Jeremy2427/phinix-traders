@@ -7108,7 +7108,7 @@ function updateBulkTick(){
             );
         }
     }
-]
+}
 
 
 function selectBulkContract(contract){
