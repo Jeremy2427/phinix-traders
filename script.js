@@ -6597,60 +6597,94 @@ function openBulkTrader(){
             ">
             </div>
 
+<!-- RESULTS PANEL BUTTON -->
 
-            <!-- RUN BAR -->
-            <div style="
-                position:sticky;
-                bottom:8px;
-                margin-top:20px;
-                display:flex;
-                background:#17121c;
-                border:1px solid #39204d;
-                border-radius:12px;
-                overflow:hidden;
-                box-shadow:0 0 15px rgba(0,0,0,.5);
-            ">
+<div style="
+    display:flex;
+    justify-content:center;
+    margin-top:18px;
+">
 
-                <button onclick="runPhinixBulkTrader()"
-                    style="
-                    flex:0 0 140px;
-                    padding:16px;
-                    border:none;
-                    background:#00a99d;
-                    color:white;
-                    font-size:17px;
-                    font-weight:bold;
-                ">
-                    ▶ Run
-                </button>
+    <button
+        onclick="toggleBulkResultsPanel()"
+        style="
+            width:52px;
+            height:28px;
+            border:none;
+            border-radius:16px 16px 0 0;
+            background:#17101f;
+            color:#c94fff;
+            font-size:20px;
+            font-weight:bold;
+            box-shadow:0 -3px 12px rgba(122,44,255,.25);
+        "
+    >
+        ⌃
+    </button>
 
-                <div style="
-                    flex:1;
-                    display:flex;
-                    align-items:center;
-                    padding-left:14px;
-                    font-weight:bold;
-                ">
-                    NORMAL SPEED
-                </div>
+</div>
 
-                <button id="bulkSpeedButton"
-                    onclick="toggleBulkSpeed()"
-                    style="
-                    width:65px;
-                    background:#10151b;
-                    border:none;
-                    color:#c94fff;
-                    font-size:20px;
-                ">
-                    ●
-                </button>
 
-            </div>
+<!-- SLIDE-UP RESULTS PANEL -->
 
-        </div>
+<div id="bulkResultsPanel"
+    style="
+        display:none;
+        background:#080510;
+        border:1px solid #6f2cff;
+        border-radius:18px 18px 0 0;
+        padding:12px;
+        margin-top:-1px;
+    "
+>
+
+    <div style="
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        border-bottom:1px solid #321650;
+    ">
+
+        <button
+            onclick="showBulkSection('summary')"
+            style="
+                padding:13px 4px;
+                background:#1b0d29;
+                color:#c94fff;
+                border:none;
+                font-weight:bold;
+            "
+        >
+            Summary
+        </button>
+
+        <button
+            onclick="showBulkSection('transactions')"
+            style="
+                padding:13px 4px;
+                background:transparent;
+                color:#aaa;
+                border:none;
+            "
+        >
+            Transactions
+        </button>
+
+        <button
+            onclick="showBulkSection('journal')"
+            style="
+                padding:13px 4px;
+                background:transparent;
+                color:#aaa;
+                border:none;
+            "
+        >
+            Journal
+        </button>
 
     </div>
+
+</div>
+            
 
     `;
 
@@ -6823,20 +6857,27 @@ function createBulkDigits(){
 
     container.innerHTML = "";
 
+    /*
+       10 digits arranged 5 + 5
+    */
+
     for(let i = 0; i <= 9; i++){
 
         const wrapper =
             document.createElement("div");
 
-        wrapper.id = "bulkDigitWrap" + i;
+        wrapper.id =
+            "bulkDigitWrap" + i;
 
         wrapper.style.cssText = `
             position:relative;
             display:flex;
             justify-content:center;
             align-items:center;
-            height:82px;
+            height:78px;
+            min-width:0;
         `;
+
 
         const digit =
             document.createElement("div");
@@ -6845,8 +6886,8 @@ function createBulkDigits(){
             "bulkDigit" + i;
 
         digit.style.cssText = `
-            width:62px;
-            height:62px;
+            width:58px;
+            height:58px;
             border-radius:50%;
             border:3px solid #173967;
             background:#0d1b31;
@@ -6856,60 +6897,89 @@ function createBulkDigits(){
             align-items:center;
             position:relative;
             box-sizing:border-box;
+            overflow:hidden;
             transition:.2s ease;
             box-shadow:0 0 7px rgba(46,125,255,.08);
         `;
 
+
         digit.innerHTML = `
+
             <span style="
                 font-size:18px;
                 font-weight:bold;
                 line-height:1;
+                color:white;
             ">
                 ${i}
             </span>
 
-            <span id="bulkPercent${i}" style="
-                margin-top:4px;
-                font-size:10px;
-                color:#d7dce5;
-                line-height:1;
-            ">
+            <span
+                id="bulkPercent${i}"
+                style="
+                    margin-top:4px;
+                    font-size:10px;
+                    color:#d7dce5;
+                    line-height:1;
+                "
+            >
                 0.00%
             </span>
+
         `;
+
 
         wrapper.appendChild(digit);
 
         container.appendChild(wrapper);
     }
 
+
     /*
-       ONE moving triangle only
+       ONE moving triangle
+       It sits BELOW the digits
+       and points UP toward the active digit.
     */
+
     const triangle =
         document.createElement("div");
 
-    triangle.id = "bulkMovingTriangle";
+    triangle.id =
+        "bulkMovingTriangle";
 
     triangle.style.cssText = `
         position:absolute;
         width:0;
         height:0;
+
         border-left:7px solid transparent;
         border-right:7px solid transparent;
-        border-top:10px solid #ff4d5e;
-        left:50%;
+
+        border-bottom:10px solid #ff4d5e;
+        
+        left:10%;
         bottom:-2px;
+
         transform:translateX(-50%);
-        transition:left .35s ease;
-        z-index:5;
+
+        transition:
+            left .35s ease,
+            border-bottom-color .2s ease;
+
+        z-index:10;
+        pointer-events:none;
     `;
 
-    container.style.position = "relative";
 
-    container.appendChild(triangle);
-                    }
+    container.style.position =
+        "relative";
+
+
+    container.appendChild(
+        triangle
+    );
+
+}
 
 function updateBulkTick(){
 
@@ -6920,28 +6990,21 @@ function updateBulkTick(){
         document.getElementById("bulkCurrentTick");
 
     if(tickElement){
-
         tickElement.textContent = tick;
         tickElement.style.color = "#ff4d5e";
     }
 
 
-    /* Generate digit probabilities */
+    /* Generate probabilities */
 
     let values = [];
 
     for(let i = 0; i < 10; i++){
-
-        values.push(
-            Math.random() * 10 + 5
-        );
+        values.push(Math.random() * 10 + 5);
     }
 
     const total =
-        values.reduce(
-            (a,b) => a + b,
-            0
-        );
+        values.reduce((a,b) => a + b, 0);
 
     const probabilities =
         values.map(
@@ -6949,7 +7012,7 @@ function updateBulkTick(){
         );
 
 
-    /* Determine current digit */
+    /* Current digit */
 
     const lastDigit =
         Number(
@@ -6957,7 +7020,7 @@ function updateBulkTick(){
         );
 
 
-    /* Update all digit circles */
+    /* Reset digits */
 
     for(let i = 0; i < 10; i++){
 
@@ -6991,45 +7054,43 @@ function updateBulkTick(){
     }
 
 
-    /* Current digit indicator colour */
+    /* Indicator colours */
 
     const active =
         document.getElementById(
             "bulkDigit" + lastDigit
         );
 
+    let indicatorColor =
+        "#ff3f55";
+
+    if(
+        lastDigit === 0 ||
+        lastDigit === 5
+    ){
+
+        indicatorColor =
+            "#ffd000";
+
+    }else if(
+        lastDigit === 3 ||
+        lastDigit === 8
+    ){
+
+        indicatorColor =
+            "#8a4b00";
+
+    }else if(
+        lastDigit === 2 ||
+        lastDigit === 7
+    ){
+
+        indicatorColor =
+            "#4d9cff";
+    }
+
+
     if(active){
-
-        let indicatorColor =
-            "#ff3f55";
-
-        if(
-            lastDigit === 0 ||
-            lastDigit === 5
-        ){
-
-            indicatorColor =
-                "#ffd000";
-        }
-
-        else if(
-            lastDigit === 3 ||
-            lastDigit === 8
-        ){
-
-            indicatorColor =
-                "#ff8a00";
-        }
-
-        else if(
-            lastDigit === 2 ||
-            lastDigit === 7
-        ){
-
-            indicatorColor =
-                "#4d9cff";
-        }
-
 
         active.style.borderColor =
             indicatorColor;
@@ -7042,7 +7103,7 @@ function updateBulkTick(){
     }
 
 
-    /* Move ONE triangle */
+    /* ONE moving triangle */
 
     const triangle =
         document.getElementById(
@@ -7051,19 +7112,40 @@ function updateBulkTick(){
 
     if(triangle){
 
-        const column =
-            lastDigit % 5;
+        const activeWrapper =
+    document.getElementById(
+        "bulkDigitWrap" + lastDigit
+    );
 
-        const positions = [
-            "10%",
-            "30%",
-            "50%",
-            "70%",
-            "90%"
-        ];
+const digitsContainer =
+    document.getElementById(
+        "bulkDigits"
+    );
 
-        triangle.style.left =
-            positions[column];
+if(activeWrapper && digitsContainer){
+
+    const containerRect =
+        digitsContainer.getBoundingClientRect();
+
+    const wrapperRect =
+        activeWrapper.getBoundingClientRect();
+
+    const center =
+        wrapperRect.left -
+        containerRect.left +
+        (wrapperRect.width / 2);
+
+    triangle.style.left =
+        center + "px";
+}
+
+        /*
+           Match triangle colour
+           with the active indicator.
+        */
+
+        triangle.style.borderBottomColor =
+            indicatorColor;
     }
 
 
@@ -7108,8 +7190,10 @@ function updateBulkTick(){
             );
         }
     }
-}
 
+                }    
+
+        
 
 function selectBulkContract(contract){
 
@@ -7590,3 +7674,76 @@ bulkTriangleStyle.textContent = `
 `;
 
 document.head.appendChild(bulkTriangleStyle);
+
+
+function toggleBulkResultsPanel(){
+
+    const panel =
+        document.getElementById(
+            "bulkResultsPanel"
+        );
+
+    if(!panel) return;
+
+
+    if(
+        panel.style.display === "none" ||
+        panel.style.display === ""
+    ){
+
+        panel.style.display = "block";
+
+        panel.style.animation =
+            "bulkPanelSlideUp .3s ease";
+
+    }else{
+
+        panel.style.animation =
+            "bulkPanelSlideDown .3s ease";
+
+        setTimeout(function(){
+
+            panel.style.display =
+                "none";
+
+        },300);
+    }
+}
+
+if(!document.getElementById("bulkPanelStyles")){
+
+    const style =
+        document.createElement("style");
+
+    style.id = "bulkPanelStyles";
+
+    style.textContent = `
+
+        @keyframes bulkPanelSlideUp{
+            from{
+                transform:translateY(100%);
+                opacity:0;
+            }
+
+            to{
+                transform:translateY(0);
+                opacity:1;
+            }
+        }
+
+        @keyframes bulkPanelSlideDown{
+            from{
+                transform:translateY(0);
+                opacity:1;
+            }
+
+            to{
+                transform:translateY(100%);
+                opacity:0;
+            }
+        }
+
+    `;
+
+    document.head.appendChild(style);
+}
