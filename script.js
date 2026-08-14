@@ -6911,7 +6911,6 @@ function createBulkDigits(){
     container.appendChild(triangle);
                     }
 
-
 function updateBulkTick(){
 
     const tick =
@@ -6921,171 +6920,136 @@ function updateBulkTick(){
         document.getElementById("bulkCurrentTick");
 
     if(tickElement){
+
         tickElement.textContent = tick;
         tickElement.style.color = "#ff4d5e";
     }
 
+
+    /* Generate digit probabilities */
+
     let values = [];
 
     for(let i = 0; i < 10; i++){
-        values.push(Math.random() * 10 + 5);
+
+        values.push(
+            Math.random() * 10 + 5
+        );
     }
 
     const total =
-        values.reduce((a,b) => a + b, 0);
+        values.reduce(
+            (a,b) => a + b,
+            0
+        );
 
     const probabilities =
-        values.map(value => (value / total) * 100);
+        values.map(
+            value => (value / total) * 100
+        );
+
+
+    /* Determine current digit */
 
     const lastDigit =
         Number(
             tick.replace(".", "").slice(-1)
         );
 
-    // Reset all digits
+
+    /* Update all digit circles */
+
     for(let i = 0; i < 10; i++){
 
         const percentage =
-            document.getElementById("bulkPercent" + i);
+            document.getElementById(
+                "bulkPercent" + i
+            );
 
         const circle =
-            document.getElementById("bulkDigit" + i);
+            document.getElementById(
+                "bulkDigit" + i
+            );
 
         if(percentage){
+
             percentage.textContent =
                 probabilities[i].toFixed(2) + "%";
         }
 
         if(circle){
 
-            circle.style.borderColor = "#173967";
+            circle.style.borderColor =
+                "#173967";
 
             circle.style.boxShadow =
-                "0 0 8px rgba(46,125,255,.08)";
+                "0 0 7px rgba(46,125,255,.08)";
 
             circle.style.transform =
                 "scale(1)";
         }
     }
 
-    // Different indicator colours
-    // depending on the current digit.
 
-    /*
-   Reset all digit circles
-*/
-for(let i = 0; i < 10; i++){
+    /* Current digit indicator colour */
 
-    const circle =
+    const active =
         document.getElementById(
-            "bulkDigit" + i
+            "bulkDigit" + lastDigit
         );
 
-    if(circle){
+    if(active){
 
-        circle.style.borderColor =
-            "#173967";
+        let indicatorColor =
+            "#ff3f55";
 
-        circle.style.boxShadow =
-            "0 0 7px rgba(46,125,255,.08)";
-    }
-}
+        if(
+            lastDigit === 0 ||
+            lastDigit === 5
+        ){
 
-
-/*
-   Activate current digit
-   with the correct indicator color
-*/
-const active =
-    document.getElementById(
-        "bulkDigit" + lastDigit
-    );
-
-if(active){
-
-    let indicatorColor = "#ff3f55";
-
-    if(lastDigit === 0 || lastDigit === 5){
-
-        indicatorColor =
-            "#ffd000";
-
-    }
-    else if(lastDigit === 3 || lastDigit === 8){
-
-        indicatorColor =
-            "#ff8a00";
-
-    }
-    else if(lastDigit === 2 || lastDigit === 7){
-
-        indicatorColor =
-            "#4d9cff";
-
-    }
-
-    active.style.borderColor =
-        indicatorColor;
-
-    active.style.boxShadow =
-        `0 0 16px ${indicatorColor}66`;
-}
-
-
-/*
-   Move the ONE triangle underneath
-   the current digit
-*/
-const triangle =
-    document.getElementById(
-        "bulkMovingTriangle"
-    );
-
-const activeWrapper =
-    document.getElementById(
-        "bulkDigitWrap" + lastDigit
-    );
-
-if(triangle && activeWrapper){
-
-    const containerRect =
-        document
-        .getElementById("bulkDigits")
-        .getBoundingClientRect();
-
-    const wrapperRect =
-        activeWrapper.getBoundingClientRect();
-
-    const trianglePosition =
-        wrapperRect.left -
-        containerRect.left +
-        (wrapperRect.width / 2);
-
-    triangle.style.left =
-        trianglePosition + "px";
+            indicatorColor =
+                "#ffd000";
         }
+
+        else if(
+            lastDigit === 3 ||
+            lastDigit === 8
+        ){
+
+            indicatorColor =
+                "#ff8a00";
+        }
+
+        else if(
+            lastDigit === 2 ||
+            lastDigit === 7
+        ){
+
+            indicatorColor =
+                "#4d9cff";
+        }
+
+
+        active.style.borderColor =
+            indicatorColor;
+
+        active.style.boxShadow =
+            `0 0 16px ${indicatorColor}66`;
 
         active.style.transform =
             "scale(1.04)";
     }
 
-    // Move ONE triangle underneath
+
+    /* Move ONE triangle */
+
     const triangle =
         document.getElementById(
             "bulkMovingTriangle"
         );
 
     if(triangle){
-
-        /*
-         * Digits are arranged:
-         *
-         * 0 1 2 3 4
-         * 5 6 7 8 9
-         *
-         * The triangle moves horizontally
-         * underneath the correct column.
-         */
 
         const column =
             lastDigit % 5;
@@ -7102,7 +7066,9 @@ if(triangle && activeWrapper){
             positions[column];
     }
 
-    // History
+
+    /* Digit history */
+
     const history =
         document.getElementById(
             "bulkDigitHistory"
@@ -7113,7 +7079,8 @@ if(triangle && activeWrapper){
         const mark =
             document.createElement("div");
 
-        mark.textContent = lastDigit;
+        mark.textContent =
+            lastDigit;
 
         mark.style.cssText = `
             width:28px;
@@ -7131,14 +7098,18 @@ if(triangle && activeWrapper){
 
         history.appendChild(mark);
 
-        while(history.children.length > 8){
+
+        while(
+            history.children.length > 8
+        ){
+
             history.removeChild(
                 history.firstChild
             );
         }
     }
-              }
- 
+
+
 
 function selectBulkContract(contract){
 
