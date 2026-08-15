@@ -6892,7 +6892,7 @@ function createBulkDigits(){
             width:58px;
             height:58px;
             border-radius:50%;
-            border:3px solid #173967;
+            border:2px solid #173967;
             background:#0d1b31;
             display:flex;
             flex-direction:column;
@@ -6910,95 +6910,76 @@ function createBulkDigits(){
            Percentage arc
         */
 
-        const svg =
-            document.createElementNS(
-                "http://www.w3.org/2000/svg",
-                "svg"
-            );
+/*
+   Trading indicator arc
 
-        svg.setAttribute(
-            "width",
-            "58"
-        );
+   Only four digits will receive
+   visible indicator arcs.
 
-        svg.setAttribute(
-            "height",
-            "58"
-        );
+   The arc itself is kept hidden
+   until updateBulkTick() identifies
+   the important digits.
+*/
 
-        svg.setAttribute(
-            "viewBox",
-            "0 0 58 58"
-        );
+const svg =
+    document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg"
+    );
 
-        svg.style.cssText = `
-            position:absolute;
-            left:-3px;
-            top:-3px;
-            width:64px;
-            height:64px;
-            transform:rotate(-90deg);
-            pointer-events:none;
-            z-index:1;
-            overflow:visible;
-        `;
+svg.setAttribute("width", "58");
+svg.setAttribute("height", "58");
+svg.setAttribute("viewBox", "0 0 58 58");
+
+svg.style.cssText = `
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:64px;
+    height:64px;
+    transform:rotate(-90deg);
+    pointer-events:none;
+    z-index:1;
+    overflow:visible;
+`;
+
+const circle =
+    document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+    );
+
+circle.setAttribute("cx", "29");
+circle.setAttribute("cy", "29");
+circle.setAttribute("r", "27");
+circle.setAttribute("fill", "none");
+circle.setAttribute("stroke", "#4d9cff");
+circle.setAttribute("stroke-width", "2.5");
+circle.setAttribute("stroke-linecap", "round");
+
+const circumference =
+    2 * Math.PI * 27;
+
+circle.style.strokeDasharray =
+    circumference;
+
+circle.style.strokeDashoffset =
+    circumference * 0.90;
+
+circle.style.opacity = "0";
+
+circle.style.transition =
+    "stroke-dashoffset .35s ease, stroke .25s ease, opacity .2s ease";
 
 
-        const circle =
-            document.createElementNS(
-                "http://www.w3.org/2000/svg",
-                "circle"
-            );
+/*
+   Save the arc so updateBulkTick()
+   can control it later.
+*/
 
-        circle.setAttribute(
-            "cx",
-            "29"
-        );
-
-        circle.setAttribute(
-            "cy",
-            "29"
-        );
-
-        circle.setAttribute(
-            "r",
-            "27"
-        );
-
-        circle.setAttribute(
-            "fill",
-            "none"
-        );
-
-        circle.setAttribute(
-            "stroke",
-            "#4d9cff"
-        );
-
-        circle.setAttribute(
-            "stroke-width",
-            "3"
-        );
-
-        circle.setAttribute(
-            "stroke-linecap",
-            "round"
-        );
-
-        circle.style.opacity =
-            "0.9";
-
-        const circumference =
-            2 * Math.PI * 27;
-
-        circle.style.strokeDasharray =
-            circumference;
-
-        circle.style.strokeDashoffset =
-            circumference;
-
-        circle.style.transition =
-            "stroke-dashoffset .35s ease, stroke .2s ease";
+digit._bulkArc = circle;
+digit._bulkArcCircumference =
+    circumference;
 
 
         svg.appendChild(circle);
@@ -7244,54 +7225,44 @@ function updateBulkTick(){
     }
 
 
-    /* Indicator colours */
+    /* Trading indicator arcs
+   Only four important digits show arcs.
+*/
 
-    const active =
+const arcRules = {
+    0: "#ffd000",
+    5: "#ffd000",
+    2: "#4d9cff",
+    7: "#4d9cff"
+};
+
+for(let i = 0; i < 10; i++){
+
+    const digit =
         document.getElementById(
-            "bulkDigit" + lastDigit
+            "bulkDigit" + i
         );
 
-    let indicatorColor =
-        "#ff3f55";
+    if(!digit || !digit._bulkArc) continue;
 
-    if(
-        lastDigit === 0 ||
-        lastDigit === 5
-    ){
+    const arc =
+        digit._bulkArc;
 
-        indicatorColor =
-            "#ffd000";
+    if(arcRules[i]){
 
-    }else if(
-        lastDigit === 3 ||
-        lastDigit === 8
-    ){
+        arc.style.stroke =
+            arcRules[i];
 
-        indicatorColor =
-            "#8a4b00";
+        arc.style.opacity =
+            "0.9";
 
-    }else if(
-        lastDigit === 2 ||
-        lastDigit === 7
-    ){
+    }else{
 
-        indicatorColor =
-            "#4d9cff";
+        arc.style.opacity =
+            "0";
+
     }
-
-
-    if(active){
-
-        active.style.borderColor =
-            indicatorColor;
-
-        active.style.boxShadow =
-            `0 0 16px ${indicatorColor}66`;
-
-        active.style.transform =
-            "scale(1.04)";
-    }
-
+}
 
     /* ONE moving triangle */
 
