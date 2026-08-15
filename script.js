@@ -6173,6 +6173,80 @@ function openBulkTrader(){
 
         </div>
 
+                </div>
+
+        <!-- ACCOUNT SELECTOR -->
+        <div
+            onclick="openAccountMenu()"
+            style="
+                width:100%;
+                height:42px;
+                box-sizing:border-box;
+                margin:0 0 8px 0;
+                padding:0 13px;
+                border:1px solid #6f2cff;
+                border-radius:12px;
+                background:#0d0716;
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                cursor:pointer;
+                box-shadow:0 0 10px rgba(122,44,255,.12);
+            "
+        >
+
+            <div style="
+                display:flex;
+                align-items:center;
+                gap:7px;
+                min-width:0;
+            ">
+                <span style="
+                    font-size:16px;
+                ">
+                    💰
+                </span>
+
+                <span id="bulkAccountLabel" style="
+                    color:#c084fc;
+                    font-size:12px;
+                    font-weight:bold;
+                    white-space:nowrap;
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                ">
+                    DEMO BALANCE
+                </span>
+            </div>
+
+            <div style="
+                display:flex;
+                align-items:center;
+                gap:6px;
+                white-space:nowrap;
+            ">
+                <span id="bulkAccountBalance" style="
+                    color:white;
+                    font-size:13px;
+                    font-weight:bold;
+                ">
+                    $10,000.00
+                </span>
+
+                <span style="
+                    color:#c94fff;
+                    font-size:14px;
+                ">
+                    ▼
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- MAIN TRADING AREA -->
+        <div style="
+
 
         <!-- MAIN TRADING AREA -->
         <div style="
@@ -6905,21 +6979,46 @@ function createBulkDigits(){
             box-shadow:0 0 7px rgba(46,125,255,.08);
         `;
 
+                const digitNumber =
+            document.createElement("div");
+
+        digitNumber.textContent =
+            i;
+
+        digitNumber.style.cssText = `
+            font-size:16px;
+            font-weight:bold;
+            color:white;
+            line-height:1;
+        `;
+
+        digit.appendChild(digitNumber);
+
+                const percentage =
+            document.createElement("div");
+
+        percentage.id =
+            "bulkPercent" + i;
+
+        percentage.textContent =
+            "0.00%";
+
+        percentage.style.cssText = `
+            font-size:10px;
+            color:#bda8d0;
+            margin-top:3px;
+            line-height:1;
+            font-weight:bold;
+        `;
+
+        digit.appendChild(percentage);
+
 
         /*
            Percentage arc
         */
 
-/*
-   Trading indicator arc
-
-   Only four digits will receive
-   visible indicator arcs.
-
-   The arc itself is kept hidden
-   until updateBulkTick() identifies
-   the important digits.
-*/
+        /* CREATE INDICATOR ARC */
 
 const svg =
     document.createElementNS(
@@ -6927,20 +7026,18 @@ const svg =
         "svg"
     );
 
-svg.setAttribute("width", "58");
-svg.setAttribute("height", "58");
-svg.setAttribute("viewBox", "0 0 58 58");
+svg.setAttribute("width","64");
+svg.setAttribute("height","64");
 
 svg.style.cssText = `
     position:absolute;
-    left:-3px;
     top:-3px;
+    left:-3px;
     width:64px;
     height:64px;
-    transform:rotate(-90deg);
     pointer-events:none;
-    z-index:1;
     overflow:visible;
+    transform:rotate(-90deg);
 `;
 
 const circle =
@@ -6949,156 +7046,50 @@ const circle =
         "circle"
     );
 
-circle.setAttribute("cx", "29");
-circle.setAttribute("cy", "29");
-circle.setAttribute("r", "27");
-circle.setAttribute("fill", "none");
-circle.setAttribute("stroke", "#4d9cff");
-circle.setAttribute("stroke-width", "2.5");
-circle.setAttribute("stroke-linecap", "round");
+circle.setAttribute("cx","32");
+circle.setAttribute("cy","32");
+circle.setAttribute("r","29");
 
-const circumference =
-    2 * Math.PI * 27;
+circle.setAttribute(
+    "fill","none"
+);
 
-circle.style.strokeDasharray =
-    circumference;
+circle.setAttribute(
+    "stroke","#ffd000"
+);
 
-circle.style.strokeDashoffset =
-    circumference * 0.90;
+circle.setAttribute(
+    "stroke-width","4"
+);
+
+circle.setAttribute(
+    "stroke-linecap","round"
+);
+
+circle.setAttribute(
+    "stroke-dasharray","45 137"
+);
+
+circle.setAttribute(
+    "stroke-dashoffset","0"
+);
 
 circle.style.opacity = "0";
 
-circle.style.transition =
-    "stroke-dashoffset .35s ease, stroke .25s ease, opacity .2s ease";
+svg.appendChild(circle);
 
+digit.appendChild(svg);
 
-/*
-   Save the arc so updateBulkTick()
-   can control it later.
-*/
+/* Save the arc so updateBulkTick()
+   can control it later. */
 
 digit._bulkArc = circle;
-digit._bulkArcCircumference =
-    circumference;
 
+        wrapper.appendChild(digit);
 
-        svg.appendChild(circle);
+        container.appendChild(wrapper);
 
-        digit.appendChild(svg);
-
-
-        /*
-           Digit number
-        */
-
-        const digitText =
-            document.createElement("span");
-
-        digitText.style.cssText = `
-            position:relative;
-            z-index:2;
-            font-size:18px;
-            font-weight:bold;
-            line-height:1;
-            color:white;
-        `;
-
-        digitText.textContent =
-            i;
-
-
-        /*
-           Percentage
-        */
-
-        const percent =
-            document.createElement("span");
-
-        percent.id =
-            "bulkPercent" + i;
-
-        percent.style.cssText = `
-            position:relative;
-            z-index:2;
-            margin-top:4px;
-            font-size:10px;
-            color:#d7dce5;
-            line-height:1;
-        `;
-
-        percent.textContent =
-            "0.00%";
-
-
-        digit.appendChild(
-            digitText
-        );
-
-        digit.appendChild(
-            percent
-        );
-
-
-        /*
-           Automatically update the arc
-           whenever updateBulkTick()
-           changes the percentage text.
-        */
-
-        const observer =
-            new MutationObserver(() => {
-
-                const value =
-                    parseFloat(
-                        percent.textContent
-                    ) || 0;
-
-                const safeValue =
-                    Math.max(
-                        0,
-                        Math.min(
-                            100,
-                            value
-                        )
-                    );
-
-                const offset =
-                    circumference *
-                    (1 - safeValue / 100);
-
-                circle.style.strokeDashoffset =
-                    offset;
-
-            });
-
-        observer.observe(
-            percent,
-            {
-                childList:true,
-                characterData:true,
-                subtree:true
-            }
-        );
-
-
-        /*
-           Store observer reference
-           on the digit element.
-        */
-
-        digit._bulkArcObserver =
-            observer;
-
-
-        wrapper.appendChild(
-            digit
-        );
-
-        container.appendChild(
-            wrapper
-        );
     }
-
 
     /*
        ONE moving triangle
@@ -7224,17 +7215,12 @@ function updateBulkTick(){
         }
     }
 
-
-    /* Trading indicator arcs
-   Only four important digits show arcs.
+/* TRADING INDICATOR ARCS
+   Four strongest digits receive
+   the trading indicators.
 */
 
-const arcRules = {
-    0: "#ffd000",
-    5: "#ffd000",
-    2: "#4d9cff",
-    7: "#4d9cff"
-};
+const digitScores = [];
 
 for(let i = 0; i < 10; i++){
 
@@ -7245,24 +7231,87 @@ for(let i = 0; i < 10; i++){
 
     if(!digit || !digit._bulkArc) continue;
 
-    const arc =
-        digit._bulkArc;
+    const percent =
+        document.getElementById(
+            "bulkPercent" + i
+        );
 
-    if(arcRules[i]){
+    const value =
+        percent
+            ? parseFloat(
+                percent.textContent
+                  .replace("%","")
+              ) || 0
+            : 0;
 
-        arc.style.stroke =
-            arcRules[i];
-
-        arc.style.opacity =
-            "0.9";
-
-    }else{
-
-        arc.style.opacity =
-            "0";
-
-    }
+    digitScores.push({
+        digit:i,
+        value:value
+    });
 }
+
+
+/* Highest percentages first */
+
+digitScores.sort(
+    (a,b) => b.value - a.value
+);
+
+
+/* Only four digits receive indicators */
+
+const activeIndicators =
+    digitScores.slice(0,4);
+
+
+/* DBTraders-style indicator colours */
+
+const indicatorColours = [
+    "#ff9f00",
+    "#ffd000",
+    "#ff9f00",
+    "#ffd000"
+];
+
+
+/* First hide every indicator */
+
+for(let i = 0; i < 10; i++){
+
+    const digit =
+        document.getElementById(
+            "bulkDigit" + i
+        );
+
+    if(!digit || !digit._bulkArc)
+        continue;
+
+    digit._bulkArc.style.opacity = "0";
+}
+
+
+/* Show indicators on the four
+   strongest digits */
+
+activeIndicators.forEach(
+    (item,index) => {
+
+        const digit =
+            document.getElementById(
+                "bulkDigit" + item.digit
+            );
+
+        if(!digit || !digit._bulkArc)
+            return;
+
+        digit._bulkArc.style.stroke =
+            indicatorColours[index];
+
+        digit._bulkArc.style.opacity =
+            "0.9";
+    }
+);
+
 
     /* ONE moving triangle */
 
@@ -7305,8 +7354,7 @@ if(activeWrapper && digitsContainer){
            with the active indicator.
         */
 
-        triangle.style.borderBottomColor =
-            indicatorColor;
+        triangle.style.borderBottomColor = "#ff3f55";
     }
 
 
