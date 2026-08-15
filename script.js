@@ -6847,7 +6847,6 @@ function bulkTradeTypeChanged(){
     }
 }
 
-
 function createBulkDigits(){
 
     const container =
@@ -6859,6 +6858,10 @@ function createBulkDigits(){
 
     /*
        10 digits arranged 5 + 5
+       Each digit has:
+       - digit number
+       - percentage
+       - circular percentage arc
     */
 
     for(let i = 0; i <= 9; i++){
@@ -6897,48 +6900,231 @@ function createBulkDigits(){
             align-items:center;
             position:relative;
             box-sizing:border-box;
-            overflow:hidden;
+            overflow:visible;
             transition:.2s ease;
             box-shadow:0 0 7px rgba(46,125,255,.08);
         `;
 
 
-        digit.innerHTML = `
+        /*
+           Percentage arc
+        */
 
-            <span style="
-                font-size:18px;
-                font-weight:bold;
-                line-height:1;
-                color:white;
-            ">
-                ${i}
-            </span>
+        const svg =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "svg"
+            );
 
-            <span
-                id="bulkPercent${i}"
-                style="
-                    margin-top:4px;
-                    font-size:10px;
-                    color:#d7dce5;
-                    line-height:1;
-                "
-            >
-                0.00%
-            </span>
+        svg.setAttribute(
+            "width",
+            "58"
+        );
 
+        svg.setAttribute(
+            "height",
+            "58"
+        );
+
+        svg.setAttribute(
+            "viewBox",
+            "0 0 58 58"
+        );
+
+        svg.style.cssText = `
+            position:absolute;
+            left:-3px;
+            top:-3px;
+            width:64px;
+            height:64px;
+            transform:rotate(-90deg);
+            pointer-events:none;
+            z-index:1;
+            overflow:visible;
         `;
 
 
-        wrapper.appendChild(digit);
+        const circle =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "circle"
+            );
 
-        container.appendChild(wrapper);
+        circle.setAttribute(
+            "cx",
+            "29"
+        );
+
+        circle.setAttribute(
+            "cy",
+            "29"
+        );
+
+        circle.setAttribute(
+            "r",
+            "27"
+        );
+
+        circle.setAttribute(
+            "fill",
+            "none"
+        );
+
+        circle.setAttribute(
+            "stroke",
+            "#4d9cff"
+        );
+
+        circle.setAttribute(
+            "stroke-width",
+            "3"
+        );
+
+        circle.setAttribute(
+            "stroke-linecap",
+            "round"
+        );
+
+        circle.style.opacity =
+            "0.9";
+
+        const circumference =
+            2 * Math.PI * 27;
+
+        circle.style.strokeDasharray =
+            circumference;
+
+        circle.style.strokeDashoffset =
+            circumference;
+
+        circle.style.transition =
+            "stroke-dashoffset .35s ease, stroke .2s ease";
+
+
+        svg.appendChild(circle);
+
+        digit.appendChild(svg);
+
+
+        /*
+           Digit number
+        */
+
+        const digitText =
+            document.createElement("span");
+
+        digitText.style.cssText = `
+            position:relative;
+            z-index:2;
+            font-size:18px;
+            font-weight:bold;
+            line-height:1;
+            color:white;
+        `;
+
+        digitText.textContent =
+            i;
+
+
+        /*
+           Percentage
+        */
+
+        const percent =
+            document.createElement("span");
+
+        percent.id =
+            "bulkPercent" + i;
+
+        percent.style.cssText = `
+            position:relative;
+            z-index:2;
+            margin-top:4px;
+            font-size:10px;
+            color:#d7dce5;
+            line-height:1;
+        `;
+
+        percent.textContent =
+            "0.00%";
+
+
+        digit.appendChild(
+            digitText
+        );
+
+        digit.appendChild(
+            percent
+        );
+
+
+        /*
+           Automatically update the arc
+           whenever updateBulkTick()
+           changes the percentage text.
+        */
+
+        const observer =
+            new MutationObserver(() => {
+
+                const value =
+                    parseFloat(
+                        percent.textContent
+                    ) || 0;
+
+                const safeValue =
+                    Math.max(
+                        0,
+                        Math.min(
+                            100,
+                            value
+                        )
+                    );
+
+                const offset =
+                    circumference *
+                    (1 - safeValue / 100);
+
+                circle.style.strokeDashoffset =
+                    offset;
+
+            });
+
+        observer.observe(
+            percent,
+            {
+                childList:true,
+                characterData:true,
+                subtree:true
+            }
+        );
+
+
+        /*
+           Store observer reference
+           on the digit element.
+        */
+
+        digit._bulkArcObserver =
+            observer;
+
+
+        wrapper.appendChild(
+            digit
+        );
+
+        container.appendChild(
+            wrapper
+        );
     }
 
 
     /*
        ONE moving triangle
-       It sits BELOW the digits
-       and points UP toward the active digit.
+
+       It stays below the digits
+       and points upward toward
+       the active digit.
     */
 
     const triangle =
@@ -6954,9 +7140,8 @@ function createBulkDigits(){
 
         border-left:7px solid transparent;
         border-right:7px solid transparent;
-
         border-bottom:10px solid #ff4d5e;
-        
+
         left:10%;
         bottom:-2px;
 
@@ -6979,7 +7164,12 @@ function createBulkDigits(){
         triangle
     );
 
-}
+            }
+
+
+            
+
+        
 
 function updateBulkTick(){
 
