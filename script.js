@@ -6173,7 +6173,6 @@ function openBulkTrader(){
 
         </div>
 
-                </div>
 
         <!-- ACCOUNT SELECTOR -->
         <div
@@ -6246,16 +6245,13 @@ function openBulkTrader(){
 
         <!-- MAIN TRADING AREA -->
         <div style="
-
-
-        <!-- MAIN TRADING AREA -->
-        <div style="
             background:#080510;
             border:1px solid #6f2cff;
             border-radius:20px;
             padding:12px;
             box-shadow:0 0 20px rgba(122,44,255,.18);
         ">
+
 
 
             <!-- MARKET + TRADE TYPE -->
@@ -6287,10 +6283,19 @@ function openBulkTrader(){
 <option>Bear Market Index</option>
 <option>Bull Market Index</option>
 <option>Volatility 10 Index</option>
+<option>Volatility 10 (1s) Index</option>
+
 <option>Volatility 100 Index</option>
+<option>Volatility 100 (1s) Index</option>
+
 <option>Volatility 25 Index</option>
+<option>Volatility 25 (1s) Index</option>
+
 <option>Volatility 50 Index</option>
+<option>Volatility 50 (1s) Index</option>
+
 <option>Volatility 75 Index</option>
+<option>Volatility 75 (1s) Index</option>
 <option>Step Index 100</option>
 <option>Step Index 200</option>
 <option>Step Index 300</option>
@@ -6579,6 +6584,32 @@ function openBulkTrader(){
             </div>
 
 
+            <!-- RESULTS PANEL BUTTON -->
+
+<div style="
+    display:flex;
+    justify-content:center;
+    margin-top:18px;
+">
+    <button
+        onclick="toggleBulkResultsPanel()"
+        style="
+            width:52px;
+            height:28px;
+            border:none;
+            border-radius:16px 16px 0 0;
+            background:#17101f;
+            color:#c94fff;
+            font-size:20px;
+            font-weight:bold;
+            box-shadow:0 -3px 12px rgba(122,44,255,.25);
+        "
+    >
+        ⌃
+    </button>
+</div>
+
+
             <!-- BOT STATUS -->
             <div style="
                 margin-top:12px;
@@ -6671,32 +6702,6 @@ function openBulkTrader(){
             ">
             </div>
 
-<!-- RESULTS PANEL BUTTON -->
-
-<div style="
-    display:flex;
-    justify-content:center;
-    margin-top:18px;
-">
-
-    <button
-        onclick="toggleBulkResultsPanel()"
-        style="
-            width:52px;
-            height:28px;
-            border:none;
-            border-radius:16px 16px 0 0;
-            background:#17101f;
-            color:#c94fff;
-            font-size:20px;
-            font-weight:bold;
-            box-shadow:0 -3px 12px rgba(122,44,255,.25);
-        "
-    >
-        ⌃
-    </button>
-
-</div>
 
 
 <!-- SLIDE-UP RESULTS PANEL -->
