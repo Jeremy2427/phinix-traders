@@ -6149,8 +6149,8 @@ function openBulkTrader(){
             align-items:center;
             justify-content:center;
             position:relative;
-            height:52px;
-            margin-bottom:8px;
+            height:32px;
+margin-bottom:2px;
         ">
 
             <div onclick="backToManualTrader()" style="
@@ -6164,13 +6164,7 @@ function openBulkTrader(){
                 ←
             </div>
 
-            <div style="
-                font-size:20px;
-                font-weight:bold;
-                color:#c94fff;
-            ">
-                📦 BULK TRADER
-            </div>
+            
 
         </div>
 
@@ -6180,9 +6174,9 @@ function openBulkTrader(){
             onclick="openAccountMenu()"
             style="
                 width:100%;
-                height:42px;
+                height:38px;
                 box-sizing:border-box;
-                margin:0 0 8px 0;
+                margin:0 0 5px 0;
                 padding:0 13px;
                 border:1px solid #6f2cff;
                 border-radius:12px;
@@ -6249,7 +6243,7 @@ function openBulkTrader(){
             background:#080510;
             border:1px solid #6f2cff;
             border-radius:20px;
-            padding:12px;
+            padding:8px;
             box-shadow:0 0 20px rgba(122,44,255,.18);
         ">
 
@@ -6558,9 +6552,34 @@ function openBulkTrader(){
                 display:grid;
                 grid-template-columns:1fr 1fr;
                 gap:10px;
-                margin-top:18px;
+                margin-top:10px;
             ">
             </div>
+
+            <!-- RESULTS PANEL BUTTON -->
+
+<div style="
+    display:flex;
+    justify-content:center;
+    margin-top:6px;
+">
+    <button
+        onclick="toggleBulkResultsPanel()"
+        style="
+            width:52px;
+            height:28px;
+            border:none;
+            border-radius:16px 16px 0 0;
+            background:#17101f;
+            color:#c94fff;
+            font-size:20px;
+            font-weight:bold;
+            box-shadow:0 -3px 12px rgba(122,44,255,.25);
+        "
+    >
+        ⌃
+    </button>
+</div>
 
 
             <!-- WARNING -->
@@ -6585,30 +6604,7 @@ function openBulkTrader(){
             </div>
 
 
-            <!-- RESULTS PANEL BUTTON -->
 
-<div style="
-    display:flex;
-    justify-content:center;
-    margin-top:18px;
-">
-    <button
-        onclick="toggleBulkResultsPanel()"
-        style="
-            width:52px;
-            height:28px;
-            border:none;
-            border-radius:16px 16px 0 0;
-            background:#17101f;
-            color:#c94fff;
-            font-size:20px;
-            font-weight:bold;
-            box-shadow:0 -3px 12px rgba(122,44,255,.25);
-        "
-    >
-        ⌃
-    </button>
-</div>
 
 
             <!-- BOT STATUS -->
@@ -6851,7 +6847,7 @@ function createBulkDigits(){
             display:flex;
             justify-content:center;
             align-items:center;
-            height:78px;
+            height:64px;
             min-width:0;
         `;
 
@@ -6863,8 +6859,8 @@ function createBulkDigits(){
             "bulkDigit" + i;
 
         digit.style.cssText = `
-            width:58px;
-            height:58px;
+            width:52px;
+            height:52px;
             border-radius:50%;
             border:2px solid #173967;
             background:#0d1b31;
@@ -6878,6 +6874,8 @@ function createBulkDigits(){
             transition:.2s ease;
             box-shadow:0 0 7px rgba(46,125,255,.08);
         `;
+      
+            
 
                 const digitNumber =
             document.createElement("div");
