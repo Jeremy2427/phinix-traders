@@ -6134,13 +6134,14 @@ function openBulkTrader(){
     document.querySelector(".container").innerHTML = `
 
     <div id="phinixBulkTrader" style="
-        min-height:100vh;
-        background:#05020b;
-        color:white;
-        padding:12px;
-        padding-bottom:20px;
-        font-family:Arial,sans-serif;
-    ">
+    min-height:100vh;
+    background:#05020b;
+    color:white;
+    padding:8px;
+    padding-bottom:15px;
+    font-family:Arial,sans-serif;
+    box-sizing:border-box;
+">
 
         <!-- HEADER -->
         <div style="
