@@ -6138,7 +6138,7 @@ function openBulkTrader(){
         background:#05020b;
         color:white;
         padding:12px;
-        padding-bottom:130px;
+        padding-bottom:20px;
         font-family:Arial,sans-serif;
     ">
 
@@ -6650,115 +6650,9 @@ function openBulkTrader(){
             </div>
 
 
-            <!-- RESULT NAVIGATION -->
-            <div style="
-                display:grid;
-                grid-template-columns:repeat(3,1fr);
-                margin-top:20px;
-                border-top:1px solid #321650;
-                border-bottom:1px solid #321650;
-            ">
-
-                <button onclick="showBulkSection('summary')"
-                    id="bulkSummaryTab"
-                    style="
-                    padding:14px 5px;
-                    background:#1b0d29;
-                    color:#c94fff;
-                    border:none;
-                    font-weight:bold;
-                ">
-                    Summary
-                </button>
-
-                <button onclick="showBulkSection('transactions')"
-                    style="
-                    padding:14px 5px;
-                    background:transparent;
-                    color:#aaa;
-                    border:none;
-                ">
-                    Transactions
-                </button>
-
-                <button onclick="showBulkSection('journal')"
-                    style="
-                    padding:14px 5px;
-                    background:transparent;
-                    color:#aaa;
-                    border:none;
-                ">
-                    Journal
-                </button>
-
-            </div>
+            
 
 
-            <!-- RESULTS -->
-            <div id="bulkResults"
-                style="
-                min-height:300px;
-                padding-top:20px;
-            ">
-            </div>
-
-
-
-<!-- SLIDE-UP RESULTS PANEL -->
-
-<div id="bulkResultsPanel"
-    style="
-        display:none;
-        background:#080510;
-        border:1px solid #6f2cff;
-        border-radius:18px 18px 0 0;
-        padding:12px;
-        margin-top:-1px;
-    "
->
-
-    <div style="
-        display:grid;
-        grid-template-columns:repeat(3,1fr);
-        border-bottom:1px solid #321650;
-    ">
-
-        <button
-            onclick="showBulkSection('summary')"
-            style="
-                padding:13px 4px;
-                background:#1b0d29;
-                color:#c94fff;
-                border:none;
-                font-weight:bold;
-            "
-        >
-            Summary
-        </button>
-
-        <button
-            onclick="showBulkSection('transactions')"
-            style="
-                padding:13px 4px;
-                background:transparent;
-                color:#aaa;
-                border:none;
-            "
-        >
-            Transactions
-        </button>
-
-        <button
-            onclick="showBulkSection('journal')"
-            style="
-                padding:13px 4px;
-                background:transparent;
-                color:#aaa;
-                border:none;
-            "
-        >
-            Journal
-        </button>
 
     </div>
 
