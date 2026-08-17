@@ -6637,7 +6637,6 @@ let phinixBulkStats = {
     profit: 0
 };
 
-}
             
 function initializeBulkTrader(){
 
