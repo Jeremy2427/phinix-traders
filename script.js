@@ -6659,20 +6659,8 @@ function bulkTradeTypeChanged(){
     const type =
         document.getElementById("bulkTradeType")?.value;
 
-    function bulkTradeTypeChanged(){
-
-    const type =
-        document.getElementById("bulkTradeType")?.value;
-
     const buttons =
         document.getElementById("bulkTradeButtons");
-
-    if(!buttons) return;
-
-
-    /* EVEN / ODD */
-
-    if(type === "evenodd"){
 
     if(!buttons) return;
 
@@ -6803,6 +6791,10 @@ function bulkTradeTypeChanged(){
     }
 
 }
+    
+
+
+
 
     
 
