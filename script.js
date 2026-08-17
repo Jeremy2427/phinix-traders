@@ -6134,38 +6134,35 @@ function openBulkTrader(){
     document.querySelector(".container").innerHTML = `
 
     <div id="phinixBulkTrader" style="
-    min-height:100vh;
-    background:#05020b;
-    color:white;
-    padding:8px;
-    padding-bottom:15px;
-    font-family:Arial,sans-serif;
-    box-sizing:border-box;
-">
+        min-height:100vh;
+        background:#05020b;
+        color:white;
+        padding:8px;
+        padding-bottom:20px;
+        font-family:Arial,sans-serif;
+        box-sizing:border-box;
+        width:100%;
+        overflow-x:hidden;
+    ">
 
-        <!-- HEADER -->
+        <!-- BACK ARROW -->
         <div style="
-            display:flex;
-            align-items:center;
-            justify-content:center;
+            height:28px;
             position:relative;
-            height:32px;
-margin-bottom:2px;
+            margin-bottom:4px;
         ">
-
             <div onclick="backToManualTrader()" style="
                 position:absolute;
-                left:4px;
-                top:10px;
+                left:2px;
+                top:0;
                 cursor:pointer;
                 font-size:28px;
+                line-height:28px;
                 color:#c94fff;
+                font-weight:bold;
             ">
                 ←
             </div>
-
-            
-
         </div>
 
 
@@ -6174,12 +6171,12 @@ margin-bottom:2px;
             onclick="openAccountMenu()"
             style="
                 width:100%;
-                height:38px;
+                height:44px;
                 box-sizing:border-box;
-                margin:0 0 5px 0;
+                margin:0 0 8px 0;
                 padding:0 13px;
                 border:1px solid #6f2cff;
-                border-radius:12px;
+                border-radius:14px;
                 background:#0d0716;
                 display:flex;
                 align-items:center;
@@ -6195,15 +6192,11 @@ margin-bottom:2px;
                 gap:7px;
                 min-width:0;
             ">
-                <span style="
-                    font-size:16px;
-                ">
-                    💰
-                </span>
+                <span style="font-size:17px;">💰</span>
 
                 <span id="bulkAccountLabel" style="
                     color:#c084fc;
-                    font-size:12px;
+                    font-size:13px;
                     font-weight:bold;
                     white-space:nowrap;
                     overflow:hidden;
@@ -6221,7 +6214,7 @@ margin-bottom:2px;
             ">
                 <span id="bulkAccountBalance" style="
                     color:white;
-                    font-size:13px;
+                    font-size:14px;
                     font-weight:bold;
                 ">
                     $10,000.00
@@ -6229,7 +6222,7 @@ margin-bottom:2px;
 
                 <span style="
                     color:#c94fff;
-                    font-size:14px;
+                    font-size:15px;
                 ">
                     ▼
                 </span>
@@ -6243,173 +6236,187 @@ margin-bottom:2px;
             background:#080510;
             border:1px solid #6f2cff;
             border-radius:20px;
-            padding:8px;
+            padding:10px;
             box-shadow:0 0 20px rgba(122,44,255,.18);
+            box-sizing:border-box;
+            width:100%;
         ">
 
 
+<!-- MARKET + TRADE TYPE -->
+<div style="
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+">
 
-            <!-- MARKET + TRADE TYPE -->
-            <div style="
-                display:grid;
-                grid-template-columns:1fr 1fr;
-                gap:10px;
-            ">
+    <!-- MARKET -->
+    <div>
+        <label style="
+            font-size:13px;
+            color:#bda8d0;
+        ">
+            MARKET
+        </label>
 
-                <div>
-                    <label style="
-                        font-size:12px;
-                        color:#bda8d0;
-                    ">
-                        MARKET
-                    </label>
+        <select id="bulkMarket" style="
+            width:100%;
+            height:44px;
+            margin-top:5px;
+            padding:0 10px;
+            border-radius:11px;
+            border:1px solid #743cff;
+            background:#120b1d;
+            color:white;
+            font-size:14px;
+            font-weight:bold;
+            box-sizing:border-box;
+        ">
+            <option>Volatility 10 (1s) Index</option>
+            <option>Volatility 25 (1s) Index</option>
+            <option>Volatility 50 (1s) Index</option>
+            <option>Volatility 75 (1s) Index</option>
+            <option>Volatility 100 (1s) Index</option>
 
-                    <select id="bulkMarket" style="
-                        width:100%;
-                        margin-top:5px;
-                        padding:13px 10px;
-                        border-radius:10px;
-                        border:1px solid #743cff;
-                        background:#120b1d;
-                        color:white;
-                        font-weight:bold;
-                    ">
-                        <option>Range Break 200 Index</option>
-<option>Bear Market Index</option>
-<option>Bull Market Index</option>
-<option>Volatility 10 Index</option>
-<option>Volatility 10 (1s) Index</option>
+            <option>Volatility 10 Index</option>
+            <option>Volatility 25 Index</option>
+            <option>Volatility 50 Index</option>
+            <option>Volatility 75 Index</option>
+            <option>Volatility 100 Index</option>
 
-<option>Volatility 100 Index</option>
-<option>Volatility 100 (1s) Index</option>
+            <option>Range Break 200 Index</option>
+            <option>Bear Market Index</option>
+            <option>Bull Market Index</option>
 
-<option>Volatility 25 Index</option>
-<option>Volatility 25 (1s) Index</option>
-
-<option>Volatility 50 Index</option>
-<option>Volatility 50 (1s) Index</option>
-
-<option>Volatility 75 Index</option>
-<option>Volatility 75 (1s) Index</option>
-<option>Step Index 100</option>
-<option>Step Index 200</option>
-<option>Step Index 300</option>
-<option>Step Index 400</option>
-<option>Step Index 500</option>
-                    </select>
-                </div>
-
-
-                <div>
-                    <label style="
-                        font-size:12px;
-                        color:#bda8d0;
-                    ">
-                        TRADE TYPE
-                    </label>
-
-                    <select id="bulkTradeType"
-                        onchange="bulkTradeTypeChanged()"
-                        style="
-                        width:100%;
-                        margin-top:5px;
-                        padding:13px 10px;
-                        border-radius:10px;
-                        border:1px solid #743cff;
-                        background:#120b1d;
-                        color:white;
-                        font-weight:bold;
-                    ">
-                        <option value="evenodd">Even/Odd</option>
-                        <option value="matches">Matches/Differs</option>
-                        <option value="overunder">Over/Under</option>
-                    </select>
-                </div>
-
-            </div>
+            <option>Step Index 100</option>
+            <option>Step Index 200</option>
+            <option>Step Index 300</option>
+            <option>Step Index 400</option>
+            <option>Step Index 500</option>
+        </select>
+    </div>
 
 
-            <!-- TICKS -->
-            <div style="margin-top:14px;">
+    <!-- TRADE TYPE -->
+    <div>
+        <label style="
+            font-size:13px;
+            color:#bda8d0;
+        ">
+            TRADE TYPE
+        </label>
 
-                <label style="
-                    font-size:12px;
-                    color:#bda8d0;
-                ">
-                    NUMBER OF TICKS
-                </label>
-
-                <input id="bulkTicks"
-                    type="number"
-                    value="1000"
-                    min="1"
-                    style="
-                    width:100%;
-                    margin-top:5px;
-                    padding:13px;
-                    border-radius:10px;
-                    border:1px solid #743cff;
-                    background:#120b1d;
-                    color:white;
-                    text-align:center;
-                    font-size:16px;
-                    font-weight:bold;
-                    box-sizing:border-box;
-                ">
-
-            </div>
-
-
-            <!-- PREDICTION -->
-            <div id="bulkPredictionBox"
-                style="
-                display:none;
-                margin-top:14px;
-            ">
-
-                <label style="
-                    font-size:12px;
-                    color:#bda8d0;
-                ">
-                    PREDICTION
-                </label>
-
-                <select id="bulkPrediction" style="
-                    width:100%;
-                    margin-top:5px;
-                    padding:13px;
-                    border-radius:10px;
-                    border:1px solid #743cff;
-                    background:#120b1d;
-                    color:white;
-                    font-size:16px;
-                    font-weight:bold;
-                ">
-
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-
-                </select>
-
-            </div>
+        <select id="bulkTradeType"
+            onchange="bulkTradeTypeChanged()"
+            style="
+            width:100%;
+            height:44px;
+            margin-top:5px;
+            padding:0 10px;
+            border-radius:11px;
+            border:1px solid #743cff;
+            background:#120b1d;
+            color:white;
+            font-size:14px;
+            font-weight:bold;
+            box-sizing:border-box;
+        ">
+            <option value="evenodd">Even/Odd</option>
+            <option value="matches">Matches/Differs</option>
+            <option value="overunder">Over/Under</option>
+        </select>
+    </div>
 
 
+    <!-- NUMBER OF TICKS -->
+    <div style="
+        margin-top:4px;
+    ">
+
+        <label style="
+            font-size:13px;
+            color:#bda8d0;
+        ">
+            NUMBER OF TICKS
+        </label>
+
+        <input id="bulkTicks"
+            type="number"
+            value="1000"
+            min="1"
+            style="
+            width:100%;
+            height:44px;
+            margin-top:5px;
+            padding:0 13px;
+            border-radius:11px;
+            border:1px solid #743cff;
+            background:#120b1d;
+            color:white;
+            text-align:center;
+            font-size:16px;
+            font-weight:bold;
+            box-sizing:border-box;
+        ">
+    </div>
+
+
+    <!-- PREDICTION -->
+    <div id="bulkPredictionBox"
+        style="
+        display:none;
+        margin-top:4px;
+    ">
+
+        <label style="
+            font-size:13px;
+            color:#bda8d0;
+        ">
+            PREDICTION
+        </label>
+
+        <select id="bulkPrediction" style="
+            width:100%;
+            height:44px;
+            margin-top:5px;
+            padding:0 13px;
+            border-radius:11px;
+            border:1px solid #743cff;
+            background:#120b1d;
+            color:white;
+            text-align:center;
+            font-size:16px;
+            font-weight:bold;
+            box-sizing:border-box;
+        ">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+
+    </div>
+
+</div> 
+
+
+
+
+            
             <!-- CURRENT TICK -->
             <div style="
                 text-align:center;
-                margin-top:20px;
+                margin-top:18px;
             ">
 
                 <div style="
-                    font-size:12px;
+                    font-size:13px;
                     color:#bda8d0;
                     letter-spacing:1px;
                     font-weight:bold;
@@ -6419,9 +6426,10 @@ margin-bottom:2px;
 
                 <div id="bulkCurrentTick"
                     style="
-                    margin-top:5px;
+                    margin-top:4px;
                     color:#ff4d5e;
                     font-size:32px;
+                    line-height:36px;
                     font-weight:bold;
                 ">
                     Loading...
@@ -6434,9 +6442,10 @@ margin-bottom:2px;
             <div id="bulkDigits"
                 style="
                 display:grid;
-                grid-template-columns:repeat(5,1fr);
+                grid-template-columns:repeat(5,minmax(0,1fr));
                 gap:10px;
-                margin-top:18px;
+                margin-top:16px;
+                width:100%;
             ">
             </div>
 
@@ -6446,10 +6455,12 @@ margin-bottom:2px;
                 style="
                 display:flex;
                 justify-content:center;
+                align-items:center;
                 gap:7px;
-                margin-top:18px;
+                margin-top:16px;
                 min-height:30px;
                 overflow:hidden;
+                width:100%;
             ">
             </div>
 
@@ -6457,12 +6468,14 @@ margin-bottom:2px;
             <!-- SETTINGS -->
             <div style="
                 display:grid;
-                grid-template-columns:repeat(3,1fr);
+                grid-template-columns:repeat(3,minmax(0,1fr));
                 gap:8px;
-                margin-top:22px;
+                margin-top:18px;
             ">
 
-                <div>
+                <!-- TICKS -->
+                <div style="min-width:0;">
+
                     <div style="
                         text-align:center;
                         color:#bda8d0;
@@ -6477,19 +6490,24 @@ margin-bottom:2px;
                         min="1"
                         style="
                         width:100%;
+                        height:42px;
                         margin-top:5px;
-                        padding:12px 5px;
+                        padding:0 5px;
                         border-radius:10px;
                         border:1px solid #743cff;
                         background:#120b1d;
                         color:white;
                         text-align:center;
+                        font-size:15px;
                         box-sizing:border-box;
                     ">
+
                 </div>
 
 
-                <div>
+                <!-- STAKE -->
+                <div style="min-width:0;">
+
                     <div style="
                         text-align:center;
                         color:#bda8d0;
@@ -6505,19 +6523,24 @@ margin-bottom:2px;
                         step="0.01"
                         style="
                         width:100%;
+                        height:42px;
                         margin-top:5px;
-                        padding:12px 5px;
+                        padding:0 5px;
                         border-radius:10px;
                         border:1px solid #743cff;
                         background:#120b1d;
                         color:white;
                         text-align:center;
+                        font-size:15px;
                         box-sizing:border-box;
                     ">
+
                 </div>
 
 
-                <div>
+                <!-- NUMBER OF TRADES -->
+                <div style="min-width:0;">
+
                     <div style="
                         text-align:center;
                         color:#bda8d0;
@@ -6532,15 +6555,18 @@ margin-bottom:2px;
                         min="1"
                         style="
                         width:100%;
+                        height:42px;
                         margin-top:5px;
-                        padding:12px 5px;
+                        padding:0 5px;
                         border-radius:10px;
                         border:1px solid #743cff;
                         background:#120b1d;
                         color:white;
                         text-align:center;
+                        font-size:15px;
                         box-sizing:border-box;
                     ">
+
                 </div>
 
             </div>
@@ -6550,123 +6576,58 @@ margin-bottom:2px;
             <div id="bulkTradeButtons"
                 style="
                 display:grid;
-                grid-template-columns:1fr 1fr;
+                grid-template-columns:minmax(0,1fr) minmax(0,1fr);
                 gap:10px;
-                margin-top:10px;
+                margin-top:14px;
             ">
             </div>
 
-            <!-- RESULTS PANEL BUTTON -->
 
-<div style="
-    display:flex;
-    justify-content:center;
-    margin-top:6px;
-">
-    <button
-        onclick="toggleBulkResultsPanel()"
-        style="
-            width:52px;
-            height:28px;
-            border:none;
-            border-radius:16px 16px 0 0;
-            background:#17101f;
-            color:#c94fff;
-            font-size:20px;
-            font-weight:bold;
-            box-shadow:0 -3px 12px rgba(122,44,255,.25);
-        "
-    >
-        ⌃
-    </button>
-</div>
-
-
-            <!-- WARNING -->
+            <!-- CHEVRON / RESULTS BUTTON -->
             <div style="
-                margin-top:22px;
                 display:flex;
-                align-items:center;
-                gap:10px;
+                justify-content:center;
+                margin-top:5px;
             ">
 
-                <button style="
-                    width:44px;
-                    height:44px;
-                    border:none;
-                    border-radius:10px;
-                    background:#ffd000;
-                    font-size:20px;
-                ">
-                    ⚠️
+                <button
+                    onclick="toggleBulkResultsPanel()"
+                    style="
+                        width:52px;
+                        height:28px;
+                        border:none;
+                        border-radius:16px 16px 0 0;
+                        background:#17101f;
+                        color:#c94fff;
+                        font-size:20px;
+                        font-weight:bold;
+                        line-height:20px;
+                        box-shadow:0 -3px 12px rgba(122,44,255,.25);
+                        cursor:pointer;
+                    "
+                >
+                    ⌃
                 </button>
 
             </div>
 
 
-
-
-
-            <!-- BOT STATUS -->
-            <div style="
-                margin-top:12px;
-                background:#0d0815;
-                border:1px solid #321650;
-                border-radius:14px;
-                padding:16px;
-                text-align:center;
-            ">
-
-                <div id="bulkBotStatus"
-                    style="
-                    font-weight:bold;
-                    color:#ddd;
-                ">
-                    Bot is not running
-                </div>
-
-                <div style="
-                    height:7px;
-                    background:#160d20;
-                    border-radius:10px;
-                    margin-top:12px;
-                    overflow:hidden;
-                ">
-
-                    <div id="bulkProgress"
-                        style="
-                        width:0%;
-                        height:100%;
-                        background:linear-gradient(90deg,#7a2cff,#c94fff);
-                        transition:width:.3s;
-                    ">
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            
-
-
-
     </div>
 
 </div>
-            
 
     `;
 
     initializeBulkTrader();
 
-}
+        }
 
 let phinixBulkTimer = null;
 let phinixBulkRunning = false;
 let phinixBulkFast = false;
 let phinixBulkTransactions = [];
 let phinixBulkJournal = [];
+
 let phinixBulkStats = {
     stake: 0,
     payout: 0,
@@ -6676,7 +6637,8 @@ let phinixBulkStats = {
     profit: 0
 };
 
-
+}
+            
 function initializeBulkTrader(){
 
     bulkTradeTypeChanged();
@@ -6692,9 +6654,7 @@ function initializeBulkTrader(){
         1200
     );
 
-    showBulkSection("summary");
 }
-
 
 function bulkTradeTypeChanged(){
 
@@ -6703,6 +6663,12 @@ function bulkTradeTypeChanged(){
 
     const predictionBox =
         document.getElementById("bulkPredictionBox");
+
+    const buttons =
+        document.getElementById("bulkTradeButtons");
+
+
+    /* PREDICTION */
 
     if(predictionBox){
 
@@ -6713,109 +6679,141 @@ function bulkTradeTypeChanged(){
     }
 
 
-    const buttons =
-        document.getElementById("bulkTradeButtons");
-
     if(!buttons) return;
 
+
+    /* EVEN / ODD */
 
     if(type === "evenodd"){
 
         buttons.innerHTML = `
 
-            <button onclick="selectBulkContract('Even')"
+            <button
+                onclick="selectBulkContract('Even')"
                 style="
-                padding:17px;
-                border:none;
-                border-radius:12px;
-                background:#00a99d;
-                color:white;
-                font-weight:bold;
-                font-size:16px;
-            ">
+                    padding:17px;
+                    border:none;
+                    border-radius:12px;
+                    background:#00a99d;
+                    color:white;
+                    font-weight:bold;
+                    font-size:16px;
+                "
+            >
                 Even
             </button>
 
-            <button onclick="selectBulkContract('Odd')"
+            <button
+                onclick="selectBulkContract('Odd')"
                 style="
-                padding:17px;
-                border:none;
-                border-radius:12px;
-                background:#d5223a;
-                color:white;
-                font-weight:bold;
-                font-size:16px;
-            ">
+                    padding:17px;
+                    border:none;
+                    border-radius:12px;
+                    background:#d5223a;
+                    color:white;
+                    font-weight:bold;
+                    font-size:16px;
+                "
+            >
                 Odd
             </button>
 
         `;
 
-    }else if(type === "matches"){
+        return;
+    }
+
+
+    /* MATCHES / DIFFERS */
+
+    if(type === "matches"){
 
         buttons.innerHTML = `
 
-            <button onclick="selectBulkContract('Differs')"
+            <button
+                onclick="selectBulkContract('Differs')"
                 style="
-                padding:17px;
-                border:none;
-                border-radius:12px;
-                background:#00a99d;
-                color:white;
-                font-weight:bold;
-                font-size:16px;
-            ">
+                    padding:17px;
+                    border:none;
+                    border-radius:12px;
+                    background:#00a99d;
+                    color:white;
+                    font-weight:bold;
+                    font-size:16px;
+                "
+            >
                 Differs
             </button>
 
-            <button onclick="selectBulkContract('Matches')"
+            <button
+                onclick="selectBulkContract('Matches')"
                 style="
-                padding:17px;
-                border:none;
-                border-radius:12px;
-                background:#d5223a;
-                color:white;
-                font-weight:bold;
-                font-size:16px;
-            ">
+                    padding:17px;
+                    border:none;
+                    border-radius:12px;
+                    background:#d5223a;
+                    color:white;
+                    font-weight:bold;
+                    font-size:16px;
+                "
+            >
                 Matches
             </button>
 
         `;
 
-    }else{
+        return;
+    }
+
+
+    /* OVER / UNDER */
+
+    if(type === "overunder"){
 
         buttons.innerHTML = `
 
-            <button onclick="selectBulkContract('Over')"
+            <button
+                onclick="selectBulkContract('Over')"
                 style="
-                padding:17px;
-                border:none;
-                border-radius:12px;
-                background:#00a99d;
-                color:white;
-                font-weight:bold;
-                font-size:16px;
-            ">
+                    padding:17px;
+                    border:none;
+                    border-radius:12px;
+                    background:#00a99d;
+                    color:white;
+                    font-weight:bold;
+                    font-size:16px;
+                "
+            >
                 Over
             </button>
 
-            <button onclick="selectBulkContract('Under')"
+            <button
+                onclick="selectBulkContract('Under')"
                 style="
-                padding:17px;
-                border:none;
-                border-radius:12px;
-                background:#d5223a;
-                color:white;
-                font-weight:bold;
-                font-size:16px;
-            ">
+                    padding:17px;
+                    border:none;
+                    border-radius:12px;
+                    background:#d5223a;
+                    color:white;
+                    font-weight:bold;
+                    font-size:16px;
+                "
+            >
                 Under
             </button>
 
         `;
+
+        return;
     }
+
 }
+
+    
+
+            
+
+    
 
 function createBulkDigits(){
 
@@ -6935,7 +6933,7 @@ svg.style.cssText = `
     height:64px;
     pointer-events:none;
     overflow:visible;
-    transform:rotate(-90deg);
+    transform:rotate(90deg);
 `;
 
 const circle =
@@ -6944,12 +6942,21 @@ const circle =
         "circle"
     );
 
-circle.setAttribute("cx","32");
-circle.setAttribute("cy","32");
-circle.setAttribute("r","29");
+const arcColors = [
+    "#ff3b4d",
+    "#ff9d00",
+    "#315cff",
+    "#35c9c9"
+];
 
 circle.setAttribute(
-    "fill","none"
+    "stroke",
+    arcColors[i % 4]
+);
+
+circle.setAttribute(
+    "stroke",
+    arcColors[i]
 );
 
 circle.setAttribute(
@@ -6971,6 +6978,7 @@ circle.setAttribute(
 circle.setAttribute(
     "stroke-dashoffset","0"
 );
+
 
 circle.style.opacity = "0";
 
