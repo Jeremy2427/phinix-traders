@@ -6360,50 +6360,49 @@ function openBulkTrader(){
         ">
     </div>
 
+<!-- PREDICTION -->
+<div style="
+    margin-top:4px;
+">
 
-    <!-- PREDICTION -->
-    <div id="bulkPredictionBox"
-        style="
-        display:none;
-        margin-top:4px;
+    <label style="
+        font-size:13px;
+        color:#bda8d0;
     ">
+        PREDICTION
+    </label>
 
-        <label style="
-            font-size:13px;
-            color:#bda8d0;
-        ">
-            PREDICTION
-        </label>
+    <select id="bulkPrediction"
+        style="
+        width:100%;
+        height:44px;
+        margin-top:5px;
+        padding:0 13px;
+        border-radius:11px;
+        border:1px solid #743cff;
+        background:#120b1d;
+        color:white;
+        text-align:center;
+        font-size:16px;
+        font-weight:bold;
+        box-sizing:border-box;
+    ">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+    </select>
 
-        <select id="bulkPrediction" style="
-            width:100%;
-            height:44px;
-            margin-top:5px;
-            padding:0 13px;
-            border-radius:11px;
-            border:1px solid #743cff;
-            background:#120b1d;
-            color:white;
-            text-align:center;
-            font-size:16px;
-            font-weight:bold;
-            box-sizing:border-box;
-        ">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-        </select>
+</div>
+ 
 
-    </div>
 
-</div> 
 
 
 
@@ -6941,6 +6940,10 @@ const circle =
         "circle"
     );
 
+        circle.setAttribute("cx","28");
+circle.setAttribute("cy","28");
+circle.setAttribute("r","25");
+
 const arcColors = [
     "#ff3b4d",
     "#ff9d00",
@@ -6952,16 +6955,7 @@ circle.setAttribute(
     "stroke",
     arcColors[i % 4]
 );
-
-circle.setAttribute(
-    "stroke",
-    arcColors[i]
-);
-
-circle.setAttribute(
-    "stroke","#ffd000"
-);
-
+        
 circle.setAttribute(
     "stroke-width","4"
 );
