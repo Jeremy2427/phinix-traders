@@ -6659,23 +6659,20 @@ function bulkTradeTypeChanged(){
     const type =
         document.getElementById("bulkTradeType")?.value;
 
-    const predictionBox =
-        document.getElementById("bulkPredictionBox");
+    function bulkTradeTypeChanged(){
+
+    const type =
+        document.getElementById("bulkTradeType")?.value;
 
     const buttons =
         document.getElementById("bulkTradeButtons");
 
+    if(!buttons) return;
 
-    /* PREDICTION */
 
-    if(predictionBox){
+    /* EVEN / ODD */
 
-        predictionBox.style.display =
-            type === "matches"
-                ? "block"
-                : "none";
-    }
-
+    if(type === "evenodd"){
 
     if(!buttons) return;
 
