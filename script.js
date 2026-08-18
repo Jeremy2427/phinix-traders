@@ -6804,37 +6804,30 @@ function bulkTradeTypeChanged(){
 
 function createBulkDigits(){
 
-    const container =
-        document.getElementById("bulkDigits");
+    const container = document.getElementById("bulkDigits");
 
     if(!container) return;
 
     container.innerHTML = "";
 
-    /* FORCE THE DIGITS TO USE THE FULL WIDTH */
     container.style.cssText = `
-        display:grid !important;
-        grid-template-columns:repeat(5,minmax(0,1fr)) !important;
-        grid-template-rows:auto auto !important;
-        gap:14px 8px !important;
-        margin-top:18px !important;
-        width:100% !important;
-        max-width:100% !important;
         position:relative !important;
-        clear:both !important;
+        display:grid !important;
+        grid-template-columns:repeat(5, 1fr) !important;
+        grid-template-rows:70px 70px !important;
+        gap:12px 6px !important;
+        width:100% !important;
+        max-width:none !important;
+        min-width:0 !important;
+        margin:18px 0 0 0 !important;
+        padding:0 !important;
         box-sizing:border-box !important;
+        justify-items:center !important;
+        align-items:center !important;
         overflow:visible !important;
+        float:none !important;
+        clear:both !important;
     `;
-
-
-    /*
-       FOUR ARC COLOURS ONLY
-
-       0,4,8  = RED
-       1,5,9  = YELLOW
-       2,6    = BLUE
-       3,7    = CYAN
-    */
 
     const arcColors = [
         "#ff3b4d",
@@ -6843,161 +6836,133 @@ function createBulkDigits(){
         "#35c9c9"
     ];
 
+    for(let i = 0; i < 10; i++){
 
-    /*
-       CREATE 10 DIGITS
-    */
+        const wrapper = document.createElement("div");
 
-    for(let i = 0; i <= 9; i++){
-
-        const wrapper =
-            document.createElement("div");
-
-        wrapper.id =
-            "bulkDigitWrap" + i;
+        wrapper.id = "bulkDigitWrap" + i;
 
         wrapper.style.cssText = `
-            position:relative;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            width:100%;
-            height:70px;
-            min-width:0;
-            box-sizing:border-box;
+            position:relative !important;
+            width:58px !important;
+            height:58px !important;
+            min-width:58px !important;
+            max-width:58px !important;
+            min-height:58px !important;
+            max-height:58px !important;
+            margin:0 !important;
+            padding:0 !important;
+            display:flex !important;
+            justify-content:center !important;
+            align-items:center !important;
+            box-sizing:border-box !important;
+            flex:none !important;
+            float:none !important;
         `;
 
+        const digit = document.createElement("div");
 
-        const digit =
-            document.createElement("div");
-
-        digit.id =
-            "bulkDigit" + i;
+        digit.id = "bulkDigit" + i;
 
         digit.style.cssText = `
-            width:58px;
-            height:58px;
-            border-radius:50%;
-            border:2px solid #173967;
-            background:#0d1b31;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            position:relative;
-            box-sizing:border-box;
-            overflow:visible;
+            position:relative !important;
+            width:58px !important;
+            height:58px !important;
+            min-width:58px !important;
+            max-width:58px !important;
+            min-height:58px !important;
+            max-height:58px !important;
+            border-radius:50% !important;
+            border:2px solid #173967 !important;
+            background:#0d1b31 !important;
+            display:flex !important;
+            flex-direction:column !important;
+            justify-content:center !important;
+            align-items:center !important;
+            box-sizing:border-box !important;
+            flex:none !important;
+            overflow:visible !important;
+            margin:0 !important;
+            padding:0 !important;
             transition:.2s ease;
             box-shadow:0 0 8px rgba(46,125,255,.10);
         `;
 
-
-        /* DIGIT NUMBER */
-
-        const digitNumber =
-            document.createElement("div");
+        const digitNumber = document.createElement("div");
 
         digitNumber.textContent = i;
 
         digitNumber.style.cssText = `
-            font-size:17px;
-            font-weight:bold;
-            color:white;
-            line-height:1;
+            position:relative !important;
+            z-index:3 !important;
+            font-size:17px !important;
+            font-weight:bold !important;
+            color:white !important;
+            line-height:1 !important;
+            margin:0 !important;
+            padding:0 !important;
         `;
 
         digit.appendChild(digitNumber);
 
+        const percentage = document.createElement("div");
 
-        /* PERCENTAGE */
+        percentage.id = "bulkPercent" + i;
 
-        const percentage =
-            document.createElement("div");
-
-        percentage.id =
-            "bulkPercent" + i;
-
-        percentage.textContent =
-            "0.00%";
+        percentage.textContent = "0.00%";
 
         percentage.style.cssText = `
-            font-size:10px;
-            color:#bda8d0;
-            margin-top:4px;
-            line-height:1;
-            font-weight:bold;
+            position:relative !important;
+            z-index:3 !important;
+            font-size:10px !important;
+            color:#bda8d0 !important;
+            margin-top:4px !important;
+            line-height:1 !important;
+            font-weight:bold !important;
         `;
 
         digit.appendChild(percentage);
 
-
-        /*
-           ARC
-        */
-
-        const svg =
-            document.createElementNS(
-                "http://www.w3.org/2000/svg",
-                "svg"
-            );
+        const svg = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg"
+        );
 
         svg.setAttribute("width","68");
         svg.setAttribute("height","68");
         svg.setAttribute("viewBox","0 0 68 68");
 
         svg.style.cssText = `
-            position:absolute;
-            top:-5px;
-            left:-5px;
-            width:68px;
-            height:68px;
-            pointer-events:none;
-            overflow:visible;
-            transform:rotate(-90deg);
-            z-index:2;
+            position:absolute !important;
+            top:-5px !important;
+            left:-5px !important;
+            width:68px !important;
+            height:68px !important;
+            pointer-events:none !important;
+            overflow:visible !important;
+            transform:rotate(-90deg) !important;
+            z-index:2 !important;
         `;
 
-
-        const circle =
-            document.createElementNS(
-                "http://www.w3.org/2000/svg",
-                "circle"
-            );
+        const circle = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "circle"
+        );
 
         circle.setAttribute("cx","34");
         circle.setAttribute("cy","34");
         circle.setAttribute("r","30");
 
-        /* ONLY ONE STROKE COLOUR */
         circle.setAttribute(
             "stroke",
             arcColors[i % 4]
         );
 
-        circle.setAttribute(
-            "stroke-width",
-            "4"
-        );
-
-        circle.setAttribute(
-            "fill",
-            "none"
-        );
-
-        circle.setAttribute(
-            "stroke-linecap",
-            "round"
-        );
-
-        circle.setAttribute(
-            "stroke-dasharray",
-            "48 141"
-        );
-
-        circle.setAttribute(
-            "stroke-dashoffset",
-            "0"
-        );
+        circle.setAttribute("stroke-width","4");
+        circle.setAttribute("fill","none");
+        circle.setAttribute("stroke-linecap","round");
+        circle.setAttribute("stroke-dasharray","48 141");
+        circle.setAttribute("stroke-dashoffset","0");
 
         circle.style.opacity = "0";
 
@@ -7005,51 +6970,45 @@ function createBulkDigits(){
 
         digit.appendChild(svg);
 
-
-        /*
-           SAVE ARC FOR updateBulkTick()
-        */
-
         digit._bulkArc = circle;
-
 
         wrapper.appendChild(digit);
 
         container.appendChild(wrapper);
     }
 
+    const triangle = document.createElement("div");
 
-    /*
-       ONE MOVING TRIANGLE
-       BELOW THE DIGITS
-    */
-
-    const triangle =
-        document.createElement("div");
-
-    triangle.id =
-        "bulkMovingTriangle";
+    triangle.id = "bulkMovingTriangle";
 
     triangle.style.cssText = `
-        position:absolute;
-        width:0;
-        height:0;
-        border-left:7px solid transparent;
-        border-right:7px solid transparent;
-        border-bottom:10px solid #ff4d5e;
-        left:50%;
-        top:135px;
-        transform:translateX(-50%);
+        position:absolute !important;
+        width:0 !important;
+        height:0 !important;
+        border-left:7px solid transparent !important;
+        border-right:7px solid transparent !important;
+        border-bottom:10px solid #ff4d5e !important;
+        left:50% !important;
+        top:145px !important;
+        transform:translateX(-50%) !important;
         transition:
             left .35s ease,
             border-bottom-color .2s ease;
-        z-index:10;
-        pointer-events:none;
+        z-index:10 !important;
+        pointer-events:none !important;
     `;
 
     container.appendChild(triangle);
-
 }
+
+    
+
+
+
+        
+    
+
+
 
     
 
