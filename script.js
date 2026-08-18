@@ -5368,22 +5368,32 @@ function openAccountMenu(){
     document.body.appendChild(menu);
 }
 
-
 function selectDemoAccount(button) {
+
     const menu = button.closest(".account-menu-overlay");
 
     if (menu) {
         menu.remove();
     }
-    
-localStorage.setItem(
-    "phinixSelectedAccount",
-    "demo"
-);
+
+    /* Select DEMO account */
+    localStorage.setItem(
+        "phinixSelectedAccount",
+        "demo"
+    );
+
+    /* Get existing practice balance */
     const demoBalance = Number(
         localStorage.getItem("phinixDemoBalance") || "10000"
     );
 
+    /* Make sure the balance exists */
+    localStorage.setItem(
+        "phinixDemoBalance",
+        demoBalance.toString()
+    );
+
+    /* Update normal balance display */
     const balance = document.querySelector(".balance");
 
     if (balance) {
@@ -5392,7 +5402,25 @@ localStorage.setItem(
             <h1>$${demoBalance.toFixed(2)}</h1>
         `;
     }
+
+    /* Update Bulk Trader account display */
+    const bulkLabel =
+        document.getElementById("bulkAccountLabel");
+
+    const bulkBalance =
+        document.getElementById("bulkAccountBalance");
+
+    if (bulkLabel) {
+        bulkLabel.textContent = "DEMO BALANCE";
+    }
+
+    if (bulkBalance) {
+        bulkBalance.textContent =
+            "$" + demoBalance.toFixed(2);
+    }
 }
+
+
 
 function selectRealAccount(button) {
 
