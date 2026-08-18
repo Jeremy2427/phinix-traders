@@ -3420,7 +3420,7 @@ function openRiskCalculator(){
 
     <div style="
         min-height:100vh;
-        background:#07111f;
+        background:#05020b;
         color:white;
         padding:12px;
         padding-bottom:110px;
@@ -3438,7 +3438,7 @@ function openRiskCalculator(){
             <div onclick="backToManualTrader()" style="
                 cursor:pointer;
                 font-size:25px;
-                color:#4d9cff;
+                color:#c94fff;
             ">
                 ←
             </div>
@@ -3446,7 +3446,7 @@ function openRiskCalculator(){
             <div style="
                 font-size:20px;
                 font-weight:bold;
-                color:#4d9cff;
+                color:#c94fff;
             ">
                 🧮 RISK CALCULATOR
             </div>
@@ -3463,18 +3463,18 @@ function openRiskCalculator(){
 
         <!-- MAIN CALCULATOR -->
         <div style="
-            background:#14263f;
-            border:1px solid #27476d;
+            background:#080510;
+            border:1px solid #6f2cff;
             border-radius:20px;
             overflow:hidden;
-            box-shadow:0 5px 20px rgba(0,0,0,.35);
+            box-shadow:0 5px 20px rgba(122,44,255,.18);
         ">
 
             <!-- TITLE -->
             <div style="
                 text-align:center;
                 padding:25px 15px;
-                background:#0e2038;
+                background:#0d0716;
             ">
 
                 <h1 style="
@@ -3487,7 +3487,7 @@ function openRiskCalculator(){
                 </h1>
 
                 <p style="
-                    color:#b8c4d4;
+                    color:#bda8d0;
                     margin-top:12px;
                     font-size:14px;
                 ">
@@ -3504,8 +3504,8 @@ function openRiskCalculator(){
                     display:flex;
                     align-items:center;
                     justify-content:space-between;
-                    background:#10213a;
-                    border:2px solid #245bb0;
+                    background:#120b1d;
+                    border:2px solid #743cff;
                     border-radius:17px;
                     padding:15px;
                     margin-bottom:15px;
@@ -3513,7 +3513,7 @@ function openRiskCalculator(){
 
                     <span style="
                         font-size:32px;
-                        color:#4d9cff;
+                        color:#c94fff;
                     ">
                         $
                     </span>
@@ -3550,7 +3550,7 @@ function openRiskCalculator(){
                 ">
 
                     <div>
-                        <label style="font-size:12px;color:#9db0c8;">
+                        <label style="font-size:12px;color:#bda8d0;">
                             Risk %
                         </label>
 
@@ -3566,8 +3566,8 @@ function openRiskCalculator(){
                                 padding:12px;
                                 margin-top:5px;
                                 border-radius:12px;
-                                border:1px solid #31537c;
-                                background:#0d1d32;
+                                border:1px solid #743cff;
+                                background:#120b1d;
                                 color:white;
                                 box-sizing:border-box;
                             "
@@ -3576,7 +3576,7 @@ function openRiskCalculator(){
 
 
                     <div>
-                        <label style="font-size:12px;color:#9db0c8;">
+                        <label style="font-size:12px;color:#bda8d0;">
                             Martingale
                         </label>
 
@@ -3588,8 +3588,8 @@ function openRiskCalculator(){
                                 padding:12px;
                                 margin-top:5px;
                                 border-radius:12px;
-                                border:1px solid #31537c;
-                                background:#0d1d32;
+                                border:1px solid #743cff;
+                                background:#120b1d;
                                 color:white;
                                 box-sizing:border-box;
                             "
@@ -3604,7 +3604,7 @@ function openRiskCalculator(){
 
 
                     <div>
-                        <label style="font-size:12px;color:#9db0c8;">
+                        <label style="font-size:12px;color:#bda8d0;">
                             Take Profit %
                         </label>
 
@@ -3620,8 +3620,8 @@ function openRiskCalculator(){
                                 padding:12px;
                                 margin-top:5px;
                                 border-radius:12px;
-                                border:1px solid #31537c;
-                                background:#0d1d32;
+                                border:1px solid #743cff;
+                                background:#120b1d;
                                 color:white;
                                 box-sizing:border-box;
                             "
@@ -3630,7 +3630,7 @@ function openRiskCalculator(){
 
 
                     <div>
-                        <label style="font-size:12px;color:#9db0c8;">
+                        <label style="font-size:12px;color:#bda8d0;">
                             Stop Loss %
                         </label>
 
@@ -3646,8 +3646,8 @@ function openRiskCalculator(){
                                 padding:12px;
                                 margin-top:5px;
                                 border-radius:12px;
-                                border:1px solid #31537c;
-                                background:#0d1d32;
+                                border:1px solid #743cff;
+                                background:#120b1d;
                                 color:white;
                                 box-sizing:border-box;
                             "
@@ -3659,7 +3659,7 @@ function openRiskCalculator(){
 
                 <!-- RESULT CARD -->
                 <div style="
-                    background:#0d1d32;
+                    background:#120b1d;
                     border-radius:18px;
                     padding:18px;
                 ">
@@ -3668,7 +3668,7 @@ function openRiskCalculator(){
                         display:flex;
                         justify-content:space-between;
                         padding:12px 0;
-                        border-bottom:1px solid #263b57;
+                        border-bottom:1px solid #2d1645;
                     ">
                         <span>🪙 Stake:</span>
                         <strong id="riskStake" style="color:#00d995;">
@@ -3681,7 +3681,7 @@ function openRiskCalculator(){
                         display:flex;
                         justify-content:space-between;
                         padding:12px 0;
-                        border-bottom:1px solid #263b57;
+                        border-bottom:1px solid #2d1645;
                     ">
                         <span>📈 Martingale Size:</span>
                         <strong id="riskMartingaleResult">
@@ -3694,7 +3694,7 @@ function openRiskCalculator(){
                         display:flex;
                         justify-content:space-between;
                         padding:12px 0;
-                        border-bottom:1px solid #263b57;
+                        border-bottom:1px solid #2d1645;
                     ">
                         <span>⬆️ Take Profit:</span>
                         <strong id="riskTP" style="color:#00d995;">
@@ -3720,7 +3720,7 @@ function openRiskCalculator(){
                 <!-- LOSSES -->
                 <div style="
                     margin-top:15px;
-                    background:#0d1d32;
+                    background:#120b1d;
                     border-radius:16px;
                     padding:16px;
                     display:flex;
@@ -3736,9 +3736,9 @@ function openRiskCalculator(){
                         id="riskLosses"
                         onchange="calculatePhinixRisk()"
                         style="
-                            background:#10213a;
+                            background:#120b1d;
                             color:white;
-                            border:1px solid #31537c;
+                            border:1px solid #743cff;
                             border-radius:10px;
                             padding:10px;
                         "
@@ -3756,12 +3756,15 @@ function openRiskCalculator(){
                 <!-- STAKE SEQUENCE -->
                 <div style="
                     margin-top:15px;
-                    background:#0d1d32;
+                    background:#120b1d;
                     border-radius:16px;
                     padding:16px;
                 ">
 
-                    <h3 style="margin-bottom:15px;">
+                    <h3 style="
+                        margin-bottom:15px;
+                        color:#c94fff;
+                    ">
                         📋 Stake Sequence
                     </h3>
 
@@ -3800,20 +3803,20 @@ function openRiskCalculator(){
                 <!-- BOT SETTINGS -->
                 <div style="
                     margin-top:10px;
-                    background:#0d1d32;
+                    background:#120b1d;
                     border-radius:16px;
                     padding:16px;
                 ">
 
                     <h3 style="
-                        color:#4d9cff;
+                        color:#c94fff;
                         margin-bottom:8px;
                     ">
                         🤖 Bot Risk Settings
                     </h3>
 
                     <p style="
-                        color:#9db0c8;
+                        color:#bda8d0;
                         font-size:13px;
                         line-height:1.5;
                     ">
@@ -3834,6 +3837,13 @@ function openRiskCalculator(){
 
     calculatePhinixRisk();
 }
+
+    
+
+                    
+
+
+
 
 
 function calculatePhinixRisk(){
