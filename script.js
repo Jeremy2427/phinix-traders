@@ -6953,8 +6953,7 @@ function createBulkDigits(){
 
         circle.setAttribute("cx","34");
         circle.setAttribute("cy","34");
-        circle.setAttribute("r","30");
-
+        circle.setAttribute("r","28");
         circle.setAttribute(
             "stroke",
             arcColors[i % 4]
@@ -7152,7 +7151,7 @@ const indicatorColours = [
     "#ff3b4d",  // RED
     "#ffd000",  // YELLOW
     "#315cff",  // BLUE
-    "#35c9c9"   // CYAN
+    "#22c55e"   // CYAN
 ];
 
 
