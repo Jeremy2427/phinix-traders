@@ -7149,10 +7149,10 @@ const activeIndicators =
 /* DBTraders-style indicator colours */
 
 const indicatorColours = [
-    "#ff9f00",
-    "#ffd000",
-    "#ff9f00",
-    "#ffd000"
+    "#ff3b4d",  // RED
+    "#ffd000",  // YELLOW
+    "#315cff",  // BLUE
+    "#35c9c9"   // CYAN
 ];
 
 
