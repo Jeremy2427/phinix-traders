@@ -6811,12 +6811,41 @@ function createBulkDigits(){
 
     container.innerHTML = "";
 
+    /* FORCE THE DIGITS TO USE THE FULL WIDTH */
+    container.style.cssText = `
+        display:grid !important;
+        grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+        grid-template-rows:auto auto !important;
+        gap:14px 8px !important;
+        margin-top:18px !important;
+        width:100% !important;
+        max-width:100% !important;
+        position:relative !important;
+        clear:both !important;
+        box-sizing:border-box !important;
+        overflow:visible !important;
+    `;
+
+
     /*
-       10 digits arranged 5 + 5
-       Each digit has:
-       - digit number
-       - percentage
-       - circular percentage arc
+       FOUR ARC COLOURS ONLY
+
+       0,4,8  = RED
+       1,5,9  = YELLOW
+       2,6    = BLUE
+       3,7    = CYAN
+    */
+
+    const arcColors = [
+        "#ff3b4d",
+        "#ffd000",
+        "#315cff",
+        "#35c9c9"
+    ];
+
+
+    /*
+       CREATE 10 DIGITS
     */
 
     for(let i = 0; i <= 9; i++){
@@ -6832,8 +6861,10 @@ function createBulkDigits(){
             display:flex;
             justify-content:center;
             align-items:center;
-            height:64px;
+            width:100%;
+            height:70px;
             min-width:0;
+            box-sizing:border-box;
         `;
 
 
@@ -6844,8 +6875,8 @@ function createBulkDigits(){
             "bulkDigit" + i;
 
         digit.style.cssText = `
-            width:52px;
-            height:52px;
+            width:58px;
+            height:58px;
             border-radius:50%;
             border:2px solid #173967;
             background:#0d1b31;
@@ -6857,19 +6888,19 @@ function createBulkDigits(){
             box-sizing:border-box;
             overflow:visible;
             transition:.2s ease;
-            box-shadow:0 0 7px rgba(46,125,255,.08);
+            box-shadow:0 0 8px rgba(46,125,255,.10);
         `;
-      
-            
 
-                const digitNumber =
+
+        /* DIGIT NUMBER */
+
+        const digitNumber =
             document.createElement("div");
 
-        digitNumber.textContent =
-            i;
+        digitNumber.textContent = i;
 
         digitNumber.style.cssText = `
-            font-size:16px;
+            font-size:17px;
             font-weight:bold;
             color:white;
             line-height:1;
@@ -6877,7 +6908,10 @@ function createBulkDigits(){
 
         digit.appendChild(digitNumber);
 
-                const percentage =
+
+        /* PERCENTAGE */
+
+        const percentage =
             document.createElement("div");
 
         percentage.id =
@@ -6889,7 +6923,7 @@ function createBulkDigits(){
         percentage.style.cssText = `
             font-size:10px;
             color:#bda8d0;
-            margin-top:3px;
+            margin-top:4px;
             line-height:1;
             font-weight:bold;
         `;
@@ -6898,93 +6932,96 @@ function createBulkDigits(){
 
 
         /*
-           Percentage arc
+           ARC
         */
 
-        /* CREATE INDICATOR ARC */
+        const svg =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "svg"
+            );
 
-const svg =
-    document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "svg"
-    );
+        svg.setAttribute("width","68");
+        svg.setAttribute("height","68");
+        svg.setAttribute("viewBox","0 0 68 68");
 
-svg.setAttribute("width","64");
-svg.setAttribute("height","64");
-
-svg.style.cssText = `
-    position:absolute;
-    top:-3px;
-    left:-3px;
-    width:64px;
-    height:64px;
-    pointer-events:none;
-    overflow:visible;
-    transform:rotate(90deg);
-`;
-
-const circle =
-    document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "circle"
-    );
-
-        circle.setAttribute("cx","28");
-circle.setAttribute("cy","28");
-circle.setAttribute("r","25");
-
-const arcColors = [
-    "#ff3b4d",
-    "#ff9d00",
-    "#315cff",
-    "#35c9c9"
-];
-
-circle.setAttribute(
-    "stroke",
-    arcColors[i % 4]
-);
-        
-circle.setAttribute(
-    "stroke-width","4"
-);
-
-circle.setAttribute(
-    "stroke-linecap","round"
-);
-
-circle.setAttribute(
-    "stroke-dasharray","45 137"
-);
-
-circle.setAttribute(
-    "stroke-dashoffset","0"
-);
+        svg.style.cssText = `
+            position:absolute;
+            top:-5px;
+            left:-5px;
+            width:68px;
+            height:68px;
+            pointer-events:none;
+            overflow:visible;
+            transform:rotate(-90deg);
+            z-index:2;
+        `;
 
 
-circle.style.opacity = "0";
+        const circle =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "circle"
+            );
 
-svg.appendChild(circle);
+        circle.setAttribute("cx","34");
+        circle.setAttribute("cy","34");
+        circle.setAttribute("r","30");
 
-digit.appendChild(svg);
+        /* ONLY ONE STROKE COLOUR */
+        circle.setAttribute(
+            "stroke",
+            arcColors[i % 4]
+        );
 
-/* Save the arc so updateBulkTick()
-   can control it later. */
+        circle.setAttribute(
+            "stroke-width",
+            "4"
+        );
 
-digit._bulkArc = circle;
+        circle.setAttribute(
+            "fill",
+            "none"
+        );
+
+        circle.setAttribute(
+            "stroke-linecap",
+            "round"
+        );
+
+        circle.setAttribute(
+            "stroke-dasharray",
+            "48 141"
+        );
+
+        circle.setAttribute(
+            "stroke-dashoffset",
+            "0"
+        );
+
+        circle.style.opacity = "0";
+
+        svg.appendChild(circle);
+
+        digit.appendChild(svg);
+
+
+        /*
+           SAVE ARC FOR updateBulkTick()
+        */
+
+        digit._bulkArc = circle;
+
 
         wrapper.appendChild(digit);
 
         container.appendChild(wrapper);
-
     }
 
-    /*
-       ONE moving triangle
 
-       It stays below the digits
-       and points upward toward
-       the active digit.
+    /*
+       ONE MOVING TRIANGLE
+       BELOW THE DIGITS
     */
 
     const triangle =
@@ -6997,34 +7034,30 @@ digit._bulkArc = circle;
         position:absolute;
         width:0;
         height:0;
-
         border-left:7px solid transparent;
         border-right:7px solid transparent;
         border-bottom:10px solid #ff4d5e;
-
-        left:10%;
-        bottom:-2px;
-
+        left:50%;
+        top:135px;
         transform:translateX(-50%);
-
         transition:
             left .35s ease,
             border-bottom-color .2s ease;
-
         z-index:10;
         pointer-events:none;
     `;
 
+    container.appendChild(triangle);
 
-    container.style.position =
-        "relative";
+}
 
+    
 
-    container.appendChild(
-        triangle
-    );
+        
 
-            }
+        
+
+        
 
 
             
