@@ -6326,6 +6326,8 @@ function openBulkTrader(){
             <option value="overunder">Over/Under</option>
         </select>
     </div>
+    
+    </div>
 
 
     <!-- NUMBER OF TICKS -->
