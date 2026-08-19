@@ -999,292 +999,469 @@ if(journal){
 }
     
 }
+
 function openBotRunningScreen(){
 
-document.querySelector(".container").innerHTML = `
+    // Keep existing results if they already exist.
+    // Only start a fresh session when no trades have been made yet.
+    if(numberRuns === 0){
+        totalStake = 0;
+        totalPayout = 0;
+        contractsWon = 0;
+        contractsLost = 0;
+        profitLoss = 0;
+        journalHistory = "";
+    }
 
-<div class="header">
-    <div onclick="openApexBot()" style="cursor:pointer;">←</div>
-    <div class="logo">APEX BOT</div>
-    <div id="botStatus" style="color:#00ff88;font-weight:bold;">
-        RUNNING
+    document.querySelector(".container").innerHTML = `
+
+    <div class="header">
+        <div onclick="openApexBot()" style="cursor:pointer;">←</div>
+
+        <div class="logo">APEX BOT</div>
+
+        <div id="botStatus"
+             style="color:#00ff88;font-weight:bold;">
+            RUNNING
+        </div>
     </div>
-</div>
-<div style="
-background:#161625;
-border:1px solid #7a2cff;
-border-radius:18px;
-padding:10px;
-margin-top:12px;
-display:flex;
-justify-content:space-between;
-gap:8px;
-">
 
-<button
-onclick="showSummary()"
-style="
-flex:1;
-padding:12px;
-background:#111;
-color:white;
-border:none;
-border-radius:12px;
-font-weight:bold;
-cursor:pointer;
-">
-Summary
-</button>
+    <div style="
+        background:#161625;
+        border:1px solid #7a2cff;
+        border-radius:18px;
+        padding:10px;
+        margin-top:12px;
+        display:flex;
+        justify-content:space-between;
+        gap:8px;
+    ">
 
-<button
-onclick="showTransactions()"
-style="
-flex:1;
-padding:12px;
-background:linear-gradient(90deg,#7a2cff,#c94fff);
-color:white;
-border:none;
-border-radius:12px;
-font-weight:bold;
-cursor:pointer;
-">
-Transactions
-</button>
+        <button
+            onclick="showSummary()"
+            style="
+            flex:1;
+            padding:12px;
+            background:#111;
+            color:white;
+            border:none;
+            border-radius:12px;
+            font-weight:bold;
+            cursor:pointer;
+        ">
+            Summary
+        </button>
 
-<button
-onclick="showJournal()"
-style="
-flex:1;
-padding:12px;
-background:#111;
-color:white;
-border:none;
-border-radius:12px;
-font-weight:bold;
-cursor:pointer;
-">
-Journal
-</button>
-</div>
+        <button
+            onclick="showTransactions()"
+            style="
+            flex:1;
+            padding:12px;
+            background:linear-gradient(90deg,#7a2cff,#c94fff);
+            color:white;
+            border:none;
+            border-radius:12px;
+            font-weight:bold;
+            cursor:pointer;
+        ">
+            Transactions
+        </button>
 
-<div id="transactionContainer"
-style="
-background:#161625;
-border:1px solid #7a2cff;
-border-radius:16px;
-padding:12px;
-margin-top:12px;
-height:260px;
-overflow-y:auto;
-overflow-x:hidden;
-">
+        <button
+            onclick="showJournal()"
+            style="
+            flex:1;
+            padding:12px;
+            background:#111;
+            color:white;
+            border:none;
+            border-radius:12px;
+            font-weight:bold;
+            cursor:pointer;
+        ">
+            Journal
+        </button>
 
-<table
-id="transactionsTable"
-style="
-width:100%;
-border-collapse:collapse;
-color:white;
-font-size:13px;
-">
+    </div>
 
-<thead>
-<tr style="color:#c94fff;">
-<th>Type</th>
-<th>Entry</th>
-<th>P/L</th>
-</tr>
-</thead>
+    <div id="transactionContainer"
+         style="
+         background:#161625;
+         border:1px solid #7a2cff;
+         border-radius:16px;
+         padding:12px;
+         margin-top:12px;
+         height:260px;
+         overflow-y:auto;
+         overflow-x:hidden;
+         ">
 
-<tbody>
+        <table
+            id="transactionsTable"
+            style="
+            width:100%;
+            border-collapse:collapse;
+            color:white;
+            font-size:13px;
+            ">
 
-</tbody>
+            <thead>
+                <tr style="color:#c94fff;">
+                    <th>Type</th>
+                    <th>Entry</th>
+                    <th>P/L</th>
+                </tr>
+            </thead>
 
-</table>
+            <tbody>
+            </tbody>
 
-</div>
+        </table>
 
-<div style="
-margin-top:14px;
-background:#161625;
-border:1px solid #7a2cff;
-border-radius:16px;
-padding:14px;
-">
+    </div>
 
-<div style="
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-text-align:center;
-">
+    <div style="
+        margin-top:14px;
+        background:#161625;
+        border:1px solid #7a2cff;
+        border-radius:16px;
+        padding:14px;
+    ">
 
-<div>
-<b>Total Stake</b><br>
-<span id="totalStake">0 USD</span>
-</div>
+        <div style="
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:12px;
+            text-align:center;
+        ">
 
-<div>
-<b>Total Payout</b><br>
-<span id="totalPayout">0 USD</span>
-</div>
+            <div>
+                <b>Total Stake</b><br>
+                <span id="totalStake">
+                    ${totalStake.toFixed(2)} USD
+                </span>
+            </div>
 
-<div>
-<b>Contracts Won</b><br>
-<span id="contractsWon">0</span>
-</div>
+            <div>
+                <b>Total Payout</b><br>
+                <span id="totalPayout">
+                    ${totalPayout.toFixed(2)} USD
+                </span>
+            </div>
 
-<div>
-<b>Contracts Lost</b><br>
-<span id="contractsLost">0</span>
-</div>
+            <div>
+                <b>Contracts Won</b><br>
+                <span id="contractsWon">
+                    ${contractsWon}
+                </span>
+            </div>
 
-<div>
-<b>No. of Runs</b><br>
-<span id="numberRuns">0</span>
-</div>
+            <div>
+                <b>Contracts Lost</b><br>
+                <span id="contractsLost">
+                    ${contractsLost}
+                </span>
+            </div>
 
-<div>
-<b>Total Profit</b><br>
-<span id="profitLoss" style="color:#00ff88;">0 USD</span>
-</div>
+            <div>
+                <b>No. of Runs</b><br>
+                <span id="numberRuns">
+                    ${numberRuns}
+                </span>
+            </div>
 
-</div>
+            <div>
+                <b>Total Profit</b><br>
 
-<button
-id="runBotBtn"
-onclick="toggleApexBot()"
-style="
-width:100%;
-margin-top:16px;
-padding:14px;
-background:#d62828;
-border:none;
-border-radius:12px;
-color:white;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
-">
-■ STOP
-</button>
+                <span id="profitLoss"
+                      style="
+                      color:${profitLoss >= 0 ? "#00ff88" : "#ff4444"};
+                      ">
+                    ${profitLoss.toFixed(2)} USD
+                </span>
 
-</div>
-`;
+            </div>
 
-botRunning = true;
-totalStake = 0;
-totalPayout = 0;
- journalHistory = "";
-contractsWon = 0;
-contractsLost = 0;
-numberRuns = 0;
-profitLoss = 0;
+        </div>
 
-botInterval = setInterval(addFakeTrade,2500);
+        <button
+            id="runBotBtn"
+            onclick="toggleApexBot()"
+            style="
+            width:100%;
+            margin-top:16px;
+            padding:14px;
+            background:#d62828;
+            border:none;
+            border-radius:12px;
+            color:white;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+            ">
+            ■ STOP
+        </button>
+
+    </div>
+
+    `;
+
+    botRunning = true;
+
+    // Start generating trades only if the bot isn't already running.
+    if(!botInterval){
+        botInterval = setInterval(addFakeTrade,2500);
+    }
 
 }
+
+
 function showSummary(){
 
-let totalTrades = contractsWon + contractsLost;
+    const container = document.querySelector(".container");
 
-let winRate = totalTrades > 0
-? ((contractsWon / totalTrades) * 100).toFixed(1)
-: "0.0";
+    if (!container) return;
 
-let avgWin = contractsWon > 0
-? (totalPayout / contractsWon).toFixed(2)
-: "0.00";
+    container.innerHTML = `
 
-let avgLoss = contractsLost > 0
-? (totalStake / contractsLost).toFixed(2)
-: "0.00";
+        <div class="header">
+            <div onclick="openBotRunningScreen()" style="cursor:pointer;">←</div>
 
-document.querySelector(".container").innerHTML = `
+            <div class="logo">APEX BOT</div>
 
-<div class="header">
-<div onclick="openBotRunningScreen()" style="cursor:pointer;">←</div>
-<div class="logo">SUMMARY</div>
-<div>📊</div>
-</div>
+            <div style="color:#00ff88;font-weight:bold;">
+                SUMMARY
+            </div>
+        </div>
 
-<div style="
-background:#161625;
-border:1px solid #7a2cff;
-border-radius:18px;
-padding:18px;
-margin-top:14px;
-">
+        <div style="
+            background:#161625;
+            border:1px solid #7a2cff;
+            border-radius:18px;
+            padding:14px;
+            margin-top:12px;
+        ">
 
-<h2 style="text-align:center;color:#c94fff;">
-APEX BOT PERFORMANCE
-</h2>
+            <div style="
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:12px;
+                text-align:center;
+            ">
 
-<div style="margin-top:20px;line-height:2;font-size:16px;">
+                <div>
+                    <b>Total Stake</b><br>
+                    <span>${Number(totalStake || 0).toFixed(2)} USD</span>
+                </div>
 
-<b>Win Rate:</b> ${winRate}%<br>
+                <div>
+                    <b>Total Payout</b><br>
+                    <span>${Number(totalPayout || 0).toFixed(2)} USD</span>
+                </div>
 
-<b>Contracts Won:</b> ${contractsWon}<br>
+                <div>
+                    <b>Contracts Won</b><br>
+                    <span>${Number(contractsWon || 0)}</span>
+                </div>
 
-<b>Contracts Lost:</b> ${contractsLost}<br>
+                <div>
+                    <b>Contracts Lost</b><br>
+                    <span>${Number(contractsLost || 0)}</span>
+                </div>
 
-<b>Total Stake:</b> ${totalStake.toFixed(2)} USD<br>
+                <div>
+                    <b>No. of Runs</b><br>
+                    <span>${Number(numberRuns || 0)}</span>
+                </div>
 
-<b>Total Payout:</b> ${totalPayout.toFixed(2)} USD<br>
+                <div>
+                    <b>Total Profit</b><br>
+                    <span style="
+                        color:${Number(profitLoss || 0) >= 0 ? "#00ff88" : "#ff4444"};
+                    ">
+                        ${Number(profitLoss || 0).toFixed(2)} USD
+                    </span>
+                </div>
 
-<b>Average Win:</b> ${avgWin} USD<br>
+            </div>
 
-<b>Average Loss:</b> ${avgLoss} USD<br>
+        </div>
 
-<b>Total Profit:</b>
-<span style="color:${profitLoss>=0 ? "#00ff88" : "#ff4444"};">
-${profitLoss.toFixed(2)} USD
-</span>
+        <div style="
+            background:#161625;
+            border:1px solid #7a2cff;
+            border-radius:18px;
+            padding:12px;
+            margin-top:12px;
+            display:flex;
+            gap:8px;
+        ">
 
-</div>
+            <button
+                onclick="showSummary()"
+                style="
+                    flex:1;
+                    padding:11px;
+                    background:linear-gradient(90deg,#7a2cff,#c94fff);
+                    color:white;
+                    border:none;
+                    border-radius:10px;
+                    font-weight:bold;
+                ">
+                Summary
+            </button>
 
-</div>
+            <button
+                onclick="showTransactions()"
+                style="
+                    flex:1;
+                    padding:11px;
+                    background:#111;
+                    color:white;
+                    border:none;
+                    border-radius:10px;
+                    font-weight:bold;
+                ">
+                Transactions
+            </button>
 
-`;
+            <button
+                onclick="showJournal()"
+                style="
+                    flex:1;
+                    padding:11px;
+                    background:#111;
+                    color:white;
+                    border:none;
+                    border-radius:10px;
+                    font-weight:bold;
+                ">
+                Journal
+            </button>
+
+        </div>
+
+    `;
+
 }
+
+
 function showJournal(){
 
-document.querySelector(".container").innerHTML = `
+    const container = document.querySelector(".container");
 
-<div class="header">
-<div onclick="openBotRunningScreen()" style="cursor:pointer;">←</div>
-<div class="logo">JOURNAL</div>
-<div>📖</div>
-</div>
+    if (!container) return;
 
-<div style="
-background:#161625;
-border:1px solid #7a2cff;
-border-radius:18px;
-padding:18px;
-margin-top:14px;
-">
+    container.innerHTML = `
 
-<h2 style="
-text-align:center;
-color:#c94fff;
-margin-bottom:18px;
-">
-BOT ACTIVITY
-</h2>
+        <div class="header">
+            <div onclick="openBotRunningScreen()" style="cursor:pointer;">←</div>
 
-<div id="journalLogs" style="
-margin-top:20px;
-line-height:2;
-font-size:18px;
-color:white;
-">
-${journalHistory}
-</div>
+            <div class="logo">APEX BOT</div>
 
-</div>
-`;
+            <div style="color:#00ff88;font-weight:bold;">
+                JOURNAL
+            </div>
+        </div>
+
+        <div style="
+            background:#161625;
+            border:1px solid #7a2cff;
+            border-radius:18px;
+            padding:14px;
+            margin-top:12px;
+            min-height:260px;
+        ">
+
+            <div style="
+                color:#aaa;
+                font-size:13px;
+                margin-bottom:12px;
+            ">
+                Trading Journal
+            </div>
+
+            <div id="journalContent"
+                 style="
+                 color:white;
+                 line-height:1.7;
+                 white-space:pre-wrap;
+                 word-break:break-word;
+                 ">
+                ${journalHistory || "No journal entries yet."}
+            </div>
+
+        </div>
+
+        <div style="
+            background:#161625;
+            border:1px solid #7a2cff;
+            border-radius:18px;
+            padding:12px;
+            margin-top:12px;
+            display:flex;
+            gap:8px;
+        ">
+
+            <button
+                onclick="showSummary()"
+                style="
+                    flex:1;
+                    padding:11px;
+                    background:#111;
+                    color:white;
+                    border:none;
+                    border-radius:10px;
+                    font-weight:bold;
+                ">
+                Summary
+            </button>
+
+            <button
+                onclick="showTransactions()"
+                style="
+                    flex:1;
+                    padding:11px;
+                    background:#111;
+                    color:white;
+                    border:none;
+                    border-radius:10px;
+                    font-weight:bold;
+                ">
+                Transactions
+            </button>
+
+            <button
+                onclick="showJournal()"
+                style="
+                    flex:1;
+                    padding:11px;
+                    background:linear-gradient(90deg,#7a2cff,#c94fff);
+                    color:white;
+                    border:none;
+                    border-radius:10px;
+                    font-weight:bold;
+                ">
+                Journal
+            </button>
+
+        </div>
+
+    `;
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
 function showTransactions(){
     // Already on Transactions screen
 }
@@ -1302,6 +1479,7 @@ let phLost = 0;
 let phRuns = 0;
 let phProfit = 0;
 let phJournal = "";
+let phTransactions = [];
 
 function openPhinixProBot(){
 activeBot = "Phinix Pro";
@@ -1496,140 +1674,206 @@ cursor:pointer;
 
 function openPhinixRunningScreen(){
 
-document.querySelector(".container").innerHTML = `
+    document.querySelector(".container").innerHTML = `
 
-<div class="header">
-<div onclick="openPhinixProBot()" style="cursor:pointer;">←</div>
-<div class="logo">PHINIX PRO BOT</div>
-<div id="phStatus" style="color:#00ff88;font-weight:bold;">
-RUNNING
-</div>
-</div>
+    <div class="header">
+        <div onclick="openPhinixProBot()" style="cursor:pointer;">←</div>
 
-<div style="
-background:#161625;
-border:1px solid #7a2cff;
-border-radius:18px;
-padding:10px;
-margin-top:12px;
-display:flex;
-gap:8px;
-">
+        <div class="logo">PHINIX PRO BOT</div>
 
-<button onclick="showPhinixSummary()"
-style="flex:1;padding:12px;border:none;border-radius:12px;">
-Summary
-</button>
+        <div id="phStatus"
+             style="color:#00ff88;font-weight:bold;">
+            RUNNING
+        </div>
+    </div>
 
-<button onclick="showPhinixTransactions()"
-style="flex:1;padding:12px;border:none;border-radius:12px;background:#7a2cff;color:white;">
-Transactions
-</button>
+    <div style="
+        background:#161625;
+        border:1px solid #7a2cff;
+        border-radius:18px;
+        padding:10px;
+        margin-top:12px;
+        display:flex;
+        gap:8px;
+    ">
 
-<button onclick="showPhinixJournal()"
-style="flex:1;padding:12px;border:none;border-radius:12px;">
-Journal
-</button>
+        <button onclick="showPhinixSummary()"
+        style="
+            flex:1;
+            padding:12px;
+            border:none;
+            border-radius:12px;
+            background:#111;
+            color:white;
+            font-weight:bold;
+        ">
+            Summary
+        </button>
 
-</div>
+        <button onclick="showPhinixTransactions()"
+        style="
+            flex:1;
+            padding:12px;
+            border:none;
+            border-radius:12px;
+            background:#7a2cff;
+            color:white;
+            font-weight:bold;
+        ">
+            Transactions
+        </button>
 
-<div id="phTransactionContainer"
-style="
-background:#161625;
-border:1px solid #7a2cff;
-border-radius:16px;
-padding:12px;
-margin-top:12px;
-height:250px;
-overflow-y:auto;
-">
+        <button onclick="showPhinixJournal()"
+        style="
+            flex:1;
+            padding:12px;
+            border:none;
+            border-radius:12px;
+            background:#111;
+            color:white;
+            font-weight:bold;
+        ">
+            Journal
+        </button>
 
-<table id="phTransactionsTable"
-style="
-width:100%;
-border-collapse:collapse;
-table-layout:fixed;
-color:white;
-text-align:center;
-">
+    </div>
 
-<thead>
-<tr>
-<th style="width:20%;">Type</th>
-<th style="width:40%;">Entry</th>
-<th style="width:40%;">P/L</th>
-</tr>
-</thead>
+    <div id="phTransactionContainer"
+    style="
+        background:#161625;
+        border:1px solid #7a2cff;
+        border-radius:16px;
+        padding:12px;
+        margin-top:12px;
+        height:250px;
+        overflow-y:auto;
+    ">
 
-<tbody></tbody>
+        <table id="phTransactionsTable"
+        style="
+            width:100%;
+            border-collapse:collapse;
+            table-layout:fixed;
+            color:white;
+            text-align:center;
+        ">
 
-</table>
+            <thead>
+                <tr>
+                    <th style="width:20%;">Type</th>
+                    <th style="width:40%;">Entry</th>
+                    <th style="width:40%;">P/L</th>
+                </tr>
+            </thead>
 
-</div>
+            <tbody></tbody>
 
-<div style="
-background:#161625;
-border:1px solid #7a2cff;
-border-radius:16px;
-padding:14px;
-margin-top:12px;
-">
+        </table>
 
-<div style="
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-text-align:center;
-">
+    </div>
 
-<div><b>Total Stake</b><br><span id="phStakeDisplay">0 USD</span></div>
+    <div style="
+        background:#161625;
+        border:1px solid #7a2cff;
+        border-radius:16px;
+        padding:14px;
+        margin-top:12px;
+    ">
 
-<div><b>Total Payout</b><br><span id="phPayoutDisplay">0 USD</span></div>
+        <div style="
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:12px;
+            text-align:center;
+            color:white;
+        ">
 
-<div><b>Won</b><br><span id="phWonDisplay">0</span></div>
+            <div>
+                <b>Total Stake</b><br>
+                <span id="phStakeDisplay">
+                    ${phStake.toFixed(2)} USD
+                </span>
+            </div>
 
-<div><b>Lost</b><br><span id="phLostDisplay">0</span></div>
+            <div>
+                <b>Total Payout</b><br>
+                <span id="phPayoutDisplay">
+                    ${phPayout.toFixed(2)} USD
+                </span>
+            </div>
 
-<div><b>Runs</b><br><span id="phRunsDisplay">0</span></div>
+            <div>
+                <b>Won</b><br>
+                <span id="phWonDisplay">
+                    ${phWon}
+                </span>
+            </div>
 
-<div><b>Profit</b><br><span id="phProfitDisplay">0 USD</span></div>
+            <div>
+                <b>Lost</b><br>
+                <span id="phLostDisplay">
+                    ${phLost}
+                </span>
+            </div>
 
-</div>
+            <div>
+                <b>Runs</b><br>
+                <span id="phRunsDisplay">
+                    ${phRuns}
+                </span>
+            </div>
 
-<button
-id="phRunBtn"
-onclick="togglePhinixBot()"
-style="
-width:100%;
-margin-top:16px;
-padding:14px;
-background:#d62828;
-color:white;
-border:none;
-border-radius:12px;
-font-size:18px;
-font-weight:bold;
-">
-■ STOP
-</button>
+            <div>
+                <b>Profit</b><br>
+                <span id="phProfitDisplay"
+                      style="color:${phProfit >= 0 ? "#00ff88" : "#ff4444"};">
+                    ${phProfit.toFixed(2)} USD
+                </span>
+            </div>
 
-</div>
+        </div>
 
-`;
+        <button
+            id="phRunBtn"
+            onclick="togglePhinixBot()"
+            style="
+                width:100%;
+                margin-top:16px;
+                padding:14px;
+                background:#d62828;
+                color:white;
+                border:none;
+                border-radius:12px;
+                font-size:18px;
+                font-weight:bold;
+            ">
+            ■ STOP
+        </button>
 
-phBotRunning = true;
+    </div>
 
-        phStake = 0;
-phPayout = 0;
-phWon = 0;
-phLost = 0;
-phRuns = 0;
-phProfit = 0;
-phJournal = "";
+    `;
 
-phInterval = setInterval(addPhinixTrade, 2500);
-    
+    /*
+     * IMPORTANT:
+     * Do NOT reset the Phinix Pro statistics here.
+     * They must survive when the user moves between
+     * Summary, Transactions and Journal.
+     */
+
+    phBotRunning = true;
+
+    if(!phInterval){
+        phInterval = setInterval(addPhinixTrade,2500);
+    }
+
 }
+
+
+
+
+
+
 
     
 function togglePhinixBot(){
@@ -1660,12 +1904,6 @@ clearInterval(phInterval);
 
 function addPhinixTrade(){
 
-    const table = document
-        .getElementById("phTransactionsTable")
-        .getElementsByTagName("tbody")[0];
-
-    const row = table.insertRow();
-
     const win = Math.random() > 0.35;
 
     const entry = (735 + Math.random()).toFixed(2);
@@ -1684,103 +1922,581 @@ function addPhinixTrade(){
 
     phProfit += pnl;
 
-    row.innerHTML = `
-<td style="text-align:center;">${win ? "📈" : "📉"}</td>
-<td style="text-align:center;">${entry}</td>
-<td style="text-align:center;color:${win ? "#00ff88" : "#ff4444"};">
-${pnl.toFixed(2)} USD
-</td>
-`;
-
-    document.getElementById("phStakeDisplay").innerHTML = phStake.toFixed(2)+" USD";
-    document.getElementById("phPayoutDisplay").innerHTML = phPayout.toFixed(2)+" USD";
-    document.getElementById("phWonDisplay").innerHTML = phWon;
-    document.getElementById("phLostDisplay").innerHTML = phLost;
-    document.getElementById("phRunsDisplay").innerHTML = phRuns;
-    document.getElementById("phProfitDisplay").innerHTML = phProfit.toFixed(2)+" USD";
+    // Save the trade so it survives Summary / Journal navigation.
+    phTransactions.push({
+        type: win ? "📈" : "📉",
+        entry: entry,
+        pnl: pnl
+    });
 
     phJournal += `
-🎯 Signal Found<br>
-${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)<br>
-📈 Monitoring Market...<br>
+🎯 Signal Found
+${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)
+📈 Monitoring Market...
 `;
 
-    const container = document.getElementById("phTransactionContainer");
-    container.scrollTop = container.scrollHeight;
+    renderPhinixTransactions();
+    updatePhinixStats();
 
 }
 
-function showPhinixTransactions(){
-    // Already on Transactions screen
+function renderPhinixTransactions(){
+
+    const table = document.getElementById("phTransactionsTable");
+
+    if(!table) return;
+
+    const tbody = table.getElementsByTagName("tbody")[0];
+
+    if(!tbody) return;
+
+    tbody.innerHTML = "";
+
+    phTransactions.forEach(trade => {
+
+        const row = tbody.insertRow();
+
+        row.innerHTML = `
+            <td style="text-align:center;">
+                ${trade.type}
+            </td>
+
+            <td style="text-align:center;">
+                ${trade.entry}
+            </td>
+
+            <td style="
+                text-align:center;
+                color:${trade.pnl >= 0 ? "#00ff88" : "#ff4444"};
+            ">
+                ${trade.pnl.toFixed(2)} USD
+            </td>
+        `;
+
+    });
+
+    const container =
+        document.getElementById("phTransactionContainer");
+
+    if(container){
+        container.scrollTop = container.scrollHeight;
+    }
+
 }
 
+function updatePhinixStats(){
+
+    const stake =
+        document.getElementById("phStakeDisplay");
+
+    const payout =
+        document.getElementById("phPayoutDisplay");
+
+    const won =
+        document.getElementById("phWonDisplay");
+
+    const lost =
+        document.getElementById("phLostDisplay");
+
+    const runs =
+        document.getElementById("phRunsDisplay");
+
+    const profit =
+        document.getElementById("phProfitDisplay");
+
+    if(stake){
+        stake.innerHTML =
+            phStake.toFixed(2) + " USD";
+    }
+
+    if(payout){
+        payout.innerHTML =
+            phPayout.toFixed(2) + " USD";
+    }
+
+    if(won){
+        won.innerHTML = phWon;
+    }
+
+    if(lost){
+        lost.innerHTML = phLost;
+    }
+
+    if(runs){
+        runs.innerHTML = phRuns;
+    }
+
+    if(profit){
+        profit.innerHTML =
+            phProfit.toFixed(2) + " USD";
+
+        profit.style.color =
+            phProfit >= 0 ? "#00ff88" : "#ff4444";
+    }
+
+}
+
+    
+ function showPhinixTransactions(){
+
+    const container = document.querySelector(".container");
+
+    if (!container) return;
+
+    container.innerHTML = `
+
+        <div class="header">
+            <div onclick="openPhinixRunningScreen()" style="cursor:pointer;">←</div>
+
+            <div class="logo">PHINIX PRO BOT</div>
+
+            <div style="color:#00ff88;font-weight:bold;">
+                TRANSACTIONS
+            </div>
+        </div>
+
+        <div style="
+            background:#161625;
+            border:1px solid #7a2cff;
+            border-radius:18px;
+            padding:12px;
+            margin-top:12px;
+            height:300px;
+            overflow-y:auto;
+        " id="phTransactionContainer">
+
+            <table id="phTransactionsTable"
+                   style="
+                   width:100%;
+                   border-collapse:collapse;
+                   color:white;
+                   table-layout:fixed;
+                   ">
+
+                <thead>
+                    <tr style="color:#c94fff;">
+                        <th style="width:20%;">Type</th>
+                        <th style="width:40%;">Entry</th>
+                        <th style="width:40%;">P/L</th>
+                    </tr>
+                </thead>
+
+                <tbody></tbody>
+
+            </table>
+
+            ${
+                phTransactions.length === 0
+                ? `
+                <div style="
+                    text-align:center;
+                    color:#888;
+                    padding:30px 10px;
+                ">
+                    No transactions yet.
+                </div>
+                `
+                : ""
+            }
+
+        </div>
+
+        <div style="
+            background:#161625;
+            border:1px solid #7a2cff;
+            border-radius:18px;
+            padding:12px;
+            margin-top:12px;
+            display:flex;
+            gap:8px;
+        ">
+
+            <button
+                onclick="showPhinixSummary()"
+                style="
+                flex:1;
+                padding:11px;
+                background:#111;
+                color:white;
+                border:none;
+                border-radius:10px;
+                font-weight:bold;
+                ">
+                Summary
+            </button>
+
+            <button
+                onclick="showPhinixTransactions()"
+                style="
+                flex:1;
+                padding:11px;
+                background:linear-gradient(90deg,#7a2cff,#c94fff);
+                color:white;
+                border:none;
+                border-radius:10px;
+                font-weight:bold;
+                ">
+                Transactions
+            </button>
+
+            <button
+                onclick="showPhinixJournal()"
+                style="
+                flex:1;
+                padding:11px;
+                background:#111;
+                color:white;
+                border:none;
+                border-radius:10px;
+                font-weight:bold;
+                ">
+                Journal
+            </button>
+
+            <button
+    onclick="resetPhinixResults()"
+    style="
+        flex:1;
+        padding:11px;
+        background:#d62828;
+        color:white;
+        border:none;
+        border-radius:10px;
+        font-weight:bold;
+    ">
+    Reset
+</button>
+
+        </div>
+
+    `;
+
+    // Rebuild the table from saved trades.
+    renderPhinixTransactions();
+
+ }   
+
+    
+
+    
 function showPhinixSummary(){
 
-document.querySelector(".container").innerHTML=`
+    const container = document.querySelector(".container");
 
-<div class="header">
-<div onclick="openPhinixRunningScreen()">←</div>
-<div class="logo">SUMMARY</div>
-<div>📊</div>
-</div>
+    if (!container) return;
 
-<div style="
-background:#161625;
-border:1px solid #7a2cff;
-border-radius:18px;
-padding:18px;
-margin-top:14px;
-color:white;
-line-height:2;
-">
+    container.innerHTML = `
 
-<h2 style="text-align:center;color:#ffd700;">
-PHINIX PRO PERFORMANCE
-</h2>
+        <div class="header">
+            <div onclick="openPhinixRunningScreen()" style="cursor:pointer;">←</div>
 
-<b>Contracts Won:</b> ${phWon}<br>
-<b>Contracts Lost:</b> ${phLost}<br>
-<b>Total Stake:</b> ${phStake.toFixed(2)} USD<br>
-<b>Total Payout:</b> ${phPayout.toFixed(2)} USD<br>
+            <div class="logo">PHINIX PRO BOT</div>
 
-<b>Total Profit:</b>
-<span style="color:${phProfit>=0?"#00ff88":"#ff4444"};">
-${phProfit.toFixed(2)} USD
-</span>
+            <div style="color:#00ff88;font-weight:bold;">
+                SUMMARY
+            </div>
+        </div>
 
-</div>
+        <div style="
+            background:#161625;
+            border:1px solid #7a2cff;
+            border-radius:18px;
+            padding:14px;
+            margin-top:12px;
+        ">
 
-`;
+            <div style="
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:12px;
+                text-align:center;
+                color:white;
+            ">
+
+                <div>
+                    <b>Total Stake</b><br>
+                    <span>${Number(phStake || 0).toFixed(2)} USD</span>
+                </div>
+
+                <div>
+                    <b>Total Payout</b><br>
+                    <span>${Number(phPayout || 0).toFixed(2)} USD</span>
+                </div>
+
+                <div>
+                    <b>Contracts Won</b><br>
+                    <span>${Number(phWon || 0)}</span>
+                </div>
+
+                <div>
+                    <b>Contracts Lost</b><br>
+                    <span>${Number(phLost || 0)}</span>
+                </div>
+
+                <div>
+                    <b>No. of Runs</b><br>
+                    <span>${Number(phRuns || 0)}</span>
+                </div>
+
+                <div>
+                    <b>Total Profit</b><br>
+                    <span style="
+                        color:${Number(phProfit || 0) >= 0
+                            ? "#00ff88"
+                            : "#ff4444"};
+                    ">
+                        ${Number(phProfit || 0).toFixed(2)} USD
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div style="
+            background:#161625;
+            border:1px solid #7a2cff;
+            border-radius:18px;
+            padding:12px;
+            margin-top:12px;
+            display:flex;
+            gap:8px;
+        ">
+
+            <button
+                onclick="showPhinixSummary()"
+                style="
+                    flex:1;
+                    padding:11px;
+                    background:linear-gradient(90deg,#7a2cff,#c94fff);
+                    color:white;
+                    border:none;
+                    border-radius:10px;
+                    font-weight:bold;
+                ">
+                Summary
+            </button>
+
+            <button
+                onclick="showPhinixTransactions()"
+                style="
+                    flex:1;
+                    padding:11px;
+                    background:#111;
+                    color:white;
+                    border:none;
+                    border-radius:10px;
+                    font-weight:bold;
+                ">
+                Transactions
+            </button>
+
+            <button
+                onclick="showPhinixJournal()"
+                style="
+                    flex:1;
+                    padding:11px;
+                    background:#111;
+                    color:white;
+                    border:none;
+                    border-radius:10px;
+                    font-weight:bold;
+                ">
+                Journal
+            </button>
+            
+            <button
+    onclick="resetPhinixResults()"
+    style="
+        flex:1;
+        padding:11px;
+        background:#d62828;
+        color:white;
+        border:none;
+        border-radius:10px;
+        font-weight:bold;
+    ">
+    Reset
+</button>
+
+        </div>
+
+    `;
 
 }
 
 function showPhinixJournal(){
 
-document.querySelector(".container").innerHTML=`
+    const container = document.querySelector(".container");
 
-<div class="header">
-<div onclick="openPhinixRunningScreen()">←</div>
-<div class="logo">JOURNAL</div>
-<div>📖</div>
-</div>
+    if (!container) return;
 
-<div style="
-background:#161625;
-border:1px solid #7a2cff;
-border-radius:18px;
-padding:18px;
-margin-top:14px;
-color:white;
-line-height:2;
-">
+    container.innerHTML = `
 
-${phJournal}
+        <div class="header">
+            <div onclick="openPhinixRunningScreen()" style="cursor:pointer;">←</div>
 
-</div>
+            <div class="logo">PHINIX PRO BOT</div>
 
-`;
+            <div style="color:#00ff88;font-weight:bold;">
+                JOURNAL
+            </div>
+        </div>
+
+        <div style="
+            background:#161625;
+            border:1px solid #7a2cff;
+            border-radius:18px;
+            padding:14px;
+            margin-top:12px;
+            min-height:260px;
+        ">
+
+            <div style="
+                color:#aaa;
+                font-size:13px;
+                margin-bottom:12px;
+            ">
+                Trading Journal
+            </div>
+
+            <div id="phJournalContent"
+                 style="
+                 color:white;
+                 line-height:1.7;
+                 white-space:pre-wrap;
+                 word-break:break-word;
+                 ">
+                ${phJournal || "No journal entries yet."}
+            </div>
+
+        </div>
+
+        <div style="
+            background:#161625;
+            border:1px solid #7a2cff;
+            border-radius:18px;
+            padding:12px;
+            margin-top:12px;
+            display:flex;
+            gap:8px;
+        ">
+
+            <button
+                onclick="showPhinixSummary()"
+                style="
+                    flex:1;
+                    padding:11px;
+                    background:#111;
+                    color:white;
+                    border:none;
+                    border-radius:10px;
+                    font-weight:bold;
+                ">
+                Summary
+            </button>
+
+            <button
+                onclick="showPhinixTransactions()"
+                style="
+                    flex:1;
+                    padding:11px;
+                    background:#111;
+                    color:white;
+                    border:none;
+                    border-radius:10px;
+                    font-weight:bold;
+                ">
+                Transactions
+            </button>
+
+            <button
+                onclick="showPhinixJournal()"
+                style="
+                    flex:1;
+                    padding:11px;
+                    background:linear-gradient(90deg,#7a2cff,#c94fff);
+                    color:white;
+                    border:none;
+                    border-radius:10px;
+                    font-weight:bold;
+                ">
+                Journal
+            </button>
+
+            <button
+    onclick="resetPhinixResults()"
+    style="
+        flex:1;
+        padding:11px;
+        background:#d62828;
+        color:white;
+        border:none;
+        border-radius:10px;
+        font-weight:bold;
+    ">
+    Reset
+</button>
+
+        </div>
+
+    `;
 
 }
+
+function resetPhinixResults(){
+
+    // Stop the current bot
+    if(phInterval){
+        clearInterval(phInterval);
+        phInterval = null;
+    }
+
+    phBotRunning = false;
+
+    // Clear all results
+    phStake = 0;
+    phPayout = 0;
+    phWon = 0;
+    phLost = 0;
+    phRuns = 0;
+    phProfit = 0;
+    phJournal = "";
+    phTransactions = [];
+
+    // Show the fresh results screen without starting the bot
+    openPhinixRunningScreen();
+
+    // Immediately stop the running state created by the screen
+    phBotRunning = false;
+
+    if(phInterval){
+        clearInterval(phInterval);
+        phInterval = null;
+    }
+
+    const status = document.getElementById("phStatus");
+    if(status){
+        status.innerHTML = "READY";
+        status.style.color = "#aaa";
+    }
+
+    const button = document.getElementById("phRunBtn");
+    if(button){
+        button.innerHTML = "▶ START";
+        button.style.background = "#7a2cff";
+    }
+
+}
+
+    
+
+
+
+
+
+
+
 function openLightningBot() {
     activeBot = "Lightning Bot";
 
