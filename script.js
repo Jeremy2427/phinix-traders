@@ -1919,13 +1919,20 @@ function openPhinixRunningScreen(){
 
     phBotRunning = true;
 
+    const status = document.getElementById("phStatus");
+
+if(status){
+    status.innerHTML = "RUNNING";
+    status.style.color = "#00ff88";
+}
+
     if(!phInterval){
         phInterval = setInterval(addPhinixTrade,2500);
     }
 
     /* OPEN RESULTS PANEL */
 
-    togglePhinixResultsPanel();
+    
 
 }
 
