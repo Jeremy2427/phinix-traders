@@ -8167,10 +8167,12 @@ function toggleBulkResultsPanel(){
         requestAnimationFrame(function(){
 
             panel.style.transform =
-                "translateY(0)";
+    "translateY(0)";
 
-            panel.style.opacity =
-                "1";
+panel.style.opacity =
+    "1";
+
+updateBulkResultsSummary();
 
         });
 
@@ -8239,5 +8241,61 @@ function showBulkPanelTab(tab){
 
 }
 
+function updateBulkResultsSummary(){
 
+    const stake =
+        document.getElementById("bulkSummaryStake");
+
+    const payout =
+        document.getElementById("bulkSummaryPayout");
+
+    const runs =
+        document.getElementById("bulkSummaryRuns");
+
+    const won =
+        document.getElementById("bulkSummaryWon");
+
+    const lost =
+        document.getElementById("bulkSummaryLost");
+
+    const profit =
+        document.getElementById("bulkSummaryProfit");
+
+
+    if(stake){
+        stake.textContent =
+            "$" + Number(phinixBulkStats.stake || 0).toFixed(2);
+    }
+
+    if(payout){
+        payout.textContent =
+            "$" + Number(phinixBulkStats.payout || 0).toFixed(2);
+    }
+
+    if(runs){
+        runs.textContent =
+            Number(phinixBulkStats.runs || 0);
+    }
+
+    if(won){
+        won.textContent =
+            Number(phinixBulkStats.won || 0);
+    }
+
+    if(lost){
+        lost.textContent =
+            Number(phinixBulkStats.lost || 0);
+    }
+
+    if(profit){
+
+        const value =
+            Number(phinixBulkStats.profit || 0);
+
+        profit.textContent =
+            (value >= 0 ? "$" : "-$") +
+            Math.abs(value).toFixed(2);
+    }
+
+}
     
