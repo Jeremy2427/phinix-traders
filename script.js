@@ -6705,11 +6705,14 @@ function bulkTradeTypeChanged(){
     if(!buttons) return;
 
 
+    let contractButtons = "";
+
+
     /* EVEN / ODD */
 
     if(type === "evenodd"){
 
-        buttons.innerHTML = `
+        contractButtons = `
 
             <button
                 onclick="selectBulkContract('Even')"
@@ -6743,15 +6746,14 @@ function bulkTradeTypeChanged(){
 
         `;
 
-        return;
     }
 
 
     /* MATCHES / DIFFERS */
 
-    if(type === "matches"){
+    else if(type === "matches"){
 
-        buttons.innerHTML = `
+        contractButtons = `
 
             <button
                 onclick="selectBulkContract('Differs')"
@@ -6785,15 +6787,14 @@ function bulkTradeTypeChanged(){
 
         `;
 
-        return;
     }
 
 
     /* OVER / UNDER */
 
-    if(type === "overunder"){
+    else if(type === "overunder"){
 
-        buttons.innerHTML = `
+        contractButtons = `
 
             <button
                 onclick="selectBulkContract('Over')"
@@ -6827,11 +6828,45 @@ function bulkTradeTypeChanged(){
 
         `;
 
-        return;
     }
+
+
+    buttons.innerHTML = `
+
+        ${contractButtons}
+
+
+        <!-- START BOT -->
+
+        <button
+            onclick="runPhinixBulkTrader()"
+            style="
+                grid-column:1 / -1;
+                height:46px;
+                margin-top:2px;
+                border:none;
+                border-radius:12px;
+                background:#6f2cff;
+                color:white;
+                font-size:15px;
+                font-weight:bold;
+                box-shadow:
+                    0 0 14px
+                    rgba(111,44,255,.30);
+                cursor:pointer;
+            "
+        >
+            ▶ START BOT
+        </button>
+
+    `;
 
 }
     
+
+
+
+
 
 
 
@@ -7341,6 +7376,13 @@ function selectBulkContract(contract){
 
 
 function runPhinixBulkTrader(){
+
+    if(!window.phinixBulkSelectedContract){
+
+    alert("Please select a contract first.");
+
+    return;
+    }
 
     if(phinixBulkRunning){
         return;
