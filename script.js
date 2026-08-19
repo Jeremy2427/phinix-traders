@@ -7882,44 +7882,100 @@ function toggleBulkResultsPanel(){
 
             <!-- SUMMARY -->
             <div id="bulkSummaryTab"
-                class="bulkPanelContent"
-            >
+    class="bulkPanelContent"
+>
 
-                <div class="bulkStatGrid">
+    <!-- PERFORMANCE -->
+    <div style="
+        color:#bda8d0;
+        font-size:11px;
+        font-weight:bold;
+        letter-spacing:1px;
+        margin-bottom:8px;
+    ">
+        PERFORMANCE
+    </div>
 
-                    <div class="bulkStat">
-                        <span>STAKE</span>
-                        <strong id="bulkSummaryStake">$0.00</strong>
-                    </div>
+    <div style="
+        display:grid;
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:8px;
+        margin-bottom:18px;
+    ">
 
-                    <div class="bulkStat">
-                        <span>PAYOUT</span>
-                        <strong id="bulkSummaryPayout">$0.00</strong>
-                    </div>
+        <div class="bulkSummaryCard">
+            <span>TRADES</span>
+            <strong id="bulkSummaryRuns">0</strong>
+        </div>
 
-                    <div class="bulkStat">
-                        <span>TRADES</span>
-                        <strong id="bulkSummaryRuns">0</strong>
-                    </div>
+        <div class="bulkSummaryCard">
+            <span>WON</span>
+            <strong id="bulkSummaryWon">0</strong>
+        </div>
 
-                    <div class="bulkStat">
-                        <span>WON</span>
-                        <strong id="bulkSummaryWon">0</strong>
-                    </div>
+        <div class="bulkSummaryCard">
+            <span>LOST</span>
+            <strong id="bulkSummaryLost">0</strong>
+        </div>
 
-                    <div class="bulkStat">
-                        <span>LOST</span>
-                        <strong id="bulkSummaryLost">0</strong>
-                    </div>
+    </div>
 
-                    <div class="bulkStat">
-                        <span>PROFIT</span>
-                        <strong id="bulkSummaryProfit">$0.00</strong>
-                    </div>
 
-                </div>
+    <!-- MONEY -->
+    <div style="
+        color:#bda8d0;
+        font-size:11px;
+        font-weight:bold;
+        letter-spacing:1px;
+        margin-bottom:8px;
+    ">
+        MONEY
+    </div>
 
-            </div>
+    <div style="
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+        margin-bottom:18px;
+    ">
+
+        <div class="bulkSummaryCard">
+            <span>STAKE</span>
+            <strong id="bulkSummaryStake">$0.00</strong>
+        </div>
+
+        <div class="bulkSummaryCard">
+            <span>PAYOUT</span>
+            <strong id="bulkSummaryPayout">$0.00</strong>
+        </div>
+
+    </div>
+
+
+    <!-- RESULT -->
+    <div style="
+        color:#bda8d0;
+        font-size:11px;
+        font-weight:bold;
+        letter-spacing:1px;
+        margin-bottom:8px;
+    ">
+        RESULT
+    </div>
+
+    <div class="bulkProfitCard">
+
+        <span>PROFIT</span>
+
+        <strong id="bulkSummaryProfit">
+            $0.00
+        </strong>
+
+    </div>
+
+</div>
+
+                
 
 
             <!-- TRANSACTIONS -->
@@ -8146,6 +8202,96 @@ function toggleBulkResultsPanel(){
                     background:#0d0716;
 
                 }
+
+                .bulkSummaryCard{
+
+    min-height:72px;
+
+    border:
+        1px solid #6f2cff;
+
+    border-radius:14px;
+
+    background:#0d0716;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:6px;
+
+    box-sizing:border-box;
+}
+
+
+.bulkSummaryCard span{
+
+    color:#8e789f;
+
+    font-size:9px;
+
+    font-weight:bold;
+
+}
+
+
+.bulkSummaryCard strong{
+
+    color:white;
+
+    font-size:17px;
+
+}
+
+
+.bulkProfitCard{
+
+    min-height:82px;
+
+    border:
+        1px solid #6f2cff;
+
+    border-radius:15px;
+
+    background:#0d0716;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:7px;
+
+}
+
+
+.bulkProfitCard span{
+
+    color:#8e789f;
+
+    font-size:10px;
+
+    font-weight:bold;
+
+}
+
+
+.bulkProfitCard strong{
+
+    color:#c94fff;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
 
             `;
 
