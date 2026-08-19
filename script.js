@@ -8049,6 +8049,32 @@ function toggleBulkResultsPanel(){
 
             </div>
 
+                        <!-- RESET RESULTS -->
+
+            <div style="
+                padding:8px 10px 14px;
+                box-sizing:border-box;
+            ">
+
+                <button
+                    onclick="resetBulkResults()"
+                    style="
+                        width:100%;
+                        height:44px;
+                        border:1px solid #743cff;
+                        border-radius:12px;
+                        background:#120b1d;
+                        color:#c94fff;
+                        font-size:14px;
+                        font-weight:bold;
+                        cursor:pointer;
+                    "
+                >
+                    ↻ RESET RESULTS
+                </button>
+
+            </div>
+
         `;
 
 
