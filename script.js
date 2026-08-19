@@ -7817,42 +7817,34 @@ function toggleBulkResultsPanel(){
 
         panel.innerHTML = `
 
-            <!-- PANEL HEADER -->
-            <div style="
-                height:52px;
-                display:flex;
-                align-items:center;
-                justify-content:space-between;
-                padding:0 15px;
-                box-sizing:border-box;
-                border-bottom:1px solid #6f2cff;
-            ">
+            <!-- PANEL HANDLE -->
+<div style="
+    height:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-bottom:1px solid #2b183d;
+">
 
-                <div style="
-                    color:white;
-                    font-size:16px;
-                    font-weight:bold;
-                ">
-                    BULK TRADER
-                </div>
+    <button
+        onclick="toggleBulkResultsPanel()"
+        style="
+            width:52px;
+            height:24px;
+            border:none;
+            border-radius:14px 14px 0 0;
+            background:#17101f;
+            color:#c94fff;
+            font-size:20px;
+            font-weight:bold;
+            line-height:18px;
+        "
+    >
+        ⌃
+    </button>
 
-                <button
-                    onclick="toggleBulkResultsPanel()"
-                    style="
-                        width:38px;
-                        height:30px;
-                        border:none;
-                        border-radius:10px;
-                        background:#17101f;
-                        color:#c94fff;
-                        font-size:20px;
-                        font-weight:bold;
-                    "
-                >
-                    ⌄
-                </button>
-
-            </div>
+</div>
+            
 
 
             <!-- TABS -->
