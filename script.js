@@ -7806,72 +7806,446 @@ document.head.appendChild(bulkTriangleStyle);
 
 function toggleBulkResultsPanel(){
 
-    const panel =
-        document.getElementById(
-            "bulkResultsPanel"
-        );
+    let panel = document.getElementById("bulkResultsPanel");
 
-    if(!panel) return;
+    /* CREATE PANEL THE FIRST TIME */
+    if(!panel){
+
+        panel = document.createElement("div");
+
+        panel.id = "bulkResultsPanel";
+
+        panel.innerHTML = `
+
+            <!-- PANEL HEADER -->
+            <div style="
+                height:52px;
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                padding:0 15px;
+                box-sizing:border-box;
+                border-bottom:1px solid #6f2cff;
+            ">
+
+                <div style="
+                    color:white;
+                    font-size:16px;
+                    font-weight:bold;
+                ">
+                    BULK TRADER
+                </div>
+
+                <button
+                    onclick="toggleBulkResultsPanel()"
+                    style="
+                        width:38px;
+                        height:30px;
+                        border:none;
+                        border-radius:10px;
+                        background:#17101f;
+                        color:#c94fff;
+                        font-size:20px;
+                        font-weight:bold;
+                    "
+                >
+                    ⌄
+                </button>
+
+            </div>
 
 
+            <!-- TABS -->
+            <div style="
+                display:flex;
+                gap:8px;
+                padding:10px;
+                overflow-x:auto;
+                box-sizing:border-box;
+            ">
+
+                <button
+                    onclick="showBulkPanelTab('summary')"
+                    class="bulkPanelTab active"
+                >
+                    SUMMARY
+                </button>
+
+                <button
+                    onclick="showBulkPanelTab('transactions')"
+                    class="bulkPanelTab"
+                >
+                    TRANSACTIONS
+                </button>
+
+                <button
+                    onclick="showBulkPanelTab('journal')"
+                    class="bulkPanelTab"
+                >
+                    JOURNAL
+                </button>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div id="bulkSummaryTab"
+                class="bulkPanelContent"
+            >
+
+                <div class="bulkStatGrid">
+
+                    <div class="bulkStat">
+                        <span>STAKE</span>
+                        <strong id="bulkSummaryStake">$0.00</strong>
+                    </div>
+
+                    <div class="bulkStat">
+                        <span>PAYOUT</span>
+                        <strong id="bulkSummaryPayout">$0.00</strong>
+                    </div>
+
+                    <div class="bulkStat">
+                        <span>TRADES</span>
+                        <strong id="bulkSummaryRuns">0</strong>
+                    </div>
+
+                    <div class="bulkStat">
+                        <span>WON</span>
+                        <strong id="bulkSummaryWon">0</strong>
+                    </div>
+
+                    <div class="bulkStat">
+                        <span>LOST</span>
+                        <strong id="bulkSummaryLost">0</strong>
+                    </div>
+
+                    <div class="bulkStat">
+                        <span>PROFIT</span>
+                        <strong id="bulkSummaryProfit">$0.00</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TRANSACTIONS -->
+            <div id="bulkTransactionsTab"
+                class="bulkPanelContent"
+                style="display:none;"
+            >
+
+                <div id="bulkTransactionsList">
+
+                    <div class="bulkEmpty">
+                        No transactions yet
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- JOURNAL -->
+            <div id="bulkJournalTab"
+                class="bulkPanelContent"
+                style="display:none;"
+            >
+
+                <div id="bulkJournalList">
+
+                    <div class="bulkEmpty">
+                        No journal entries yet
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        document.body.appendChild(panel);
+
+
+        /* PANEL STYLES */
+        if(!document.getElementById("bulkResultsPanelStyles")){
+
+            const style =
+                document.createElement("style");
+
+            style.id =
+                "bulkResultsPanelStyles";
+
+            style.textContent = `
+
+                #bulkResultsPanel{
+
+                    position:fixed;
+
+                    left:0;
+                    right:0;
+
+                    bottom:0;
+
+                    height:calc(100vh - 75px);
+
+                    background:#080510;
+
+                    color:white;
+
+                    border-top:
+                        1px solid #6f2cff;
+
+                    border-radius:
+                        22px 22px 0 0;
+
+                    box-shadow:
+                        0 -8px 35px
+                        rgba(0,0,0,.65);
+
+                    z-index:99999;
+
+                    overflow:hidden;
+
+                    transform:
+                        translateY(100%);
+
+                    opacity:0;
+
+                    transition:
+                        transform .3s ease,
+                        opacity .3s ease;
+
+                    font-family:
+                        Arial,sans-serif;
+
+                }
+
+
+                .bulkPanelTab{
+
+                    flex:0 0 auto;
+
+                    height:36px;
+
+                    padding:0 14px;
+
+                    border:
+                        1px solid #743cff;
+
+                    border-radius:10px;
+
+                    background:#120b1d;
+
+                    color:#bda8d0;
+
+                    font-size:11px;
+
+                    font-weight:bold;
+
+                }
+
+
+                .bulkPanelTab.active{
+
+                    background:#6f2cff;
+
+                    color:white;
+
+                }
+
+
+                .bulkPanelContent{
+
+                    padding:10px;
+
+                    overflow-y:auto;
+
+                    height:
+                        calc(100% - 110px);
+
+                    box-sizing:border-box;
+
+                }
+
+
+                .bulkStatGrid{
+
+                    display:grid;
+
+                    grid-template-columns:
+                        repeat(2,minmax(0,1fr));
+
+                    gap:10px;
+
+                }
+
+
+                .bulkStat{
+
+                    min-height:75px;
+
+                    border:
+                        1px solid #6f2cff;
+
+                    border-radius:14px;
+
+                    background:#0d0716;
+
+                    display:flex;
+
+                    flex-direction:column;
+
+                    justify-content:center;
+
+                    align-items:center;
+
+                    gap:6px;
+
+                }
+
+
+                .bulkStat span{
+
+                    color:#bda8d0;
+
+                    font-size:10px;
+
+                    font-weight:bold;
+
+                }
+
+
+                .bulkStat strong{
+
+                    color:white;
+
+                    font-size:17px;
+
+                }
+
+
+                .bulkEmpty{
+
+                    padding:35px 10px;
+
+                    text-align:center;
+
+                    color:#8e789f;
+
+                    font-size:13px;
+
+                }
+
+
+                .bulkTransaction{
+
+                    padding:12px;
+
+                    margin-bottom:8px;
+
+                    border:
+                        1px solid #6f2cff;
+
+                    border-radius:12px;
+
+                    background:#0d0716;
+
+                }
+
+            `;
+
+            document.head.appendChild(style);
+
+        }
+
+    }
+
+
+    /* OPEN */
     if(
-        panel.style.display === "none" ||
-        panel.style.display === ""
+        panel.style.transform === "" ||
+        panel.style.transform === "translateY(100%)"
     ){
 
         panel.style.display = "block";
 
-        panel.style.animation =
-            "bulkPanelSlideUp .3s ease";
+        requestAnimationFrame(function(){
 
-    }else{
+            panel.style.transform =
+                "translateY(0)";
 
-        panel.style.animation =
-            "bulkPanelSlideDown .3s ease";
+            panel.style.opacity =
+                "1";
 
-        setTimeout(function(){
+        });
 
-            panel.style.display =
-                "none";
-
-        },300);
     }
+
+    /* CLOSE */
+    else{
+
+        panel.style.transform =
+            "translateY(100%)";
+
+        panel.style.opacity =
+            "0";
+
+    }
+
+    }
+
+function showBulkPanelTab(tab){
+
+    const summary =
+        document.getElementById("bulkSummaryTab");
+
+    const transactions =
+        document.getElementById("bulkTransactionsTab");
+
+    const journal =
+        document.getElementById("bulkJournalTab");
+
+    if(!summary || !transactions || !journal) return;
+
+
+    summary.style.display = "none";
+    transactions.style.display = "none";
+    journal.style.display = "none";
+
+
+    if(tab === "summary"){
+        summary.style.display = "block";
+    }
+
+    if(tab === "transactions"){
+        transactions.style.display = "block";
+    }
+
+    if(tab === "journal"){
+        journal.style.display = "block";
+    }
+
+
+    document
+        .querySelectorAll(".bulkPanelTab")
+        .forEach(function(button){
+
+            button.classList.remove("active");
+
+        });
+
+
+    const buttons =
+        document.querySelectorAll(".bulkPanelTab");
+
+    if(tab === "summary") buttons[0].classList.add("active");
+    if(tab === "transactions") buttons[1].classList.add("active");
+    if(tab === "journal") buttons[2].classList.add("active");
+
 }
 
-if(!document.getElementById("bulkPanelStyles")){
 
-    const style =
-        document.createElement("style");
-
-    style.id = "bulkPanelStyles";
-
-    style.textContent = `
-
-        @keyframes bulkPanelSlideUp{
-            from{
-                transform:translateY(100%);
-                opacity:0;
-            }
-
-            to{
-                transform:translateY(0);
-                opacity:1;
-            }
-        }
-
-        @keyframes bulkPanelSlideDown{
-            from{
-                transform:translateY(0);
-                opacity:1;
-            }
-
-            to{
-                transform:translateY(100%);
-                opacity:0;
-            }
-        }
-
-    `;
-
-    document.head.appendChild(style);
-}
+    
