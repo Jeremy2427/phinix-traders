@@ -6715,7 +6715,7 @@ function bulkTradeTypeChanged(){
         contractButtons = `
 
             <button
-                onclick="selectBulkContract('Even')"
+                onclick="startBulkTrade('Even')"
                 style="
                     padding:17px;
                     border:none;
@@ -6730,7 +6730,7 @@ function bulkTradeTypeChanged(){
             </button>
 
             <button
-                onclick="selectBulkContract('Odd')"
+                onclick="startBulkTrade('Odd')"
                 style="
                     padding:17px;
                     border:none;
@@ -6756,7 +6756,7 @@ function bulkTradeTypeChanged(){
         contractButtons = `
 
             <button
-                onclick="selectBulkContract('Differs')"
+                onclick="startBulkTrade('Differs')"
                 style="
                     padding:17px;
                     border:none;
@@ -6771,7 +6771,7 @@ function bulkTradeTypeChanged(){
             </button>
 
             <button
-                onclick="selectBulkContract('Matches')"
+                onclick="startBulkTrade('Matches')"
                 style="
                     padding:17px;
                     border:none;
@@ -6797,7 +6797,7 @@ function bulkTradeTypeChanged(){
         contractButtons = `
 
             <button
-                onclick="selectBulkContract('Over')"
+                onclick="startBulkTrade('Over')"
                 style="
                     padding:17px;
                     border:none;
@@ -6812,7 +6812,7 @@ function bulkTradeTypeChanged(){
             </button>
 
             <button
-                onclick="selectBulkContract('Under')"
+                onclick="startBulkTrade('Under')"
                 style="
                     padding:17px;
                     border:none;
@@ -6836,28 +6836,7 @@ function bulkTradeTypeChanged(){
         ${contractButtons}
 
 
-        <!-- START BOT -->
-
-        <button
-            onclick="runPhinixBulkTrader()"
-            style="
-                grid-column:1 / -1;
-                height:46px;
-                margin-top:2px;
-                border:none;
-                border-radius:12px;
-                background:#6f2cff;
-                color:white;
-                font-size:15px;
-                font-weight:bold;
-                box-shadow:
-                    0 0 14px
-                    rgba(111,44,255,.30);
-                cursor:pointer;
-            "
-        >
-            ▶ START BOT
-        </button>
+        
 
     `;
 
@@ -7374,6 +7353,21 @@ function selectBulkContract(contract){
 
 }
 
+function startBulkTrade(contract){
+
+    // Remember which contract was selected
+    window.phinixBulkSelectedContract = contract;
+
+    // Don't start another run while one is already running
+    if(phinixBulkRunning){
+        return;
+    }
+
+    // Start the existing demo trader
+    runPhinixBulkTrader();
+
+}
+
 
 function runPhinixBulkTrader(){
 
@@ -7504,7 +7498,9 @@ function runPhinixBulkTrader(){
             }
 
 
-            showBulkSection("summary");
+            updateBulkResultsSummary();
+updateBulkResultsTransactions();
+updateBulkResultsJournal();
 
 
             if(completed >= numberTrades){
@@ -8503,6 +8499,40 @@ function updateBulkResultsJournal(){
 
             }
         ).join("");
+
+}
+
+function resetBulkResults(){
+
+    // Stop any running demo trades
+    phinixBulkRunning = false;
+
+    if(phinixBulkTimer){
+        clearInterval(phinixBulkTimer);
+        phinixBulkTimer = null;
+    }
+
+    // Clear stored results
+    phinixBulkTransactions = [];
+    phinixBulkJournal = [];
+
+    // Reset statistics
+    phinixBulkStats = {
+        stake: 0,
+        payout: 0,
+        runs: 0,
+        won: 0,
+        lost: 0,
+        profit: 0
+    };
+
+    // Clear selected contract
+    window.phinixBulkSelectedContract = null;
+
+    // Refresh everything
+    updateBulkResultsSummary();
+    updateBulkResultsTransactions();
+    updateBulkResultsJournal();
 
 }
 
