@@ -1877,30 +1877,59 @@ function openPhinixRunningScreen(){
 
     
 function togglePhinixBot(){
-if (phInterval) {
-    clearInterval(phInterval);
-    phInterval = null;
-}
+
     if(phBotRunning){
 
-        clearInterval(phInterval);
-phInterval = null;
-phBotRunning = false;
+        // STOP the bot but keep all results
+        phBotRunning = false;
 
-        document.getElementById("phRunBtn").innerHTML = "▶ RUN";
-        document.getElementById("phStatus").innerHTML = "STOPPED";
+        if(phInterval){
+            clearInterval(phInterval);
+            phInterval = null;
+        }
 
-        return;
+        const status = document.getElementById("phStatus");
+
+        if(status){
+            status.innerHTML = "STOPPED";
+            status.style.color = "#ff4444";
+        }
+
+        const button = document.getElementById("phRunBtn");
+
+        if(button){
+            button.innerHTML = "▶ START";
+            button.style.background = "#7a2cff";
+        }
+
+    }else{
+
+        // START again without clearing previous results
+        phBotRunning = true;
+
+        if(!phInterval){
+            phInterval = setInterval(addPhinixTrade,2500);
+        }
+
+        const status = document.getElementById("phStatus");
+
+        if(status){
+            status.innerHTML = "RUNNING";
+            status.style.color = "#00ff88";
+        }
+
+        const button = document.getElementById("phRunBtn");
+
+        if(button){
+            button.innerHTML = "■ STOP";
+            button.style.background = "#d62828";
+        }
+
     }
 
-    phBotRunning = true;
-
-    document.getElementById("phRunBtn").innerHTML = "■ STOP";
-    document.getElementById("phStatus").innerHTML = "RUNNING";
-clearInterval(phInterval);
-    phInterval = setInterval(addPhinixTrade,2500);
-
 }
+
+    
 
 function addPhinixTrade(){
 
@@ -2167,6 +2196,20 @@ function updatePhinixStats(){
     Reset
 </button>
 
+<button
+    onclick="togglePhinixBot()"
+    style="
+        flex:1;
+        padding:11px;
+        background:#d62828;
+        color:white;
+        border:none;
+        border-radius:10px;
+        font-weight:bold;
+    ">
+    Stop
+</button>
+
         </div>
 
     `;
@@ -2319,6 +2362,20 @@ function showPhinixSummary(){
     Reset
 </button>
 
+<button
+    onclick="togglePhinixBot()"
+    style="
+        flex:1;
+        padding:11px;
+        background:#d62828;
+        color:white;
+        border:none;
+        border-radius:10px;
+        font-weight:bold;
+    ">
+    Stop
+</button>
+
         </div>
 
     `;
@@ -2436,6 +2493,20 @@ function showPhinixJournal(){
         font-weight:bold;
     ">
     Reset
+</button>
+
+<button
+    onclick="togglePhinixBot()"
+    style="
+        flex:1;
+        padding:11px;
+        background:#d62828;
+        color:white;
+        border:none;
+        border-radius:10px;
+        font-weight:bold;
+    ">
+    Stop
 </button>
 
         </div>
