@@ -7982,16 +7982,16 @@ function toggleBulkResultsPanel(){
 
                 #bulkResultsPanel{
 
-                    position:fixed;
+    position:fixed;
 
-                    left:0;
-                    right:0;
+    top:105px;
+    left:0;
+    right:0;
+    bottom:0;
 
-                    bottom:0;
+    height:auto;
 
-                    height:calc(100vh - 75px);
-
-                    background:#080510;
+    background:#080510;
 
                     color:white;
 
@@ -8005,7 +8005,7 @@ function toggleBulkResultsPanel(){
                         0 -8px 35px
                         rgba(0,0,0,.65);
 
-                    z-index:99999;
+                    z-index:9999;
 
                     overflow:hidden;
 
