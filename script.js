@@ -1676,190 +1676,246 @@ function openPhinixRunningScreen(){
 
     document.querySelector(".container").innerHTML = `
 
-    <div class="header">
-        <div onclick="openPhinixProBot()" style="cursor:pointer;">←</div>
-
-        <div class="logo">PHINIX PRO BOT</div>
-
-        <div id="phStatus"
-             style="color:#00ff88;font-weight:bold;">
-            RUNNING
-        </div>
-    </div>
-
-    <div style="
-        background:#161625;
-        border:1px solid #7a2cff;
-        border-radius:18px;
-        padding:10px;
-        margin-top:12px;
-        display:flex;
-        gap:8px;
+    <div id="phinixProRunning" style="
+        min-height:100vh;
+        background:#05020b;
+        color:white;
+        padding:8px;
+        padding-bottom:20px;
+        font-family:Arial,sans-serif;
+        box-sizing:border-box;
+        width:100%;
+        overflow-x:hidden;
     ">
 
-        <button onclick="showPhinixSummary()"
-        style="
-            flex:1;
-            padding:12px;
-            border:none;
-            border-radius:12px;
-            background:#111;
-            color:white;
-            font-weight:bold;
-        ">
-            Summary
-        </button>
-
-        <button onclick="showPhinixTransactions()"
-        style="
-            flex:1;
-            padding:12px;
-            border:none;
-            border-radius:12px;
-            background:#7a2cff;
-            color:white;
-            font-weight:bold;
-        ">
-            Transactions
-        </button>
-
-        <button onclick="showPhinixJournal()"
-        style="
-            flex:1;
-            padding:12px;
-            border:none;
-            border-radius:12px;
-            background:#111;
-            color:white;
-            font-weight:bold;
-        ">
-            Journal
-        </button>
-
-    </div>
-
-    <div id="phTransactionContainer"
-    style="
-        background:#161625;
-        border:1px solid #7a2cff;
-        border-radius:16px;
-        padding:12px;
-        margin-top:12px;
-        height:250px;
-        overflow-y:auto;
-    ">
-
-        <table id="phTransactionsTable"
-        style="
-            width:100%;
-            border-collapse:collapse;
-            table-layout:fixed;
-            color:white;
-            text-align:center;
-        ">
-
-            <thead>
-                <tr>
-                    <th style="width:20%;">Type</th>
-                    <th style="width:40%;">Entry</th>
-                    <th style="width:40%;">P/L</th>
-                </tr>
-            </thead>
-
-            <tbody></tbody>
-
-        </table>
-
-    </div>
-
-    <div style="
-        background:#161625;
-        border:1px solid #7a2cff;
-        border-radius:16px;
-        padding:14px;
-        margin-top:12px;
-    ">
-
+        <!-- BACK ARROW -->
         <div style="
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:12px;
-            text-align:center;
-            color:white;
+            height:28px;
+            position:relative;
+            margin-bottom:4px;
         ">
-
-            <div>
-                <b>Total Stake</b><br>
-                <span id="phStakeDisplay">
-                    ${phStake.toFixed(2)} USD
-                </span>
-            </div>
-
-            <div>
-                <b>Total Payout</b><br>
-                <span id="phPayoutDisplay">
-                    ${phPayout.toFixed(2)} USD
-                </span>
-            </div>
-
-            <div>
-                <b>Won</b><br>
-                <span id="phWonDisplay">
-                    ${phWon}
-                </span>
-            </div>
-
-            <div>
-                <b>Lost</b><br>
-                <span id="phLostDisplay">
-                    ${phLost}
-                </span>
-            </div>
-
-            <div>
-                <b>Runs</b><br>
-                <span id="phRunsDisplay">
-                    ${phRuns}
-                </span>
-            </div>
-
-            <div>
-                <b>Profit</b><br>
-                <span id="phProfitDisplay"
-                      style="color:${phProfit >= 0 ? "#00ff88" : "#ff4444"};">
-                    ${phProfit.toFixed(2)} USD
-                </span>
-            </div>
-
-        </div>
-
-        <button
-            id="phRunBtn"
-            onclick="togglePhinixBot()"
-            style="
-                width:100%;
-                margin-top:16px;
-                padding:14px;
-                background:#d62828;
-                color:white;
-                border:none;
-                border-radius:12px;
-                font-size:18px;
+            <div onclick="openPhinixProBot()" style="
+                position:absolute;
+                left:2px;
+                top:0;
+                cursor:pointer;
+                font-size:28px;
+                line-height:28px;
+                color:#c94fff;
                 font-weight:bold;
             ">
-            ■ STOP
-        </button>
+                ←
+            </div>
+        </div>
+
+
+        <!-- DEMO BALANCE -->
+        <div
+            onclick="openAccountMenu()"
+            style="
+                width:100%;
+                height:44px;
+                box-sizing:border-box;
+                margin:0 0 8px 0;
+                padding:0 13px;
+                border:1px solid #6f2cff;
+                border-radius:14px;
+                background:#0d0716;
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                cursor:pointer;
+                box-shadow:0 0 10px rgba(122,44,255,.12);
+            "
+        >
+
+            <div style="
+                display:flex;
+                align-items:center;
+                gap:7px;
+                min-width:0;
+            ">
+                <span style="font-size:17px;">💰</span>
+
+                <span style="
+                    color:#c084fc;
+                    font-size:13px;
+                    font-weight:bold;
+                    white-space:nowrap;
+                ">
+                    DEMO BALANCE
+                </span>
+            </div>
+
+            <div style="
+                display:flex;
+                align-items:center;
+                gap:6px;
+            ">
+                <span id="phAccountBalance" style="
+                    color:white;
+                    font-size:14px;
+                    font-weight:bold;
+                ">
+                    $10,000.00
+                </span>
+
+                <span style="
+                    color:#c94fff;
+                    font-size:15px;
+                ">
+                    ▼
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- BOT AREA -->
+        <div style="
+            background:#080510;
+            border:1px solid #6f2cff;
+            border-radius:20px;
+            padding:12px;
+            box-shadow:0 0 20px rgba(122,44,255,.18);
+            box-sizing:border-box;
+            width:100%;
+        ">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+            ">
+
+                <div>
+                    <div style="
+                        color:#bda8d0;
+                        font-size:11px;
+                        font-weight:bold;
+                        letter-spacing:1px;
+                    ">
+                        PHINIX PRO BOT
+                    </div>
+
+                    <div style="
+                        color:white;
+                        font-size:20px;
+                        font-weight:bold;
+                        margin-top:4px;
+                    ">
+                        ⚡ QUICK STRATEGY
+                    </div>
+                </div>
+
+                <div id="phStatus"
+                    style="
+                        color:#00ff88;
+                        font-size:12px;
+                        font-weight:bold;
+                    ">
+                    RUNNING
+                </div>
+
+            </div>
+
+
+            <!-- MARKET -->
+            <div style="
+                margin-top:18px;
+                padding:12px;
+                border:1px solid #6f2cff;
+                border-radius:14px;
+                background:#0d0716;
+            ">
+
+                <div style="
+                    color:#8e789f;
+                    font-size:10px;
+                    font-weight:bold;
+                ">
+                    MARKET
+                </div>
+
+                <div style="
+                    color:white;
+                    font-size:15px;
+                    font-weight:bold;
+                    margin-top:5px;
+                ">
+                    Volatility 100 (1s)
+                </div>
+
+            </div>
+
+
+            <!-- CURRENT ACTIVITY -->
+            <div style="
+                margin-top:10px;
+                padding:14px;
+                border:1px solid #6f2cff;
+                border-radius:14px;
+                background:#0d0716;
+                text-align:center;
+            ">
+
+                <div style="
+                    color:#8e789f;
+                    font-size:10px;
+                    font-weight:bold;
+                    letter-spacing:1px;
+                ">
+                    BOT ACTIVITY
+                </div>
+
+                <div style="
+                    color:#c94fff;
+                    font-size:22px;
+                    font-weight:bold;
+                    margin-top:7px;
+                ">
+                    Monitoring Market...
+                </div>
+
+            </div>
+
+
+            <!-- CHEVRON -->
+            <div style="
+                display:flex;
+                justify-content:center;
+                margin-top:8px;
+            ">
+
+                <button
+                    onclick="togglePhinixResultsPanel()"
+                    style="
+                        width:52px;
+                        height:28px;
+                        border:none;
+                        border-radius:16px 16px 0 0;
+                        background:#17101f;
+                        color:#c94fff;
+                        font-size:20px;
+                        font-weight:bold;
+                        line-height:20px;
+                        box-shadow:0 -3px 12px rgba(122,44,255,.25);
+                        cursor:pointer;
+                    "
+                >
+                    ⌃
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
 
     `;
 
-    /*
-     * IMPORTANT:
-     * Do NOT reset the Phinix Pro statistics here.
-     * They must survive when the user moves between
-     * Summary, Transactions and Journal.
-     */
+
+    /* START BOT */
 
     phBotRunning = true;
 
@@ -1867,15 +1923,16 @@ function openPhinixRunningScreen(){
         phInterval = setInterval(addPhinixTrade,2500);
     }
 
+    /* OPEN RESULTS PANEL */
+
+    togglePhinixResultsPanel();
+
 }
 
-
-
-
-
-
-
     
+
+        
+ 
 function togglePhinixBot(){
 
     if(phBotRunning){
@@ -1929,6 +1986,952 @@ function togglePhinixBot(){
 
 }
 
+
+function togglePhinixResultsPanel(){
+
+    let panel = document.getElementById("phinixResultsPanel");
+
+    /* CREATE PANEL THE FIRST TIME */
+    if(!panel){
+
+        panel = document.createElement("div");
+
+        panel.id = "phinixResultsPanel";
+
+        panel.innerHTML = `
+
+            <!-- PANEL HANDLE -->
+            <div style="
+                height:30px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                border-bottom:1px solid #2b183d;
+            ">
+
+                <button
+                    onclick="togglePhinixResultsPanel()"
+                    style="
+                        width:52px;
+                        height:24px;
+                        border:none;
+                        border-radius:14px 14px 0 0;
+                        background:#17101f;
+                        color:#c94fff;
+                        font-size:20px;
+                        font-weight:bold;
+                        line-height:18px;
+                    "
+                >
+                    ⌃
+                </button>
+
+            </div>
+
+
+            <!-- TABS -->
+            <div style="
+                display:flex;
+                gap:8px;
+                padding:10px;
+                overflow-x:auto;
+                box-sizing:border-box;
+            ">
+
+                <button
+                    onclick="showPhinixPanelTab('summary')"
+                    class="phPanelTab active"
+                >
+                    SUMMARY
+                </button>
+
+                <button
+                    onclick="showPhinixPanelTab('transactions')"
+                    class="phPanelTab"
+                >
+                    TRANSACTIONS
+                </button>
+
+                <button
+                    onclick="showPhinixPanelTab('journal')"
+                    class="phPanelTab"
+                >
+                    JOURNAL
+                </button>
+
+                <button
+                    onclick="resetPhinixResults()"
+                    class="phPanelTab"
+                    style="color:#ff5c7a;"
+                >
+                    ↻ RESET
+                </button>
+
+                <button
+                    onclick="stopPhinixBot()"
+                    class="phPanelTab"
+                    style="
+                        color:#ff4444;
+                        border-color:#ff4444;
+                    "
+                >
+                    ■ STOP
+                </button>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div id="phSummaryTab"
+                class="phPanelContent"
+            >
+
+                <!-- PERFORMANCE -->
+                <div style="
+                    color:#bda8d0;
+                    font-size:11px;
+                    font-weight:bold;
+                    letter-spacing:1px;
+                    margin-bottom:8px;
+                ">
+                    PERFORMANCE
+                </div>
+
+                <div style="
+                    display:grid;
+                    grid-template-columns:repeat(3,minmax(0,1fr));
+                    gap:8px;
+                    margin-bottom:18px;
+                ">
+
+                    <div class="phSummaryCard">
+                        <span>TRADES</span>
+                        <strong id="phSummaryRuns">
+                            ${phRuns}
+                        </strong>
+                    </div>
+
+                    <div class="phSummaryCard">
+                        <span>WON</span>
+                        <strong id="phSummaryWon">
+                            ${phWon}
+                        </strong>
+                    </div>
+
+                    <div class="phSummaryCard">
+                        <span>LOST</span>
+                        <strong id="phSummaryLost">
+                            ${phLost}
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- MONEY -->
+                <div style="
+                    color:#bda8d0;
+                    font-size:11px;
+                    font-weight:bold;
+                    letter-spacing:1px;
+                    margin-bottom:8px;
+                ">
+                    MONEY
+                </div>
+
+                <div style="
+                    display:grid;
+                    grid-template-columns:1fr 1fr;
+                    gap:8px;
+                    margin-bottom:18px;
+                ">
+
+                    <div class="phSummaryCard">
+                        <span>STAKE</span>
+                        <strong id="phSummaryStake">
+                            ${phStake.toFixed(2)} USD
+                        </strong>
+                    </div>
+
+                    <div class="phSummaryCard">
+                        <span>PAYOUT</span>
+                        <strong id="phSummaryPayout">
+                            ${phPayout.toFixed(2)} USD
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- RESULT -->
+                <div style="
+                    color:#bda8d0;
+                    font-size:11px;
+                    font-weight:bold;
+                    letter-spacing:1px;
+                    margin-bottom:8px;
+                ">
+                    RESULT
+                </div>
+
+                <div class="phProfitCard">
+
+                    <span>PROFIT</span>
+
+                    <strong id="phSummaryProfit"
+                        style="
+                            color:${phProfit >= 0 ? "#c94fff" : "#ff4444"};
+                        "
+                    >
+                        ${phProfit.toFixed(2)} USD
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- TRANSACTIONS -->
+            <div id="phTransactionsTab"
+                class="phPanelContent"
+                style="display:none;"
+            >
+
+                <div id="phTransactionContainer"
+                    style="
+                        overflow-y:auto;
+                        height:100%;
+                    "
+                >
+
+                    <table id="phTransactionsTable"
+                        style="
+                            width:100%;
+                            border-collapse:collapse;
+                            table-layout:fixed;
+                            color:white;
+                            text-align:center;
+                        "
+                    >
+
+                        <thead>
+                            <tr>
+                                <th style="width:20%;">TYPE</th>
+                                <th style="width:40%;">ENTRY</th>
+                                <th style="width:40%;">P/L</th>
+                            </tr>
+                        </thead>
+
+                        <tbody></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- JOURNAL -->
+            <div id="phJournalTab"
+                class="phPanelContent"
+                style="display:none;"
+            >
+
+                <div id="phJournalList">
+
+                    <div class="phEmpty">
+                        No journal entries yet
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        document.body.appendChild(panel);
+
+
+        /* PANEL STYLES */
+        if(!document.getElementById("phinixResultsPanelStyles")){
+
+            const style =
+                document.createElement("style");
+
+            style.id =
+                "phinixResultsPanelStyles";
+
+            style.textContent = `
+
+                #phinixResultsPanel{
+
+                    position:fixed;
+
+                    top:105px;
+                    left:0;
+                    right:0;
+                    bottom:0;
+
+                    height:auto;
+
+                    background:#080510;
+
+                    color:white;
+
+                    border-top:
+                        1px solid #6f2cff;
+
+                    border-radius:
+                        22px 22px 0 0;
+
+                    box-shadow:
+                        0 -8px 35px
+                        rgba(0,0,0,.65);
+
+                    z-index:9999;
+
+                    overflow:hidden;
+
+                    transform:
+                        translateY(100%);
+
+                    opacity:0;
+
+                    transition:
+                        transform .3s ease,
+                        opacity .3s ease;
+
+                    font-family:
+                        Arial,sans-serif;
+
+                }
+
+
+                .phPanelTab{
+
+                    flex:0 0 auto;
+
+                    height:36px;
+
+                    padding:0 14px;
+
+                    border:
+                        1px solid #743cff;
+
+                    border-radius:10px;
+
+                    background:#120b1d;
+
+                    color:#bda8d0;
+
+                    font-size:11px;
+
+                    font-weight:bold;
+
+                }
+
+
+                .phPanelTab.active{
+
+                    background:#6f2cff;
+
+                    color:white;
+
+                }
+
+
+                .phPanelContent{
+
+                    padding:10px;
+
+                    overflow-y:auto;
+
+                    height:
+                        calc(100% - 110px);
+
+                    box-sizing:border-box;
+
+                }
+
+
+                .phSummaryCard{
+
+                    min-height:72px;
+
+                    border:
+                        1px solid #6f2cff;
+
+                    border-radius:14px;
+
+                    background:#0d0716;
+
+                    display:flex;
+
+                    flex-direction:column;
+
+                    justify-content:center;
+
+                    align-items:center;
+
+                    gap:6px;
+
+                    box-sizing:border-box;
+
+                }
+
+
+                .phSummaryCard span{
+
+                    color:#8e789f;
+
+                    font-size:9px;
+
+                    font-weight:bold;
+
+                }
+
+
+                .phSummaryCard strong{
+
+                    color:white;
+
+                    font-size:17px;
+
+                }
+
+
+                .phProfitCard{
+
+                    min-height:82px;
+
+                    border:
+                        1px solid #6f2cff;
+
+                    border-radius:15px;
+
+                    background:#0d0716;
+
+                    display:flex;
+
+                    flex-direction:column;
+
+                    justify-content:center;
+
+                    align-items:center;
+
+                    gap:7px;
+
+                }
+
+
+                .phProfitCard span{
+
+                    color:#8e789f;
+
+                    font-size:10px;
+
+                    font-weight:bold;
+
+                }
+
+
+                .phProfitCard strong{
+
+                    font-size:24px;
+
+                    font-weight:bold;
+
+                }
+
+
+                .phEmpty{
+
+                    padding:35px 10px;
+
+                    text-align:center;
+
+                    color:#8e789f;
+
+                    font-size:13px;
+
+                }
+
+
+                #phTransactionsTable th{
+
+                    color:#8e789f;
+
+                    font-size:10px;
+
+                    padding:10px 4px;
+
+                    border-bottom:1px solid #2b183d;
+
+                }
+
+
+                #phTransactionsTable td{
+
+                    padding:10px 4px;
+
+                    font-size:12px;
+
+                    border-bottom:1px solid #17101f;
+
+                }
+
+            `;
+
+            document.head.appendChild(style);
+
+        }
+
+    }
+
+
+    /* OPEN */
+    if(
+        panel.style.transform === "" ||
+        panel.style.transform === "translateY(100%)"
+    ){
+
+        panel.style.display = "block";
+
+        requestAnimationFrame(function(){
+
+            panel.style.transform =
+                "translateY(0)";
+
+            panel.style.opacity =
+                "1";
+
+            updatePhinixResultsPanel();
+
+        });
+
+    }
+
+    /* CLOSE */
+    else{
+
+        panel.style.transform =
+            "translateY(100%)";
+
+        panel.style.opacity =
+            "0";
+
+    }
+
+}
+
+
+function showPhinixPanelTab(tab){
+
+    const summary =
+        document.getElementById("phSummaryTab");
+
+    const transactions =
+        document.getElementById("phTransactionsTab");
+
+    const journal =
+        document.getElementById("phJournalTab");
+
+    const tabs =
+        document.querySelectorAll(".phPanelTab");
+
+    if(!summary || !transactions || !journal){
+        return;
+    }
+
+    summary.style.display = "none";
+    transactions.style.display = "none";
+    journal.style.display = "none";
+
+    tabs.forEach(function(button){
+        button.classList.remove("active");
+    });
+
+    if(tab === "summary"){
+
+        summary.style.display = "block";
+
+        if(tabs[0]){
+            tabs[0].classList.add("active");
+        }
+
+        updatePhinixResultsPanel();
+
+    }
+
+    else if(tab === "transactions"){
+
+        transactions.style.display = "block";
+
+        if(tabs[1]){
+            tabs[1].classList.add("active");
+        }
+
+        renderPhinixTransactions();
+
+    }
+
+    else if(tab === "journal"){
+
+        journal.style.display = "block";
+
+        if(tabs[2]){
+            tabs[2].classList.add("active");
+        }
+
+        renderPhinixJournal();
+
+    }
+
+}
+
+
+function updatePhinixResultsPanel(){
+
+    const runs =
+        document.getElementById("phSummaryRuns");
+
+    const won =
+        document.getElementById("phSummaryWon");
+
+    const lost =
+        document.getElementById("phSummaryLost");
+
+    const stake =
+        document.getElementById("phSummaryStake");
+
+    const payout =
+        document.getElementById("phSummaryPayout");
+
+    const profit =
+        document.getElementById("phSummaryProfit");
+
+
+    if(runs){
+        runs.innerHTML = phRuns;
+    }
+
+    if(won){
+        won.innerHTML = phWon;
+    }
+
+    if(lost){
+        lost.innerHTML = phLost;
+    }
+
+    if(stake){
+        stake.innerHTML =
+            phStake.toFixed(2) + " USD";
+    }
+
+    if(payout){
+        payout.innerHTML =
+            phPayout.toFixed(2) + " USD";
+    }
+
+    if(profit){
+
+        profit.innerHTML =
+            phProfit.toFixed(2) + " USD";
+
+        profit.style.color =
+            phProfit >= 0
+            ? "#c94fff"
+            : "#ff4444";
+    }
+
+}
+
+
+function renderPhinixTransactions(){
+
+    const table = document
+        .getElementById("phTransactionsTable");
+
+    if(!table){
+        return;
+    }
+
+    const tbody = table.querySelector("tbody");
+
+    if(!tbody){
+        return;
+    }
+
+    tbody.innerHTML = "";
+
+    if(!phTransactions || phTransactions.length === 0){
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="3"
+                    style="
+                        padding:35px 10px;
+                        color:#8e789f;
+                        text-align:center;
+                    ">
+                    No transactions yet
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+    phTransactions.forEach(function(trade){
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td style="
+                text-align:center;
+                padding:10px 4px;
+                border-bottom:1px solid #17101f;
+            ">
+                ${trade.win ? "📈" : "📉"}
+            </td>
+
+            <td style="
+                text-align:center;
+                padding:10px 4px;
+                border-bottom:1px solid #17101f;
+            ">
+                ${trade.entry}
+            </td>
+
+            <td style="
+                text-align:center;
+                padding:10px 4px;
+                border-bottom:1px solid #17101f;
+                color:${trade.win ? "#00ff88" : "#ff4444"};
+            ">
+                ${trade.pnl.toFixed(2)} USD
+            </td>
+        `;
+
+        tbody.appendChild(row);
+
+    });
+
+}
+
+
+function renderPhinixJournal(){
+
+    const container =
+        document.getElementById("phJournalList");
+
+    if(!container){
+        return;
+    }
+
+    if(!phJournal || phJournal.trim() === ""){
+
+        container.innerHTML = `
+            <div class="phEmpty">
+                No journal entries yet
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = `
+        <div style="
+            padding:14px;
+            border:1px solid #6f2cff;
+            border-radius:12px;
+            background:#0d0716;
+            color:white;
+            font-size:13px;
+            line-height:1.7;
+        ">
+            ${phJournal}
+        </div>
+    `;
+
+}
+
+
+function resetPhinixResults(){
+
+    /* STOP CURRENT TRADES */
+    if(phInterval){
+        clearInterval(phInterval);
+        phInterval = null;
+    }
+
+    phBotRunning = false;
+
+
+    /* RESET STATISTICS */
+
+    phStake = 0;
+    phPayout = 0;
+    phWon = 0;
+    phLost = 0;
+    phRuns = 0;
+    phProfit = 0;
+
+
+    /* CLEAR TRANSACTIONS */
+
+    phTransactions = [];
+
+
+    /* CLEAR JOURNAL */
+
+    phJournal = "";
+
+
+    /* CLEAR TRANSACTION TABLE */
+
+    const table =
+        document.getElementById("phTransactionsTable");
+
+    if(table){
+
+        const tbody =
+            table.querySelector("tbody");
+
+        if(tbody){
+
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="3"
+                        style="
+                            padding:35px 10px;
+                            color:#8e789f;
+                            text-align:center;
+                        ">
+                        No transactions yet
+                    </td>
+                </tr>
+            `;
+
+        }
+
+    }
+
+
+    /* CLEAR JOURNAL */
+
+    const journal =
+        document.getElementById("phJournalList");
+
+    if(journal){
+
+        journal.innerHTML = `
+            <div class="phEmpty">
+                No journal entries yet
+            </div>
+        `;
+
+    }
+
+
+    /* UPDATE SUMMARY */
+
+    updatePhinixResultsPanel();
+
+
+    /* UPDATE OLD BOT DISPLAYS IF THEY EXIST */
+
+    const stakeDisplay =
+        document.getElementById("phStakeDisplay");
+
+    const payoutDisplay =
+        document.getElementById("phPayoutDisplay");
+
+    const wonDisplay =
+        document.getElementById("phWonDisplay");
+
+    const lostDisplay =
+        document.getElementById("phLostDisplay");
+
+    const runsDisplay =
+        document.getElementById("phRunsDisplay");
+
+    const profitDisplay =
+        document.getElementById("phProfitDisplay");
+
+
+    if(stakeDisplay)
+        stakeDisplay.innerHTML = "0.00 USD";
+
+    if(payoutDisplay)
+        payoutDisplay.innerHTML = "0.00 USD";
+
+    if(wonDisplay)
+        wonDisplay.innerHTML = "0";
+
+    if(lostDisplay)
+        lostDisplay.innerHTML = "0";
+
+    if(runsDisplay)
+        runsDisplay.innerHTML = "0";
+
+    if(profitDisplay)
+        profitDisplay.innerHTML = "0.00 USD";
+
+
+    /* REFRESH TRANSACTIONS */
+
+    renderPhinixTransactions();
+
+
+    /* REFRESH JOURNAL */
+
+    renderPhinixJournal();
+
+
+    /* STATUS */
+
+    const status =
+        document.getElementById("phStatus");
+
+    if(status){
+
+        status.innerHTML = "STOPPED";
+
+        status.style.color = "#ff4444";
+
+    }
+
+}
+
+
+function stopPhinixBot(){
+
+    if(phInterval){
+
+        clearInterval(phInterval);
+
+        phInterval = null;
+
+    }
+
+    phBotRunning = false;
+
+
+    const status =
+        document.getElementById("phStatus");
+
+    if(status){
+
+        status.innerHTML = "STOPPED";
+
+        status.style.color = "#ff4444";
+
+    }
+
+}
+
     
 
 function addPhinixTrade(){
@@ -1951,6 +2954,8 @@ function addPhinixTrade(){
 
     phProfit += pnl;
 
+        
+
     // Save the trade so it survives Summary / Journal navigation.
     phTransactions.push({
         type: win ? "📈" : "📉",
@@ -1964,10 +2969,13 @@ ${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)
 📈 Monitoring Market...
 `;
 
-    renderPhinixTransactions();
-    updatePhinixStats();
+        renderPhinixTransactions();
+renderPhinixJournal();
+updatePhinixStats();
+updatePhinixResultsPanel();
 
 }
+
 
 function renderPhinixTransactions(){
 
