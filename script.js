@@ -8319,6 +8319,7 @@ panel.style.opacity =
     "1";
 
 updateBulkResultsSummary();
+updateBulkResultsTransactions();
 
         });
 
@@ -8384,6 +8385,162 @@ function showBulkPanelTab(tab){
     if(tab === "summary") buttons[0].classList.add("active");
     if(tab === "transactions") buttons[1].classList.add("active");
     if(tab === "journal") buttons[2].classList.add("active");
+
+}
+
+function updateBulkResultsTransactions(){
+
+    const list =
+        document.getElementById(
+            "bulkTransactionsList"
+        );
+
+    if(!list) return;
+
+
+    if(
+        !phinixBulkTransactions ||
+        phinixBulkTransactions.length === 0
+    ){
+
+        list.innerHTML = `
+            <div class="bulkEmpty">
+                No transactions yet
+            </div>
+        `;
+
+        return;
+    }
+
+
+    list.innerHTML =
+        phinixBulkTransactions.map(
+            function(tx){
+
+                const resultColor =
+                    tx.result === "Won"
+                        ? "#00d995"
+                        : "#ff4d5e";
+
+                const profitColor =
+                    tx.profit >= 0
+                        ? "#00d995"
+                        : "#ff4d5e";
+
+
+                return `
+
+                    <div class="bulkTransaction">
+
+                        <div style="
+                            display:flex;
+                            justify-content:space-between;
+                            align-items:center;
+                        ">
+
+                            <strong style="
+                                color:white;
+                                font-size:14px;
+                            ">
+                                ${tx.contract}
+                            </strong>
+
+                            <span style="
+                                color:${resultColor};
+                                font-size:12px;
+                                font-weight:bold;
+                            ">
+                                ${tx.result}
+                            </span>
+
+                        </div>
+
+
+                        <div style="
+                            color:#8e789f;
+                            font-size:11px;
+                            margin-top:6px;
+                        ">
+                            ${tx.id} • ${tx.time}
+                        </div>
+
+
+                        <div style="
+                            display:grid;
+                            grid-template-columns:
+                                repeat(3,minmax(0,1fr));
+                            gap:8px;
+                            margin-top:12px;
+                        ">
+
+                            <div>
+                                <div style="
+                                    color:#8e789f;
+                                    font-size:9px;
+                                ">
+                                    STAKE
+                                </div>
+
+                                <div style="
+                                    color:white;
+                                    font-size:13px;
+                                    font-weight:bold;
+                                    margin-top:3px;
+                                ">
+                                    $${Number(tx.stake).toFixed(2)}
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <div style="
+                                    color:#8e789f;
+                                    font-size:9px;
+                                ">
+                                    PAYOUT
+                                </div>
+
+                                <div style="
+                                    color:white;
+                                    font-size:13px;
+                                    font-weight:bold;
+                                    margin-top:3px;
+                                ">
+                                    $${Number(tx.payout).toFixed(2)}
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <div style="
+                                    color:#8e789f;
+                                    font-size:9px;
+                                ">
+                                    P/L
+                                </div>
+
+                                <div style="
+                                    color:${profitColor};
+                                    font-size:13px;
+                                    font-weight:bold;
+                                    margin-top:3px;
+                                ">
+                                    ${
+                                        tx.profit >= 0
+                                            ? "+"
+                                            : ""
+                                    }$${Number(tx.profit).toFixed(2)}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
 
 }
 
