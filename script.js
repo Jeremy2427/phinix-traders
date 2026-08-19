@@ -8320,6 +8320,7 @@ panel.style.opacity =
 
 updateBulkResultsSummary();
 updateBulkResultsTransactions();
+updateBulkResultsJournal();
 
         });
 
@@ -8385,6 +8386,81 @@ function showBulkPanelTab(tab){
     if(tab === "summary") buttons[0].classList.add("active");
     if(tab === "transactions") buttons[1].classList.add("active");
     if(tab === "journal") buttons[2].classList.add("active");
+
+}
+
+function updateBulkResultsJournal(){
+
+    const list =
+        document.getElementById(
+            "bulkJournalList"
+        );
+
+    if(!list) return;
+
+
+    if(
+        !phinixBulkJournal ||
+        phinixBulkJournal.length === 0
+    ){
+
+        list.innerHTML = `
+            <div class="bulkEmpty">
+                No journal entries yet
+            </div>
+        `;
+
+        return;
+    }
+
+
+    list.innerHTML =
+        phinixBulkJournal.map(
+            function(entry){
+
+                const isWin =
+                    entry.includes("WIN");
+
+                return `
+
+                    <div style="
+                        background:#0d0716;
+                        border:1px solid #321650;
+                        border-radius:12px;
+                        padding:12px;
+                        margin-bottom:8px;
+                        color:#cfc3d8;
+                        font-size:12px;
+                        line-height:18px;
+                    ">
+
+                        <span style="
+                            color:${
+                                isWin
+                                    ? "#00d995"
+                                    : "#ff4d5e"
+                            };
+                            font-weight:bold;
+                        ">
+                            ${
+                                isWin
+                                    ? "WIN"
+                                    : "LOSS"
+                            }
+                        </span>
+
+                        <span style="
+                            margin-left:6px;
+                        ">
+                            ${entry}
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
 
 }
 
