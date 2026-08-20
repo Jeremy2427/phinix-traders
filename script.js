@@ -3128,8 +3128,9 @@ function resetPhinixResults(){
 
 }
 
-
 function stopPhinixBot(){
+
+    /* PAUSE TRADING */
 
     if(phInterval){
 
@@ -3142,18 +3143,106 @@ function stopPhinixBot(){
     phBotRunning = false;
 
 
+    /* CHANGE STATUS */
+
     const status =
         document.getElementById("phStatus");
 
     if(status){
 
-        status.innerHTML = "STOPPED";
-
+        status.innerHTML = "PAUSED";
         status.style.color = "#ff4444";
 
     }
 
+
+    /* CHANGE STOP BUTTON TO START */
+
+    const buttons =
+        document.querySelectorAll("button");
+
+    buttons.forEach(function(button){
+
+        if(
+            button.innerText.includes("Stop") ||
+            button.innerText.includes("■ Stop")
+        ){
+
+            button.innerHTML = "▶ Start";
+
+            button.style.background =
+                "#00b050";
+
+            button.onclick =
+                startPhinixBot;
+
+        }
+
+    });
+
 }
+
+
+function startPhinixBot(){
+
+    /* RESUME TRADING */
+
+    phBotRunning = true;
+
+
+    /* UPDATE STATUS */
+
+    const status =
+        document.getElementById("phStatus");
+
+    if(status){
+
+        status.innerHTML = "RUNNING";
+        status.style.color = "#00d9a5";
+
+    }
+
+
+    /* START TRADES AGAIN */
+
+    if(!phInterval){
+
+        phInterval =
+            setInterval(
+                addPhinixTrade,
+                2500
+            );
+
+    }
+
+
+    /* CHANGE BUTTON BACK TO STOP */
+
+    const buttons =
+        document.querySelectorAll("button");
+
+    buttons.forEach(function(button){
+
+        if(
+            button.innerText.includes("Start") ||
+            button.innerText.includes("▶ Start")
+        ){
+
+            button.innerHTML = "■ Stop";
+
+            button.style.background =
+                "#d8243f";
+
+            button.onclick =
+                stopPhinixBot;
+
+        }
+
+    });
+
+}
+
+    
 
     
 
