@@ -1481,8 +1481,16 @@ let phProfit = 0;
 let phJournal = "";
 let phTransactions = [];
 
+/* PHINIX MARTINGALE */
+let phBaseStake = 5;
+let phCurrentStake = 5;
+let phMartingale = 0;
+
 function openPhinixProBot(){
 activeBot = "Phinix Pro";
+
+    const botWasRunning =
+    phBotRunning;
 
 document.querySelector(".container").innerHTML = `
 
@@ -1561,8 +1569,21 @@ outline:none;
 </h3>
 
 <label>Stake</label>
-<input type="number" value="2"
-style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+
+<input
+    id="phStakeInput"
+    type="number"
+    value="2"
+    min="0.35"
+    step="0.01"
+    style="
+        width:100%;
+        padding:12px;
+        border-radius:12px;
+        margin-bottom:12px;
+        box-sizing:border-box;
+    "
+>
 
 <label>Target Profit</label>
 <input type="number" value="5"
@@ -1652,27 +1673,139 @@ style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 <option>10</option>
 </select>
 <button
-onclick="openPhinixRunningScreen()"
-style="
-width:100%;
-padding:16px;
-background:#00b050;
-color:white;
-font-size:20px;
-font-weight:bold;
-border:none;
-border-radius:14px;
-cursor:pointer;
-">
-▶ RUN
+    id="phBotRunButton"
+    onclick="openPhinixRunningScreen()"
+    style="
+        width:100%;
+        padding:16px;
+        background:#00b050;
+        color:white;
+        font-size:20px;
+        font-weight:bold;
+        border:none;
+        border-radius:14px;
+        cursor:pointer;
+    "
+>
+    ▶ RUN
 </button>
 
 </div>
 
 `;
+
+if(botWasRunning){
+
+    updatePhinixBotRunButton();
+
+}
+
+}
+
+function updatePhinixBotRunButton(){
+
+    const button =
+        document.getElementById(
+            "phBotRunButton"
+        );
+
+    if(!button){
+        return;
+    }
+
+
+    if(phBotRunning){
+
+        button.innerHTML =
+            "■ STOP";
+
+        button.style.background =
+            "#d8243f";
+
+        button.onclick =
+            stopPhinixBot;
+
+    }
+
+    else{
+
+        button.innerHTML =
+            "▶ RUN";
+
+        button.style.background =
+            "#00b050";
+
+        button.onclick =
+            openPhinixRunningScreen;
+
+    }
+
 }
 
 function openPhinixRunningScreen(){
+
+    const stakeInput =
+    document.getElementById("phStakeInput");
+
+const martingaleSelect =
+    document.getElementById("martingaleSelect");
+
+
+/* GET STARTING STAKE */
+
+if(stakeInput){
+
+    const selectedStake =
+        Number(stakeInput.value);
+
+    if(selectedStake > 0){
+
+        phBaseStake =
+            selectedStake;
+
+        phCurrentStake =
+            selectedStake;
+
+    }
+
+}
+
+
+/* GET MARTINGALE */
+
+if(martingaleSelect){
+
+    if(martingaleSelect.value === "OFF"){
+
+        phMartingale = 0;
+
+    }else{
+
+        phMartingale =
+            Number(martingaleSelect.value);
+
+    }
+
+}
+
+    
+if(martingaleSelect){
+
+    if(martingaleSelect.value === "OFF"){
+
+        phMartingale = 0;
+
+    }else{
+
+        phMartingale =
+            Number(martingaleSelect.value);
+
+    }
+
+}
+    /* RESET MARTINGALE FOR NEW RUN */
+
+phCurrentStake = phBaseStake;
 
     document.querySelector(".container").innerHTML = `
 
@@ -2215,14 +2348,14 @@ function openPhinixRunningScreen(){
 
                 <!-- TRANSACTIONS TAB -->
                 <div id="phTransactionsTab"
-                    class="phPanelContent"
-                    style="
-                        display:none;
-                        padding:18px 18px 25px;
-                        box-sizing:border-box;
-                    "
-                >
-
+    class="phPanelContent"
+    style="
+        display:none;
+        padding:18px 18px 25px;
+        box-sizing:border-box;
+        overflow:hidden;
+    "
+>
                     <!-- ACTION BUTTONS -->
                     <div style="
                         display:flex;
@@ -2265,11 +2398,16 @@ function openPhinixRunningScreen(){
 
                     <!-- TRANSACTIONS TABLE -->
                     <div id="phTransactionContainer"
-                        style="
-                            width:100%;
-                            overflow-x:hidden;
-                        "
-                    >
+    style="
+        width:100%;
+        height:100%;
+        overflow-y:auto;
+        overflow-x:hidden;
+        -webkit-overflow-scrolling:touch;
+        overscroll-behavior:contain;
+        box-sizing:border-box;
+    "
+>
 
                         <table id="phTransactionsTable"
                             style="
@@ -2539,6 +2677,8 @@ function openPhinixRunningScreen(){
     /* BOT IS RUNNING */
 
     phBotRunning = true;
+
+updatePhinixBotRunButton();
 
 
     const status =
@@ -2971,81 +3111,150 @@ function updatePhinixResultsPanel(){
 
 
 
-
-    
-        
-
 function renderPhinixTransactions(){
 
-    const table = document
-        .getElementById("phTransactionsTable");
+    const table =
+        document.getElementById(
+            "phTransactionsTable"
+        );
 
     if(!table){
         return;
     }
 
-    const tbody = table.querySelector("tbody");
+    const tbody =
+        table.querySelector("tbody");
 
     if(!tbody){
         return;
     }
 
+
     tbody.innerHTML = "";
 
-    if(!phTransactions || phTransactions.length === 0){
+
+    if(
+        !phTransactions ||
+        phTransactions.length === 0
+    ){
 
         tbody.innerHTML = `
             <tr>
-                <td colspan="3"
+
+                <td
+                    colspan="3"
                     style="
                         padding:35px 10px;
                         color:#8e789f;
                         text-align:center;
-                    ">
+                    "
+                >
                     No transactions yet
                 </td>
+
             </tr>
         `;
 
         return;
     }
 
+
     phTransactions.forEach(function(trade){
 
-        const row = document.createElement("tr");
+        const row =
+            document.createElement("tr");
+
+
+        /* USE THE SAVED TRADE TYPE */
+
+        const tradeType =
+            trade.type || "📉";
+
+
+        const isWin =
+            tradeType === "📈";
+
 
         row.innerHTML = `
-            <td style="
-                text-align:center;
-                padding:10px 4px;
-                border-bottom:1px solid #17101f;
-            ">
-                ${trade.win ? "📈" : "📉"}
-            </td>
+
+            <!-- TYPE -->
 
             <td style="
                 text-align:center;
-                padding:10px 4px;
-                border-bottom:1px solid #17101f;
+                padding:12px 4px;
+                border-bottom:
+                    1px solid #17101f;
+                font-size:17px;
+            ">
+                ${tradeType}
+            </td>
+
+
+            <!-- ENTRY / EXIT SPOT -->
+
+            <td style="
+                text-align:center;
+                padding:12px 4px;
+                border-bottom:
+                    1px solid #17101f;
+                color:#d7dfed;
+                font-size:13px;
             ">
                 ${trade.entry}
             </td>
 
+
+            <!-- BUY PRICE / P&L -->
+
             <td style="
                 text-align:center;
-                padding:10px 4px;
-                border-bottom:1px solid #17101f;
-                color:${trade.win ? "#00ff88" : "#ff4444"};
+                padding:12px 4px;
+                border-bottom:
+                    1px solid #17101f;
+                color:${isWin
+                    ? "#00d9a5"
+                    : "#ff4444"};
+                font-size:13px;
+                font-weight:bold;
             ">
                 ${trade.pnl.toFixed(2)} USD
             </td>
+
         `;
+
 
         tbody.appendChild(row);
 
     });
 
+
+    /*
+        ALWAYS KEEP THE VIEW
+        AT THE MOST RECENT TRADE
+        WHEN A NEW TRADE ARRIVES.
+    */
+
+    const container =
+        document.getElementById(
+            "phTransactionContainer"
+        );
+
+    if(container){
+
+        container.scrollTop =
+            container.scrollHeight;
+
+    }
+
 }
+    
+        
+
+
+
+    
+
+    
 
 
 function renderPhinixJournal(){
@@ -3346,38 +3555,85 @@ function startPhinixBot(){
 
 }
 
-    
+ function addPhinixTrade(){
 
-    
+    /* CURRENT TRADE STAKE */
 
-function addPhinixTrade(){
+    const tradeStake =
+        phCurrentStake;
 
-    const win = Math.random() > 0.35;
 
-    const entry = (735 + Math.random()).toFixed(2);
+    /* SIMULATED RESULT */
 
-    const pnl = win ? 3.70 : -5.00;
+    const win =
+        Math.random() > 0.35;
 
-    phStake += 5;
-    phPayout += win ? 8.70 : 0;
+
+    const entry =
+        (735 + Math.random()).toFixed(2);
+
+
+    /*
+        PROFIT IS BASED ON THE CURRENT STAKE
+
+        WIN  = +74%
+        LOSS = -100%
+    */
+
+    const pnl =
+        win
+        ? tradeStake * 0.74
+        : -tradeStake;
+
+
+    /* UPDATE TOTALS */
+
+    phStake += tradeStake;
+
+    phPayout +=
+        win
+        ? tradeStake + pnl
+        : 0;
+
     phRuns++;
 
+
     if(win){
+
         phWon++;
+
     }else{
+
         phLost++;
+
     }
+
 
     phProfit += pnl;
 
-        
 
-    // Save the trade so it survives Summary / Journal navigation.
+    /* SAVE TRANSACTION */
+
     phTransactions.push({
-        type: win ? "📈" : "📉",
-        entry: entry,
-        pnl: pnl
+
+        type:
+            win
+            ? "📈"
+            : "📉",
+
+        entry:
+            entry,
+
+        pnl:
+            pnl,
+
+        stake:
+            tradeStake
+
     });
+
+
+    /* JOURNAL */
 
     phJournal += `
 🎯 Signal Found
@@ -3385,12 +3641,66 @@ ${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)
 📈 Monitoring Market...
 `;
 
-        renderPhinixTransactions();
-renderPhinixJournal();
-updatePhinixStats();
-updatePhinixResultsPanel();
 
-}
+    /*
+        MARTINGALE
+
+        WIN:
+        Return to normal stake.
+
+        LOSS:
+        Multiply the next stake.
+
+        Example with x2:
+
+        $5 LOSS
+        $10 LOSS
+        $20 WIN
+        $5 again
+    */
+
+    if(win){
+
+        phCurrentStake =
+            phBaseStake;
+
+    }
+
+    else if(phMartingale > 0){
+
+        phCurrentStake =
+            tradeStake * phMartingale;
+
+    }
+
+    else{
+
+        phCurrentStake =
+            phBaseStake;
+
+    }
+
+
+    /* UPDATE SCREEN */
+
+    renderPhinixTransactions();
+
+    renderPhinixJournal();
+
+    updatePhinixStats();
+
+    updatePhinixResultsPanel();
+
+ }   
+
+    
+
+
+
+    
+        
+
+
 
 
 function renderPhinixTransactions(){
