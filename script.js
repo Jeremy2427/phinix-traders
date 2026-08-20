@@ -1689,84 +1689,126 @@ function openPhinixRunningScreen(){
     ">
 
 
-        <!-- TOP HEADER -->
-        <div style="
-            height:68px;
-            background:#0b1b38;
+    <!-- TOP HEADER -->
+<div style="
+    height:78px;
+    background:#0b1b38;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 16px;
+    box-sizing:border-box;
+    flex-shrink:0;
+">
+
+    <!-- ACCOUNT SELECTOR -->
+    <div
+        onclick="openAccountMenu()"
+        style="
             display:flex;
             align-items:center;
-            justify-content:space-between;
-            padding:0 16px;
-            box-sizing:border-box;
+            gap:10px;
+            cursor:pointer;
+            min-width:0;
+        "
+    >
+
+        <!-- ACCOUNT ICON -->
+        <div style="
+            width:42px;
+            height:42px;
+            border-radius:50%;
+            background:linear-gradient(
+                135deg,
+                #7a2cff,
+                #9d4edd
+            );
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:white;
+            font-size:21px;
+            font-weight:bold;
             flex-shrink:0;
         ">
+            ₿
+        </div>
 
-            <!-- LEFT ICONS -->
-            <div style="
-                display:flex;
-                align-items:center;
-                gap:18px;
-            ">
 
-                <div onclick="openPhinixProBot()"
-                    style="
-                        font-size:25px;
-                        cursor:pointer;
-                    ">
-                    ☰
-                </div>
+        <!-- ACCOUNT INFORMATION -->
+        <div style="
+            display:flex;
+            flex-direction:column;
+            min-width:0;
+        ">
 
-                <div style="
-                    font-size:25px;
-                    color:#42a5ff;
-                ">
-                    📞
-                </div>
+            <span id="phRunningAccountLabel"
+                style="
+                    color:#ffd700;
+                    font-size:12px;
+                    font-weight:bold;
+                    white-space:nowrap;
+                "
+            >
+                DEMO BALANCE
+            </span>
 
-                <div style="
-                    font-size:27px;
+            <span id="phRunningAccountBalance"
+                style="
                     color:#00d9a5;
-                ">
-                    ↻
-                </div>
-
-            </div>
-
-
-            <!-- DEMO BALANCE -->
-            <div style="
-                display:flex;
-                align-items:center;
-                gap:7px;
-                font-weight:bold;
-            ">
-
-                <span style="
-                    width:35px;
-                    height:35px;
-                    border-radius:50%;
-                    background:#dce5df;
-                    color:#0b1b38;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    font-size:20px;
-                ">
-                    ₿
-                </span>
-
-                <span id="phAccountBalance"
-                    style="
-                        color:#00d9a5;
-                        font-size:17px;
-                    ">
-                    $10,000.00
-                </span>
-
-            </div>
+                    font-size:18px;
+                    font-weight:bold;
+                    margin-top:2px;
+                    white-space:nowrap;
+                "
+            >
+                $10,000.00
+            </span>
 
         </div>
 
+    </div>
+
+
+    <!-- RUNNING STATUS -->
+    <div style="
+        display:flex;
+        align-items:center;
+        gap:7px;
+    ">
+
+        <span id="phRunningStatusDot"
+            style="
+                width:9px;
+                height:9px;
+                border-radius:50%;
+                background:#00d9a5;
+                box-shadow:0 0 8px #00d9a5;
+            "
+        >
+        </span>
+
+        <span id="phRunningStatusText"
+            style="
+                color:#00d9a5;
+                font-size:12px;
+                font-weight:bold;
+            "
+        >
+            RUNNING
+        </span>
+
+    </div>
+
+</div>
+
+
+
+
+
+                
+
+                
 
         <!-- CHEVRON + RESET ROW -->
         <div style="
@@ -2531,10 +2573,72 @@ function openPhinixRunningScreen(){
 
     renderPhinixJournal();
 
+    updatePhinixRunningAccount();
+
 }
     
 
-            
+  function updatePhinixRunningAccount(){
+
+    const label =
+        document.getElementById(
+            "phRunningAccountLabel"
+        );
+
+    const balance =
+        document.getElementById(
+            "phRunningAccountBalance"
+        );
+
+
+    if(!label || !balance){
+        return;
+    }
+
+
+    const selected =
+        localStorage.getItem(
+            "phinixSelectedAccount"
+        ) || "demo";
+
+
+    if(selected === "real"){
+
+        const realBalance =
+            Number(
+                localStorage.getItem(
+                    "phinixRealBalance"
+                ) || "0"
+            );
+
+        label.textContent =
+            "REAL ACCOUNT";
+
+        balance.textContent =
+            "$" +
+            realBalance.toFixed(2);
+
+    }
+
+    else{
+
+        const demoBalance =
+            Number(
+                localStorage.getItem(
+                    "phinixDemoBalance"
+                ) || "10000"
+            );
+
+        label.textContent =
+            "DEMO BALANCE";
+
+        balance.textContent =
+            "$" +
+            demoBalance.toFixed(2);
+
+    }
+
+  }          
 
             
 
@@ -7535,6 +7639,7 @@ function selectDemoAccount(button) {
         bulkBalance.textContent =
             "$" + demoBalance.toFixed(2);
     }
+    updatePhinixRunningAccount();
 }
 
 
@@ -7566,6 +7671,7 @@ function selectRealAccount(button) {
             <h1>$${realBalance.toFixed(2)}</h1>
         `;
     }
+    updatePhinixRunningAccount();
 }
 
 function openBotBuilder(){
