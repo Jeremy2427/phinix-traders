@@ -1674,7 +1674,7 @@ style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 </select>
 <button
     id="phBotRunButton"
-    onclick="openPhinixRunningScreen()"
+    onclick="startPhinixProBot()"
     style="
         width:100%;
         padding:16px;
