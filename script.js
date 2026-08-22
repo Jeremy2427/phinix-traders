@@ -1744,68 +1744,58 @@ function updatePhinixBotRunButton(){
 
 function openPhinixRunningScreen(){
 
-    const stakeInput =
-    document.getElementById("phStakeInput");
+        /* GET STAKE */
 
-const martingaleSelect =
-    document.getElementById("martingaleSelect");
+        const stakeInput =
+        document.getElementById("phStakeInput");
 
-
-/* GET STARTING STAKE */
-
-if(stakeInput){
-
-    const selectedStake =
-        Number(stakeInput.value);
-
-    if(selectedStake > 0){
-
-        phBaseStake =
-            selectedStake;
-
-        phCurrentStake =
-            selectedStake;
-
-    }
-
-}
+    const martingaleSelect =
+        document.getElementById("martingaleSelect");
 
 
-/* GET MARTINGALE */
+    /* GET BASE STAKE */
 
-if(martingaleSelect){
+    if(stakeInput){
 
-    if(martingaleSelect.value === "OFF"){
+        const selectedStake =
+            Number(stakeInput.value);
 
-        phMartingale = 0;
+        if(selectedStake > 0){
 
-    }else{
+            phBaseStake =
+                selectedStake;
 
-        phMartingale =
-            Number(martingaleSelect.value);
+        }
 
     }
 
-}
 
+    /* GET MARTINGALE */
+
+    if(martingaleSelect){
+
+        if(martingaleSelect.value === "OFF"){
+
+            phMartingale = 0;
+
+        }else{
+
+            phMartingale =
+                Number(martingaleSelect.value);
+
+        }
+
+    }
+
+
+    /* START THIS RUN AT BASE STAKE */
+
+    phCurrentStake =
+        phBaseStake;
     
-if(martingaleSelect){
 
-    if(martingaleSelect.value === "OFF"){
 
-        phMartingale = 0;
 
-    }else{
-
-        phMartingale =
-            Number(martingaleSelect.value);
-
-    }
-
-}
-    /* RESET MARTINGALE FOR NEW RUN */
-
-phCurrentStake = phBaseStake;
 
     document.querySelector(".container").innerHTML = `
 
