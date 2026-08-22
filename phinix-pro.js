@@ -551,26 +551,36 @@ function stopPhinixProEngine(){
 
 function startPhinixProBot(){
 
-    /* Read the settings from the bot page */
-    readPhinixProSettings();
+    /*
+        Open the existing Phinix Pro
+        running screen first.
+    */
 
-    /* Open the running screen */
     if(typeof openPhinixRunningScreen === "function"){
 
         openPhinixRunningScreen();
 
+    }else{
+
+        alert("Phinix Pro running screen could not be opened.");
+
+        return;
+
     }
 
+
     /*
-        Start the new Phinix Pro engine
-        after the running screen opens.
+        Read the settings AFTER the
+        running screen has opened.
     */
 
     setTimeout(function(){
 
+        readPhinixProSettings();
+
         startPhinixProEngine();
 
-    }, 100);
+    }, 300);
 
 }
 
