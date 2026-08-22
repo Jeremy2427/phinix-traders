@@ -1,1 +1,549 @@
+/* =========================================
+   PHINIX PRO BOT
+   Core Settings & State
+   ========================================= */
+
+let phBaseStake = 0;
+let phCurrentStake = 0;
+
+let phMartingale = 0;
+
+let phTargetProfit = 0;
+let phStopLoss = 0;
+
+let phTradeType = "Over / Under";
+let phDurationType = "Ticks";
+let phDurationValue = 1;
+
+let phPrediction = 4;
+let phPurchase = "Odd";
+
+let phAllowBulkPurchase = false;
+let phNumberOfTrades = 1;
+
+let phTradesCompleted = 0;
+
+let phBotRunning = false;
+let phInterval = null;
+
+
+/* =========================================
+   READ PHINIX PRO SETTINGS
+   ========================================= */
+
+function readPhinixProSettings(){
+
+    const stakeInput =
+        document.getElementById("phStakeInput");
+
+    const targetInput =
+        document.getElementById("profitInput");
+
+    const lossInput =
+        document.getElementById("lossInput");
+
+    const martingaleSelect =
+        document.getElementById("martingaleSelect");
+
+    const tradeType =
+        document.getElementById("tradeType");
+
+
+    /* STAKE */
+
+    if(stakeInput){
+
+        const value =
+            Number(stakeInput.value);
+
+        if(value > 0){
+
+            phBaseStake = value;
+
+        }
+
+    }
+
+
+    /* CURRENT STAKE */
+
+    phCurrentStake =
+        phBaseStake;
+
+
+    /* TARGET PROFIT */
+
+    if(targetInput){
+
+        phTargetProfit =
+            Number(targetInput.value) || 0;
+
+    }
+
+
+    /* STOP LOSS */
+
+    if(lossInput){
+
+        phStopLoss =
+            Number(lossInput.value) || 0;
+
+    }
+
+
+    /* MARTINGALE */
+
+    if(martingaleSelect){
+
+        if(martingaleSelect.value === "OFF"){
+
+            phMartingale = 0;
+
+        }else{
+
+            phMartingale =
+                Number(martingaleSelect.value) || 0;
+
+        }
+
+    }
+
+
+    /* TRADE TYPE */
+
+    if(tradeType){
+
+        phTradeType =
+            tradeType.value;
+
+    }
+
+
+    /* OTHER SETTINGS */
+
+    const durationType =
+        document.getElementById("durationType");
+
+    const durationValue =
+        document.getElementById("durationValue");
+
+    const prediction =
+        document.getElementById("predictionSelect");
+
+    const purchase =
+        document.getElementById("purchaseSelect");
+
+    const bulkPurchase =
+        document.getElementById("bulkPurchaseSelect");
+
+    const numberTrades =
+        document.getElementById("numberTradesSelect");
+
+
+    if(durationType)
+        phDurationType = durationType.value;
+
+
+    if(durationValue)
+        phDurationValue =
+            Number(durationValue.value) || 1;
+
+
+    if(prediction)
+        phPrediction =
+            Number(prediction.value);
+
+
+    if(purchase)
+        phPurchase =
+            purchase.value;
+
+
+    if(bulkPurchase)
+        phAllowBulkPurchase =
+            bulkPurchase.value === "Yes";
+
+
+    if(numberTrades)
+        phNumberOfTrades =
+            Number(numberTrades.value) || 1;
+
+
+    /* RESET TRADE COUNTER */
+
+    phTradesCompleted = 0;
+
+      }
+
+
+/* =========================================
+   PHINIX PRO TRADE ENGINE
+   ========================================= */
+
+function startPhinixProEngine(){
+
+    /* Read all settings first */
+    readPhinixProSettings();
+
+    /* Make sure stake is valid */
+    if(phBaseStake <= 0){
+
+        alert("Please enter a valid stake.");
+
+        return;
+
+    }
+
+
+    /* Start with the base stake */
+    phCurrentStake =
+        phBaseStake;
+
+    phTradesCompleted = 0;
+
+    phBotRunning = true;
+
+
+    /* Clear an old timer */
+    if(phInterval){
+
+        clearInterval(phInterval);
+
+    }
+
+
+    /*
+        Make the first trade immediately
+    */
+
+    executePhinixProTrade();
+
+
+    /*
+        Continue trading according to
+        the selected duration.
+    */
+
+    phInterval =
+        setInterval(
+            executePhinixProTrade,
+            getPhinixProInterval()
+        );
+
+}
+
+
+/* =========================================
+   DURATION
+   ========================================= */
+
+function getPhinixProInterval(){
+
+    if(phDurationType === "Seconds"){
+
+        return phDurationValue * 1000;
+
+    }
+
+
+    if(phDurationType === "Minutes"){
+
+        return phDurationValue * 60000;
+
+    }
+
+
+    /*
+        Ticks are simulated here.
+        We use a short interval because
+        real Deriv tick timing will be
+        connected later.
+    */
+
+    return 1500;
+
+}
+
+
+/* =========================================
+   EXECUTE ONE TRADE
+   ========================================= */
+
+function executePhinixProTrade(){
+
+    if(!phBotRunning){
+
+        return;
+
+    }
+
+
+    /*
+        Stop before creating another trade
+        if the requested number of trades
+        has already been reached.
+    */
+
+    if(
+        phTradesCompleted >=
+        phNumberOfTrades
+    ){
+
+        stopPhinixProEngine();
+
+        return;
+
+    }
+
+
+    /*
+        Create the simulated result.
+        This will later be replaced by
+        the real Deriv contract result.
+    */
+
+    const win =
+        Math.random() > 0.35;
+
+
+    const tradeStake =
+        phCurrentStake;
+
+
+    /*
+        Simulated 74% payout.
+    */
+
+    const pnl =
+        win
+        ? tradeStake * 0.74
+        : -tradeStake;
+
+
+    /*
+        Update existing Phinix statistics
+        if those variables exist.
+    */
+
+    if(typeof phStake !== "undefined"){
+
+        phStake += tradeStake;
+
+    }
+
+
+    if(typeof phPayout !== "undefined"){
+
+        phPayout +=
+            win
+            ? tradeStake + pnl
+            : 0;
+
+    }
+
+
+    if(typeof phRuns !== "undefined"){
+
+        phRuns++;
+
+    }
+
+
+    if(win){
+
+        if(typeof phWon !== "undefined")
+            phWon++;
+
+    }else{
+
+        if(typeof phLost !== "undefined")
+            phLost++;
+
+    }
+
+
+    if(typeof phProfit !== "undefined"){
+
+        phProfit += pnl;
+
+    }
+
+
+    /*
+        Save transaction.
+    */
+
+    if(typeof phTransactions !== "undefined"){
+
+        phTransactions.push({
+
+            type:
+                win
+                ? "📈"
+                : "📉",
+
+            entry:
+                (735 + Math.random())
+                .toFixed(2),
+
+            pnl:
+                pnl,
+
+            stake:
+                tradeStake,
+
+            win:
+                win
+
+        });
+
+    }
+
+
+    phTradesCompleted++;
+
+
+    /*
+        MARTINGALE
+    */
+
+    if(win){
+
+        /*
+            After a win:
+            return to the original stake.
+        */
+
+        phCurrentStake =
+            phBaseStake;
+
+    }
+
+    else if(phMartingale > 0){
+
+        /*
+            After a loss:
+            multiply the NEXT trade's stake.
+        */
+
+        phCurrentStake =
+            tradeStake *
+            phMartingale;
+
+    }
+
+    else{
+
+        /*
+            Martingale OFF.
+        */
+
+        phCurrentStake =
+            phBaseStake;
+
+    }
+
+
+    /*
+        UPDATE JOURNAL
+    */
+
+    if(typeof phJournal !== "undefined"){
+
+        phJournal += `
+🎯 Signal Found
+${win ? "💰 Contract Won" : "❌ Contract Lost"}
+Stake: ${tradeStake.toFixed(2)} USD
+P/L: ${pnl.toFixed(2)} USD
+`;
+
+    }
+
+
+    /*
+        UPDATE EXISTING UI.
+    */
+
+    if(typeof renderPhinixTransactions === "function")
+        renderPhinixTransactions();
+
+    if(typeof renderPhinixJournal === "function")
+        renderPhinixJournal();
+
+    if(typeof updatePhinixStats === "function")
+        updatePhinixStats();
+
+    if(typeof updatePhinixResultsPanel === "function")
+        updatePhinixResultsPanel();
+
+
+    /*
+        TARGET PROFIT
+    */
+
+    if(
+        phTargetProfit > 0 &&
+        typeof phProfit !== "undefined" &&
+        phProfit >= phTargetProfit
+    ){
+
+        stopPhinixProEngine();
+
+        return;
+
+    }
+
+
+    /*
+        STOP LOSS
+    */
+
+    if(
+        phStopLoss > 0 &&
+        typeof phProfit !== "undefined" &&
+        phProfit <= -phStopLoss
+    ){
+
+        stopPhinixProEngine();
+
+        return;
+
+    }
+
+}
+
+
+/* =========================================
+   STOP / PAUSE ENGINE
+   ========================================= */
+
+function stopPhinixProEngine(){
+
+    if(phInterval){
+
+        clearInterval(phInterval);
+
+        phInterval = null;
+
+    }
+
+
+    phBotRunning = false;
+
+
+    /*
+        Use the existing stop/start
+        function if your running screen
+        already has one.
+    */
+
+    if(typeof updatePhinixRunningStatus === "function"){
+
+        updatePhinixRunningStatus(false);
+
+    }
+
+      }
+
+
 
