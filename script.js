@@ -2390,12 +2390,15 @@ function openPhinixRunningScreen(){
                     <div id="phTransactionContainer"
     style="
         width:100%;
-        height:100%;
+        height:calc(100vh - 360px);
+        min-height:180px;
         overflow-y:auto;
         overflow-x:hidden;
         -webkit-overflow-scrolling:touch;
         overscroll-behavior:contain;
+        touch-action:pan-y;
         box-sizing:border-box;
+        padding-bottom:20px;
     "
 >
 
