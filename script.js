@@ -3547,10 +3547,17 @@ function startPhinixBot(){
 
  function addPhinixTrade(){
 
+    /* STOP IF BOT IS NOT RUNNING */
+
+    if(!phBotRunning){
+        return;
+    }
+
+
     /* CURRENT TRADE STAKE */
 
     const tradeStake =
-        phCurrentStake;
+        Number(phCurrentStake);
 
 
     /* SIMULATED RESULT */
@@ -3559,16 +3566,13 @@ function startPhinixBot(){
         Math.random() > 0.35;
 
 
+    /* SIMULATED ENTRY */
+
     const entry =
         (735 + Math.random()).toFixed(2);
 
 
-    /*
-        PROFIT IS BASED ON THE CURRENT STAKE
-
-        WIN  = +74%
-        LOSS = -100%
-    */
+    /* PROFIT / LOSS */
 
     const pnl =
         win
@@ -3618,7 +3622,10 @@ function startPhinixBot(){
             pnl,
 
         stake:
-            tradeStake
+            tradeStake,
+
+        win:
+            win
 
     });
 
@@ -3628,28 +3635,23 @@ function startPhinixBot(){
     phJournal += `
 🎯 Signal Found
 ${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)
+Stake: ${tradeStake.toFixed(2)} USD
 📈 Monitoring Market...
 `;
 
 
-    /*
-        MARTINGALE
+    /* =========================
+       MARTINGALE
+       ========================= */
 
-        WIN:
-        Return to normal stake.
-
-        LOSS:
-        Multiply the next stake.
-
-        Example with x2:
-
-        $5 LOSS
-        $10 LOSS
-        $20 WIN
-        $5 again
-    */
 
     if(win){
+
+        /*
+            WIN
+
+            Return to original stake.
+        */
 
         phCurrentStake =
             phBaseStake;
@@ -3658,12 +3660,25 @@ ${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)
 
     else if(phMartingale > 0){
 
+        /*
+            LOSS
+
+            Multiply the losing stake
+            for the NEXT trade.
+        */
+
         phCurrentStake =
             tradeStake * phMartingale;
 
     }
 
     else{
+
+        /*
+            MARTINGALE OFF
+
+            Return to normal stake.
+        */
 
         phCurrentStake =
             phBaseStake;
@@ -3681,7 +3696,11 @@ ${win ? "💰 Contract Won" : "❌ Contract Lost"} (${pnl.toFixed(2)} USD)
 
     updatePhinixResultsPanel();
 
- }   
+ }
+    
+
+
+    
 
     
 
