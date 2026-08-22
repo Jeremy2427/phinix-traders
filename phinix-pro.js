@@ -545,5 +545,34 @@ function stopPhinixProEngine(){
 
       }
 
+/* =========================================
+   PHINIX PRO RUN BUTTON
+   ========================================= */
+
+function startPhinixProBot(){
+
+    /* Read the settings from the bot page */
+    readPhinixProSettings();
+
+    /* Open the running screen */
+    if(typeof openPhinixRunningScreen === "function"){
+
+        openPhinixRunningScreen();
+
+    }
+
+    /*
+        Start the new Phinix Pro engine
+        after the running screen opens.
+    */
+
+    setTimeout(function(){
+
+        startPhinixProEngine();
+
+    }, 100);
+
+}
+
 
 
