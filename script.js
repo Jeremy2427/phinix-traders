@@ -3541,7 +3541,17 @@ function startPhinixBot(){
     phBotRunning = true;
 
 
-    /* UPDATE STATUS */
+    /* RESET TRADE COUNTER FOR THIS RUN */
+
+    phTradesCompleted = 0;
+
+
+    /* START WITH BASE STAKE */
+
+    phCurrentStake = phBaseStake;
+
+
+    /* UPDATE RUNNING STATUS */
 
     const status =
         document.getElementById("phStatus");
@@ -3556,12 +3566,39 @@ function startPhinixBot(){
 
     /* UPDATE RUN BUTTON */
 
-    updatePhinixBotRunButton();
+    if(typeof updatePhinixBotRunButton === "function"){
+
+        updatePhinixBotRunButton();
+
+    }
 
 
-    /* START TRADING */
+    /* CANCEL OLD TIMER */
 
-    if(!phInterval){
+    if(phInterval){
+
+        clearInterval(phInterval);
+
+        phInterval = null;
+
+    }
+
+
+    /* MAKE FIRST TRADE IMMEDIATELY */
+
+    if(typeof addPhinixTrade === "function"){
+
+        addPhinixTrade();
+
+    }
+
+
+    /* CONTINUE TRADING */
+
+    if(
+        phBotRunning &&
+        phTradesCompleted < phNumberOfTrades
+    ){
 
         phInterval =
             setInterval(
@@ -3572,6 +3609,8 @@ function startPhinixBot(){
     }
 
 }
+
+
 
 
     
