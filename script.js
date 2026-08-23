@@ -2727,11 +2727,11 @@ updatePhinixBotRunButton();
     }
 
 
-/* START PHINIX PRO ENGINE */
+/* START PHINIX PRO BOT ENGINE */
 
-if(typeof startPhinixProEngine === "function"){
+if(typeof startPhinixBot === "function"){
 
-    startPhinixProEngine();
+    startPhinixBot();
 
 }
 
