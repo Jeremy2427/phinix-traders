@@ -1783,6 +1783,14 @@ function openPhinixRunningScreen(){
     const martingaleSelect =
         document.getElementById("martingaleSelect");
 
+    const numberTradesSelect =
+    document.getElementById("numberTradesSelect");
+
+const numberOfTrades =
+    numberTradesSelect
+        ? Number(numberTradesSelect.value)
+        : 1;
+
 
     /* GET BASE STAKE */
 
