@@ -1690,6 +1690,34 @@ style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
     ▶ RUN
 </button>
 
+<!-- BOT PAGE CHEVRON -->
+<div style="
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:6px;
+    padding:2px 0 10px;
+">
+
+    <button
+        onclick="openPhinixRunningScreen()"
+        style="
+            width:70px;
+            height:42px;
+            border:none;
+            background:transparent;
+            color:white;
+            font-size:40px;
+            line-height:35px;
+            cursor:pointer;
+        "
+    >
+        ⌄
+    </button>
+
+</div>
+
 </div>
 
 `;
@@ -1983,35 +2011,7 @@ function openPhinixRunningScreen(){
         </div>
 
 
-        <!-- CHEVRON -->
-<div style="
-    height:58px;
-    background:#071326;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-    border-top:1px solid #122440;
-    border-bottom:1px solid #122440;
-">
-
-    <button
-        onclick="togglePhinixResultsPanel()"
-        style="
-            width:70px;
-            height:50px;
-            border:none;
-            background:transparent;
-            color:#ffffff;
-            font-size:42px;
-            line-height:40px;
-            cursor:pointer;
-        "
-    >
-        ⌄
-    </button>
-
-</div>
+        
 
 
         <!-- RESULTS AREA -->
