@@ -3583,6 +3583,18 @@ function startPhinixBot(){
         return;
     }
 
+     /* STOP WHEN SELECTED NUMBER OF TRADES IS REACHED */
+
+if(
+    phTradesCompleted >= phNumberOfTrades
+){
+
+    stopPhinixBot();
+
+    return;
+
+}
+
 
     /* CURRENT TRADE STAKE */
 
@@ -3620,6 +3632,8 @@ function startPhinixBot(){
         : 0;
 
     phRuns++;
+
+     phTradesCompleted++;
 
 
     if(win){
