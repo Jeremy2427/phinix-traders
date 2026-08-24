@@ -1815,22 +1815,26 @@ phNumberOfTrades = numberOfTrades;
     }
 
 
-    /* GET MARTINGALE */
+ /* READ MARTINGALE SETTING */
 
-    if(martingaleSelect){
+phMartingale = 0;
 
-        if(martingaleSelect.value === "OFF"){
+if(martingaleSelect){
 
-            phMartingale = 0;
+    const selectedMartingale =
+        martingaleSelect.value;
 
-        }else{
+    if(
+        selectedMartingale &&
+        selectedMartingale !== "OFF"
+    ){
 
-            phMartingale =
-                Number(martingaleSelect.value);
-
-        }
+        phMartingale =
+            Number(selectedMartingale);
 
     }
+
+}
 
 
     /* START THIS RUN AT BASE STAKE */
@@ -3766,50 +3770,50 @@ Stake: ${tradeStake.toFixed(2)} USD
 `;
 
 
-    /* =========================
-       MARTINGALE
-       ========================= */
+/* =========================
+   MARTINGALE
+   ========================= */
 
+/*
+    WIN:
+    Return to the original stake.
+*/
 
-    if(win){
+if(win){
 
-        /*
-            WIN
+    phCurrentStake =
+        phBaseStake;
 
-            Return to original stake.
-        */
+}
 
-        phCurrentStake =
-            phBaseStake;
+/*
+    LOSS + MARTINGALE ON:
+    Multiply the current trade stake
+    for the NEXT trade.
+*/
 
-    }
+else if(
+    !win &&
+    phMartingale > 0
+){
 
-    else if(phMartingale > 0){
+    phCurrentStake =
+        Number(tradeStake) *
+        Number(phMartingale);
 
-        /*
-            LOSS
+}
 
-            Multiply the losing stake
-            for the NEXT trade.
-        */
+/*
+    LOSS + MARTINGALE OFF:
+    Keep the normal base stake.
+*/
 
-        phCurrentStake =
-            tradeStake * phMartingale;
+else{
 
-    }
+    phCurrentStake =
+        phBaseStake;
 
-    else{
-
-        /*
-            MARTINGALE OFF
-
-            Return to normal stake.
-        */
-
-        phCurrentStake =
-            phBaseStake;
-
-    }
+}
 
 
     /* UPDATE SCREEN */
