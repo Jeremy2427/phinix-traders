@@ -1,12 +1,7 @@
 /* =========================================
    PHINIX PRO BOT
-   Core Settings & State
+   Settings State
    ========================================= */
-
-let phBaseStake = 0;
-let phCurrentStake = 0;
-
-let phMartingale = 0;
 
 let phTargetProfit = 0;
 let phStopLoss = 0;
@@ -19,12 +14,6 @@ let phPrediction = 4;
 let phPurchase = "Odd";
 
 let phAllowBulkPurchase = false;
-let phNumberOfTrades = 1;
-
-let phTradesCompleted = 0;
-
-let phBotRunning = false;
-let phInterval = null;
 
 
 /* =========================================
