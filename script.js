@@ -1486,6 +1486,10 @@ let phBaseStake = 5;
 let phCurrentStake = 5;
 let phMartingale = 0;
 
+let phNumberOfTrades = 1;
+let phTradesCompleted = 0;
+
+
 function openPhinixProBot(){
 activeBot = "Phinix Pro";
 
