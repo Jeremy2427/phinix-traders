@@ -11492,4 +11492,93 @@ function updateBulkResultsSummary(){
     }
 
 }
+
+
+function showPhinixBotPopup(title, message, type = "profit"){
+
+    const existing =
+        document.getElementById("phinixBotPopup");
+
+    if(existing){
+        existing.remove();
+    }
+
+    const popup =
+        document.createElement("div");
+
+    popup.id = "phinixBotPopup";
+
+    popup.style.cssText = `
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,0.65);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        z-index:99999;
+        padding:20px;
+        box-sizing:border-box;
+    `;
+
+    const icon =
+        type === "profit" ? "🎯" : "🛑";
+
+    popup.innerHTML = `
+        <div style="
+            width:100%;
+            max-width:360px;
+            background:#0b1b38;
+            border-radius:18px;
+            padding:24px;
+            box-sizing:border-box;
+            text-align:center;
+            color:white;
+            box-shadow:0 10px 40px rgba(0,0,0,0.5);
+        ">
+
+            <div style="
+                font-size:42px;
+                margin-bottom:12px;
+            ">
+                ${icon}
+            </div>
+
+            <div style="
+                font-size:21px;
+                font-weight:bold;
+                margin-bottom:10px;
+            ">
+                ${title}
+            </div>
+
+            <div style="
+                color:#d8e2f0;
+                font-size:14px;
+                line-height:1.5;
+                margin-bottom:20px;
+            ">
+                ${message}
+            </div>
+
+            <button
+                onclick="document.getElementById('phinixBotPopup').remove()"
+                style="
+                    width:100%;
+                    padding:13px;
+                    border:none;
+                    border-radius:10px;
+                    background:#7a2cff;
+                    color:white;
+                    font-size:16px;
+                    font-weight:bold;
+                "
+            >
+                OK
+            </button>
+
+        </div>
+    `;
+
+    document.body.appendChild(popup);
+}
     
