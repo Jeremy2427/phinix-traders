@@ -3659,7 +3659,10 @@ buttons.forEach(function(button){
 
 if(
     phBotRunning &&
-    phTradesCompleted < phNumberOfTrades &&
+    (
+        phNumberOfTrades === 0 ||
+        phTradesCompleted < phNumberOfTrades
+    ) &&
     typeof addPhinixTrade === "function"
 ){
 
@@ -3669,12 +3672,14 @@ if(
 
 
 
-
 /* CONTINUE TRADING */
 
 if(
     phBotRunning &&
-    phTradesCompleted < phNumberOfTrades
+    (
+        phNumberOfTrades === 0 ||
+        phTradesCompleted < phNumberOfTrades
+    )
 ){
 
     phInterval = setInterval(function(){
