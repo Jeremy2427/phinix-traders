@@ -3714,39 +3714,37 @@ if(
 
 
 
-
-    
- function addPhinixTrade(){
+function addPhinixTrade(){
 
     /* STOP IF BOT IS NOT RUNNING */
 
-if(!phBotRunning){
-    return;
-}
-
-/*
-   NUMBER OF TRADES
-
-   0 = CONTINUOUS
-   1-10 = STOP AFTER SELECTED NUMBER
-*/
-
-if(
-    phNumberOfTrades > 0 &&
-    phTradesCompleted >= phNumberOfTrades
-){
-
-    phBotRunning = false;
-
-    if(phInterval){
-        clearInterval(phInterval);
-        phInterval = null;
+    if(!phBotRunning){
+        return;
     }
 
-    stopPhinixBot();
 
-    return;
-}
+    /* =========================
+       NUMBER OF TRADES CHECK
+       0 = CONTINUOUS
+       1-10 = EXACT NUMBER
+       ========================= */
+
+    if(
+        phNumberOfTrades > 0 &&
+        phTradesCompleted >= phNumberOfTrades
+    ){
+
+        phBotRunning = false;
+
+        if(phInterval){
+            clearInterval(phInterval);
+            phInterval = null;
+        }
+
+        stopPhinixBot();
+
+        return;
+    }
 
 
     /* CURRENT TRADE STAKE */
@@ -3786,7 +3784,7 @@ if(
 
     phRuns++;
 
-     phTradesCompleted++;
+    phTradesCompleted++;
 
 
     if(win){
@@ -3837,53 +3835,38 @@ Stake: ${tradeStake.toFixed(2)} USD
 `;
 
 
-/* =========================
-   MARTINGALE
-   ========================= */
+    /* =========================
+       MARTINGALE
+       ========================= */
 
-/*
-    WIN:
-    Return to the original stake.
-*/
+    if(win){
 
-if(win){
+        phCurrentStake =
+            phBaseStake;
 
-    phCurrentStake =
-        phBaseStake;
+    }
 
-}
+    else if(
+        phMartingale > 0
+    ){
 
-/*
-    LOSS + MARTINGALE ON:
-    Multiply the current trade stake
-    for the NEXT trade.
-*/
+        phCurrentStake =
+            Number(tradeStake) *
+            Number(phMartingale);
 
-else if(
-    !win &&
-    phMartingale > 0
-){
+    }
 
-    phCurrentStake =
-        Number(tradeStake) *
-        Number(phMartingale);
+    else{
 
-}
+        phCurrentStake =
+            phBaseStake;
 
-/*
-    LOSS + MARTINGALE OFF:
-    Keep the normal base stake.
-*/
-
-else{
-
-    phCurrentStake =
-        phBaseStake;
-
-}
+    }
 
 
-    /* UPDATE SCREEN */
+    /* =========================
+       UPDATE SCREEN
+       ========================= */
 
     renderPhinixTransactions();
 
@@ -3894,145 +3877,154 @@ else{
     updatePhinixResultsPanel();
 
 
-     /* =========================
-   TARGET PROFIT / STOP LOSS
-   ========================= */
+    /* =========================
+       TARGET PROFIT / STOP LOSS
+       ONLY FOR CONTINUOUS MODE
+       ========================= */
 
-const targetProfit =
-    Number(
-        document.getElementById("profitInput")?.value || 0
-    );
-
-const stopLoss =
-    Number(
-        document.getElementById("lossInput")?.value || 0
-    );
-
-
-/*
-   TARGET / STOP LOSS ONLY CONTROL
-   CONTINUOUS MODE (0).
-
-   When 1-10 trades is selected,
-   NUMBER OF TRADES has priority.
-*/
-
-if(phNumberOfTrades === 0){
-
-    /* TARGET PROFIT */
-
-    if(
-        targetProfit > 0 &&
-        phProfit >= targetProfit
-    ){
-
-        phBotRunning = false;
-
-        if(phInterval){
-            clearInterval(phInterval);
-            phInterval = null;
-        }
-
-        showPhinixBotPopup(
-            "🎯 Target Profit Reached",
-            `Your target profit of ${targetProfit.toFixed(2)} USD has been reached.<br><br>
-             Current profit: <b>${phProfit.toFixed(2)} USD</b>`,
-            "profit"
+    const targetProfit =
+        Number(
+            document.getElementById("profitInput")?.value || 0
         );
 
-        stopPhinixBot();
-
-        return;
-    }
-
-
-    /* STOP LOSS */
-
-    if(
-        stopLoss > 0 &&
-        phProfit <= -stopLoss
-    ){
-
-        phBotRunning = false;
-
-        if(phInterval){
-            clearInterval(phInterval);
-            phInterval = null;
-        }
-
-        showPhinixBotPopup(
-            "🛑 Stop Loss Reached",
-            `Your stop loss of ${stopLoss.toFixed(2)} USD has been reached.<br><br>
-             Current profit: <b>${phProfit.toFixed(2)} USD</b>`,
-            "loss"
+    const stopLoss =
+        Number(
+            document.getElementById("lossInput")?.value || 0
         );
 
-        stopPhinixBot();
 
-        return;
+    if(phNumberOfTrades === 0){
 
-
-        /* =========================
-   NUMBER OF TRADES COMPLETE
-   ========================= */
-
-if(
-    phNumberOfTrades > 0 &&
-    phTradesCompleted >= phNumberOfTrades
-){
-
-    phBotRunning = false;
-
-    if(phInterval){
-
-        clearInterval(phInterval);
-        phInterval = null;
-
-    }
-
-    /* CHANGE BUTTON TO START */
-
-    const buttons =
-        document.querySelectorAll("button");
-
-    buttons.forEach(function(button){
+        /* TARGET PROFIT */
 
         if(
-            button.innerText.includes("Stop") ||
-            button.innerText.includes("■ Stop")
+            targetProfit > 0 &&
+            phProfit >= targetProfit
         ){
 
-            button.innerHTML = "▶ Start";
+            phBotRunning = false;
 
-            button.style.background =
-                "#00b050";
+            if(phInterval){
+                clearInterval(phInterval);
+                phInterval = null;
+            }
 
-            button.onclick =
-                startPhinixBot;
+            showPhinixBotPopup(
+                "🎯 Target Profit Reached",
+                `Your target profit of ${targetProfit.toFixed(2)} USD has been reached.<br><br>
+                 Current profit: <b>${phProfit.toFixed(2)} USD</b>`,
+                "profit"
+            );
+
+            stopPhinixBot();
+
+            return;
+        }
+
+
+        /* STOP LOSS */
+
+        if(
+            stopLoss > 0 &&
+            phProfit <= -stopLoss
+        ){
+
+            phBotRunning = false;
+
+            if(phInterval){
+                clearInterval(phInterval);
+                phInterval = null;
+            }
+
+            showPhinixBotPopup(
+                "🛑 Stop Loss Reached",
+                `Your stop loss of ${stopLoss.toFixed(2)} USD has been reached.<br><br>
+                 Current profit: <b>${phProfit.toFixed(2)} USD</b>`,
+                "loss"
+            );
+
+            stopPhinixBot();
+
+            return;
+        }
+
+    }
+
+
+    /* =========================
+       NUMBER OF TRADES COMPLETE
+       ========================= */
+
+    if(
+        phNumberOfTrades > 0 &&
+        phTradesCompleted >= phNumberOfTrades
+    ){
+
+        phBotRunning = false;
+
+        if(phInterval){
+
+            clearInterval(phInterval);
+            phInterval = null;
 
         }
 
-    });
 
-    /* UPDATE STATUS */
+        /* CHANGE BUTTON TO START */
 
-    const status =
-        document.getElementById("phStatus");
+        const buttons =
+            document.querySelectorAll("button");
 
-    if(status){
+        buttons.forEach(function(button){
 
-        status.innerHTML =
-            "COMPLETED";
+            if(
+                button.innerText.includes("Stop") ||
+                button.innerText.includes("■ Stop")
+            ){
 
-        status.style.color =
-            "#00d9a5";
+                button.innerHTML =
+                    "▶ Start";
 
-    }
+                button.style.background =
+                    "#00b050";
+
+                button.onclick =
+                    startPhinixBot;
+
+            }
+
+        });
+
+
+        /* UPDATE STATUS */
+
+        const status =
+            document.getElementById("phStatus");
+
+        if(status){
+
+            status.innerHTML =
+                "COMPLETED";
+
+            status.style.color =
+                "#00d9a5";
+
+        }
 
         return;
-}
-
     }
+
+                }
+    
+
+
+     
+    
+    
+
+        
+
+                
 
 
 
