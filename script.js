@@ -3893,19 +3893,146 @@ else{
 
     updatePhinixResultsPanel();
 
- }
-    
+
+     /* =========================
+   TARGET PROFIT / STOP LOSS
+   ========================= */
+
+const targetProfit =
+    Number(
+        document.getElementById("profitInput")?.value || 0
+    );
+
+const stopLoss =
+    Number(
+        document.getElementById("lossInput")?.value || 0
+    );
 
 
-    
+/*
+   TARGET / STOP LOSS ONLY CONTROL
+   CONTINUOUS MODE (0).
 
-    
+   When 1-10 trades is selected,
+   NUMBER OF TRADES has priority.
+*/
+
+if(phNumberOfTrades === 0){
+
+    /* TARGET PROFIT */
+
+    if(
+        targetProfit > 0 &&
+        phProfit >= targetProfit
+    ){
+
+        phBotRunning = false;
+
+        if(phInterval){
+            clearInterval(phInterval);
+            phInterval = null;
+        }
+
+        showPhinixBotPopup(
+            "🎯 Target Profit Reached",
+            `Your target profit of ${targetProfit.toFixed(2)} USD has been reached.<br><br>
+             Current profit: <b>${phProfit.toFixed(2)} USD</b>`,
+            "profit"
+        );
+
+        stopPhinixBot();
+
+        return;
+    }
 
 
+    /* STOP LOSS */
 
-    
-        
+    if(
+        stopLoss > 0 &&
+        phProfit <= -stopLoss
+    ){
 
+        phBotRunning = false;
+
+        if(phInterval){
+            clearInterval(phInterval);
+            phInterval = null;
+        }
+
+        showPhinixBotPopup(
+            "🛑 Stop Loss Reached",
+            `Your stop loss of ${stopLoss.toFixed(2)} USD has been reached.<br><br>
+             Current profit: <b>${phProfit.toFixed(2)} USD</b>`,
+            "loss"
+        );
+
+        stopPhinixBot();
+
+        return;
+
+
+        /* =========================
+   NUMBER OF TRADES COMPLETE
+   ========================= */
+
+if(
+    phNumberOfTrades > 0 &&
+    phTradesCompleted >= phNumberOfTrades
+){
+
+    phBotRunning = false;
+
+    if(phInterval){
+
+        clearInterval(phInterval);
+        phInterval = null;
+
+    }
+
+    /* CHANGE BUTTON TO START */
+
+    const buttons =
+        document.querySelectorAll("button");
+
+    buttons.forEach(function(button){
+
+        if(
+            button.innerText.includes("Stop") ||
+            button.innerText.includes("■ Stop")
+        ){
+
+            button.innerHTML = "▶ Start";
+
+            button.style.background =
+                "#00b050";
+
+            button.onclick =
+                startPhinixBot;
+
+        }
+
+    });
+
+    /* UPDATE STATUS */
+
+    const status =
+        document.getElementById("phStatus");
+
+    if(status){
+
+        status.innerHTML =
+            "COMPLETED";
+
+        status.style.color =
+            "#00d9a5";
+
+    }
+
+        return;
+}
+
+    }
 
 
 
