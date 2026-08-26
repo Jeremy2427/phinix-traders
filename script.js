@@ -3715,19 +3715,32 @@ if(
 
     /* STOP IF BOT IS NOT RUNNING */
 
-    if(!phBotRunning){
-        return;
-    }
+if(!phBotRunning){
+    return;
+}
 
-/* STOP WHEN SELECTED NUMBER OF TRADES IS REACHED */
+/*
+   NUMBER OF TRADES
+
+   0 = CONTINUOUS
+   1-10 = STOP AFTER SELECTED NUMBER
+*/
 
 if(
-    phTradesCompleted >=
-    phNumberOfTrades
+    phNumberOfTrades > 0 &&
+    phTradesCompleted >= phNumberOfTrades
 ){
 
-    return;
+    phBotRunning = false;
 
+    if(phInterval){
+        clearInterval(phInterval);
+        phInterval = null;
+    }
+
+    stopPhinixBot();
+
+    return;
 }
 
 
