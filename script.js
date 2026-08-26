@@ -877,39 +877,56 @@ cursor:pointer;
 
 
 
-
-
 function toggleApexBot(){
-if (botInterval) {
-    clearInterval(botInterval);
-    botInterval = null;
-}
-    if(!document.getElementById("transactionsTable")) return;
 
+    const runBtn = document.getElementById("runBotBtn");
+    const status = document.getElementById("botStatus");
+
+    if(!runBtn || !status) return;
+
+    // STOP
     if(botRunning){
 
-        clearInterval(botInterval);
-botInterval = null;
-botRunning = false;
-        document.getElementById("runBotBtn").innerHTML="▶ RUN";
-        document.getElementById("runBotBtn").style.background="#00b050";
+        botRunning = false;
 
-        document.getElementById("botStatus").innerHTML="STOPPED";
+        if(botInterval){
+            clearInterval(botInterval);
+            botInterval = null;
+        }
+
+        runBtn.innerHTML = "▶ RUN";
+        runBtn.style.background = "#00b050";
+
+        status.innerHTML = "STOPPED";
 
         return;
-
     }
 
+    // RUN
     botRunning = true;
 
-    document.getElementById("runBotBtn").innerHTML="■ STOP";
-    document.getElementById("runBotBtn").style.background="#d62828";
+    runBtn.innerHTML = "■ STOP";
+    runBtn.style.background = "#d62828";
 
-    document.getElementById("botStatus").innerHTML="RUNNING";
+    status.innerHTML = "RUNNING";
 
-    botInterval=setInterval(addFakeTrade,2500);
+    // Open the first trade immediately
+    addFakeTrade();
 
-}
+    // Continue opening trades every 2.5 seconds
+    botInterval = setInterval(function(){
+
+        if(botRunning){
+            addFakeTrade();
+        }
+
+    }, 2500);
+            }
+
+
+
+
+    
 
 function addFakeTrade(){
 
