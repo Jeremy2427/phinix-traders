@@ -1691,10 +1691,17 @@ style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
     id="numberTradesSelect"
     style="width:100%;padding:12px;border-radius:12px;margin-bottom:20px;"
 >
-<option>1</option>
-<option>2</option>
-<option>5</option>
-<option>10</option>
+<option value="0">0 — Continuous</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
 </select>
 <button
     id="phBotRunButton"
