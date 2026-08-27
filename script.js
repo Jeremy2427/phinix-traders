@@ -1606,6 +1606,8 @@ outline:none;
     "
 >
 
+<label>Target Profit</label>
+
 <input
     id="profitInput"
     type="number"
@@ -1621,6 +1623,7 @@ outline:none;
     "
 >
 
+<label>Stop Loss</label>
 <input
     id="lossInput"
     type="number"
@@ -1830,94 +1833,14 @@ function updatePhinixBotRunButton(){
 
 function openPhinixRunningScreen(){
 
-        /* GET STAKE */
+        /* READ ALL BOT SETTINGS */
 
-        const stakeInput =
-        document.getElementById("phStakeInput");
-
-    const profitInput =
-    document.getElementById("profitInput");
-
-const lossInput =
-    document.getElementById("lossInput");
-
-    const targetProfit =
-    profitInput
-    ? Number(profitInput.value)
-    : 0;
-
-const stopLoss =
-    lossInput
-    ? Number(lossInput.value)
-    : 0;
-
-    document.querySelector(".container").dataset.targetProfit =
-    targetProfit;
-
-document.querySelector(".container").dataset.stopLoss =
-    stopLoss;
-
-
-
-    const martingaleSelect =
-        document.getElementById("martingaleSelect");
-
-    const numberTradesSelect =
-    document.getElementById("numberTradesSelect");
-
-const numberOfTrades =
-    numberTradesSelect
-        ? Number(numberTradesSelect.value)
-        : 1;
-
-phNumberOfTrades = numberOfTrades;
-
-
-    /* GET BASE STAKE */
-
-    if(stakeInput){
-
-        const selectedStake =
-            Number(stakeInput.value);
-
-        if(selectedStake > 0){
-
-            phBaseStake =
-                selectedStake;
-
-        }
-
-    }
-
-
- /* READ MARTINGALE SETTING */
-
-phMartingale = 0;
-
-if(martingaleSelect){
-
-    const selectedMartingale =
-        martingaleSelect.value;
-
-    if(
-        selectedMartingale &&
-        selectedMartingale !== "OFF"
-    ){
-
-        phMartingale =
-            Number(selectedMartingale);
-
-    }
-
-}
-
+    readPhinixProSettings();
 
     /* START THIS RUN AT BASE STAKE */
 
     phCurrentStake =
         phBaseStake;
-    
-
 
 
 
@@ -3598,6 +3521,94 @@ function stopPhinixBot(){
         }
 
     });
+
+}
+
+
+function readPhinixProSettings(){
+
+    /* STAKE */
+
+    const stakeInput =
+        document.getElementById("phStakeInput");
+
+    if(stakeInput){
+
+        const stake =
+            Number(stakeInput.value);
+
+        if(stake > 0){
+
+            phBaseStake = stake;
+            phCurrentStake = stake;
+
+        }
+
+    }
+
+
+    /* TARGET PROFIT */
+
+    const profitInput =
+        document.getElementById("profitInput");
+
+    if(profitInput){
+
+        phTargetProfit =
+            Number(profitInput.value) || 0;
+
+    }
+
+
+    /* STOP LOSS */
+
+    const lossInput =
+        document.getElementById("lossInput");
+
+    if(lossInput){
+
+        phStopLoss =
+            Number(lossInput.value) || 0;
+
+    }
+
+
+    /* MARTINGALE */
+
+    const martingaleSelect =
+        document.getElementById("martingaleSelect");
+
+    if(martingaleSelect){
+
+        if(martingaleSelect.value === "OFF"){
+
+            phMartingale = 0;
+
+        }else{
+
+            phMartingale =
+                Number(martingaleSelect.value) || 0;
+
+        }
+
+    }
+
+
+    /* NUMBER OF TRADES */
+
+    const numberTradesSelect =
+        document.getElementById("numberTradesSelect");
+
+    if(numberTradesSelect){
+
+        phNumberOfTrades =
+            Number(numberTradesSelect.value);
+
+    }else{
+
+        phNumberOfTrades = 0;
+
+    }
 
 }
     
