@@ -1835,6 +1835,30 @@ function openPhinixRunningScreen(){
         const stakeInput =
         document.getElementById("phStakeInput");
 
+    const profitInput =
+    document.getElementById("profitInput");
+
+const lossInput =
+    document.getElementById("lossInput");
+
+    const targetProfit =
+    profitInput
+    ? Number(profitInput.value)
+    : 0;
+
+const stopLoss =
+    lossInput
+    ? Number(lossInput.value)
+    : 0;
+
+    document.querySelector(".container").dataset.targetProfit =
+    targetProfit;
+
+document.querySelector(".container").dataset.stopLoss =
+    stopLoss;
+
+
+
     const martingaleSelect =
         document.getElementById("martingaleSelect");
 
@@ -3399,11 +3423,16 @@ function resetPhinixResults(){
     phBotRunning = false;
 
 
-    /* RESET TRADE STATE */
+    /* RESET TRADE COUNTER */
 
     phTradesCompleted = 0;
 
-phCurrentStake = phBaseStake;
+
+    /* RESET STAKE */
+
+    phCurrentStake =
+        phBaseStake;
+
 
     /* RESET STATISTICS */
 
@@ -3415,9 +3444,9 @@ phCurrentStake = phBaseStake;
     phProfit = 0;
 
 
-    /* CLEAR ALL TRANSACTIONS */
+    /* CLEAR TRANSACTIONS */
 
-    phTransactions.length = 0;
+    phTransactions = [];
 
 
     /* CLEAR JOURNAL */
@@ -3425,68 +3454,13 @@ phCurrentStake = phBaseStake;
     phJournal = "";
 
 
-    /* CLEAR TRANSACTION TABLE */
-
-    const table =
-        document.getElementById("phTransactionsTable");
-
-    if(table){
-
-        const tbody =
-            table.querySelector("tbody");
-
-        if(tbody){
-
-            tbody.innerHTML = `
-                <tr>
-                    <td colspan="3"
-                        style="
-                            padding:35px 10px;
-                            color:#8e789f;
-                            text-align:center;
-                        ">
-                        No transactions yet
-                    </td>
-                </tr>
-            `;
-
-        }
-
-    }
-
-
-    /* CLEAR JOURNAL DISPLAY */
-
-    const journal =
-        document.getElementById("phJournalList");
-
-    if(journal){
-
-        journal.innerHTML = `
-            <div class="phEmpty">
-                No journal entries yet
-            </div>
-        `;
-
-    }
-
-
-    /* RESET ALL SUMMARY DATA */
+    /* UPDATE ALL DISPLAYS */
 
     updatePhinixResultsPanel();
 
-
-    /* RESET STATISTICS DISPLAY */
-
     updatePhinixStats();
 
-
-    /* REFRESH EMPTY TRANSACTIONS */
-
     renderPhinixTransactions();
-
-
-    /* REFRESH EMPTY JOURNAL */
 
     renderPhinixJournal();
 
@@ -3498,85 +3472,27 @@ phCurrentStake = phBaseStake;
 
     if(status){
 
-        status.innerHTML = "STOPPED";
+        status.innerHTML =
+            "STOPPED";
 
-        status.style.color = "#ff4444";
+        status.style.color =
+            "#ff4444";
 
     }
 
 
-    /* UPDATE RUNNING SCREEN STATUS */
+    /* UPDATE RUNNING STATUS */
 
     const runningStatus =
         document.getElementById("phRunningStatusText");
 
     if(runningStatus){
 
-        runningStatus.innerHTML = "STOPPED";
-        runningStatus.style.color = "#ff4444";
+        runningStatus.innerHTML =
+            "STOPPED";
 
-    }
-
-
-    /* RESET RUNNING SCREEN BUTTON */
-
-    const buttons =
-        document.querySelectorAll("button");
-
-    buttons.forEach(function(button){
-
-        if(
-            button.innerText.includes("Stop") ||
-            button.innerText.includes("Start")
-        ){
-
-            if(
-                button.innerText.includes("Stop") ||
-                button.innerText.includes("Start")
-            ){
-
-                button.innerHTML = "▶ Start";
-
-                button.style.background =
-                    "#00b050";
-
-                button.onclick =
-                    startPhinixBot;
-
-            }
-
-        }
-
-    });
-
-        }
-
-            
-
-function stopPhinixBot(){
-
-    /* PAUSE TRADING */
-
-    if(phInterval){
-
-        clearInterval(phInterval);
-
-        phInterval = null;
-
-    }
-
-    phBotRunning = false;
-
-
-    /* CHANGE STATUS */
-
-    const status =
-        document.getElementById("phStatus");
-
-    if(status){
-
-        status.innerHTML = "PAUSED";
-        status.style.color = "#ff4444";
+        runningStatus.style.color =
+            "#ff4444";
 
     }
 
@@ -3593,7 +3509,8 @@ function stopPhinixBot(){
             button.innerText.includes("■ Stop")
         ){
 
-            button.innerHTML = "▶ Start";
+            button.innerHTML =
+                "▶ Start";
 
             button.style.background =
                 "#00b050";
@@ -3607,14 +3524,90 @@ function stopPhinixBot(){
 
 }
 
+    
+function stopPhinixBot(){
+
+    /* STOP TIMER */
+
+    if(phInterval){
+
+        clearInterval(phInterval);
+        phInterval = null;
+
+    }
+
+
+    /* STOP BOT */
+
+    phBotRunning = false;
+
+
+    /* UPDATE STATUS */
+
+    const status =
+        document.getElementById("phStatus");
+
+    if(status){
+
+        status.innerHTML =
+            "PAUSED";
+
+        status.style.color =
+            "#ff4444";
+
+    }
+
+
+    /* UPDATE RUNNING STATUS */
+
+    const runningStatus =
+        document.getElementById("phRunningStatusText");
+
+    if(runningStatus){
+
+        runningStatus.innerHTML =
+            "STOPPED";
+
+        runningStatus.style.color =
+            "#ff4444";
+
+    }
+
+
+    /* CHANGE STOP BUTTON TO START */
+
+    const buttons =
+        document.querySelectorAll("button");
+
+    buttons.forEach(function(button){
+
+        if(
+            button.innerText.includes("Stop") ||
+            button.innerText.includes("■ Stop")
+        ){
+
+            button.innerHTML =
+                "▶ Start";
+
+            button.style.background =
+                "#00b050";
+
+            button.onclick =
+                startPhinixBot;
+
+        }
+
+    });
+
+}
+    
+
 function startPhinixBot(){
 
-    /* READ ALL BOT SETTINGS */
+    /* READ BOT SETTINGS */
 
     if(typeof readPhinixProSettings === "function"){
-
         readPhinixProSettings();
-
     }
 
 
@@ -3630,114 +3623,129 @@ function startPhinixBot(){
 
     /* START WITH BASE STAKE */
 
-    phCurrentStake = phBaseStake;
+    phCurrentStake =
+        phBaseStake;
 
 
-    /* UPDATE RUNNING STATUS */
+    /* UPDATE STATUS */
 
     const status =
         document.getElementById("phStatus");
 
     if(status){
 
-        status.innerHTML = "RUNNING";
-        status.style.color = "#00d9a5";
+        status.innerHTML =
+            "RUNNING";
+
+        status.style.color =
+            "#00d9a5";
 
     }
 
 
-    /* UPDATE RUNNING SCREEN BUTTONS */
+    /* UPDATE START/STOP BUTTON */
 
-const buttons =
-    document.querySelectorAll("button");
+    const buttons =
+        document.querySelectorAll("button");
 
-buttons.forEach(function(button){
+    buttons.forEach(function(button){
 
-    if(
-        button.innerText.includes("Start") ||
-        button.innerText.includes("▶ Start")
-    ){
+        if(
+            button.innerText.includes("Start") ||
+            button.innerText.includes("▶ Start")
+        ){
 
-        button.innerHTML = "■ Stop";
+            button.innerHTML =
+                "■ Stop";
 
-        button.style.background =
-            "#d8243f";
+            button.style.background =
+                "#d8243f";
 
-        button.onclick =
-            stopPhinixBot;
+            button.onclick =
+                stopPhinixBot;
 
-    }
+        }
 
-});
+    });
 
 
-    /* CANCEL OLD TIMER */
+    /* CLEAR OLD TIMER */
 
     if(phInterval){
 
         clearInterval(phInterval);
-
         phInterval = null;
 
     }
 
 
-    /* START FIRST TRADE IMMEDIATELY */
+    /* FIRST TRADE */
 
-if(
-    phBotRunning &&
-    (
-        phNumberOfTrades === 0 ||
-        phTradesCompleted < phNumberOfTrades
-    ) &&
-    typeof addPhinixTrade === "function"
-){
-
-    addPhinixTrade();
-
-}
-
-
-
-/* CONTINUE TRADING */
-
-if(
-    phBotRunning &&
-    (
-        phNumberOfTrades === 0 ||
-        phTradesCompleted < phNumberOfTrades
-    )
-){
-
-    phInterval = setInterval(function(){
-
-        if(!phBotRunning){
-
-            clearInterval(phInterval);
-            phInterval = null;
-            return;
-
-        }
-
-        if(
-            phTradesCompleted >=
-            phNumberOfTrades
-        ){
-
-            clearInterval(phInterval);
-            phInterval = null;
-
-            return;
-
-        }
+    if(
+        phBotRunning &&
+        typeof addPhinixTrade === "function"
+    ){
 
         addPhinixTrade();
 
-    }, 2500);
+    }
+
+
+    /* CONTINUE TRADING */
+
+    if(phBotRunning){
+
+        phInterval =
+            setInterval(function(){
+
+                if(!phBotRunning){
+
+                    clearInterval(phInterval);
+                    phInterval = null;
+
+                    return;
+
+                }
+
+
+                /*
+                   1-10:
+                   Stop when exact number is reached.
+
+                   0:
+                   Keep running continuously.
+                */
+
+                if(
+                    phNumberOfTrades > 0 &&
+                    phTradesCompleted >= phNumberOfTrades
+                ){
+
+                    clearInterval(phInterval);
+                    phInterval = null;
+
+                    phBotRunning = false;
+
+                    stopPhinixBot();
+
+                    return;
+
+                }
+
+
+                addPhinixTrade();
+
+            }, 2500);
+
+    }
 
 }
-    
-}
+
+
+
+
+        
+            
 
 
 
@@ -3909,15 +3917,18 @@ Stake: ${tradeStake.toFixed(2)} USD
        ONLY FOR CONTINUOUS MODE
        ========================= */
 
-    const targetProfit =
-        Number(
-            document.getElementById("profitInput")?.value || 0
-        );
+    const container =
+    document.querySelector(".container");
 
-    const stopLoss =
-        Number(
-            document.getElementById("lossInput")?.value || 0
-        );
+const targetProfit =
+    Number(
+        container?.dataset.targetProfit || 0
+    );
+
+const stopLoss =
+    Number(
+        container?.dataset.stopLoss || 0
+    );
 
 
     if(phNumberOfTrades === 0){
