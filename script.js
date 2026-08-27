@@ -1606,22 +1606,49 @@ outline:none;
     "
 >
 
-<label>Target Profit</label>
-<input type="number" value="5"
-style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<input
+    id="profitInput"
+    type="number"
+    value="5"
+    min="0"
+    step="0.01"
+    style="
+        width:100%;
+        padding:12px;
+        border-radius:12px;
+        margin-bottom:12px;
+        box-sizing:border-box;
+    "
+>
 
-<label>Stop Loss</label>
-<input type="number" value="10"
-style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<input
+    id="lossInput"
+    type="number"
+    value="10"
+    min="0"
+    step="0.01"
+    style="
+        width:100%;
+        padding:12px;
+        border-radius:12px;
+        margin-bottom:12px;
+        box-sizing:border-box;
+    "
+>
 
 <label>Martingale</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:20px;">
+
+<select
+    id="martingaleSelect"
+    style="width:100%;padding:12px;border-radius:12px;margin-bottom:20px;"
+>
 <option>OFF</option>
 <option>2</option>
 <option>2.5</option>
 <option>3</option>
 <option>4</option>
 </select>
+
 <h3 style="color:#ffd700;margin-top:20px;">
 📊 Trade Options
 </h3>
