@@ -15,13 +15,11 @@
 
     const state = {
 
-        connected: false,
+    connected: false,
 
-        socket: null,
+    socket: null
 
-        appId: null
-
-    };
+};
 
 
     const listeners = {};
