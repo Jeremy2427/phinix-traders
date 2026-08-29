@@ -162,6 +162,48 @@ function readPhinixProSettings(){
 
     phTradesCompleted = 0;
 
+       /* SEND SETTINGS TO PHINIX ENGINE */
+
+    if(
+        typeof PhinixEngine !== "undefined"
+    ){
+
+        PhinixEngine.readSettings({
+
+            stake:
+                phBaseStake,
+
+            targetProfit:
+                phTargetProfit,
+
+            stopLoss:
+                phStopLoss,
+
+            martingale:
+                phMartingale,
+
+            tradeType:
+                phTradeType,
+
+            durationType:
+                phDurationType,
+
+            durationValue:
+                phDurationValue,
+
+            prediction:
+                phPrediction,
+
+            purchase:
+                phPurchase,
+
+            allowBulkPurchase:
+                phAllowBulkPurchase
+
+        });
+
+    }
+
       }
 
 
