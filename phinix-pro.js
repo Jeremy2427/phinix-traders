@@ -659,4 +659,54 @@ function startPhinixProBot(){
 }
 
 
+/* =========================================
+   PHINIX ENGINE RESULT HANDLER
+   ========================================= */
 
+function handlePhinixEngineTradeResult(result){
+
+    if(
+        typeof PhinixEngine === "undefined"
+    ){
+
+        return;
+
+    }
+
+    if(
+        !result ||
+        typeof result !== "object"
+    ){
+
+        return;
+
+    }
+
+    /*
+        Send the completed contract result
+        to the central Phinix engine.
+    */
+
+    PhinixEngine.recordTrade({
+
+        stake:
+            Number(result.stake) || 0,
+
+        payout:
+            Number(result.payout) || 0,
+
+        profit:
+            Number(result.profit) || 0,
+
+        won:
+            result.won === true,
+
+        contractId:
+            result.contractId || null,
+
+        symbol:
+            result.symbol || null
+
+    });
+
+}
