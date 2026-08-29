@@ -587,5 +587,42 @@ function startPhinixProBot(){
 
 }
 
+/* =========================================
+   PHINIX LIVE DERIV TICK
+   ========================================= */
 
+if(
+    typeof PhinixDerivBridge !==
+    "undefined"
+){
+
+    PhinixDerivBridge.onTick(
+        function(tick){
+
+            if(!tick){
+
+                return;
+
+            }
+
+
+            console.log(
+                "PHINIX LIVE TICK:",
+                tick.quote
+            );
+
+
+            /*
+                Store the latest market price.
+                This is market data only.
+            */
+
+            window.phinixLiveQuote =
+                Number(tick.quote);
+
+
+        }
+    );
+
+}
 
