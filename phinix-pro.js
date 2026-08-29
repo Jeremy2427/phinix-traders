@@ -262,23 +262,35 @@ function startPhinixProEngine(){
     }
 
 
-    /*
-        Make the first trade immediately
+
+
+
+        /*
+        TRADE EXECUTION
+        ----------------
+        The new PhinixEngine now controls
+        bot state and risk rules.
+
+        Real Deriv execution will be
+        connected in the next stage.
+
+        Do NOT start the old simulated
+        Math.random() trade loop here.
     */
 
-    executePhinixProTrade();
+    if(
+        typeof PhinixEngine === "undefined"
+    ){
 
-
-    /*
-        Continue trading according to
-        the selected duration.
-    */
-
-    phInterval =
-        setInterval(
-            executePhinixProTrade,
-            getPhinixProInterval()
+        alert(
+            "Phinix trading engine is not loaded."
         );
+
+        phBotRunning = false;
+
+        return;
+
+    }
 
 }
 
