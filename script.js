@@ -1711,7 +1711,7 @@ outline:none;
 </select>
 
 <label>Allow Bulk Purchase</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<select id="bulkPurchaseSelect" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 <option>No</option>
 <option>Yes</option>
 </select>
