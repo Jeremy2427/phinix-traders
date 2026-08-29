@@ -1699,7 +1699,7 @@ outline:none;
 </h3>
 
 <label>Purchase</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<select id="purchaseSelect" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 <option>Odd</option>
 <option>Even</option>
 <option>Over</option>
