@@ -157,27 +157,18 @@ function readPhinixProSettings(){
         phNumberOfTrades =
             Number(numberTrades.value) || 1;
 
-
-    /* RESET TRADE COUNTER */
-
-    phTradesCompleted = 0;
-
-      }
-
-
-/* =========================================
-   PHINIX PRO TRADE ENGINE
-   ========================================= */
-
 function startPhinixProEngine(){
 
     /* Read all settings first */
     readPhinixProSettings();
 
+
     /* Make sure stake is valid */
     if(phBaseStake <= 0){
 
-        alert("Please enter a valid stake.");
+        alert(
+            "Please enter a valid stake."
+        );
 
         return;
 
@@ -188,38 +179,61 @@ function startPhinixProEngine(){
     phCurrentStake =
         phBaseStake;
 
-    phTradesCompleted = 0;
 
-    phBotRunning = true;
+    /* Reset trade counter */
+    phTradesCompleted =
+        0;
 
 
-    /* Clear an old timer */
+    /* Start bot state */
+    phBotRunning =
+        true;
+
+
+    /*
+        Clear any old timer.
+    */
+
     if(phInterval){
 
-        clearInterval(phInterval);
+        clearInterval(
+            phInterval
+        );
+
+        phInterval =
+            null;
 
     }
 
 
     /*
-        Make the first trade immediately
+        Connect to the public Deriv market.
+
+        This does NOT authorize an account
+        and does NOT place a trade.
     */
 
-    executePhinixProTrade();
+    if(
+        typeof PhinixDerivBridge ===
+        "undefined"
+    ){
 
-
-    /*
-        Continue trading according to
-        the selected duration.
-    */
-
-    phInterval =
-        setInterval(
-            executePhinixProTrade,
-            getPhinixProInterval()
+        alert(
+            "Phinix Deriv bridge is not loaded."
         );
 
+        phBotRunning =
+            false;
+
+        return;
+
+    }
+
+
+    PhinixDerivBridge.connect();
+
 }
+
 
 
 /* =========================================
