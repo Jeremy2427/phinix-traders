@@ -216,6 +216,25 @@ function startPhinixProEngine(){
     /* Read all settings first */
     readPhinixProSettings();
 
+       /* START THE NEW PHINIX ENGINE */
+
+    if(
+        typeof PhinixEngine !== "undefined"
+    ){
+
+        const started =
+            PhinixEngine.start();
+
+        if(!started){
+
+            phBotRunning = false;
+
+            return;
+
+        }
+
+    }
+
     /* Make sure stake is valid */
     if(phBaseStake <= 0){
 
