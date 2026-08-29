@@ -1672,7 +1672,7 @@ outline:none;
 </select>
 
 <label>Duration Value</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<select id="durationValue" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 <option>1</option>
 <option>2</option>
 <option>3</option>
