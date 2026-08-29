@@ -1657,7 +1657,7 @@ outline:none;
 </h3>
 
 <label>Trade Type</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<select id="tradeType" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 <option>Over / Under</option>
 <option>Matches / Differs</option>
 <option>Even / Odd</option>
@@ -1665,7 +1665,7 @@ outline:none;
 </select>
 
 <label>Duration Type</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
+<select id="durationType" style="width:100%;padding:12px;border-radius:12px;margin-bottom:12px;">
 <option>Ticks</option>
 <option>Seconds</option>
 <option>Minutes</option>
