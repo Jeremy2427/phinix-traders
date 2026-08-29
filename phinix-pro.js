@@ -339,6 +339,18 @@ function executePhinixProTrade(){
 
     }
 
+       /* =========================================
+       PHINIX ENGINE RESULT BRIDGE
+       ========================================= */
+
+    if(
+        typeof PhinixEngine === "undefined"
+    ){
+
+        return;
+
+    }
+
 
     /*
         Stop before creating another trade
