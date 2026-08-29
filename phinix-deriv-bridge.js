@@ -18,14 +18,15 @@
 
     const bridge = {
 
-        connected: false,
+    connected: false,
 
-        lastMessage: null,
+    lastMessage: null,
 
-        lastTick: null
+    lastTick: null,
 
-    };
+    tickListeners: []
 
+};
 
     function handleConnected() {
 
@@ -100,6 +101,27 @@
 
             bridge.lastTick =
                 data.tick;
+
+           bridge.tickListeners.forEach(
+    function(listener){
+
+        try{
+
+            listener(
+                data.tick
+            );
+
+        }catch(error){
+
+            console.error(
+                "Phinix tick listener error:",
+                error
+            );
+
+        }
+
+    }
+);
 
             console.log(
                 "Phinix Deriv tick:",
@@ -205,20 +227,40 @@
     }
 
 
-    window.PhinixDerivBridge = {
+window.PhinixDerivBridge = {
 
-        connect:
-            connect,
+    connect:
+        connect,
 
-        disconnect:
-            disconnect,
+    disconnect:
+        disconnect,
 
-        isConnected:
-            isConnected,
+    isConnected:
+        isConnected,
 
-        getLastTick:
-            getLastTick
+    getLastTick:
+        getLastTick,
 
-    };
+    onTick:
+        function(listener){
 
+            if(
+                typeof listener !==
+                "function"
+            ){
+
+                return false;
+
+            }
+
+            bridge.tickListeners.push(
+                listener
+            );
+
+            return true;
+
+        }
+
+};
+   
 })();
