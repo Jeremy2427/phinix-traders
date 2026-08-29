@@ -89,21 +89,9 @@
     }
 
 
-    function connect(appId) {
+    function connect() {
 
-        if (!appId) {
-
-            emit(
-                "error",
-                {
-                    message:
-                        "A Deriv App ID is required."
-                }
-            );
-
-            return false;
-
-        }
+        
 
 
         /*
@@ -128,8 +116,6 @@
         }
 
 
-        state.appId =
-            String(appId);
 
 
         /*
@@ -137,11 +123,7 @@
         */
 
         const url =
-            "wss://ws.derivws.com/websockets/v3" +
-            "?app_id=" +
-            encodeURIComponent(
-                state.appId
-            );
+    "wss://api.derivws.com/trading/v1/options/ws/public";
 
 
         try {
@@ -173,13 +155,9 @@
                     true;
 
                 emit(
-                    "connected",
-                    {
-                        appId:
-                            state.appId
-                    }
-                );
-
+    "connected",
+    {}
+);
             };
 
 
@@ -362,15 +340,12 @@
 
     function getState() {
 
-        return {
+    return {
 
-            connected:
-                state.connected,
+        connected:
+            state.connected
 
-            appId:
-                state.appId
-
-        };
+    };
 
     }
 
