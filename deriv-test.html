@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Phinix Deriv Connection Test</title>
+
+</head>
+
+
+<body
+    style="
+        background:#071326;
+        color:white;
+        font-family:Arial,sans-serif;
+        padding:30px;
+    "
+>
+
+    <h2>Phinix Deriv Connection Test</h2>
+
+    <p id="status">
+        Connecting...
+    </p>
+
+
+    <pre
+        id="output"
+        style="
+            background:#0B1B38;
+            padding:15px;
+            border-radius:10px;
+            white-space:pre-wrap;
+        "
+    ></pre>
+
+
+    <script src="phinix-deriv-api.js"></script>
+
+
+    <script>
+
+        const status =
+            document.getElementById(
+                "status"
+            );
+
+        const output =
+            document.getElementById(
+                "output"
+            );
+
+
+        function log(message){
+
+            output.textContent +=
+                message + "\n";
+
+        }
+
+
+        PhinixDerivAPI.on(
+            "connected",
+            function(){
+
+                status.textContent =
+                    "🟢 Connected to Deriv";
+
+                log(
+                    "WebSocket connection established."
+                );
+
+            }
+        );
+
+
+        PhinixDerivAPI.on(
+            "disconnected",
+            function(){
+
+                status.textContent =
+                    "🔴 Disconnected";
+
+                log(
+                    "WebSocket disconnected."
+                );
+
+            }
+        );
+
+
+        PhinixDerivAPI.on(
+            "error",
+            function(error){
+
+                status.textContent =
+                    "⚠️ Connection error";
+
+                log(
+                    JSON.stringify(
+                        error,
+                        null,
+                        2
+                    )
+                );
+
+            }
+        );
+
+
+        PhinixDerivAPI.on(
+            "apiError",
+            function(error){
+
+                log(
+                    "Deriv API error: " +
+                    JSON.stringify(
+                        error
+                    )
+                );
+
+            }
+        );
+
+
+        /*
+            Start public connection.
+            No App ID or account token.
+        */
+
+        PhinixDerivAPI.connect();
+
+    </script>
+
+</body>
+
+</html>
