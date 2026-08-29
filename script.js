@@ -1682,7 +1682,7 @@ outline:none;
 </select>
 
 <label>Prediction</label>
-<select style="width:100%;padding:12px;border-radius:12px;margin-bottom:20px;">
+<select id="predictionSelect" style="width:100%;padding:12px;border-radius:12px;margin-bottom:20px;">
 <option>0</option>
 <option>1</option>
 <option>2</option>
