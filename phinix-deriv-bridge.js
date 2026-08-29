@@ -29,12 +29,30 @@
 
     function handleConnected() {
 
-        bridge.connected =
-            true;
+    bridge.connected =
+        true;
 
-        console.log(
-            "Phinix: Connected to Deriv."
-        );
+    console.log(
+        "Phinix: Connected to Deriv."
+    );
+
+
+    /*
+        Subscribe to live tick data.
+
+        This is public market data only.
+        No account or trading action.
+    */
+
+    PhinixDerivAPI.send({
+
+        ticks:
+            "1HZ100V",
+
+        subscribe:
+            1,
+
+    });
 
     }
 
