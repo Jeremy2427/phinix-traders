@@ -1735,7 +1735,7 @@ outline:none;
 </select>
 <button
     id="phBotRunButton"
-    onclick="openPhinixRunningScreen()"
+    onclick="startPhinixProBot()"
     style="
         width:100%;
         padding:16px;
