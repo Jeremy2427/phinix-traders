@@ -153,9 +153,12 @@ function readPhinixProSettings(){
             bulkPurchase.value === "Yes";
 
 
-    if(numberTrades)
-        phNumberOfTrades =
-            Number(numberTrades.value) || 1;
+if(numberTrades)
+    phNumberOfTrades =
+        Number(numberTrades.value) || 1;
+
+}
+ 
 
 function startPhinixProEngine(){
 
