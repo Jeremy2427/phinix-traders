@@ -47,13 +47,16 @@
 
     PhinixDerivAPI.send({
 
-        ticks:
-            "1HZ100V",
+    ticks:
+        "1HZ100V",
 
-        subscribe:
-            1,
+    subscribe:
+        1,
 
-    });
+    req_id:
+        1
+
+});
 
     }
 
