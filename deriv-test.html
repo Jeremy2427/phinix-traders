@@ -42,7 +42,8 @@
     ></pre>
 
 
-    <script src="phinix-deriv-api.js"></script>
+<script src="phinix-deriv-api.js"></script>
+<script src="phinix-deriv-bridge.js"></script>
 
 
     <script>
@@ -135,7 +136,31 @@
             No App ID or account token.
         */
 
-        PhinixDerivAPI.connect();
+        PhinixDerivBridge.connect();
+
+        PhinixDerivBridge.onTick(
+    function(tick){
+
+        if(!tick){
+
+            return;
+
+        }
+
+        status.textContent =
+            "🟢 Connected • Live tick received";
+
+        log(
+            "Live tick: " +
+            JSON.stringify(
+                tick,
+                null,
+                2
+            )
+        );
+
+    }
+);
 
     </script>
 
