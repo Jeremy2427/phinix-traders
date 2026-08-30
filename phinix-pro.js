@@ -623,6 +623,19 @@ if(
             window.phinixLiveQuote =
                 Number(tick.quote);
 
+           if(
+    phBotRunning &&
+    !phInterval
+){
+
+    phInterval =
+        setInterval(
+            executePhinixProTrade,
+            getPhinixProInterval()
+        );
+
+           }
+
 
         }
     );
