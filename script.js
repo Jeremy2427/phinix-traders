@@ -205,13 +205,15 @@ transform:translateY(0);
 AI-powered precision trading
 </p>
 <button onclick="openApexBot()" style="
-width:100%;
-padding:12px;
+padding:10px 18px;
 border:none;
-border-radius:12px;
-background:linear-gradient(90deg,#7a2cff,#c94fff);
+border-radius:14px;
+background:linear-gradient(135deg,#7a2cff,#c94fff);
 color:white;
 font-weight:bold;
+font-size:13px;
+box-shadow:0 5px 15px rgba(122,44,255,.25);
+cursor:pointer;
 ">
 LOAD BOT
 </button>
