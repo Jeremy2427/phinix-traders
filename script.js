@@ -186,14 +186,20 @@ margin-top:20px;
 ">
 
 <div class="bot-card" style="
-background:#161625;
-border:1px solid #7a2cff;
-border-radius:18px;
-padding:16px;
-margin:12px 0;
+background:linear-gradient(180deg,#141424,#0f0f1a);
+border:1px solid rgba(255,255,255,.08);
+border-radius:24px;
+padding:20px;
+margin:18px 0;
 color:white;
-box-shadow:0 0 12px rgba(122,44,255,.15);
+box-shadow:
+0 10px 25px rgba(0,0,0,.45),
+0 0 18px rgba(122,44,255,.18);
+position:relative;
+overflow:hidden;
+transform:translateY(0);
 ">
+
 <h3>🤖 Apex Bot</h3>
 <p style="color:#bdbdbd;">
 AI-powered precision trading
